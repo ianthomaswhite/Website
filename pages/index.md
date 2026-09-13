@@ -42,7 +42,7 @@ phonology and morphology), formal systems, and building robust software with str
     <div class="contact-grid">
         <div class="contact-item">
             <span class="contact-label">Email</span>
-            <a href="mailto:ianthomaswhite@gmail.com">ianthomaswhite [at] gmail.com</a>
+            <a href="mailto:ianthomaswhite@gmail.com">ianthomaswhite [at] gmail [dot] com</a>
         </div>
         <div class="contact-item">
             <span class="contact-label">GitHub</span>
