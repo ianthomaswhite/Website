@@ -6,7 +6,7 @@ title: Full Curriculum Vitae & Resume
 
 <div class="resume-entry-subtitle">
     Researcher &middot; Software Engineer &middot; Computational Linguist<br>
-    <a href="mailto:ian@ianthomaswhite.com">ian@ianthomaswhite.com</a> &middot; <a href="https://ianthomaswhite.com">ianthomaswhite.com</a> &middot; <a href="https://github.com/ianthomaswhite">github.com/ianthomaswhite</a>
+    <a href="mailto:ianthomaswhite@gmail.com">ianthomaswhite [at] gmail.com</a> &middot; <a href="https://ianthomaswhite.com">ianthomaswhite.com</a> &middot; <a href="https://github.com/ianthomaswhite">github.com/ianthomaswhite</a>
 </div>
 
 ---
