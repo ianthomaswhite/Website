@@ -1,0 +1,32 @@
+# Hakyll output and cache
+_site/
+_cache/
+.hakyll-cache/
+
+# Haskell compilation artifacts
+dist/
+dist-newstyle/
+.cabal-sandbox/
+cabal.sandbox.config
+*.o
+*.hi
+*.dyn_o
+*.dyn_hi
+site
+
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~

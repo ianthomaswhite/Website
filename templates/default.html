@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$if(title)$$title$ — Ian Thomas White$else$Ian Thomas White$endif$</title>
+    <meta name="description" content="Personal website, research, writing, and blog of Ian Thomas White.">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="site-title">Ian Thomas White</a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/resume.html" class="nav-link">Resume</a>
+                <a href="/writing.html" class="nav-link">Writing</a>
+                <a href="/blog.html" class="nav-link">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="content-wrapper">
+                $body$
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div>&copy; 2026 Ian Thomas White &middot; Built with Hakyll (Haskell)</div>
+            <div><a href="https://github.com/ianthomaswhite" target="_blank" rel="noopener">GitHub</a> &middot; <a href="/admin/">Admin</a></div>
+        </div>
+    </footer>
+</body>
+</html>

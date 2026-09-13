@@ -1,0 +1,104 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.65in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+% Color Definitions
+\definecolor{accent}{HTML}{111111}
+\definecolor{subtext}{HTML}{444444}
+\definecolor{bordergray}{HTML}{888888}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    urlcolor=accent
+}
+
+% Page styling
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.2em, itemsep=1.5pt, topsep=2pt}
+
+% Custom section headings
+\newcommand{\resumesection}[1]{%
+    \vspace{8pt}%
+    {\large\bfseries\uppercase{#1}}%
+    \vspace{2pt}%
+    \hrule height 1pt%
+    \vspace{5pt}%
+}
+
+\begin{document}
+
+% Header
+\begin{center}
+    {\huge\bfseries IAN THOMAS WHITE} \\[3pt]
+    {\color{subtext} Researcher \textbar\ Software Engineer \textbar\ Computational Linguist} \\[3pt]
+    \href{mailto:ian@ianthomaswhite.com}{ian@ianthomaswhite.com} \quad\textbar\quad
+    \href{https://ianthomaswhite.com}{ianthomaswhite.com} \quad\textbar\quad
+    \href{https://github.com/ianthomaswhite}{github.com/ianthomaswhite}
+\end{center}
+
+\vspace{-4pt}
+
+% Education
+\resumesection{Education}
+\textbf{Bachelor of Arts / Science in Linguistics \& Computer Science} \hfill \textbf{2018 -- 2022} \\
+{\color{subtext}\textit{Academic Honors \textbar\ Departmental Distinction}}
+\begin{itemize}
+    \item Focus in historical phonology, comparative Indo-European grammar, and type systems.
+\end{itemize}
+
+% Experience
+\resumesection{Experience}
+\textbf{Lead Developer \& Computational Linguist} \hfill \textbf{2023 -- Present} \\
+\textit{Linguistics \& Functional Systems Research} \hfill \textit{Remote / Independent}
+\begin{itemize}
+    \item Designed an IPA-based Indo-European comparative lexicon and phonological sound-change pipeline.
+    \item Engineered static site architectures and type-safe backend systems using Haskell (Hakyll, Yesod).
+    \item Built CI/CD pipelines deploying LaTeX-compiled research assets and documentation automatically.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Research \& Software Engineer} \hfill \textbf{2021 -- 2023} \\
+\textit{Academic \& Technical Systems Group} \hfill \textit{United States}
+\begin{itemize}
+    \item Authored technical monographs, grammar specifications, and documentation in LaTeX.
+    \item Developed high-throughput textual corpus ingestion tools and automated test suites in Haskell/Python.
+    \item Implemented structured data models for phonetic inventories and lexical databases.
+\end{itemize}
+
+% Selected Projects
+\resumesection{Selected Projects}
+\textbf{IPA Indo-European Comparative Dictionary} \hfill \textbf{2024 -- Present}
+\begin{itemize}
+    \item Systematic reconstruction tool tracing Proto-Indo-European etyma across Germanic, Celtic, Romance, Slavic, Indo-Iranian, and Greek, strictly aligned to IPA representations.
+\end{itemize}
+
+\vspace{2pt}
+\textbf{AI-Powered LaTeX Dossier \& Resume Engine} \hfill \textbf{2025}
+\begin{itemize}
+    \item Programmatic Haskell pipeline transforming structured metadata into pixel-perfect PDF publications.
+\end{itemize}
+
+\vspace{2pt}
+\textbf{Minimalist Brutalist Web Platform} \hfill \textbf{2026}
+\begin{itemize}
+    \item Custom Hakyll static generator with zero runtime dependencies and continuous delivery on GitHub Pages.
+\end{itemize}
+
+% Skills & Competencies
+\resumesection{Technical Skills \& Competencies}
+\begin{itemize}
+    \item \textbf{Languages:} Haskell, Bash, Python, SQL, HTML/CSS.
+    \item \textbf{Typesetting \& Publishing:} LaTeX (\texttt{pdflatex}, \texttt{lualatex}, TikZ), Pandoc, Git, Markdown.
+    \item \textbf{Linguistics:} Historical Phonology, Proto-Indo-European, IPA Transcription, Morphology.
+    \item \textbf{Systems \& Tools:} Linux/Unix, GitHub Actions, Docker, Static Site Generation.
+\end{itemize}
+
+\end{document}

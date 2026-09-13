@@ -1,0 +1,19 @@
+cabal-version:      3.0
+name:               website
+version:            0.1.0.0
+synopsis:           Personal website and blog of Ian Thomas White
+homepage:           https://ianthomaswhite.com
+license:            MIT
+author:             Ian Thomas White
+maintainer:         contact@ianthomaswhite.com
+category:           Web
+build-type:         Simple
+
+executable site
+  main-is:          site.hs
+  build-depends:    base >= 4.14 && < 5
+                  , hakyll >= 4.15 && < 4.17
+                  , filepath >= 1.4
+                  , pandoc >= 2.19
+  ghc-options:      -threaded -rtsopts -with-rtsopts=-N -Wall
+  default-language: Haskell2010

@@ -1,0 +1,110 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\definecolor{accent}{HTML}{111111}
+\definecolor{subtext}{HTML}{444444}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    urlcolor=accent
+}
+
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.3em, itemsep=2pt, topsep=2pt}
+
+\newcommand{\cvsection}[1]{%
+    \vspace{10pt}%
+    {\large\bfseries\uppercase{#1}}%
+    \vspace{2pt}%
+    \hrule height 1pt%
+    \vspace{6pt}%
+}
+
+\begin{document}
+
+\begin{center}
+    {\huge\bfseries IAN THOMAS WHITE} \\[4pt]
+    {\large Curriculum Vitae \& Extended Dossier} \\[3pt]
+    {\color{subtext} Researcher \textbar\ Software Engineer \textbar\ Computational Linguist} \\[4pt]
+    \href{mailto:ian@ianthomaswhite.com}{ian@ianthomaswhite.com} \quad\textbar\quad
+    \href{https://ianthomaswhite.com}{ianthomaswhite.com} \quad\textbar\quad
+    \href{https://github.com/ianthomaswhite}{github.com/ianthomaswhite}
+\end{center}
+
+\vspace{5pt}
+
+\cvsection{Research Focus \& Summary}
+Multidisciplinary researcher and software developer working at the intersection of computational linguistics, functional programming (Haskell), and artificial intelligence. Specializing in comparative Indo-European phonology, historical sound laws, and type-safe systems with strong formal guarantees.
+
+\cvsection{Education}
+\textbf{Bachelor of Arts / Science in Linguistics \& Computer Science} \hfill \textbf{2018 -- 2022} \\
+{\color{subtext}\textit{Academic Honors \textbar\ Departmental Distinction}}
+\begin{itemize}
+    \item Focus in historical phonology, comparative Indo-European grammar, and programming language theory.
+    \item Independent research thesis on comparative sound reconstruction and phonetic data representations.
+    \item Coursework: Formal Language Theory, Compilers, Type Systems, Comparative Philology, Phonetics \& Phonology.
+\end{itemize}
+
+\cvsection{Professional \& Research Experience}
+\textbf{Lead Developer \& Computational Linguist} \hfill \textbf{2023 -- Present} \\
+\textit{Independent Linguistics \& AI Research} \hfill \textit{Remote / Independent}
+\begin{itemize}
+    \item Architected an IPA-based Indo-European comparative dictionary engine modeling phonological shift across Indo-European branches.
+    \item Implemented static site generators and type-safe web services using Haskell (Hakyll, Yesod, Servant).
+    \item Created automated LaTeX-to-web publishing pipelines with continuous delivery on GitHub Actions.
+    \item Built tooling for automated grammatical verification and IPA alignment.
+\end{itemize}
+
+\vspace{5pt}
+\textbf{Research Engineer / Assistant} \hfill \textbf{2021 -- 2023} \\
+\textit{Academic \& Technical Labs} \hfill \textit{United States}
+\begin{itemize}
+    \item Authored technical monographs, grammar specifications, and research reports in LaTeX.
+    \item Engineered data ingestion pipelines for large lexical and textual corpora in Haskell and Python.
+    \item Designed structured schemas for phonetic inventories and historical etymological networks.
+    \item Collaborated with multidisciplinary teams on computational NLP benchmarks.
+\end{itemize}
+
+\cvsection{Major Projects}
+\textbf{IPA Comparative Indo-European Lexicon \& Engine} \hfill \textbf{2024 -- Present}
+\begin{itemize}
+    \item Systematic reconstruction tool tracing Proto-Indo-European etyma across Germanic, Celtic, Romance, Slavic, Indo-Iranian, and Greek, strictly aligned to IPA representations.
+    \item Implemented algorithmic validation for known historical sound shifts (Grimm's Law, Verner's Law, Grassman's Law).
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Automated AI Resume \& Dossier Generator} \hfill \textbf{2025}
+\begin{itemize}
+    \item Programmatic pipeline transforming structured metadata into pixel-perfect PDF publications and custom LaTeX dossiers.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Haskell Brutalist Web Platform} \hfill \textbf{2026}
+\begin{itemize}
+    \item Custom Hakyll static generator featuring zero-runtime dependencies, compile-time LaTeX PDF synthesis, and web-based publishing workflows.
+\end{itemize}
+
+\cvsection{Publications \& Working Papers}
+\begin{itemize}
+    \item \textbf{"Proto-Indo-European Laryngeals and Vowel Coloring in Anatolian and Greek"} --- Working Paper, 2025.
+    \item \textbf{"On Formal Systems and Expressive Rigor in Functional Software"} --- Theoretical Essay, 2024.
+    \item \textbf{"Comparative Sound Laws of Balto-Slavic Accentuation"} --- Research Monograph, 2023.
+\end{itemize}
+
+\cvsection{Technical Competencies}
+\begin{itemize}
+    \item \textbf{Languages:} Haskell, Bash, Python, SQL, HTML5/CSS3.
+    \item \textbf{Typesetting \& Publishing:} LaTeX (\texttt{pdflatex}, \texttt{lualatex}, TikZ), Pandoc, Markdown, Git.
+    \item \textbf{Linguistic Methodology:} Historical Phonetics, Proto-Indo-European, IPA Transcription, Morphology.
+    \item \textbf{Systems \& Infrastructure:} Linux/Unix, GitHub Actions, Docker, Static Site Generation.
+\end{itemize}
+
+\end{document}

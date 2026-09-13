@@ -1,0 +1,10 @@
+<article class="archive-page">
+    <h1>Blog Archive</h1>
+    <p>Thoughts, essays, updates, and research notes.</p>
+
+    <ul class="post-list">
+        $for(posts)$
+            $partial("templates/post-list.html")$
+        $endfor$
+    </ul>
+</article>

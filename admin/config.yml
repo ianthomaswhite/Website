@@ -1,0 +1,53 @@
+backend:
+  name: github
+  repo: ianthomaswhite/Website
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Tags", name: "tags", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "commentaries"
+    label: "Reading Commentaries"
+    folder: "commentaries"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Book Title", name: "bookTitle", widget: "string" }
+      - { label: "Book Author", name: "bookAuthor", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Body (Quote / Line / Comment)", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Core Pages"
+    files:
+      - label: "Homepage (About & Contact)"
+        name: "index"
+        file: "pages/index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Full Resume"
+        name: "resume"
+        file: "pages/resume.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Writing Samples"
+        name: "writing"
+        file: "pages/writing.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
