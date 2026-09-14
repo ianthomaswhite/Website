@@ -209,15 +209,22 @@ h1 {
 /* Vertically flush top heading with yellow bar and name */
 .content-right h1:first-child,
 .page-content > h1:first-child,
-article > h1:first-child {
+article > h1:first-child,
+.header-blank-slot {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   margin-top: -6px; /* Pixel-perfect align cap-height of title with top of yellow bar */
   margin-bottom: 1.5rem;
   margin-left: -3px; /* Optical alignment: aligns visible glyph edge with content below */
 }
 
-/* Vertically flush top paragraph on homepage (when no h1 is present) */
-.page-content > p:first-child:not(h1 + p) {
-  margin-top: -6px; /* Pixel-perfect align top of bio text with top of yellow bar */
+/* Blank slot on homepage: reserves exact header space while remaining invisible */
+.header-blank-slot {
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* Shared section header, blog title, and form label typography */
@@ -246,10 +253,10 @@ h2,
 }
 
 h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-top: 1.6rem;
-  margin-bottom: 0.45rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
 }
 
 p {
@@ -335,21 +342,19 @@ hr {
   min-height: 140px;
 }
 
-/* Send button: no black box, black text, vertical yellow line on left only */
+/* Send button: no box, no yellow line, black text flush with form labels above */
 .btn-submit {
-  padding: 6px 14px;
+  padding: 4px 0;
   background: transparent;
   color: var(--text-main);
   border: none;
-  border-left: 3.5px solid var(--accent-yellow);
   cursor: pointer;
   align-self: flex-start;
-  transition: opacity 0.15s ease, border-left-color 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 .btn-submit:hover {
   opacity: 0.65;
-  border-left-color: #000000;
 }
 
 /* Thoughts / Blog Post List */

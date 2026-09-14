@@ -144,8 +144,11 @@ def render_template(template_str, context):
             return then_part
         return else_part
 
-    cond_pattern = re.compile(r'\$if\(([a-zA-Z0-9_]+)\)\$(.*?)(?:\$else\$(.*?))?\$endif\$', re.DOTALL)
-    result = cond_pattern.sub(replace_cond, result)
+    cond_pattern = re.compile(r'\$if\(([a-zA-Z0-9_]+)\)\$((?:(?!\$if\().)*?)(?:\$else\$((?:(?!\$if\().)*?))?\$endif\$', re.DOTALL)
+    for _ in range(5):
+        if not cond_pattern.search(result):
+            break
+        result = cond_pattern.sub(replace_cond, result)
 
     # Handle standard replacements
     for key, val in context.items():
@@ -183,7 +186,7 @@ def build_site():
     if (PAGES_DIR / "index.md").exists():
         fm, body = parse_frontmatter((PAGES_DIR / "index.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        page_html = render_template(page_tpl, {"title": "", "body": html_body})
+        page_html = render_template(page_tpl, {"isHome": "true", "title": "", "body": html_body})
         full_html = render_template(default_tpl, {"isHome": "true", "title": "Ian Thomas White", "body": page_html})
         (SITE_DIR / "index.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built index.html")
