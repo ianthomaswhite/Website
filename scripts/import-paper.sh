@@ -6,34 +6,45 @@
 # Usage: ./scripts/import-paper.sh <path-to-tex-file> <genre> [slug]
 # ==============================================================================
 
+# Halt on error, unset variables, or failed pipe commands
 set -euo pipefail
 
+# Resolve paths dynamically relative to the script location
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
+# Validate required positional parameters
 if [ "$#" -lt 2 ]; then
     echo "Usage: $0 <path-to-tex-file> <genre> [slug]"
     echo ""
-    echo "Genres: linguistics, philosophy, technical, essays, other"
+    echo "Genres: linguistics, literature, film, poetry, philosophy, technical, essays, other"
     echo "Example: $0 ~/Documents/my_paper.tex linguistics laryngeal-coloring"
     exit 1
 fi
 
+# Input arguments:
+# $1 = Path to the original .tex paper file
+# $2 = Genre subfolder under papers/ (e.g., linguistics, literature)
+# $3 = Optional slug name (defaults to the file basename without .tex)
 SOURCE_FILE="$1"
 GENRE="$2"
 BASENAME="$(basename "${SOURCE_FILE}" .tex)"
 SLUG="${3:-${BASENAME}}"
 
+# Ensure the source file actually exists before proceeding
 if [ ! -f "${SOURCE_FILE}" ]; then
     echo "Error: File '${SOURCE_FILE}' does not exist."
     exit 1
 fi
 
+# Target paths inside the website repository
 TARGET_DIR="${ROOT_DIR}/papers/${GENRE}"
 TARGET_FILE="${TARGET_DIR}/${SLUG}.tex"
 
+# Create destination genre directory if it does not already exist
 mkdir -p "${TARGET_DIR}"
 
+# Guard against accidental overwriting of an existing staged paper
 if [ -f "${TARGET_FILE}" ]; then
     echo "Warning: Target file '${TARGET_FILE}' already exists."
     read -p "Overwrite? (y/N) " -n 1 -r
@@ -44,6 +55,7 @@ if [ -f "${TARGET_FILE}" ]; then
     fi
 fi
 
+# Copy external paper to website repository (leaves the source file untouched)
 cp "${SOURCE_FILE}" "${TARGET_FILE}"
 
 echo "======================================================"

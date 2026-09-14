@@ -23,27 +23,29 @@ echo "======================================================"
 ACTIVE_COUNT=0
 UPDATED_COUNT=0
 
-# Process manifest line by line
+# Process manifest line by line.
+# Format per line: <source_path> -> <destination_relative_to_repo>
 while IFS= read -r line || [ -n "$line" ]; do
-    # Strip leading/trailing whitespace
+    # Strip leading and trailing whitespace characters
     trimmed="$(echo "$line" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
 
-    # Skip comments and empty lines
+    # Ignore blank lines and comment lines starting with '#'
     if [[ -z "$trimmed" || "$trimmed" =~ ^# ]]; then
         continue
     fi
 
-    # Check for the delimiter '->'
+    # Parse lines matching pattern: 'SOURCE -> DESTINATION'
     if [[ "$trimmed" =~ (.*)[[:space:]]*-\>[[:space:]]*(.*) ]]; then
         SRC_RAW="${BASH_REMATCH[1]}"
         DEST_RAW="${BASH_REMATCH[2]}"
 
-        # Trim spaces
+        # Trim extra whitespace surrounding the extracted source and destination tokens
         SRC_RAW="$(echo "$SRC_RAW" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
         DEST_RAW="$(echo "$DEST_RAW" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
 
-        # Expand tilde (~) in source path
+        # Safely expand leading tilde (~) to the user's home directory ($HOME)
         SRC="${SRC_RAW/#\~/$HOME}"
+        # Destination is always anchored relative to the website repository root
         DEST="${ROOT_DIR}/${DEST_RAW}"
 
         ((ACTIVE_COUNT++))

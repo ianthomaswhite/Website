@@ -1,8 +1,18 @@
 #!/usr/bin/env python3
 """
-Simple local preview generator & web server.
-Compiles pages, templates, and assets into _site/ and serves at http://localhost:8000.
-Zero dependencies: runs using Python's standard library.
+Simple Local Preview Generator & Zero-Cache Web Server
+======================================================
+Author: Ian Thomas White
+Description:
+    A zero-dependency Python script that mirrors the Hakyll build pipeline.
+    It reads Markdown sources from `pages/` and `posts/`, evaluates YAML
+    frontmatter, parses Markdown syntax into semantic HTML, interpolates
+    variables into Hakyll templates from `templates/editorial/`, and serves
+    the compiled static site at `http://localhost:8000`.
+
+Why this exists:
+    Allows instant local previewing and automated verification of website
+    styling and layout without requiring GHC, Cabal, or Hakyll installed.
 """
 
 import os
@@ -13,6 +23,7 @@ import http.server
 import socketserver
 from pathlib import Path
 
+# Base directory paths anchored to the project root
 ROOT_DIR = Path(__file__).resolve().parent.parent
 SITE_DIR = ROOT_DIR / "_site"
 TEMPLATES_DIR = ROOT_DIR / "templates" / "editorial"
@@ -22,14 +33,26 @@ CSS_DIR = ROOT_DIR / "css"
 PDFS_DIR = ROOT_DIR / "pdfs"
 
 def parse_frontmatter(content):
-    """Extract YAML frontmatter and body."""
+    """
+    Extracts YAML frontmatter metadata and Markdown body content from a file.
+
+    Parameters:
+        content (str): Full text of the Markdown file.
+
+    Returns:
+        tuple (dict, str):
+            - metadata: Dictionary of key-value pairs parsed from the frontmatter block.
+            - body: The remaining Markdown content with leading/trailing whitespace stripped.
+    """
     metadata = {}
     body = content
+    # YAML frontmatter is enclosed between triple dashes ('---')
     if content.startswith("---"):
         parts = content.split("---", 2)
         if len(parts) >= 3:
             fm_text = parts[1]
             body = parts[2]
+            # Parse simple 'key: value' lines
             for line in fm_text.strip().splitlines():
                 if ":" in line:
                     k, v = line.split(":", 1)
@@ -37,7 +60,24 @@ def parse_frontmatter(content):
     return metadata, body.strip()
 
 def simple_markdown_to_html(md_text):
-    """Convert common markdown features to HTML while preserving inline HTML."""
+    """
+    Translates common Markdown constructs to clean HTML while preserving inline HTML blocks.
+
+    Handles:
+        - Fenced code blocks (```lang ... ```)
+        - Unordered lists (- item or * item)
+        - Headings (# through ####)
+        - Horizontal rules (---)
+        - Inline formatting (bold, italic, inline code, links)
+        - Raw HTML passthrough (<div>, <span>, <pre>, etc.)
+        - Paragraph wrapping (<p>...</p>)
+
+    Parameters:
+        md_text (str): Raw Markdown string.
+
+    Returns:
+        str: Resulting HTML snippet.
+    """
     lines = md_text.splitlines()
     html_lines = []
     in_code_block = False
@@ -46,7 +86,7 @@ def simple_markdown_to_html(md_text):
     for line in lines:
         stripped = line.strip()
 
-        # Code block toggle
+        # Handle fenced code block open/close toggles
         if stripped.startswith("```"):
             if in_code_block:
                 html_lines.append("</code></pre>")
@@ -57,11 +97,12 @@ def simple_markdown_to_html(md_text):
                 in_code_block = True
             continue
 
+        # If inside a code block, preserve line content without markdown processing
         if in_code_block:
             html_lines.append(line)
             continue
 
-        # Unordered list items
+        # Unordered list items: manage <ul> opening and closing tags
         if stripped.startswith("- ") or stripped.startswith("* "):
             if not in_list:
                 html_lines.append("<ul>")
@@ -120,22 +161,37 @@ def simple_markdown_to_html(md_text):
     return "\n".join(html_lines)
 
 def inline_formatting(text):
-    """Handle bold, italic, code, and links."""
+    """
+    Parses common inline Markdown syntax into HTML tags.
+
+    Supports:
+        - Inline code: `code` -> <code>code</code>
+        - Bold text: **bold** -> <strong>bold</strong>
+        - Italic text: *italic* -> <em>italic</em>
+        - Hyperlinks: [label](url) -> <a href="url">label</a>
+    """
     # Inline code
     text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
     # Bold **text**
     text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
-    # Italic *text*
+    # Italic *text* (negative lookaround prevents matching inside bold markers)
     text = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<em>\1</em>', text)
-    # Links [text](url) - handles brackets inside text like [at]
+    # Links [text](url) - supports mailto:, absolute URLs, and root-relative paths
     text = re.sub(r'\[(.*?)\]\((mailto:[^\s)]+|https?://[^\s)]+|/[^\s)]*)\)', r'<a href="\2">\1</a>', text)
     return text
 
 def render_template(template_str, context):
-    """Replace $variable$ tags in template."""
+    """
+    Evaluates Hakyll-style template variables and conditionals.
+
+    Supports:
+        - Conditional blocks: $if(var)$ ... $else$ ... $endif$
+        - Variable interpolation: $title$, $body$, $date$, etc.
+        - Safe cleanup of unused optional variables.
+    """
     result = template_str
 
-    # Handle conditionals: $if(var)$...$else$...$endif$ or $if(var)$...$endif$
+    # Process nested conditionals: $if(var)$...$else$...$endif$ or $if(var)$...$endif$
     def replace_cond(match):
         var = match.group(1)
         then_part = match.group(2)
@@ -144,36 +200,53 @@ def render_template(template_str, context):
             return then_part
         return else_part
 
+    # Recursively resolve up to 5 levels of nested conditionals
     cond_pattern = re.compile(r'\$if\(([a-zA-Z0-9_]+)\)\$((?:(?!\$if\().)*?)(?:\$else\$((?:(?!\$if\().)*?))?\$endif\$', re.DOTALL)
     for _ in range(5):
         if not cond_pattern.search(result):
             break
         result = cond_pattern.sub(replace_cond, result)
 
-    # Handle standard replacements
+    # Perform variable interpolation for provided context values
     for key, val in context.items():
         result = result.replace(f"${key}$", str(val))
 
-    # Clean up unreplaced optional variables
+    # Strip any remaining unpopulated $variable$ placeholders
     result = re.sub(r'\$[a-zA-Z0-9_]+\$', '', result)
     return result
 
 def build_site():
-    """Build all pages into _site directory."""
+    """
+    Executes the full static site generation pipeline into the _site/ directory.
+
+    Pipeline stages:
+        1. Resets and cleans the target output directory (_site/).
+        2. Copies static CSS stylesheets and resume/paper PDFs.
+        3. Loads editorial templates (default, page, background, contact, post, archive).
+        4. Compiles Core Pages:
+            - Homepage (index.html with header blank slot)
+            - Background (background.html)
+            - Writing (writing.html with Academic & Creative sections)
+            - Contact (contact.html with left indicator lines)
+        5. Compiles Individual Thoughts/Blog posts (/posts/<slug>.html).
+        6. Builds Reverse-Chronological Archive (thoughts.html & blog.html).
+    """
     print("Building website preview...")
     if SITE_DIR.exists():
         shutil.rmtree(SITE_DIR)
     SITE_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Copy static assets
+    # Copy static CSS stylesheets
     if CSS_DIR.exists():
         shutil.copytree(CSS_DIR, SITE_DIR / "css")
+
+    # Copy static PDFs (resumes, papers)
     if PDFS_DIR.exists():
         (SITE_DIR / "pdfs").mkdir(parents=True, exist_ok=True)
         for pdf in PDFS_DIR.glob("*.pdf"):
             shutil.copy(pdf, SITE_DIR / "pdfs" / pdf.name)
 
-    # Load templates
+    # Load templates from templates/editorial/
     default_tpl = (TEMPLATES_DIR / "default.html").read_text(encoding="utf-8")
     page_tpl = (TEMPLATES_DIR / "page.html").read_text(encoding="utf-8")
     background_tpl = (TEMPLATES_DIR / "background.html").read_text(encoding="utf-8")
@@ -259,14 +332,26 @@ def build_site():
     print(f"\nPreview site compiled into: {SITE_DIR}")
 
 class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
+    """
+    HTTP request handler that adds cache-busting headers to every response.
+    This guarantees that browser refreshes immediately display latest CSS/HTML edits.
+    """
     def end_headers(self):
+        # Instruct browsers and proxies to never cache preview assets
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.send_header("Pragma", "no-cache")
         self.send_header("Expires", "0")
         super().end_headers()
 
 def serve_site(port=8000):
-    """Run local HTTP server with cache-busting headers."""
+    """
+    Starts a local development HTTP server serving the _site/ directory.
+
+    Features:
+        - Changes working directory to _site/
+        - Sets SO_REUSEADDR on TCP socket to prevent 'Address already in use' errors
+        - Handles Ctrl+C (KeyboardInterrupt) cleanly without traceback
+    """
     os.chdir(SITE_DIR)
     socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", port), NoCacheHandler) as httpd:
@@ -277,10 +362,19 @@ def serve_site(port=8000):
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
-            print("\nServer stopped.")
+            print("\nServer stopped gracefully.")
 
 if __name__ == "__main__":
+    # Always recompile the preview site first
     build_site()
+
+    # If invoked with --build-only, exit immediately after compilation
     if len(sys.argv) > 1 and sys.argv[1] == "--build-only":
         sys.exit(0)
-    serve_site()
+
+    # Allow custom port as an argument (e.g. python3 scripts/preview.py 8080)
+    target_port = 8000
+    if len(sys.argv) > 1 and sys.argv[1].isdigit():
+        target_port = int(sys.argv[1])
+
+    serve_site(port=target_port)

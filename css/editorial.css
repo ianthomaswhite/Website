@@ -305,21 +305,26 @@ hr {
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
-  margin-top: calc(2.25rem - 1px);
+  gap: 1.75rem; /* Consistent vertical spacing between form groups and the Send button */
+  margin-top: calc(2.25rem - 1px); /* Aligns the top of the "Name" label at Y=129 with headers on other pages */
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 6px; /* Integer gap between label and input line prevents subpixel drift across fields */
 }
 
 .form-label {
   display: block;
 }
 
-/* Form fields: no surrounding boxes, black line default, yellow line in use */
+/* Form fields:
+   - Zero surrounding boxes
+   - Left-only vertical indicator line (solid black by default, yellow accent when active/focused)
+   - margin-left: 2px aligns the vertical line (X=360) exactly with the text stem of "Name", "Email", "Message", and "Send"
+   - width: calc(100% - 2px) ensures proper bounding width without horizontal overflow
+*/
 .form-input,
 .form-textarea {
   font-family: var(--font-grotesque);
@@ -328,9 +333,10 @@ hr {
   padding: 6px 14px;
   border: none;
   border-left: 3.5px solid var(--text-main);
+  margin-left: 2px;
+  width: calc(100% - 2px);
   background-color: transparent;
   color: var(--text-main);
-  width: 100%;
   border-radius: 0;
   transition: border-left-color 0.15s ease;
 }
@@ -346,9 +352,16 @@ hr {
   min-height: 140px;
 }
 
-/* Send button: no box, no yellow line, black text flush with form labels above */
+/* Send button:
+   - Inherits typography from .form-label (1.45rem, weight 700, line-height 1.25)
+   - padding: 0 and margin: 0 ensure the distance from the bottom of the Message textarea
+     line to the top of "Send" is exactly 34px, matching the 34px distance from the bottom
+     of the Name/Email lines to the "Email" and "Message" labels
+   - Aligns flush with the labels and indicator lines above
+*/
 .btn-submit {
-  padding: 4px 0;
+  padding: 0;
+  margin: 0;
   background: transparent;
   color: var(--text-main);
   border: none;

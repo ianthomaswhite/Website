@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--
+      templates/editorial/default.html
+      =================================
+      Outer editorial layout skeleton.
+      Provides:
+        - HTML head with fonts, metadata, and editorial stylesheet
+        - Sticky left sidebar: Name (home link), Navigation links with active indicators, and copyright
+        - Wide vertical yellow divider bar (#FCF75E)
+        - Right scrollable content column (body)
+      Variables accepted:
+        - title: Page title used in title tag
+        - body: Inner rendered HTML content
+        - Boolean flags for active navigation state:
+          isHome, isBackground, isWriting, isThoughts, isContact
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$if(title)$$title$ — Ian Thomas White$else$Ian Thomas White$endif$</title>
@@ -12,6 +27,7 @@
         <!-- Pinned Left Unit: Sidebar + Yellow Bar -->
         <div class="sidebar-wrapper">
             <aside class="sidebar-left">
+                <!-- Stacked Name (acts as Home link) -->
                 <div class="sidebar-top">
                     <a href="/" class="sidebar-name">
                         <span class="name-line">Ian</span>

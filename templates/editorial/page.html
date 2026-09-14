@@ -1,3 +1,13 @@
+<!--
+  templates/editorial/page.html
+  ==============================
+  Standard content page wrapper used for Index and Writing pages.
+  Features:
+    - If isHome is true: renders an invisible .header-blank-slot to reserve
+      exact vertical height for the header so bio text starts at Y=129.
+    - If title is present: renders page <h1> title.
+    - Renders compiled Markdown body.
+-->
 <article class="page-content">
     $if(isHome)$
     <div class="header-blank-slot" aria-hidden="true">&nbsp;</div>
