@@ -164,7 +164,7 @@ body {
   white-space: nowrap;
   text-align: right;
   line-height: 1;
-  margin-bottom: 0.65rem; /* Exactly one line above where the yellow bar stops */
+  margin-bottom: -2px; /* Bottom of letters flush with bottom of yellow bar */
 }
 
 /* --------------------------------------------------------------------------
@@ -225,6 +225,10 @@ article > h1:first-child,
   visibility: hidden;
   pointer-events: none;
   user-select: none;
+}
+
+.header-blank-slot + p {
+  margin-top: calc(2.25rem - 3px);
 }
 
 /* Shared section header, blog title, and form label typography */
@@ -302,7 +306,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  margin-top: 0;
+  margin-top: calc(2.25rem - 1px);
 }
 
 .form-group {
@@ -361,7 +365,7 @@ hr {
 .post-list-editorial {
   list-style: none;
   padding: 0;
-  margin: 2rem 0;
+  margin: 2.25rem 0 2rem 0;
 }
 
 .post-item {
@@ -454,7 +458,7 @@ a[href$=".pdf"]::after {
 
   .sidebar-copyright {
     text-align: left;
-    margin-bottom: 1rem;
+    margin-bottom: -2px;
   }
 
   .divider-yellow-bar {
