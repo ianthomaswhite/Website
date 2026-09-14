@@ -1,20 +1,19 @@
 /* ==========================================================================
-   EDITORIAL SPLIT-COLUMN DESIGN SYSTEM
-   Inspired by: 1906 French Periodicals, Cheltenham & Gloucester Typography
-   Layout: Left Sidebar (Name, Nav, Copyright) | Yellow Divider Bar | Content
+   EDITORIAL SPLIT-COLUMN DESIGN SYSTEM - GROTESQUE
+   Layout: Left Pinned Sidebar (Right-Justified) | Visible Yellow Bar | Scrolling Content
    Author: Ian Thomas White
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap');
 
 :root {
   --bg-color: #FFFFFF;
   --text-main: #111111;
   --text-muted: #666666;
   --accent-yellow: #FCF75E;
-  --bar-width: 22px;
-  --sidebar-width: 230px;
-  --font-serif: "Newsreader", "Old Standard TT", "Cheltenham", "Gloucester", "Times New Roman", Georgia, serif;
+  --bar-width: 48px;               /* Substantial, wide yellow bar */
+  --sidebar-width: 210px;
+  --font-grotesque: "Darker Grotesque", "Bricolage Grotesque", "Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", "Courier New", monospace;
 }
 
@@ -33,87 +32,113 @@ html {
 body {
   background-color: var(--bg-color);
   color: var(--text-main);
-  font-family: var(--font-serif);
-  font-size: 19px;
-  line-height: 1.6;
+  font-family: var(--font-grotesque);
+  font-size: 21px;
+  line-height: 1.5;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Overall Grid Layout */
+/* Overall Layout */
 .site-layout {
   display: flex;
   min-height: 100vh;
   width: 100%;
+  position: relative;
 }
 
 /* --------------------------------------------------------------------------
-   Left Sidebar: Name (Top), Nav (Middle-Lower), Copyright (Bottom)
+   Left Sticky Unit: Sidebar + Yellow Bar Pinned Together
+   The top of the name matches the top of the yellow bar;
+   The copyright matches the bottom of the yellow bar.
+   The bar has visible top and bottom margins (doesn't bleed to screen edges).
    -------------------------------------------------------------------------- */
+.sidebar-wrapper {
+  position: sticky;
+  top: 3.5rem;
+  height: calc(100vh - 7rem);
+  min-height: 480px;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  padding-left: 3rem;
+  z-index: 10;
+}
+
+/* Left Sidebar Column (Right-Justified against the yellow bar) */
 .sidebar-left {
   width: var(--sidebar-width);
   min-width: var(--sidebar-width);
-  padding: 3rem 2rem 2.5rem 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--bg-color);
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
+  align-items: flex-end;
+  text-align: right;
+  padding-right: 1.5rem;
+  height: 100%;
 }
 
-/* Name: Stacked IAN / THOMAS / WHITE */
+/* Name: Bold Grotesque, Stacked, Top-aligned with Yellow Bar */
+.sidebar-top {
+  margin-top: -4px; /* Pixel-perfect align top of glyphs with yellow bar */
+}
+
 .sidebar-name {
-  font-family: var(--font-serif);
-  font-size: 2.1rem;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: 0.08em;
+  font-family: var(--font-grotesque);
+  font-size: 2.75rem;
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-main);
   text-decoration: none;
+  display: block;
+  text-align: right;
 }
 
 .name-line {
   display: block;
 }
 
-/* Navigation Links (Stacked) */
+/* Navigation Links (Right-aligned, Tight Spacing) */
 .sidebar-nav-group {
   margin-top: auto;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.25rem; /* Tight vertical space between nav links */
+  align-items: flex-end;
+  text-align: right;
 }
 
 .nav-item {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-family: var(--font-grotesque);
+  font-size: 1.35rem;
+  font-weight: 600;
   color: var(--text-main);
   text-decoration: none;
   display: inline-block;
   position: relative;
   width: fit-content;
+  text-align: right;
   transition: opacity 0.15s ease;
 }
 
 .nav-item:hover {
-  opacity: 0.7;
+  opacity: 0.65; /* No yellow hover highlight */
 }
 
 /* Active Page Indicator: Yellow Cross-Out Line */
 .nav-item.active {
   position: relative;
-  font-weight: 600;
+  font-weight: 800;
+  opacity: 1;
 }
 
 .nav-item.active::after {
@@ -128,74 +153,82 @@ body {
   pointer-events: none;
 }
 
-/* Copyright at Bottom */
+/* Copyright at Bottom (Fits on 1 line, bottom-aligned with Yellow Bar) */
 .sidebar-copyright {
-  font-family: var(--font-serif);
-  font-size: 0.85rem;
+  font-family: var(--font-grotesque);
+  font-size: 0.88rem;
+  font-weight: 500;
   color: var(--text-muted);
-  line-height: 1.4;
+  white-space: nowrap;
+  text-align: right;
+  line-height: 1;
+  margin-bottom: -2px; /* Pixel-perfect align baseline with bottom of yellow bar */
 }
 
 /* --------------------------------------------------------------------------
    Vertical Yellow Bar
+   Wider, visible top and bottom, matches height of name-to-copyright
    -------------------------------------------------------------------------- */
 .divider-yellow-bar {
   width: var(--bar-width);
   min-width: var(--bar-width);
   background-color: var(--accent-yellow);
-  align-self: stretch;
+  height: 100%;
   flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------
-   Right Main Content Column
+   Right Main Content Column (Scrolls naturally)
+   Strict rule: No text in content is bigger than the name (2.75rem)
    -------------------------------------------------------------------------- */
 .content-right {
   flex: 1;
   background-color: var(--bg-color);
-  padding: 3.5rem 4rem 4rem 3.5rem;
-  max-width: 880px;
+  padding: 3.5rem 4rem 5rem 3.5rem;
+  max-width: 820px;
+  min-width: 0;
 }
 
-/* Typography & Headings */
+/* Typography & Headings (All smaller than the 2.75rem name) */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-grotesque);
   color: var(--text-main);
-  font-weight: 700;
-  line-height: 1.25;
-  margin-top: 2rem;
-  margin-bottom: 0.85rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-top: 1.8rem;
+  margin-bottom: 0.65rem;
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2.1rem; /* Strictly smaller than name (2.75rem) */
   margin-top: 0;
   letter-spacing: -0.01em;
 }
 
 h2 {
-  font-size: 1.55rem;
-  margin-top: 2.2rem;
+  font-size: 1.6rem;
+  margin-top: 2rem;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
 p {
   margin-bottom: 1.35rem;
 }
 
+/* Links: No underlines by default, no yellow hover background */
 a {
   color: var(--text-main);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  transition: background-color 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 a:hover {
-  background-color: var(--accent-yellow);
+  opacity: 0.65; /* Clean hover without yellow highlight */
 }
 
 ul, ol {
@@ -204,45 +237,45 @@ ul, ol {
 }
 
 li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
 hr {
   border: none;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #E0E0E0;
   margin: 2.5rem 0;
 }
 
-/* Contact Form Styling */
+/* Contact Form */
 .contact-form-container {
-  max-width: 580px;
+  max-width: 540px;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-top: 1.5rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .form-label {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 1.05rem;
+  font-family: var(--font-grotesque);
+  font-weight: 700;
+  font-size: 1.15rem;
 }
 
 .form-input,
 .form-textarea {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  padding: 10px 14px;
-  border: 1px solid #333333;
+  font-family: var(--font-grotesque);
+  font-size: 1.15rem;
+  padding: 8px 12px;
+  border: 1.5px solid #222222;
   background-color: #FFFFFF;
   color: var(--text-main);
   width: 100%;
@@ -259,26 +292,24 @@ hr {
 
 .form-textarea {
   resize: vertical;
-  min-height: 160px;
+  min-height: 150px;
 }
 
 .btn-submit {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  font-weight: 600;
-  padding: 10px 24px;
+  font-family: var(--font-grotesque);
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 8px 22px;
   background-color: var(--text-main);
   color: #FFFFFF;
-  border: 1px solid var(--text-main);
+  border: 1.5px solid var(--text-main);
   cursor: pointer;
   align-self: flex-start;
-  transition: all 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 .btn-submit:hover {
-  background-color: var(--accent-yellow);
-  color: var(--text-main);
-  border-color: var(--text-main);
+  opacity: 0.8;
 }
 
 /* Resume Page */
@@ -287,55 +318,75 @@ hr {
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid #EEEEEE;
 }
 
 .download-link {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-family: var(--font-grotesque);
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--text-main);
   cursor: pointer;
   background: none;
   border: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .download-link:hover {
-  background-color: var(--accent-yellow);
+  opacity: 0.65;
 }
 
-/* Responsive (Tablets and Mobile) */
+/* Responsive (Mobile & Small Tablets) */
 @media (max-width: 768px) {
   .site-layout {
+    flex-direction: column;
+  }
+
+  .sidebar-wrapper {
+    position: static;
+    height: auto;
+    min-height: 0;
+    width: 100%;
+    padding: 2rem 1.5rem 0 1.5rem;
     flex-direction: column;
   }
 
   .sidebar-left {
     width: 100%;
     min-width: 100%;
-    height: auto;
-    position: static;
-    padding: 2rem 1.5rem;
+    align-items: flex-start;
+    text-align: left;
+    padding-right: 0;
     gap: 1.5rem;
   }
 
+  .sidebar-name {
+    text-align: left;
+  }
+
   .sidebar-nav-group {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
   }
 
   .sidebar-nav {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 1rem 1.5rem;
+    gap: 0.75rem 1.25rem;
+    align-items: flex-start;
+  }
+
+  .sidebar-copyright {
+    text-align: left;
+    margin-bottom: 1rem;
   }
 
   .divider-yellow-bar {
     width: 100%;
     min-width: 100%;
-    height: 12px;
-    align-self: auto;
+    height: 16px;
   }
 
   .content-right {
@@ -345,9 +396,7 @@ hr {
 
 /* Print */
 @media print {
-  .divider-yellow-bar,
-  .sidebar-left,
-  .resume-download-links {
+  .sidebar-wrapper {
     display: none !important;
   }
 

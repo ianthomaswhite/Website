@@ -9,36 +9,38 @@
 </head>
 <body>
     <div class="site-layout">
-        <!-- Left Sidebar: Name, Navigation, Copyright -->
-        <aside class="sidebar-left">
-            <div class="sidebar-top">
-                <a href="/" class="sidebar-name">
-                    <span class="name-line">Ian</span>
-                    <span class="name-line">Thomas</span>
-                    <span class="name-line">White</span>
-                </a>
-            </div>
+        <!-- Pinned Left Unit: Sidebar + Yellow Bar -->
+        <div class="sidebar-wrapper">
+            <aside class="sidebar-left">
+                <div class="sidebar-top">
+                    <a href="/" class="sidebar-name">
+                        <span class="name-line">Ian</span>
+                        <span class="name-line">Thomas</span>
+                        <span class="name-line">White</span>
+                    </a>
+                </div>
 
-            <div class="sidebar-nav-group">
-                <nav class="sidebar-nav">
-                    <a href="/" class="nav-item $if(isHome)$active$endif$">Home</a>
-                    <a href="/resume.html" class="nav-item $if(isResume)$active$endif$">Resume</a>
-                    <a href="/writing.html" class="nav-item $if(isWriting)$active$endif$">Writing</a>
-                    <a href="/blog.html" class="nav-item $if(isBlog)$active$endif$">Blog</a>
-                    <a href="/contact.html" class="nav-item $if(isContact)$active$endif$">Contact</a>
-                    <a href="https://github.com/ianthomaswhite" target="_blank" rel="noopener" class="nav-item">GitHub</a>
-                </nav>
-            </div>
+                <div class="sidebar-nav-group">
+                    <nav class="sidebar-nav">
+                        <a href="/" class="nav-item $if(isHome)$active$endif$">Home</a>
+                        <a href="/resume.html" class="nav-item $if(isResume)$active$endif$">Resume</a>
+                        <a href="/writing.html" class="nav-item $if(isWriting)$active$endif$">Writing</a>
+                        <a href="/blog.html" class="nav-item $if(isBlog)$active$endif$">Blog</a>
+                        <a href="/contact.html" class="nav-item $if(isContact)$active$endif$">Contact</a>
+                        <a href="https://github.com/ianthomaswhite" target="_blank" rel="noopener" class="nav-item">GitHub</a>
+                    </nav>
+                </div>
 
-            <div class="sidebar-copyright">
-                &copy; 2026 Ian Thomas White
-            </div>
-        </aside>
+                <div class="sidebar-copyright">
+                    &copy; 2026 Ian Thomas White
+                </div>
+            </aside>
 
-        <!-- Large Vertical Yellow Divider Bar -->
-        <div class="divider-yellow-bar"></div>
+            <!-- Wide Vertical Yellow Bar: top aligned with name, bottom aligned with copyright -->
+            <div class="divider-yellow-bar"></div>
+        </div>
 
-        <!-- Right Main Content Area -->
+        <!-- Right Content Column: Scrolls naturally -->
         <main class="content-right">
             $body$
         </main>
