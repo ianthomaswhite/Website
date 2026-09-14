@@ -77,29 +77,19 @@ Powered by **Haskell** ([Hakyll](https://jaspervdj.be/hakyll/)), styled with hig
   ```
   This immediately updates `pdfs/resume-onepage.pdf` and `pdfs/resume-full.pdf`.
 
-### 2. Adding Writing Samples (LaTeX Papers)
-To import an existing local LaTeX paper without modifying your original archive:
-```bash
-./scripts/import-paper.sh /path/to/local/paper.tex linguistics my-new-paper
-```
-1. Edit and proofread the staged file in `papers/linguistics/my-new-paper.tex`.
-2. Compile it to PDF:
+### 2. Publishing Files from Your Private Repositories
+Your private repositories (papers, essays, resumes) stay completely separate and private. To selectively publish a file to the website:
+
+1. Add a line to [**`sync-manifest.conf`**](file:///home/ianthomaswhite/Projects/Website/sync-manifest.conf):
    ```bash
-   pdflatex -output-directory=pdfs papers/linguistics/my-new-paper.tex
+   ~/Projects/MyPrivateRepo/paper.tex -> papers/linguistics/paper.tex
    ```
-3. Add a corresponding card in `pages/writing.md` under the appropriate genre heading:
-   ```html
-   <div class="paper-card">
-       <div class="paper-header">
-           <h3 class="paper-title">Your Paper Title</h3>
-           <span class="paper-meta">Working Paper &middot; 2026</span>
-       </div>
-       <p class="paper-description">Brief summary or abstract.</p>
-       <a href="/pdfs/my-new-paper.pdf" class="btn btn-accent" download>
-           &darr; Download PDF
-       </a>
-   </div>
+2. Run the sync command:
+   ```bash
+   ./scripts/sync.sh
    ```
+   This will pull only the mapped files that have changed, recompile their PDFs, and report what was updated.
+3. Add a link/card in `pages/writing.md` or `pages/resume.md` whenever you want it displayed on the site.
 
 ### 3. Writing Blog Posts
 You have three convenient ways to publish posts:
