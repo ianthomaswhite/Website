@@ -173,7 +173,7 @@ def build_site():
     # Load templates
     default_tpl = (TEMPLATES_DIR / "default.html").read_text(encoding="utf-8")
     page_tpl = (TEMPLATES_DIR / "page.html").read_text(encoding="utf-8")
-    experience_tpl = (TEMPLATES_DIR / "experience.html").read_text(encoding="utf-8")
+    background_tpl = (TEMPLATES_DIR / "background.html").read_text(encoding="utf-8")
     contact_tpl = (TEMPLATES_DIR / "contact.html").read_text(encoding="utf-8")
     post_tpl = (TEMPLATES_DIR / "post.html").read_text(encoding="utf-8")
     archive_tpl = (TEMPLATES_DIR / "archive.html").read_text(encoding="utf-8")
@@ -188,14 +188,14 @@ def build_site():
         (SITE_DIR / "index.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built index.html")
 
-    # 2. Render Experience
-    if (PAGES_DIR / "experience.md").exists():
-        fm, body = parse_frontmatter((PAGES_DIR / "experience.md").read_text(encoding="utf-8"))
+    # 2. Render Background
+    if (PAGES_DIR / "background.md").exists():
+        fm, body = parse_frontmatter((PAGES_DIR / "background.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        experience_html = render_template(experience_tpl, {"body": html_body})
-        full_html = render_template(default_tpl, {"isExperience": "true", "title": "Experience", "body": experience_html})
-        (SITE_DIR / "experience.html").write_text(full_html, encoding="utf-8")
-        print("  &check; Built experience.html")
+        background_html = render_template(background_tpl, {"body": html_body})
+        full_html = render_template(default_tpl, {"isBackground": "true", "title": "Background", "body": background_html})
+        (SITE_DIR / "background.html").write_text(full_html, encoding="utf-8")
+        print("  &check; Built background.html")
 
     # 3. Render Writing
     if (PAGES_DIR / "writing.md").exists():
@@ -215,7 +215,7 @@ def build_site():
         (SITE_DIR / "contact.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built contact.html")
 
-    # 5. Render Blog Posts
+    # 5. Render Blog/Thoughts Posts
     posts_data = []
     (SITE_DIR / "posts").mkdir(parents=True, exist_ok=True)
     if POSTS_DIR.exists():
@@ -233,7 +233,7 @@ def build_site():
                 "tags": post_tags,
                 "body": html_body
             })
-            full_html = render_template(default_tpl, {"isBlog": "true", "title": "Blog", "body": post_html})
+            full_html = render_template(default_tpl, {"isThoughts": "true", "title": "Thoughts", "body": post_html})
             (SITE_DIR / "posts" / f"{post_file.stem}.html").write_text(full_html, encoding="utf-8")
 
             posts_data.append({
@@ -243,15 +243,16 @@ def build_site():
             })
             print(f"  &check; Built posts/{post_file.stem}.html")
 
-    # 6. Render Blog Archive
+    # 6. Render Thoughts Archive
     post_items_html = ""
     for p in posts_data:
         post_items_html += render_template(post_item_tpl, p) + "\n"
 
     archive_body = re.sub(r'\$for\(posts\)\$.*?\$endfor\$', post_items_html, archive_tpl, flags=re.DOTALL)
-    full_archive_html = render_template(default_tpl, {"isBlog": "true", "title": "Blog", "body": archive_body})
+    full_archive_html = render_template(default_tpl, {"isThoughts": "true", "title": "Thoughts", "body": archive_body})
+    (SITE_DIR / "thoughts.html").write_text(full_archive_html, encoding="utf-8")
     (SITE_DIR / "blog.html").write_text(full_archive_html, encoding="utf-8")
-    print("  &check; Built blog.html")
+    print("  &check; Built thoughts.html & blog.html")
     print(f"\nPreview site compiled into: {SITE_DIR}")
 
 class NoCacheHandler(http.server.SimpleHTTPRequestHandler):

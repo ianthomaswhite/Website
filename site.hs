@@ -42,11 +42,11 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isHome" "true" `mappend` siteCtx "Home")
             >>= relativizeUrls
 
-    match "pages/experience.md" $ do
-        route $ constRoute "experience.html"
+    match "pages/background.md" $ do
+        route $ constRoute "background.html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/editorial/experience.html" defaultContext
-            >>= loadAndApplyTemplate "templates/editorial/default.html"    (constField "isExperience" "true" `mappend` siteCtx "Experience")
+            >>= loadAndApplyTemplate "templates/editorial/background.html" defaultContext
+            >>= loadAndApplyTemplate "templates/editorial/default.html"    (constField "isBackground" "true" `mappend` siteCtx "Background")
             >>= relativizeUrls
 
     match "pages/writing.md" $ do
@@ -63,24 +63,24 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isContact" "true" `mappend` siteCtx "Contact")
             >>= relativizeUrls
 
-    -- Blog Posts
+    -- Thoughts / Posts
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/editorial/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isBlog" "true" `mappend` postCtx)
+            >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isThoughts" "true" `mappend` postCtx)
             >>= relativizeUrls
 
-    -- Blog Archive
-    create ["blog.html"] $ do
+    -- Thoughts Archive
+    create ["thoughts.html"] $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Blog"                `mappend`
-                    constField "isBlog" "true"               `mappend`
-                    siteCtx "Blog"
+                    constField "title" "Thoughts"            `mappend`
+                    constField "isThoughts" "true"           `mappend`
+                    siteCtx "Thoughts"
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/editorial/archive.html" archiveCtx

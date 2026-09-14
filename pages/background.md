@@ -1,6 +1,6 @@
 ---
-title: Experience
-isExperience: true
+title: Background
+isBackground: true
 ---
 
 ## Education
