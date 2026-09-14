@@ -164,7 +164,7 @@ body {
   white-space: nowrap;
   text-align: right;
   line-height: 1;
-  margin-bottom: 1.25rem; /* Pushed up slightly from bottom of yellow bar */
+  margin-bottom: 0.65rem; /* Exactly one line above where the yellow bar stops */
 }
 
 /* --------------------------------------------------------------------------
