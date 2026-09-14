@@ -26,10 +26,6 @@ main = hakyllWith config $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "admin/*" $ do
-        route   idRoute
-        compile copyFileCompiler
-
     match "CNAME" $ do
         route   idRoute
         compile copyFileCompiler

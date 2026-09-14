@@ -15,7 +15,7 @@ Powered by **Haskell** ([Hakyll](https://jaspervdj.be/hakyll/)), styled with hig
   - **Full Extended Resume:** Authored in Markdown (`pages/resume.md`) and rendered on-page with direct PDF download and clean `@media print` support.
 - **Single-Page Writing Portfolio (`/writing.html`):** Writing samples and papers organized by genre/discipline (*Linguistics*, *Philosophy*, *Technical Systems*), each with an abstract and compiled PDF download link.
 - **Continuous LaTeX Compilation:** GitHub Actions automatically compiles LaTeX resumes and writing papers into publication-ready PDFs upon git push.
-- **Effortless Web Publishing:** Write and publish blog posts in your browser by pressing `.` on your GitHub repo (via `github.dev` VS Code) or via the built-in Decap CMS `/admin/` interface.
+- **Effortless Web Publishing:** Write and publish blog posts in your browser by pressing `.` on your GitHub repository (via `github.dev` browser VS Code).
 
 ---
 
@@ -28,9 +28,7 @@ Powered by **Haskell** ([Hakyll](https://jaspervdj.be/hakyll/)), styled with hig
 ├── website.cabal               # Cabal package specification
 ├── cabal.project               # Cabal project configuration
 ├── CNAME                       # Custom domain (ianthomaswhite.com)
-├── admin/                      # Web CMS portal (/admin/)
-│   ├── index.html
-│   └── config.yml
+├── sync-manifest.conf          # Manifest for syncing private LaTeX papers
 ├── css/
 │   └── style.css               # Brutalist CSS (B&W + #FCF75E accent + print styles)
 ├── templates/
@@ -43,23 +41,16 @@ Powered by **Haskell** ([Hakyll](https://jaspervdj.be/hakyll/)), styled with hig
 │   └── commentary.html         # Template for line/quote/commentary reviews
 ├── pages/
 │   ├── index.md                # Homepage (About + Contact information combined)
-│   ├── resume.md               # Full on-page resume content
+│   ├── resume.md               # Full on-page resume content (source for resume-full.pdf)
 │   └── writing.md              # Writing samples organized by genre
 ├── resume/
-│   ├── resume-onepage.tex      # 1-page LaTeX source (compiled to pdfs/resume-onepage.pdf)
-│   └── resume-full.tex         # Full LaTeX source (compiled to pdfs/resume-full.pdf)
-├── papers/                     # Curated LaTeX papers organized by genre
-│   ├── linguistics/
-│   │   └── proto-indo-european-phonology.tex
-│   └── essays/
-│       └── on-formal-systems.tex
+│   └── resume-onepage.tex      # 1-page LaTeX source (compiled to pdfs/resume-onepage.pdf)
+├── papers/                     # Public papers (synced via sync-manifest.conf)
 ├── posts/                      # Blog posts (Markdown)
 │   └── 2026-09-13-welcome.md
-├── commentaries/               # Reading commentaries (dedicated schema)
-│   └── sample-commentary.md
 ├── scripts/
-│   ├── build-resumes.sh        # Compiles 1-page and full resumes to PDFs
-│   └── import-paper.sh         # Helper to copy & stage local LaTeX papers into papers/<genre>/
+│   ├── build-resumes.sh        # Compiles 1-page LaTeX and full markdown resumes to PDFs
+│   └── sync.sh                 # Pulls allowed files from private repos via sync-manifest.conf
 ├── pdfs/                       # Generated PDF outputs for download
 └── images/                     # Favicons and image assets
 ```
@@ -70,12 +61,12 @@ Powered by **Haskell** ([Hakyll](https://jaspervdj.be/hakyll/)), styled with hig
 
 ### 1. Updating Resumes
 - **1-Page Resume:** Edit `resume/resume-onepage.tex`. 
-- **Full On-Page Resume:** Edit `pages/resume.md` (and `resume/resume-full.tex`).
+- **Full On-Page Resume:** Edit `pages/resume.md`.
 - To test compile locally:
   ```bash
   ./scripts/build-resumes.sh
   ```
-  This immediately updates `pdfs/resume-onepage.pdf` and `pdfs/resume-full.pdf`.
+  This updates `pdfs/resume-onepage.pdf` (and `pdfs/resume-full.pdf` via Pandoc).
 
 ### 2. Publishing Files from Your Private Repositories
 Your private repositories (papers, essays, resumes) stay completely separate and private. To selectively publish a file to the website:
@@ -92,9 +83,8 @@ Your private repositories (papers, essays, resumes) stay completely separate and
 3. Add a link/card in `pages/writing.md` or `pages/resume.md` whenever you want it displayed on the site.
 
 ### 3. Writing Blog Posts
-You have three convenient ways to publish posts:
+You have two convenient ways to publish posts:
 - **Instant Browser VS Code (`github.dev`):** Navigate to your repository on GitHub and press the `.` key. Edit or add files in `posts/`, and click Commit & Push.
-- **Web CMS:** Visit `https://ianthomaswhite.com/admin/` to use a graphical form-based markdown editor.
 - **Local Git:** Create a new markdown file in `posts/YYYY-MM-DD-title.md`:
   ```markdown
   ---
