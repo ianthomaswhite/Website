@@ -32,20 +32,30 @@ jobs:
             texlive-latex-extra \
             pandoc
 
-      - name: Compile LaTeX Resumes and Papers to PDF
+      - name: Compile LaTeX Documents and Generate PDFs
         run: |
           mkdir -p pdfs
-          # Compile 1-Page LaTeX resume
+
+          # 1. Compile 1-Page LaTeX resume if present
           if [ -f "resume/resume-onepage.tex" ]; then
             pdflatex -interaction=nonstopmode -output-directory=pdfs resume/resume-onepage.tex || true
           fi
-          # Compile Full LaTeX resume / CV
-          if [ -f "resume/resume-full.tex" ]; then
-            pdflatex -interaction=nonstopmode -output-directory=pdfs resume/resume-full.tex || true
+
+          # 2. Generate Full Resume PDF directly from Markdown (pages/resume.md)
+          if [ -f "pages/resume.md" ]; then
+            pandoc -s "pages/resume.md" \
+                   -o "pdfs/resume-full.pdf" \
+                   --pdf-engine=pdflatex \
+                   -V geometry:margin=0.75in \
+                   -V colorlinks=true \
+                   -V linkcolor=black \
+                   -V urlcolor=black || true
           fi
-          # Compile any curated papers found in papers/
+
+          # 3. Compile any papers found in papers/
           find papers -name "*.tex" -exec pdflatex -interaction=nonstopmode -output-directory=pdfs {} + 2>/dev/null || true
-          # Clean up aux/log files from pdfs folder
+
+          # Clean up LaTeX aux/log files from pdfs folder
           rm -f pdfs/*.aux pdfs/*.log pdfs/*.out
 
       - name: Setup Haskell Environment
