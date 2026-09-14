@@ -89,13 +89,15 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isWriting" "true" `mappend` siteCtx "Writing")
             >>= relativizeUrls
 
-    -- Contact Page: /contact.html (Form with left-only indicator lines)
+    {- Contact Page: /contact.html
+       Temporarily disabled per user request; preserved here in case needed in the future.
     match "pages/contact.md" $ do
         route $ constRoute "contact.html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/editorial/contact.html" defaultContext
             >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isContact" "true" `mappend` siteCtx "Contact")
             >>= relativizeUrls
+    -}
 
     -- -------------------------------------------------------------------------
     -- Individual Thoughts / Blog Posts: /posts/<slug>.html

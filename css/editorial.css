@@ -104,10 +104,13 @@ body {
   display: block;
 }
 
-/* Navigation Links (Right-aligned, Tight Spacing) */
+/* Navigation Links (Right-aligned, Tight Spacing)
+   Nav links moved two lines further up per user instruction
+   (margin-bottom increased to 5.75rem to create two lines of visual elevation)
+*/
 .sidebar-nav-group {
   margin-top: auto;
-  margin-bottom: 2.5rem;
+  margin-bottom: 5.75rem; /* Two lines further up above social links and copyright */
   width: 100%;
 }
 
@@ -153,6 +156,42 @@ body {
   background-color: var(--accent-yellow);
   z-index: 1;
   pointer-events: none;
+}
+
+/* Social Media & Contact Icon Links:
+   - Arranged horizontally above the copyright
+   - Right-justified flush against the yellow bar margin
+   - Clean, monochrome SVG logos inheriting text-main
+   - Subtle hover opacity transition
+*/
+.sidebar-social {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.15rem; /* Clean horizontal spacing between logo buttons */
+  margin-bottom: 1.25rem; /* Spacing between social icons and copyright */
+  width: 100%;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+  line-height: 1;
+}
+
+.social-btn:hover {
+  opacity: 0.65;
+}
+
+.social-btn svg {
+  width: 19px;
+  height: 19px;
+  display: block;
 }
 
 /* Copyright at Bottom (Fits on 1 line, bottom-aligned with Yellow Bar) */
@@ -467,6 +506,11 @@ a[href$=".pdf"]::after {
     flex-wrap: wrap;
     gap: 0.75rem 1.25rem;
     align-items: flex-start;
+  }
+
+  .sidebar-social {
+    justify-content: flex-start;
+    margin-bottom: 0.75rem;
   }
 
   .sidebar-copyright {

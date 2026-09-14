@@ -282,14 +282,14 @@ def build_site():
         (SITE_DIR / "writing.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built writing.html")
 
-    # 4. Render Contact
-    if (PAGES_DIR / "contact.md").exists():
-        fm, body = parse_frontmatter((PAGES_DIR / "contact.md").read_text(encoding="utf-8"))
-        html_body = simple_markdown_to_html(body)
-        contact_html = render_template(contact_tpl, {"body": html_body})
-        full_html = render_template(default_tpl, {"isContact": "true", "title": "Contact", "body": contact_html})
-        (SITE_DIR / "contact.html").write_text(full_html, encoding="utf-8")
-        print("  &check; Built contact.html")
+    # 4. Render Contact (Commented out per user request; preserved in case needed later)
+    # if (PAGES_DIR / "contact.md").exists():
+    #     fm, body = parse_frontmatter((PAGES_DIR / "contact.md").read_text(encoding="utf-8"))
+    #     html_body = simple_markdown_to_html(body)
+    #     contact_html = render_template(contact_tpl, {"body": html_body})
+    #     full_html = render_template(default_tpl, {"isContact": "true", "title": "Contact", "body": contact_html})
+    #     (SITE_DIR / "contact.html").write_text(full_html, encoding="utf-8")
+    #     print("  &check; Built contact.html")
 
     # 5. Render Blog/Thoughts Posts
     posts_data = []
