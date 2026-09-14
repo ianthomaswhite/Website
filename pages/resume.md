@@ -1,5 +1,6 @@
 ---
 title: Resume
+isResume: true
 ---
 
 ## Education

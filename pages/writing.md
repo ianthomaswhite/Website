@@ -1,5 +1,6 @@
 ---
 title: Writing
+isWriting: true
 ---
 
 <p>
@@ -10,11 +11,11 @@ title: Writing
 <div class="writing-list">
     <!-- Example structure:
     <div class="writing-genre">
-        <div class="genre-header">Linguistics</div>
+        <h3>Linguistics</h3>
         <div class="writing-item">
-            <div class="writing-title">Paper Title</div>
-            <div class="writing-desc">Description or abstract.</div>
-            <a href="/pdfs/paper.pdf" class="writing-download" download>[ download pdf ]</a>
+            <h4>Paper Title</h4>
+            <p>Description or abstract.</p>
+            <a href="/pdfs/paper.pdf" download>Download PDF</a>
         </div>
     </div>
     -->

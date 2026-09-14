@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 SITE_DIR = ROOT_DIR / "_site"
-TEMPLATES_DIR = ROOT_DIR / "templates"
+TEMPLATES_DIR = ROOT_DIR / "templates" / "editorial"
 PAGES_DIR = ROOT_DIR / "pages"
 POSTS_DIR = ROOT_DIR / "posts"
 CSS_DIR = ROOT_DIR / "css"
@@ -174,6 +174,7 @@ def build_site():
     default_tpl = (TEMPLATES_DIR / "default.html").read_text(encoding="utf-8")
     page_tpl = (TEMPLATES_DIR / "page.html").read_text(encoding="utf-8")
     resume_tpl = (TEMPLATES_DIR / "resume.html").read_text(encoding="utf-8")
+    contact_tpl = (TEMPLATES_DIR / "contact.html").read_text(encoding="utf-8")
     post_tpl = (TEMPLATES_DIR / "post.html").read_text(encoding="utf-8")
     archive_tpl = (TEMPLATES_DIR / "archive.html").read_text(encoding="utf-8")
     post_item_tpl = (TEMPLATES_DIR / "post-list.html").read_text(encoding="utf-8")
@@ -191,7 +192,7 @@ def build_site():
         fm, body = parse_frontmatter((PAGES_DIR / "resume.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
         resume_html = render_template(resume_tpl, {"body": html_body})
-        full_html = render_template(default_tpl, {"isHome": "", "title": "Resume", "body": resume_html})
+        full_html = render_template(default_tpl, {"isResume": "true", "title": "Resume", "body": resume_html})
         (SITE_DIR / "resume.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built resume.html")
 
@@ -199,11 +200,20 @@ def build_site():
     if (PAGES_DIR / "writing.md").exists():
         fm, body = parse_frontmatter((PAGES_DIR / "writing.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        full_html = render_template(default_tpl, {"isHome": "", "title": "Writing", "body": html_body})
+        full_html = render_template(default_tpl, {"isWriting": "true", "title": "Writing", "body": html_body})
         (SITE_DIR / "writing.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built writing.html")
 
-    # 4. Render Blog Posts
+    # 4. Render Contact
+    if (PAGES_DIR / "contact.md").exists():
+        fm, body = parse_frontmatter((PAGES_DIR / "contact.md").read_text(encoding="utf-8"))
+        html_body = simple_markdown_to_html(body)
+        contact_html = render_template(contact_tpl, {"body": html_body})
+        full_html = render_template(default_tpl, {"isContact": "true", "title": "Contact", "body": contact_html})
+        (SITE_DIR / "contact.html").write_text(full_html, encoding="utf-8")
+        print("  &check; Built contact.html")
+
+    # 5. Render Blog Posts
     posts_data = []
     (SITE_DIR / "posts").mkdir(parents=True, exist_ok=True)
     if POSTS_DIR.exists():
@@ -221,7 +231,7 @@ def build_site():
                 "tags": post_tags,
                 "body": html_body
             })
-            full_html = render_template(default_tpl, {"isHome": "", "title": "Blog", "body": post_html})
+            full_html = render_template(default_tpl, {"isBlog": "true", "title": "Blog", "body": post_html})
             (SITE_DIR / "posts" / f"{post_file.stem}.html").write_text(full_html, encoding="utf-8")
 
             posts_data.append({
@@ -231,13 +241,13 @@ def build_site():
             })
             print(f"  &check; Built posts/{post_file.stem}.html")
 
-    # 5. Render Blog Archive
+    # 6. Render Blog Archive
     post_items_html = ""
     for p in posts_data:
         post_items_html += render_template(post_item_tpl, p) + "\n"
 
     archive_body = re.sub(r'\$for\(posts\)\$.*?\$endfor\$', post_items_html, archive_tpl, flags=re.DOTALL)
-    full_archive_html = render_template(default_tpl, {"isHome": "", "title": "Blog", "body": archive_body})
+    full_archive_html = render_template(default_tpl, {"isBlog": "true", "title": "Blog", "body": archive_body})
     (SITE_DIR / "blog.html").write_text(full_archive_html, encoding="utf-8")
     print("  &check; Built blog.html")
     print(f"\nPreview site compiled into: {SITE_DIR}")

@@ -1,0 +1,358 @@
+/* ==========================================================================
+   EDITORIAL SPLIT-COLUMN DESIGN SYSTEM
+   Inspired by: 1906 French Periodicals, Cheltenham & Gloucester Typography
+   Layout: Left Sidebar (Name, Nav, Copyright) | Yellow Divider Bar | Content
+   Author: Ian Thomas White
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --bg-color: #FFFFFF;
+  --text-main: #111111;
+  --text-muted: #666666;
+  --accent-yellow: #FCF75E;
+  --bar-width: 22px;
+  --sidebar-width: 230px;
+  --font-serif: "Newsreader", "Old Standard TT", "Cheltenham", "Gloucester", "Times New Roman", Georgia, serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Courier New", monospace;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Overall Grid Layout */
+.site-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Left Sidebar: Name (Top), Nav (Middle-Lower), Copyright (Bottom)
+   -------------------------------------------------------------------------- */
+.sidebar-left {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  padding: 3rem 2rem 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-color);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Name: Stacked IAN / THOMAS / WHITE */
+.sidebar-name {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.name-line {
+  display: block;
+}
+
+/* Navigation Links (Stacked) */
+.sidebar-nav-group {
+  margin-top: auto;
+  margin-bottom: 3.5rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.nav-item {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-main);
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  transition: opacity 0.15s ease;
+}
+
+.nav-item:hover {
+  opacity: 0.7;
+}
+
+/* Active Page Indicator: Yellow Cross-Out Line */
+.nav-item.active {
+  position: relative;
+  font-weight: 600;
+}
+
+.nav-item.active::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: 52%;
+  height: 4px;
+  background-color: var(--accent-yellow);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Copyright at Bottom */
+.sidebar-copyright {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   Vertical Yellow Bar
+   -------------------------------------------------------------------------- */
+.divider-yellow-bar {
+  width: var(--bar-width);
+  min-width: var(--bar-width);
+  background-color: var(--accent-yellow);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Right Main Content Column
+   -------------------------------------------------------------------------- */
+.content-right {
+  flex: 1;
+  background-color: var(--bg-color);
+  padding: 3.5rem 4rem 4rem 3.5rem;
+  max-width: 880px;
+}
+
+/* Typography & Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2rem;
+  margin-bottom: 0.85rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-top: 0;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.55rem;
+  margin-top: 2.2rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1.35rem;
+}
+
+a {
+  color: var(--text-main);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: background-color 0.15s ease;
+}
+
+a:hover {
+  background-color: var(--accent-yellow);
+}
+
+ul, ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.35rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #DDDDDD;
+  margin: 2.5rem 0;
+}
+
+/* Contact Form Styling */
+.contact-form-container {
+  max-width: 580px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.form-input,
+.form-textarea {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  padding: 10px 14px;
+  border: 1px solid #333333;
+  background-color: #FFFFFF;
+  color: var(--text-main);
+  width: 100%;
+  border-radius: 0;
+  transition: border-color 0.15s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 2px var(--accent-yellow);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.btn-submit {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 10px 24px;
+  background-color: var(--text-main);
+  color: #FFFFFF;
+  border: 1px solid var(--text-main);
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.15s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--accent-yellow);
+  color: var(--text-main);
+  border-color: var(--text-main);
+}
+
+/* Resume Page */
+.resume-download-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.download-link {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.download-link:hover {
+  background-color: var(--accent-yellow);
+}
+
+/* Responsive (Tablets and Mobile) */
+@media (max-width: 768px) {
+  .site-layout {
+    flex-direction: column;
+  }
+
+  .sidebar-left {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    position: static;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .sidebar-nav-group {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+  }
+
+  .divider-yellow-bar {
+    width: 100%;
+    min-width: 100%;
+    height: 12px;
+    align-self: auto;
+  }
+
+  .content-right {
+    padding: 2rem 1.5rem 3rem 1.5rem;
+  }
+}
+
+/* Print */
+@media print {
+  .divider-yellow-bar,
+  .sidebar-left,
+  .resume-download-links {
+    display: none !important;
+  }
+
+  .content-right {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
