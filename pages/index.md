@@ -3,9 +3,7 @@ title: Ian Thomas White
 ---
 
 <div style="margin-bottom: 2rem;">
-    <p style="font-size: 1.2rem; font-weight: 500; line-height: 1.6;">
-        Welcome to my personal website.
-    </p>
+    <p style="font-size: 1.2rem; font-weight: 500; line-height: 1.6;">Welcome to my personal website.</p>
 </div>
 
 ## About
