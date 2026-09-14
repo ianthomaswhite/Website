@@ -108,7 +108,7 @@ def simple_markdown_to_html(md_text):
 
         # HTML passthrough or regular paragraph
         if stripped.startswith("<") or stripped.endswith(">") or stripped.startswith("<!--") or stripped.startswith("&"):
-            html_lines.append(line)
+            html_lines.append(stripped)
         else:
             html_lines.append(f"<p>{inline_formatting(stripped)}</p>")
 
@@ -127,8 +127,8 @@ def inline_formatting(text):
     text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
     # Italic *text*
     text = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<em>\1</em>', text)
-    # Links [text](url)
-    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', text)
+    # Links [text](url) - handles brackets inside text like [at]
+    text = re.sub(r'\[(.*?)\]\((mailto:[^\s)]+|https?://[^\s)]+|/[^\s)]*)\)', r'<a href="\2">\1</a>', text)
     return text
 
 def render_template(template_str, context):
@@ -182,8 +182,7 @@ def build_site():
     if (PAGES_DIR / "index.md").exists():
         fm, body = parse_frontmatter((PAGES_DIR / "index.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        page_html = render_template(page_tpl, {"title": "", "body": html_body})
-        full_html = render_template(default_tpl, {"title": "Home", "body": page_html})
+        full_html = render_template(default_tpl, {"isHome": "true", "title": "Home", "body": html_body})
         (SITE_DIR / "index.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built index.html")
 
@@ -191,8 +190,8 @@ def build_site():
     if (PAGES_DIR / "resume.md").exists():
         fm, body = parse_frontmatter((PAGES_DIR / "resume.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        resume_html = render_template(resume_tpl, {"title": fm.get("title", "Resume"), "body": html_body})
-        full_html = render_template(default_tpl, {"title": "Resume", "body": resume_html})
+        resume_html = render_template(resume_tpl, {"body": html_body})
+        full_html = render_template(default_tpl, {"isHome": "", "title": "Resume", "body": resume_html})
         (SITE_DIR / "resume.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built resume.html")
 
@@ -200,8 +199,7 @@ def build_site():
     if (PAGES_DIR / "writing.md").exists():
         fm, body = parse_frontmatter((PAGES_DIR / "writing.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        page_html = render_template(page_tpl, {"title": fm.get("title", "Writing"), "body": html_body})
-        full_html = render_template(default_tpl, {"title": "Writing", "body": page_html})
+        full_html = render_template(default_tpl, {"isHome": "", "title": "Writing", "body": html_body})
         (SITE_DIR / "writing.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built writing.html")
 
@@ -223,7 +221,7 @@ def build_site():
                 "tags": post_tags,
                 "body": html_body
             })
-            full_html = render_template(default_tpl, {"title": post_title, "body": post_html})
+            full_html = render_template(default_tpl, {"isHome": "", "title": "Blog", "body": post_html})
             (SITE_DIR / "posts" / f"{post_file.stem}.html").write_text(full_html, encoding="utf-8")
 
             posts_data.append({
@@ -238,9 +236,8 @@ def build_site():
     for p in posts_data:
         post_items_html += render_template(post_item_tpl, p) + "\n"
 
-    # Replace $for(posts)$ loop with rendered items
     archive_body = re.sub(r'\$for\(posts\)\$.*?\$endfor\$', post_items_html, archive_tpl, flags=re.DOTALL)
-    full_archive_html = render_template(default_tpl, {"title": "Blog", "body": archive_body})
+    full_archive_html = render_template(default_tpl, {"isHome": "", "title": "Blog", "body": archive_body})
     (SITE_DIR / "blog.html").write_text(full_archive_html, encoding="utf-8")
     print("  &check; Built blog.html")
     print(f"\nPreview site compiled into: {SITE_DIR}")

@@ -38,21 +38,21 @@ main = hakyllWith config $ do
         route $ constRoute "index.html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/page.html"    defaultContext
-            >>= loadAndApplyTemplate "templates/default.html" (siteCtx "Home")
+            >>= loadAndApplyTemplate "templates/default.html" (constField "isHome" "true" `mappend` siteCtx "Home")
             >>= relativizeUrls
 
     match "pages/resume.md" $ do
         route $ constRoute "resume.html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/resume.html"  defaultContext
-            >>= loadAndApplyTemplate "templates/default.html" (siteCtx "Resume")
+            >>= loadAndApplyTemplate "templates/default.html" (constField "title" "Resume" `mappend` siteCtx "Resume")
             >>= relativizeUrls
 
     match "pages/writing.md" $ do
         route $ constRoute "writing.html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/page.html"    defaultContext
-            >>= loadAndApplyTemplate "templates/default.html" (siteCtx "Writing")
+            >>= loadAndApplyTemplate "templates/default.html" (constField "title" "Writing" `mappend` siteCtx "Writing")
             >>= relativizeUrls
 
     -- Blog Posts
@@ -60,31 +60,23 @@ main = hakyllWith config $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= loadAndApplyTemplate "templates/default.html" (constField "title" "Blog" `mappend` postCtx)
             >>= relativizeUrls
 
-    -- Blog Archive / Index
+    -- Blog Archive
     create ["blog.html"] $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Blog Archive"        `mappend`
+                    constField "title" "Blog"                `mappend`
                     siteCtx "Blog"
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
-
-    -- Reading Commentaries (future-proofed)
-    match "commentaries/*" $ do
-        route $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/commentary.html" postCtx
-            >>= loadAndApplyTemplate "templates/default.html"    postCtx
-            >>= relativizeUrls
 
 --------------------------------------------------------------------------------
 postCtx :: Context String

@@ -4,34 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$if(title)$$title$ — Ian Thomas White$else$Ian Thomas White$endif$</title>
-    <meta name="description" content="Personal website, research, writing, and blog of Ian Thomas White.">
+    <meta name="description" content="Ian Thomas White — researcher, writer, and software developer.">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header class="site-header">
+$if(isHome)$
+    <!-- No top header on homepage -->
+$else$
+    <header class="subpage-top">
         <div class="container">
-            <a href="/" class="site-title">Ian Thomas White</a>
-            <nav class="main-nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/resume.html" class="nav-link">Resume</a>
-                <a href="/writing.html" class="nav-link">Writing</a>
-                <a href="/blog.html" class="nav-link">Blog</a>
-            </nav>
+            <div class="subpage-top-inner">
+                <span class="subpage-title">$title$</span>
+                <a href="/" class="subpage-name">Ian Thomas White</a>
+            </div>
         </div>
     </header>
+$endif$
 
     <main>
         <div class="container">
-            <div class="content-wrapper">
+            <div class="page-content">
                 $body$
             </div>
         </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-bottom-nav">
         <div class="container">
-            <div>&copy; 2026 Ian Thomas White &middot; Built with Hakyll (Haskell)</div>
-            <div><a href="https://github.com/ianthomaswhite" target="_blank" rel="noopener">GitHub</a></div>
+            <nav class="nav-links-row">
+                <a href="/" class="bottom-link">Home</a>
+                <a href="/resume.html" class="bottom-link">Resume</a>
+                <a href="/writing.html" class="bottom-link">Writing</a>
+                <a href="/blog.html" class="bottom-link">Blog</a>
+                <a href="https://github.com/ianthomaswhite" target="_blank" rel="noopener" class="bottom-link">GitHub</a>
+            </nav>
         </div>
     </footer>
 </body>

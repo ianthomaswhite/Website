@@ -1,20 +1,14 @@
-<article class="post">
-    <header class="post-header">
-        <h1>$title$</h1>
-        <div class="post-meta">
-            <time datetime="$date$">$date$</time>
-            $if(tags)$
-            &middot; <span class="post-tags">Tags: $tags$</span>
-            $endif$
-        </div>
-    </header>
+<article class="post-body">
+    <div class="post-meta-line">
+        <time datetime="$date$">$date$</time>$if(tags)$ &middot; <span>$tags$</span>$endif$
+    </div>
 
-    <div class="post-body">
+    <div class="post-prose">
         $body$
     </div>
 
     <hr>
-    <div style="margin-top: 1.5rem;">
-        <a href="/blog.html" class="btn">&larr; Back to all posts</a>
+    <div style="margin-top: 2rem;">
+        <a href="/blog.html" class="action-link">&larr; [ back to blog ]</a>
     </div>
 </article>
