@@ -1,6 +1,6 @@
 ---
-title: Resume
-isResume: true
+title: Experience
+isExperience: true
 ---
 
 ## Education
@@ -22,3 +22,7 @@ isResume: true
 ## Skills
 
 <!-- Add skills here -->
+
+## Downloads
+
+<!-- Add downloads here -->

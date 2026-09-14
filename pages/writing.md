@@ -2,10 +2,7 @@
 title: Writing
 isWriting: true
 ---
-
-<p>
-    Research papers, essays, and monographs.
-</p>
+Research papers, essays, and monographs.
 
 <!-- Papers will be listed here once mapped in sync-manifest.conf -->
 <div class="writing-list">

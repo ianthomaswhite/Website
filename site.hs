@@ -42,11 +42,11 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isHome" "true" `mappend` siteCtx "Home")
             >>= relativizeUrls
 
-    match "pages/resume.md" $ do
-        route $ constRoute "resume.html"
+    match "pages/experience.md" $ do
+        route $ constRoute "experience.html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/editorial/resume.html"  defaultContext
-            >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isResume" "true" `mappend` siteCtx "Resume")
+            >>= loadAndApplyTemplate "templates/editorial/experience.html" defaultContext
+            >>= loadAndApplyTemplate "templates/editorial/default.html"    (constField "isExperience" "true" `mappend` siteCtx "Experience")
             >>= relativizeUrls
 
     match "pages/writing.md" $ do

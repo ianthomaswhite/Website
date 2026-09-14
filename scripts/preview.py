@@ -173,7 +173,7 @@ def build_site():
     # Load templates
     default_tpl = (TEMPLATES_DIR / "default.html").read_text(encoding="utf-8")
     page_tpl = (TEMPLATES_DIR / "page.html").read_text(encoding="utf-8")
-    resume_tpl = (TEMPLATES_DIR / "resume.html").read_text(encoding="utf-8")
+    experience_tpl = (TEMPLATES_DIR / "experience.html").read_text(encoding="utf-8")
     contact_tpl = (TEMPLATES_DIR / "contact.html").read_text(encoding="utf-8")
     post_tpl = (TEMPLATES_DIR / "post.html").read_text(encoding="utf-8")
     archive_tpl = (TEMPLATES_DIR / "archive.html").read_text(encoding="utf-8")
@@ -183,24 +183,26 @@ def build_site():
     if (PAGES_DIR / "index.md").exists():
         fm, body = parse_frontmatter((PAGES_DIR / "index.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        full_html = render_template(default_tpl, {"isHome": "true", "title": "Home", "body": html_body})
+        page_html = render_template(page_tpl, {"title": "", "body": html_body})
+        full_html = render_template(default_tpl, {"isHome": "true", "title": "Ian Thomas White", "body": page_html})
         (SITE_DIR / "index.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built index.html")
 
-    # 2. Render Resume
-    if (PAGES_DIR / "resume.md").exists():
-        fm, body = parse_frontmatter((PAGES_DIR / "resume.md").read_text(encoding="utf-8"))
+    # 2. Render Experience
+    if (PAGES_DIR / "experience.md").exists():
+        fm, body = parse_frontmatter((PAGES_DIR / "experience.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        resume_html = render_template(resume_tpl, {"body": html_body})
-        full_html = render_template(default_tpl, {"isResume": "true", "title": "Resume", "body": resume_html})
-        (SITE_DIR / "resume.html").write_text(full_html, encoding="utf-8")
-        print("  &check; Built resume.html")
+        experience_html = render_template(experience_tpl, {"body": html_body})
+        full_html = render_template(default_tpl, {"isExperience": "true", "title": "Experience", "body": experience_html})
+        (SITE_DIR / "experience.html").write_text(full_html, encoding="utf-8")
+        print("  &check; Built experience.html")
 
     # 3. Render Writing
     if (PAGES_DIR / "writing.md").exists():
         fm, body = parse_frontmatter((PAGES_DIR / "writing.md").read_text(encoding="utf-8"))
         html_body = simple_markdown_to_html(body)
-        full_html = render_template(default_tpl, {"isWriting": "true", "title": "Writing", "body": html_body})
+        page_html = render_template(page_tpl, {"title": fm.get("title", "Writing"), "body": html_body})
+        full_html = render_template(default_tpl, {"isWriting": "true", "title": "Writing", "body": page_html})
         (SITE_DIR / "writing.html").write_text(full_html, encoding="utf-8")
         print("  &check; Built writing.html")
 
@@ -252,11 +254,18 @@ def build_site():
     print("  &check; Built blog.html")
     print(f"\nPreview site compiled into: {SITE_DIR}")
 
+class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
+        super().end_headers()
+
 def serve_site(port=8000):
-    """Run local HTTP server."""
+    """Run local HTTP server with cache-busting headers."""
     os.chdir(SITE_DIR)
-    handler = http.server.SimpleHTTPRequestHandler
-    with socketserver.TCPServer(("", port), handler) as httpd:
+    socketserver.TCPServer.allow_reuse_address = True
+    with socketserver.TCPServer(("", port), NoCacheHandler) as httpd:
         print(f"\n=======================================================")
         print(f"  Local Preview running at: http://localhost:{port}")
         print(f"  Press Ctrl+C in terminal to stop.")
