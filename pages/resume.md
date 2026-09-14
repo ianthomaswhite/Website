@@ -7,25 +7,17 @@ isResume: true
 
 <!-- Add education details here -->
 
----
-
 ## Experience
 
 <!-- Add experience details here -->
-
----
 
 ## Projects
 
 <!-- Add projects here -->
 
----
-
 ## Publications
 
 <!-- Add publications here -->
-
----
 
 ## Skills
 

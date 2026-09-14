@@ -137,17 +137,17 @@ body {
 /* Active Page Indicator: Yellow Cross-Out Line */
 .nav-item.active {
   position: relative;
-  font-weight: 800;
   opacity: 1;
+  /* Do not bold the active text */
 }
 
 .nav-item.active::after {
   content: "";
   position: absolute;
-  left: -4px;
-  right: -4px;
+  left: -2px;
+  right: -2px;
   top: 52%;
-  height: 4px;
+  height: 2px; /* Slightly smaller cross out */
   background-color: var(--accent-yellow);
   z-index: 1;
   pointer-events: none;
@@ -313,29 +313,34 @@ hr {
 }
 
 /* Resume Page */
-.resume-download-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #EEEEEE;
+.resume-downloads-line {
+  margin-bottom: 2.2rem;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
+.resume-downloads-line .download-link,
 .download-link {
   font-family: var(--font-grotesque);
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   color: var(--text-main);
   cursor: pointer;
   background: none;
   border: none;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none; /* No underlines for downloads */
+  transition: opacity 0.15s ease;
 }
 
+.resume-downloads-line .download-link:hover,
 .download-link:hover {
   opacity: 0.65;
+  text-decoration: none;
+}
+
+/* No lines between sections on resume page */
+.resume-body hr {
+  display: none;
 }
 
 /* Responsive (Mobile & Small Tablets) */
