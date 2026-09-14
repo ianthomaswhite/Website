@@ -302,7 +302,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  margin-top: 1.5rem;
+  margin-top: 0;
 }
 
 .form-group {
@@ -315,7 +315,7 @@ hr {
   display: block;
 }
 
-/* Form fields: no surrounding boxes, vertical yellow line on left only */
+/* Form fields: no surrounding boxes, black line default, yellow line in use */
 .form-input,
 .form-textarea {
   font-family: var(--font-grotesque);
@@ -323,7 +323,7 @@ hr {
   line-height: 1.4;
   padding: 6px 14px;
   border: none;
-  border-left: 3.5px solid var(--accent-yellow);
+  border-left: 3.5px solid var(--text-main);
   background-color: transparent;
   color: var(--text-main);
   width: 100%;
@@ -334,7 +334,7 @@ hr {
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-left: 3.5px solid #000000;
+  border-left: 3.5px solid var(--accent-yellow);
 }
 
 .form-textarea {
