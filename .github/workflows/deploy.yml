@@ -37,9 +37,39 @@ jobs:
           chmod +x scripts/build-resumes.sh
           ./scripts/build-resumes.sh
 
-      - name: Build Website
+      - name: Setup Haskell Environment
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: '9.4.7'
+          cabal-version: 'latest'
+
+      - name: Cache Cabal Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cabal/store
+            dist-newstyle
+          key: ${{ runner.os }}-cabal-${{ hashFiles('website.cabal', 'cabal.project') }}
+          restore-keys: |
+            ${{ runner.os }}-cabal-
+
+      - name: Build Cabal Dependencies
         run: |
-          python3 scripts/preview.py --build-only
+          cabal v2-update
+          cabal v2-build --only-dependencies site
+
+      - name: Build Hakyll Site Generator
+        run: |
+          cabal v2-build site
+
+      - name: Compile Site with Hakyll
+        run: |
+          cabal v2-run site -- build
+
+      - name: Bundle PDFs and CNAME into _site
+        run: |
+          mkdir -p _site/pdfs
+          cp -a pdfs/. _site/pdfs/
           cp CNAME _site/CNAME
 
       - name: Upload Pages Artifact
