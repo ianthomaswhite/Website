@@ -64,7 +64,7 @@ main = hakyllWith config $ do
     match "pages/index.md" $ do
         route $ constRoute "index.html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/editorial/page.html"    (constField "isHome" "true" `mappend` defaultContext)
+            >>= loadAndApplyTemplate "templates/editorial/page.html"    (constField "isHome" "true" `mappend` constField "title" "" `mappend` defaultContext)
             >>= loadAndApplyTemplate "templates/editorial/default.html" (constField "isHome" "true" `mappend` siteCtx "Home")
             >>= relativizeUrls
 

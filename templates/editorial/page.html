@@ -11,9 +11,10 @@
 <article class="page-content">
     $if(isHome)$
     <div class="header-blank-slot" aria-hidden="true">&nbsp;</div>
-    $endif$
+    $else$
     $if(title)$
     <h1>$title$</h1>
+    $endif$
     $endif$
     $body$
 </article>

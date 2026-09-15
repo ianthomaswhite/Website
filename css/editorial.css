@@ -25,6 +25,11 @@
   padding: 0;
 }
 
+::selection {
+  background-color: var(--accent-yellow);
+  color: var(--text-main);
+}
+
 html {
   background-color: var(--bg-color);
   color: var(--text-main);
@@ -136,7 +141,8 @@ body {
 }
 
 .nav-item:hover {
-  opacity: 0.65; /* No yellow hover highlight */
+  background-color: var(--accent-yellow);
+  opacity: 1;
 }
 
 /* Active Page Indicator: Yellow Cross-Out Line */
@@ -194,7 +200,7 @@ body {
   display: block;
 }
 
-/* Copyright at Bottom (Fits on 1 line, bottom-aligned with Yellow Bar) */
+/* Copyright at Bottom (Fits on 1 line, raised 1 line above bottom of Yellow Bar) */
 .sidebar-copyright {
   font-family: var(--font-grotesque);
   font-size: 0.88rem;
@@ -203,7 +209,7 @@ body {
   white-space: nowrap;
   text-align: right;
   line-height: 1;
-  margin-bottom: -2px; /* Bottom of letters flush with bottom of yellow bar */
+  margin-bottom: 1.15rem; /* Raised 1 line above bottom of yellow bar */
 }
 
 /* --------------------------------------------------------------------------
@@ -309,17 +315,22 @@ p {
   text-wrap: pretty;
 }
 
-/* Links: No underlines by default, no yellow hover background */
+/* Links: No underlines sitewide, yellow hover highlight */
 a {
   color: var(--text-main);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  transition: opacity 0.15s ease;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 a:hover {
-  opacity: 0.65; /* Clean hover without yellow highlight */
+  background-color: var(--accent-yellow);
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.sidebar-name:hover,
+.social-btn:hover {
+  background-color: transparent !important;
 }
 
 ul, ol {
@@ -434,7 +445,8 @@ hr {
 }
 
 .post-title-link:hover {
-  opacity: 0.65;
+  background-color: var(--accent-yellow);
+  opacity: 1;
 }
 
 /* Date directly below title line and post date */
@@ -461,7 +473,9 @@ hr {
   margin-bottom: 1.85rem;
 }
 
-/* Bullets: small unfilled black boxes centered vertically on the line */
+/* Bullets sitewide: small unfilled black boxes centered vertically on the line */
+.content-right ul:not(.post-list-editorial):not(.nav-links-row),
+.page-content ul,
 .background-body ul {
   list-style: none;
   margin-left: 0;
@@ -469,7 +483,10 @@ hr {
   margin-bottom: 1.35rem;
 }
 
+.content-right ul:not(.post-list-editorial):not(.nav-links-row) > li,
+.page-content ul > li,
 .background-body li {
+  list-style: none;
   padding-left: 1.35rem;
   text-indent: -1.35rem;
   margin-bottom: 0.45rem;
@@ -477,6 +494,8 @@ hr {
   text-wrap: pretty;
 }
 
+.content-right ul:not(.post-list-editorial):not(.nav-links-row) > li::before,
+.page-content ul > li::before,
 .background-body li::before {
   content: "";
   display: inline-block;
@@ -490,6 +509,8 @@ hr {
 }
 
 /* Nested sub-lists (e.g. advisors under research / thesis): no bullet, flush with parent text */
+.content-right ul ul,
+.page-content ul ul,
 .background-body ul ul {
   list-style: none;
   margin-top: 0.15rem;
@@ -497,6 +518,8 @@ hr {
   padding-left: 0;
 }
 
+.content-right ul ul > li,
+.page-content ul ul > li,
 .background-body ul ul li {
   list-style: none;
   padding-left: 0;
@@ -506,6 +529,8 @@ hr {
   text-wrap: pretty;
 }
 
+.content-right ul ul > li::before,
+.page-content ul ul > li::before,
 .background-body ul ul li::before {
   content: none !important;
   display: none !important;
@@ -636,7 +661,7 @@ a[href*="/pdfs/"] + [class*="download"] {
 
   .sidebar-copyright {
     text-align: left;
-    margin-bottom: -2px;
+    margin-bottom: 1.25rem;
   }
 
   .divider-yellow-bar {

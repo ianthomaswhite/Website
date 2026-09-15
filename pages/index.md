@@ -1,4 +1,5 @@
 ---
+title: ""
 isHome: true
 ---
 
