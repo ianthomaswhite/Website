@@ -519,27 +519,34 @@ hr {
 /* Nested sub-lists (e.g. advisors under research / thesis): no bullet, flush with parent text */
 .content-right ul ul,
 .page-content ul ul,
-.background-body ul ul {
-  list-style: none;
-  margin-top: 0.15rem;
-  margin-bottom: 0.25rem;
-  padding-left: 0;
+.background-body ul ul,
+.content-right ul:not(.post-list-editorial):not(.nav-links-row) ul,
+.page-content ul:not(.post-list-editorial) ul {
+  list-style: none !important;
+  margin-top: 0.15rem !important;
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 .content-right ul ul > li,
 .page-content ul ul > li,
-.background-body ul ul li {
-  list-style: none;
-  padding-left: 0;
-  text-indent: 0;
-  margin-bottom: 0.25rem;
+.background-body ul ul li,
+.content-right ul:not(.post-list-editorial):not(.nav-links-row) ul > li,
+.page-content ul:not(.post-list-editorial) ul > li {
+  list-style: none !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+  margin-bottom: 0 !important;
   line-height: 1.45;
   text-wrap: pretty;
 }
 
 .content-right ul ul > li::before,
 .page-content ul ul > li::before,
-.background-body ul ul li::before {
+.background-body ul ul li::before,
+.content-right ul:not(.post-list-editorial):not(.nav-links-row) ul > li::before,
+.page-content ul:not(.post-list-editorial) ul > li::before {
   content: none !important;
   display: none !important;
 }
