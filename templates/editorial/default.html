@@ -85,5 +85,34 @@
             $body$
         </main>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function cleanPdfLinks() {
+                var pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[href*="/pdfs/"], a[href*=".pdf"]');
+                pdfLinks.forEach(function(link) {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener');
+                    link.removeAttribute('download');
+
+                    // Remove any injected icon/cloud/download elements inside the link
+                    var injected = link.querySelectorAll('svg, img, i, [class*="icon"], [class*="cloud"], [class*="download"]');
+                    injected.forEach(function(el) { el.remove(); });
+
+                    // Check immediately adjacent siblings (often injected by extensions)
+                    var next = link.nextElementSibling;
+                    if (next && (next.matches('svg, img, i, [class*="icon"], [class*="cloud"], [class*="download"]') ||
+                                 (next.className && typeof next.className === 'string' && (next.className.indexOf('cloud') !== -1 || next.className.indexOf('download') !== -1 || next.className.indexOf('icon') !== -1)))) {
+                        next.remove();
+                    }
+                });
+            }
+            cleanPdfLinks();
+            if (window.MutationObserver) {
+                var observer = new MutationObserver(cleanPdfLinks);
+                observer.observe(document.body, { childList: true, subtree: true });
+            }
+        });
+    </script>
 </body>
 </html>

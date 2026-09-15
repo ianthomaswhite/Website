@@ -48,7 +48,7 @@ while IFS= read -r line || [ -n "$line" ]; do
         # Destination is always anchored relative to the website repository root
         DEST="${ROOT_DIR}/${DEST_RAW}"
 
-        ((ACTIVE_COUNT++))
+        ((ACTIVE_COUNT += 1))
 
         if [ ! -f "$SRC" ]; then
             echo "[!] Source file missing: ${SRC_RAW}"
@@ -61,8 +61,8 @@ while IFS= read -r line || [ -n "$line" ]; do
         # Compare files: only copy if different
         if [ ! -f "$DEST" ] || ! cmp -s "$SRC" "$DEST"; then
             cp "$SRC" "$DEST"
-            echo "  [+] Updated: ${DEST_RAW} &larr; ${SRC_RAW}"
-            ((UPDATED_COUNT++))
+            echo "  [+] Updated: ${DEST_RAW} <- ${SRC_RAW}"
+            ((UPDATED_COUNT += 1))
         else
             echo "  [=] Up to date: ${DEST_RAW}"
         fi

@@ -82,6 +82,7 @@ def simple_markdown_to_html(md_text):
     html_lines = []
     in_code_block = False
     in_list = False
+    in_sublist = False
 
     for line in lines:
         stripped = line.strip()
@@ -102,20 +103,39 @@ def simple_markdown_to_html(md_text):
             html_lines.append(line)
             continue
 
-        # Unordered list items: manage <ul> opening and closing tags
+        # Unordered list items: manage <ul> and nested sub-list opening and closing tags
         if stripped.startswith("- ") or stripped.startswith("* "):
-            if not in_list:
-                html_lines.append("<ul>")
-                in_list = True
-            item_content = stripped[2:].strip()
-            item_content = inline_formatting(item_content)
-            html_lines.append(f"<li>{item_content}</li>")
+            indent = len(line) - len(line.lstrip())
+            item_content = inline_formatting(stripped[2:].strip())
+
+            if indent >= 2 and in_list:
+                if not in_sublist:
+                    # Open nested <ul> inside previous <li>
+                    if html_lines and html_lines[-1].endswith("</li>"):
+                        html_lines[-1] = html_lines[-1][:-5]
+                    html_lines.append("<ul>")
+                    in_sublist = True
+                html_lines.append(f"<li>{item_content}</li>")
+            else:
+                if in_sublist:
+                    html_lines.append("</ul></li>")
+                    in_sublist = False
+                if not in_list:
+                    html_lines.append("<ul>")
+                    in_list = True
+                html_lines.append(f"<li>{item_content}</li>")
             continue
         elif in_list and not stripped:
+            if in_sublist:
+                html_lines.append("</ul></li>")
+                in_sublist = False
             html_lines.append("</ul>")
             in_list = False
             continue
         elif in_list and not (stripped.startswith("- ") or stripped.startswith("* ")):
+            if in_sublist:
+                html_lines.append("</ul></li>")
+                in_sublist = False
             html_lines.append("</ul>")
             in_list = False
 
@@ -153,6 +173,8 @@ def simple_markdown_to_html(md_text):
         else:
             html_lines.append(f"<p>{inline_formatting(stripped)}</p>")
 
+    if in_sublist:
+        html_lines.append("</ul></li>")
     if in_list:
         html_lines.append("</ul>")
     if in_code_block:
@@ -299,7 +321,17 @@ def build_site():
             fm, body = parse_frontmatter(post_file.read_text(encoding="utf-8"))
             html_body = simple_markdown_to_html(body)
             post_title = fm.get("title", post_file.stem)
-            post_date = fm.get("date", "")
+            raw_date = fm.get("date", "")
+            # Format post date as MM.DD.YYYY (preserving day)
+            d_match_day = re.match(r'^(\d{4})[.-](\d{2})[.-](\d{2})$', raw_date.strip())
+            if d_match_day:
+                post_date = f"{d_match_day.group(2)}.{d_match_day.group(3)}.{d_match_day.group(1)}"
+            else:
+                d_match_month = re.match(r'^(\d{4})[.-](\d{2})$', raw_date.strip())
+                if d_match_month:
+                    post_date = f"{d_match_month.group(2)}.{d_match_month.group(1)}"
+                else:
+                    post_date = raw_date
             post_tags = fm.get("tags", "")
             post_url = f"/posts/{post_file.stem}.html"
 

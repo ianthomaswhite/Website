@@ -1,55 +1,186 @@
-\documentclass[10pt,letterpaper]{article}
+\documentclass[10pt]{article}
 
-\usepackage[margin=0.65in]{geometry}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage[letterpaper, left=0.6in, right=0.6in, bottom=0.4in, top=0.4in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{titlesec}
 \usepackage{hyperref}
-\usepackage{enumitem}
 \usepackage{xcolor}
+\usepackage{lastpage}
+%\usepackage{lipsum}
+\usepackage[fleqn]{amsmath}
+\usepackage{setspace}
+\usepackage{stmaryrd}
+\usepackage{expex}
+\usepackage{tikz}
+\usepackage{hanging}
 
-\definecolor{accent}{HTML}{111111}
-\definecolor{subtext}{HTML}{444444}
+%\usepackage[hmargin=1in,vmargin=0.75in]{geometry}
+\usepackage{enumitem}
+
+\usepackage{tabularx}
+\usepackage{multirow}
+
+%%% for math
+\usepackage{mathtools, amssymb, stmaryrd}
+\usepackage{delimset}
+
+
+%\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\usepackage{bold-extra}
+
+\titleformat*{\section}{\Large\scshape}
+\titleformat*{\subsection}{\large\scshape}
+%\titleformat*{\subsubsection}{\small\bfseries}
+
+\usepackage{framed}
+\usepackage{colortbl}
+
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+
+\renewenvironment{leftbar}[1][\hsize]
+{%
+    \def\FrameCommand
+    {%
+        {\color{pink}\vrule width 3pt}%
+        \hspace{1em}%must no space.
+    }%
+    \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
+}
+{\endMakeFramed}
 
 \hypersetup{
-    colorlinks=true,
-    linkcolor=accent,
-    urlcolor=accent
-}
-
-\pagestyle{empty}
-\setlength{\parindent}{0pt}
-\setlist[itemize]{leftmargin=1.2em, itemsep=1.5pt, topsep=2pt}
-
-\newcommand{\resumesection}[1]{%
-    \vspace{8pt}%
-    {\large\bfseries\uppercase{#1}}%
-    \vspace{2pt}%
-    \hrule height 1pt%
-    \vspace{5pt}%
+    colorlinks,
+    linkcolor={gray},
+    citecolor={gray},
+    urlcolor={gray}
 }
 
 \begin{document}
 
-\begin{center}
-    {\huge\bfseries IAN THOMAS WHITE} \\[3pt]
-    \href{mailto:ianthomaswhite@gmail.com}{\texttt{ianthomaswhite\,[at]\,gmail\,[dot]\,com}} \quad\textbar\quad
-    \href{https://ianthomaswhite.com}{ianthomaswhite.com} \quad\textbar\quad
-    \href{https://github.com/ianthomaswhite}{github.com/ianthomaswhite}
-\end{center}
+\thispagestyle{empty}
 
-\vspace{-4pt}
+\section*{$\blacksquare$ \hspace{1em} Ian Thomas White \hspace{1em} $\circ$ \hspace{1em} Computational Linguist \& Writer}
 
-\resumesection{Education}
-% Add your education here
+\vspace{-1em}
 
-\resumesection{Experience}
-% Add your experience here
+\leftbar[0.99\linewidth]
 
-\resumesection{Projects}
-% Add your projects here
+\begin{tabular}{lllllllll}
+      \href{https://www.ianthomaswhite.com}{Website} & $\circ$ & \href{https://www.linkedin.com/in/ianthomaswhite/}{Linkedin}& $\circ$ & \href{mailto:ianthomaswhite@gmail.com}{ianthomaswhite@gmail.com} & $\circ$ & 515-508-9805 & $\circ$ & Los Angeles (open to relocation)\\
+\end{tabular}
 
-\resumesection{Skills}
-% Add your skills here
+\endleftbar
+
+\subsection*{$\square$ \hspace{1.4em} Overview}
+
+\vspace{-1em}
+
+\leftbar[0.99\linewidth]
+
+\begin{tabularx}{\textwidth}{X}
+    I am an academically trained linguist with substantial tech-industry experience. I have training in all linguistic subfields, with a focus on formal language theory, and I've leveraged my linguistics training at ML/AI companies. I'm a rigorous problem-solver across both quantitative (Python, SQL, Haskell) and qualitative (writing, annotation, ontology) domains. \\
+\end{tabularx}
+
+\endleftbar
+
+\subsection*{$\square$ \hspace{1.4em} Proficiencies}
+
+\vspace{-1em}
+
+\leftbar[0.99\linewidth]
+
+\begin{tabularx}{\textwidth}{X!{\color{pink}\vrule}lX!{\color{pink}\vrule}lX!{\color{pink}\vrule}lX!}
+     \scshape{Programming} & & \scshape{Linguistics} & & \scshape{Languages} & & \scshape{Skills} \\
+      & & & & & & \\
+     \raggedright Git, Haskell, JSON, \LaTeX, Markdown, MS 365, NLTK, Notion, Python, PyTorch, Prompt Engineering, R, SQL & & \raggedright Computational, Grammar, Lexical, Morphology, NLP, Phonology, Pragmatics, Semantics, Syntax & & \raggedright French, Greek (Ancient), Latin (Classical) & & \raggedright Communication, Data Analysis \& Annotation, Ontology, Research, Statistics, Taxonomy, Technical Writing
+\end{tabularx}
+
+\endleftbar
+
+\subsection*{$\square$ \hspace{1.4em} Experience}
+
+\vspace{-1em}
+
+\leftbar[0.99\linewidth]
+
+\begin{tabularx}{\textwidth}{lX!}
+    \multicolumn{2}{l}{\textsc{Linguistics Trainer and QA Specialist, Human Data} @ SpaceXAI: 08.2024-08.2026} \\
+    $\circ$ & Annotated textual and visual/audio LLM outputs for adherence to phonological, syntactical, and semantic norms. \\
+    $\circ$ & Conducted model evaluation and QA for Python and SQL outputs. \\
+    $\circ$ & Wrote novel guidance and QA rubrics in Markdown, JSON, and Excel. \\
+    $\circ$ & Collaborated with engineers to ensure labeling guidelines accorded with machine learning principles and goals.\\
+    $\circ$ &  Trained new tutors and developed algorithmic processes to improve tutor workflow and inter-annotator agreement. \\
+    \multicolumn{2}{l}{} \\
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{lX!}
+    \multicolumn{2}{l}{\textsc{Linguistics Instructor} @ UCLA: 09.2022-12.2023} \\
+    $\circ$ & Taught weekly seminars covering major linguistic subfields: phonology, morphology, syntax, semantics, pragmatics.\\
+    $\circ$ & Developed unique teaching materials and technical documentation using \LaTeX\,and Haskell. \\
+    $\circ$ & Evaluated student performance and conducted regular one-on-one meetings with students. \\ 
+    \multicolumn{2}{l}{} \\
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{lX!}
+    \multicolumn{2}{l}{\textsc{Computational Linguist} @ App Orchid: 06.2021-09.2022} \\
+    $\circ$ & Designed syntactic-tree-based regexes to match complex, embedded legal phrases in an LLM pipeline. \\
+    $\circ$ & Labeled and taxonomized linguistic regularities in legal corpora for POS, NER, and dependency/constituency parsing. \\
+    $\circ$ & Researched string parsing techniques to optimize regex search algorithms. \\
+    $\circ$ & Integrated regexes into the LLM pipeline using Python, SQL, and Git and wrote accompanying technical documentation.\\
+    $\circ$ & Communicated regularly with engineers, clients, and other stakeholders to ensure optimal ML outcomes.\\
+    \multicolumn{2}{l}{} \\
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{lX!}
+    \multicolumn{2}{l}{\textsc{Literature Instructor} @ University of Minnesota: 09.2016-05.2020} \\
+    $\circ$ & Designed and implemented syllabi for key departmental courses on literary theory. \\
+    $\circ$ & Wrote from scratch unique teaching materials on grammar and rhetoric.\\
+\end{tabularx}
+
+\endleftbar
+
+\subsection*{$\square$ \hspace{1.4em} Education}
+
+\vspace{-1em}
+
+\leftbar[0.99\linewidth]
+
+\begin{tabularx}{\textwidth}{lX!}
+    \multicolumn{2}{l}{\textsc{PhD (Incomplete), Linguistics} @ UCLA: 2020-2023} \\
+    $\circ$ & Took graduate courses in all linguistic subfields, as well as in algorithms and formal language theory. \\
+    $\circ$ & Researched and wrote on the generative capacities of Combinatory Categorial Grammars and Minimalist Grammars.\\
+    $\circ$ & Applied research toward NLP/NLU applications using Python and Haskell.\\
+    \multicolumn{2}{l}{} \\
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{lX!}
+    \multicolumn{2}{l}{\textsc{MA, Linguistics} @ University of Minnesota: 2016-2020} \\
+    $\circ$ & Thesis: ``The Argument Structure of Deverbal Nouns''. \\
+    $\circ$ & Took graduate courses in all linguistic subfields: phonology, syntax, semantics, pragmatics, computational. \\
+    $\circ$ & Completed corpora analysis projects using Python, NLTK, and Google Colab.\\
+    \multicolumn{2}{l}{} \\
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{lX!}
+    \multicolumn{2}{l}{\textsc{MA, Literature} @ University of Minnesota: 2016-2020} \\
+    $\circ$ & Thesis: ``Discrete Infinity in Penelope’s Weaving Trick''. \\
+    $\circ$ & Took graduate courses in literary theory, French-language poetry, and Greek-language literature.\\
+    $\circ$ & Used APA, MLA, and Chicago manuals of style to write papers.\\
+    \multicolumn{2}{l}{} \\
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{lX!}
+    \multicolumn{2}{l}{\textsc{BA, Writing} @ Johns Hopkins University: 2008-2011} \\
+    $\circ$ &  Thesis: ``Modern Mimesis: Alt-lit and Autofiction''. \\
+\end{tabularx}
+
+\endleftbar
+
+
 
 \end{document}

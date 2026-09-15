@@ -226,7 +226,7 @@ body {
   flex: 1;
   background-color: var(--bg-color);
   padding: 3.5rem 4rem 5rem var(--bar-gap);
-  max-width: 860px;
+  max-width: 940px;
   min-width: 0;
 }
 
@@ -306,6 +306,7 @@ p {
   font-size: 1.25rem;
   line-height: 1.5;
   margin-bottom: 1.35rem;
+  text-wrap: pretty;
 }
 
 /* Links: No underlines by default, no yellow hover background */
@@ -328,6 +329,7 @@ ul, ol {
 
 li {
   margin-bottom: 0.35rem;
+  text-wrap: pretty;
 }
 
 hr {
@@ -435,12 +437,16 @@ hr {
   opacity: 0.65;
 }
 
+/* Date directly below title line and post date */
+.entry-date,
 .post-date {
   font-family: var(--font-grotesque);
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-top: 0.15rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text-main);
+  line-height: 1.45;
+  margin-top: -0.15rem;
+  margin-bottom: 0.65rem;
 }
 
 /* Background & Experience Page */
@@ -449,23 +455,138 @@ hr {
 .resume-body hr {
   display: none;
 }
-.resume-body hr {
-  display: none;
+
+/* Entry item spacing */
+.background-entry {
+  margin-bottom: 1.85rem;
 }
 
-/* Strictly suppress any download icons or decorations */
-.download-link,
-.download-link::before,
-.download-link::after,
-a[href$=".pdf"]::before,
-a[href$=".pdf"]::after {
+/* Bullets: small unfilled black boxes centered vertically on the line */
+.background-body ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 1.35rem;
+}
+
+.background-body li {
+  padding-left: 1.35rem;
+  text-indent: -1.35rem;
+  margin-bottom: 0.45rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.background-body li::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border: 1.5px solid var(--text-main);
+  background: transparent;
+  box-sizing: border-box;
+  vertical-align: 0.14em;
+  margin-right: calc(1.35rem - 7px);
+}
+
+/* Nested sub-lists (e.g. advisors under research / thesis): no bullet, flush with parent text */
+.background-body ul ul {
+  list-style: none;
+  margin-top: 0.15rem;
+  margin-bottom: 0.25rem;
+  padding-left: 0;
+}
+
+.background-body ul ul li {
+  list-style: none;
+  padding-left: 0;
+  text-indent: 0;
+  margin-bottom: 0.25rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.background-body ul ul li::before {
   content: none !important;
   display: none !important;
+}
+
+/* Inline square bullet separator for skills list */
+.sq-bullet {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border: 1.5px solid var(--text-main);
+  background: transparent;
+  box-sizing: border-box;
+  vertical-align: 0.14em;
+  margin: 0 0.55rem;
+}
+
+.coming-soon {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  margin-bottom: 1.35rem;
+}
+
+/* Strictly suppress any download/cloud icons or decorations across all PDF links */
+a[href*=".pdf"]::before,
+a[href*=".pdf"]::after,
+a[href*="/pdfs/"]::before,
+a[href*="/pdfs/"]::after,
+a[download]::before,
+a[download]::after,
+.download-link::before,
+.download-link::after {
+  content: "" !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  border: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .download-link {
   display: inline-block !important;
   text-decoration: none !important;
+}
+
+/* Suppress any extension or browser-injected elements (svg, img, icon, cloud, download) */
+a[href*=".pdf"] img,
+a[href*=".pdf"] svg,
+a[href*=".pdf"] i,
+a[href*=".pdf"] [class*="icon"],
+a[href*=".pdf"] [class*="cloud"],
+a[href*=".pdf"] [class*="download"],
+a[href*=".pdf"] + img,
+a[href*=".pdf"] + svg,
+a[href*=".pdf"] + i,
+a[href*=".pdf"] + [class*="icon"],
+a[href*=".pdf"] + [class*="cloud"],
+a[href*=".pdf"] + [class*="download"],
+a[href*=".pdf"] + span[class*="icon"],
+a[href*=".pdf"] + span[class*="cloud"],
+a[href*=".pdf"] + span[class*="download"],
+a[href*="/pdfs/"] img,
+a[href*="/pdfs/"] svg,
+a[href*="/pdfs/"] i,
+a[href*="/pdfs/"] [class*="icon"],
+a[href*="/pdfs/"] [class*="cloud"],
+a[href*="/pdfs/"] [class*="download"],
+a[href*="/pdfs/"] + img,
+a[href*="/pdfs/"] + svg,
+a[href*="/pdfs/"] + i,
+a[href*="/pdfs/"] + [class*="icon"],
+a[href*="/pdfs/"] + [class*="cloud"],
+a[href*="/pdfs/"] + [class*="download"] {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Responsive (Mobile & Small Tablets) */

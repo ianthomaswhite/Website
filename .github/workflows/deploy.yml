@@ -41,15 +41,10 @@ jobs:
             pdflatex -interaction=nonstopmode -output-directory=pdfs resume/resume-onepage.tex || true
           fi
 
-          # 2. Generate Full Resume PDF directly from Markdown (pages/resume.md)
-          if [ -f "pages/resume.md" ]; then
-            pandoc -s "pages/resume.md" \
-                   -o "pdfs/resume-full.pdf" \
-                   --pdf-engine=pdflatex \
-                   -V geometry:margin=0.75in \
-                   -V colorlinks=true \
-                   -V linkcolor=black \
-                   -V urlcolor=black || true
+          # 2. Compile Full CV LaTeX document if present
+          if [ -f "resume/cv-full.tex" ]; then
+            pdflatex -interaction=nonstopmode -output-directory=pdfs resume/cv-full.tex || true
+            cp -f pdfs/cv-full.pdf pdfs/resume-full.pdf 2>/dev/null || true
           fi
 
           # 3. Compile any papers found in papers/

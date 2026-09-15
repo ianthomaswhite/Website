@@ -135,7 +135,7 @@ main = hakyllWith config $ do
 -- | Post Context: Injects formatted date along with default metadata
 postCtx :: Context String
 postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
+    dateField "date" "%m.%d.%Y" `mappend`
     defaultContext
 
 -- | Global Site Context: Injects site title and current page title

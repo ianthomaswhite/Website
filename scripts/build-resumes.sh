@@ -45,34 +45,13 @@ if [ -f "${RESUME_DIR}/resume-onepage.tex" ]; then
 fi
 
 # ------------------------------------------------------------------------------
-# 2. Compile Full Resume PDF directly from Markdown (background.md / resume.md)
+# 2. Compile Full CV LaTeX Document
 # ------------------------------------------------------------------------------
-# Check for pages/background.md first (the current page name), falling back to pages/resume.md.
-SOURCE_MD=""
-if [ -f "${PAGES_DIR}/background.md" ]; then
-    SOURCE_MD="${PAGES_DIR}/background.md"
-elif [ -f "${PAGES_DIR}/resume.md" ]; then
-    SOURCE_MD="${PAGES_DIR}/resume.md"
-fi
-
-if [ -n "${SOURCE_MD}" ]; then
-    if command -v pandoc >/dev/null 2>&1; then
-        echo "[2/2] Generating Full Resume PDF directly from Markdown (${SOURCE_MD})..."
-        # -s: standalone document with full headers/preamble
-        # --pdf-engine=pdflatex: renders via pdflatex
-        # -V options: sets clean typography, margins, and black link colors
-        pandoc -s "${SOURCE_MD}" \
-               -o "${PDF_DIR}/resume-full.pdf" \
-               --pdf-engine=pdflatex \
-               -V geometry:margin=0.75in \
-               -V colorlinks=true \
-               -V linkcolor=black \
-               -V urlcolor=black
-        echo "  -> Successfully generated ${PDF_DIR}/resume-full.pdf"
-    else
-        echo "[2/2] Note: Pandoc is not installed locally. GitHub Actions will generate"
-        echo "      pdfs/resume-full.pdf directly from ${SOURCE_MD} automatically upon push."
-    fi
+if [ -f "${RESUME_DIR}/cv-full.tex" ]; then
+    echo "[2/2] Compiling Full LaTeX CV (resume/cv-full.tex)..."
+    pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/cv-full.tex" > /dev/null
+    cp -f "${PDF_DIR}/cv-full.pdf" "${PDF_DIR}/resume-full.pdf"
+    echo "  -> Successfully generated ${PDF_DIR}/cv-full.pdf (and ${PDF_DIR}/resume-full.pdf)"
 fi
 
 # ------------------------------------------------------------------------------
