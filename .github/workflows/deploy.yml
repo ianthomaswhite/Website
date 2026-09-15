@@ -44,7 +44,6 @@ jobs:
           # 2. Compile Full CV LaTeX document if present
           if [ -f "resume/cv-full.tex" ]; then
             pdflatex -interaction=nonstopmode -output-directory=pdfs resume/cv-full.tex || true
-            cp -f pdfs/cv-full.pdf pdfs/resume-full.pdf 2>/dev/null || true
           fi
 
           # 3. Compile any papers found in papers/

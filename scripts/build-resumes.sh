@@ -50,8 +50,7 @@ fi
 if [ -f "${RESUME_DIR}/cv-full.tex" ]; then
     echo "[2/2] Compiling Full LaTeX CV (resume/cv-full.tex)..."
     pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/cv-full.tex" > /dev/null
-    cp -f "${PDF_DIR}/cv-full.pdf" "${PDF_DIR}/resume-full.pdf"
-    echo "  -> Successfully generated ${PDF_DIR}/cv-full.pdf (and ${PDF_DIR}/resume-full.pdf)"
+    echo "  -> Successfully generated ${PDF_DIR}/cv-full.pdf"
 fi
 
 # ------------------------------------------------------------------------------
