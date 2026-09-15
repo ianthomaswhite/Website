@@ -89,7 +89,10 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             function cleanPdfLinks() {
-                var pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[href*="/pdfs/"], a[href*=".pdf"]');
+                var pdfLinks = Array.from(document.querySelectorAll('a')).filter(function(a) {
+                    var href = a.getAttribute('href') || '';
+                    return href.endsWith('.pdf') || href.indexOf('/pdfs/') !== -1;
+                });
                 pdfLinks.forEach(function(link) {
                     link.setAttribute('target', '_blank');
                     link.setAttribute('rel', 'noopener');
