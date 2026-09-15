@@ -132,7 +132,7 @@ body {
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--text-main);
-  text-decoration: none;
+  text-decoration: none !important;
   display: inline-block;
   position: relative;
   width: fit-content;
@@ -141,18 +141,20 @@ body {
 }
 
 .nav-item:hover {
-  background-color: var(--accent-yellow);
+  background-color: transparent !important;
   opacity: 1;
 }
 
-/* Active Page Indicator: Yellow Cross-Out Line */
-.nav-item.active {
+/* Active & Hover Page Indicator: Yellow Cross-Out Line */
+.nav-item.active,
+.nav-item:hover {
   position: relative;
   opacity: 1;
   /* Do not bold the active text */
 }
 
-.nav-item.active::after {
+.nav-item.active::after,
+.nav-item:hover::after {
   content: "";
   position: absolute;
   left: -2px;
@@ -315,22 +317,32 @@ p {
   text-wrap: pretty;
 }
 
-/* Links: No underlines sitewide, yellow hover highlight */
+/* Links: No underlines sitewide, yellow cross-out on hover */
 a {
   color: var(--text-main);
   text-decoration: none;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: color 0.15s ease;
 }
 
 a:hover {
-  background-color: var(--accent-yellow);
   color: var(--text-main);
-  text-decoration: none;
+  text-decoration: line-through;
+  text-decoration-color: var(--accent-yellow);
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+  background-color: transparent;
 }
 
 .sidebar-name:hover,
 .social-btn:hover {
+  text-decoration: none !important;
   background-color: transparent !important;
+}
+
+.sidebar-name:hover::after,
+.social-btn:hover::after {
+  content: none !important;
+  display: none !important;
 }
 
 ul, ol {
@@ -453,7 +465,11 @@ hr {
 }
 
 .post-title-link:hover {
-  background-color: var(--accent-yellow);
+  text-decoration: line-through;
+  text-decoration-color: var(--accent-yellow);
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+  background-color: transparent;
   opacity: 1;
 }
 
