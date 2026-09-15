@@ -15,7 +15,6 @@ This file defines the build rules and compilation pipeline for the website:
      the Thoughts listing archive (thoughts.html).
 -}
 
-import           Data.Monoid (mappend)
 import           Hakyll
 
 --------------------------------------------------------------------------------
@@ -38,15 +37,11 @@ main = hakyllWith config $ do
     -- -------------------------------------------------------------------------
     -- Static Binary Assets: Copied directly without modification
     -- -------------------------------------------------------------------------
-    match "images/*" $ do
-        route   idRoute              -- Output file keeps same relative path in _site/
-        compile copyFileCompiler     -- Fast binary copy
-
     match "css/*" $ do
         route   idRoute              -- Keeps path (e.g. css/editorial.css)
         compile compressCssCompiler  -- Strips unnecessary whitespace and minifies CSS
 
-    match "pdfs/**" $ do
+    match "pdfs/**.pdf" $ do
         route   idRoute              -- Preserves PDF paths (e.g. pdfs/academic/linguistics/*.pdf)
         compile copyFileCompiler     -- Fast binary copy
 
@@ -57,8 +52,8 @@ main = hakyllWith config $ do
     -- -------------------------------------------------------------------------
     -- Templates: Parsed into Hakyll's internal Template structure
     -- -------------------------------------------------------------------------
-    match "templates/*"           $ compile templateBodyCompiler
-    match "templates/editorial/*" $ compile templateBodyCompiler
+    match "templates/*.html"           $ compile templateBodyCompiler
+    match "templates/editorial/*.html" $ compile templateBodyCompiler
 
     -- -------------------------------------------------------------------------
     -- Core Content Pages
