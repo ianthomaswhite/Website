@@ -18,6 +18,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -64,7 +67,9 @@ jobs:
 
       - name: Compile Site with Hakyll
         run: |
-          cabal v2-run site -- build
+          SITE_BIN=$(cabal list-bin site)
+          echo "Running Hakyll site generator at: ${SITE_BIN}"
+          "$SITE_BIN" build
 
       - name: Bundle PDFs and CNAME into _site
         run: |
