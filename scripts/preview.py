@@ -338,7 +338,7 @@ def build_site():
                 else:
                     post_date = raw_date
             post_tags = fm.get("tags", "")
-            post_url = f"/posts/{post_file.stem}.html"
+            post_url = f"/posts/{post_file.stem}"
 
             post_html = render_template(post_tpl, {
                 "title": post_title,
@@ -372,7 +372,16 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
     """
     HTTP request handler that adds cache-busting headers to every response.
     This guarantees that browser refreshes immediately display latest CSS/HTML edits.
+    Also resolves clean extensionless URLs (e.g. /background -> /background.html).
     """
+    def translate_path(self, path):
+        translated = super().translate_path(path)
+        if not os.path.exists(translated):
+            html_candidate = translated + ".html"
+            if os.path.isfile(html_candidate):
+                return html_candidate
+        return translated
+
     def end_headers(self):
         # Instruct browsers and proxies to never cache preview assets
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")

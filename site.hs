@@ -16,6 +16,7 @@ This file defines the build rules and compilation pipeline for the website:
 -}
 
 import           Hakyll
+import qualified System.FilePath.Posix as FP
 
 --------------------------------------------------------------------------------
 -- | Build Configuration
@@ -127,11 +128,18 @@ main = hakyllWith config $ do
 -- | Context Helpers
 --------------------------------------------------------------------------------
 
--- | Post Context: Injects formatted date along with default metadata
+-- | Post Context: Injects formatted date and clean URL along with default metadata
 postCtx :: Context String
 postCtx =
     dateField "date" "%m.%d.%Y" `mappend`
+    cleanUrlField "url"         `mappend`
     defaultContext
+  where
+    cleanUrlField key = field key $ \item -> do
+        mRoute <- getRoute (itemIdentifier item)
+        return $ case mRoute of
+            Nothing -> ""
+            Just r  -> "/" ++ FP.dropExtension r
 
 -- | Global Site Context: Injects site title and current page title
 siteCtx :: String -> Context String
