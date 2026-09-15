@@ -428,14 +428,22 @@ hr {
 
 /* Thoughts / Blog Post List */
 .post-list-editorial {
-  list-style: none;
-  padding: 0;
+  list-style: none !important;
+  padding: 0 !important;
   margin: 2.25rem 0 2rem 0;
 }
 
 .post-item {
   margin-bottom: 1.75rem;
-  list-style: none;
+  list-style: none !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+}
+
+.post-list-editorial > li::before,
+.post-item::before {
+  content: none !important;
+  display: none !important;
 }
 
 .post-title-link {
@@ -475,7 +483,7 @@ hr {
 
 /* Bullets sitewide: small unfilled black boxes centered vertically on the line */
 .content-right ul:not(.post-list-editorial):not(.nav-links-row),
-.page-content ul,
+.page-content ul:not(.post-list-editorial),
 .background-body ul {
   list-style: none;
   margin-left: 0;
@@ -484,7 +492,7 @@ hr {
 }
 
 .content-right ul:not(.post-list-editorial):not(.nav-links-row) > li,
-.page-content ul > li,
+.page-content ul:not(.post-list-editorial) > li,
 .background-body li {
   list-style: none;
   padding-left: 1.35rem;
@@ -495,7 +503,7 @@ hr {
 }
 
 .content-right ul:not(.post-list-editorial):not(.nav-links-row) > li::before,
-.page-content ul > li::before,
+.page-content ul:not(.post-list-editorial) > li::before,
 .background-body li::before {
   content: "";
   display: inline-block;
