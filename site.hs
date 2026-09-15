@@ -46,8 +46,8 @@ main = hakyllWith config $ do
         route   idRoute              -- Keeps path (e.g. css/editorial.css)
         compile compressCssCompiler  -- Strips unnecessary whitespace and minifies CSS
 
-    match "pdfs/*" $ do
-        route   idRoute              -- Preserves PDF paths (e.g. pdfs/resume-onepage.pdf)
+    match "pdfs/**" $ do
+        route   idRoute              -- Preserves PDF paths (e.g. pdfs/academic/linguistics/*.pdf)
         compile copyFileCompiler     -- Fast binary copy
 
     match "CNAME" $ do

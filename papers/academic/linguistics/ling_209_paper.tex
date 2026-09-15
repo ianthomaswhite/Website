@@ -1,0 +1,498 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[letterpaper, margin = 1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+%\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{stmaryrd}
+
+\usepackage{hanging}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{multirow}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\usepackage{arydshln}
+
+
+%%% layout
+\usepackage[hmargin=1in,vmargin=0.75in]{geometry}
+\usepackage{enumitem}
+
+%%% for math
+\usepackage{mathtools, amssymb, stmaryrd}
+\usepackage{delimset}
+  % expanding parens: (  )
+  \newcommand{\p}[1]{\brk*{#1}}
+  % expanding denotation brackets: [[  ]]
+  \newcommand{\sv}[1]{\delim{\llbracket}{\rrbracket}*{#1}}
+  % if putting a tree in brackets, the tree must be re-centered, or else the
+  % brackets will stretch symmetrically above and below the baseline anchor (the root by default)
+  \newcommand{\svtree}[1]{\sv{\vcenter{\hbox{#1}}}}
+
+%%% font stuff
+%\usepackage{libertine}
+\usepackage{zi4}
+\usepackage[dvipsnames]{xcolor}
+  \colorlet{tycolor}{Cyan}
+  \colorlet{dncolor}{Red}
+
+%%% trees
+\usepackage[linguistics,edges]{forest}
+  \forestset{%
+    default preamble={% this makes all the edges straight
+      for tree={% and steamrolls through empty nonterminals
+        l=0pt,
+        calign=fixed edge angles,
+        calign angle=60,
+        delay={if content={}{%
+          for current and siblings={anchor=north},
+          inner sep=0pt,
+          edge path={%
+            \noexpand\path[\forestoption{edge}]
+            (!u.parent anchor) -- (.children) \forestoption{edge label};
+          }
+        }{}}
+      }
+    },
+  }
+  \tikzset{% convenience path for adding movement arrows
+    label distance=3pt,
+    mv/.style={to path={-- ++(0,-{#1}) -| (\tikztotarget)}},
+    mv/.default=0.2
+  }
+
+%%% some little macros
+% formula stuff
+\newcommand{\lam}{\lambda}
+\newcommand{\ty}[1]{\texttt{\color{cyan} #1}}
+\newcommand{\dt}{{.}\mkern\thinmuskip}
+\newcommand{\func}[1]{\textbf{\textsf{#1}}}
+\newcommand{\name}[1]{\textbf{\textsf{#1}}}
+
+% tree stuff
+\newcommand{\trace}[1]{\texttt{\_\_$_{#1}$}}
+\newcommand{\pro}[1]{\text{pro$_{#1}$}}
+\newcommand{\pabs}[2][]{\ensuremath{#2_{#1}}}
+\newcommand{\remap}[2]{\ensuremath{[#1 \mapsto #2]}}
+
+%%% your task
+\newcommand{\FILLIN}[1][dncolor]{%
+  {\color{#1}%
+    \begin{tabular}{p{1in}}
+      \hline\strut\\\hline
+    \end{tabular}}}
+    
+\usepackage{expex}
+\lingset{interpartskip=0em, belowpreambleskip=0em}
+%\usepackage{linguex}
+
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{}
+\usepackage{csquotes}
+\DeclareLanguageMapping{english}{english-apa}
+
+%\usepackage{gb4e}
+
+\title{Barker 2002: Continuations and the Nature of Quantification}
+\author{Ian Thomas White}
+\date{}
+
+\makeatletter
+\renewcommand{\maketitle}
+{
+\begin{flushleft}
+\textbf{{\large\@title}}
+\newline
+\@author
+\end{flushleft}
+}
+\makeatother
+
+\titleformat*{\section}{\medium\bfseries}
+\titleformat*{\subsection}{\small\bfseries}
+
+\newcommand*{\textsup}[1]{\ensuremath{^\textrm{{\scriptsize #1}}}}
+\newcommand*{\textsub}[1]{\ensuremath{_\textrm{{\scriptsize #1}}}}
+\newcommand*{\tinytextsup}[1]{\ensuremath{^\textrm{{\tiny #1}}}}
+\newcommand*{\tinytextsub}[1]{\ensuremath{_\textrm{{\tiny #1}}}}
+
+\newcommand*{\ldblbrace}{\{\mskip-5mu\{}
+\newcommand*{\rdblbrace}{\}\mskip-5mu\}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ian Thomas White}
+\chead{}
+\rhead{\thepage \ of \pageref{LastPage}}
+
+% \linespread{1.6}
+\widowpenalty=100000
+\clubpenalty=100000
+
+\renewcommand{\labelenumi}{\roman{enumi}.}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+
+\section{Intro}
+
+This paper is an overview of Chris Barker's (2002) ``Continuations and the Nature of Quantification''. Barker's basic goal is to show how modeling natural language meaning on continuations can account for several important properties of nominal quantification, as well as a couple other canonical topics in semantics. The current paper essentially follows the logic of Barker's: section 2 lays out the problem and goals as Barker sees them; section 3 details the basic concepts and definitions that Barker gives for continuations; section 4 discusses how continuations can be used to model nominals and provides a sample derivation; section 5 highlights some other useful applications of continuations;  section 6 goes through Barker's thoughts on compositionality; finally, section 7 offers some conclusions.
+
+\section{The Problem/Solutions}
+
+Barker notes that NPs pose three primary questions, detailed in (1).
+    
+\pex \textit{Barker 2002: (1)}
+
+\a \textbf{Duality of NP meaning:} What (if anything) unifies the meanings of quantificational versus non-quantificational NPs [QNPs and nQNPs]?
+
+\a \textbf{Scope displacement:} Why does the semantic scope of a quantificational NP sometimes differ from its syntactic scope?
+
+\a \textbf{Scope ambiguity:} How does scope ambiguity arise?
+
+\xe
+
+\noindent Of course, the possibility of scope ambiguity is conditioned on the possibility of scope displacement. These questions, though, Barker stresses, are worth keeping separate. Both a standard direct grammar (see below) and Barker's continuized grammar over-generate possible scope-displaced readings. This requires that whatever scopes, and therefore the conditions for ambiguity, are possible for some given set of sentences be discovered/defined.
+    
+As it stands, the standard account, as most famously laid out in Heim \& Kratzer (1998), uses Quantifier Raising (QR) to deal with QNPs. Given that nQNPs are type \textsf{e}, QNPs are type $\langle \langle \textsf{e,t} \rangle , \textsf{t} \rangle$, and transitive verbs are $\langle \textsf{e} \langle \textsf{e,t} \rangle \rangle$, object QNPs that are in the canonical verb-complement position cause a type mismatch with the verb. Without a type-shifting operator, this problem can be solved by raising the QNP and leaving a pronoun trace. In sum, the QR accounts generally provide the following answers for the questions in (1).
+    
+\pex \textit{QR-based Answers for (1)}
+\a All nQNPs are type \textsf{e}; all QNPs are type $\langle \langle \textsf{e} , \textsf{t} \rangle , \textsf{t} \rangle$ with a trace pronoun of type \textsf{e}.
+\a Some QNPs QR to positions above their syntactic position.
+\a Ambiguity arises when a QNP can take scope from more than one position.
+\xe
+    
+Barker, however, counter-offers the Continuation Hypothesis in (3).\footnote{ Barker also claims that Montague (1973) implicitly utilized a limited form of continuations.}
+    
+\ex \textit{Barker 2002: (2)} \\ \textbf{The Continuation Hypothesis:} Some linguistic expressions (in particular QNPs) have denotations that manipulate their own continuations.
+\xe
+
+\noindent This hypothesis will allow substantively different answers to the questions in (1), including the claim that continuations naturally allow for QNPs to have the same type as nQNPs, perhaps a welcome result. The continuation approach's answers to (1), to be detailed through the rest of this paper, are summarized in (4).
+
+\pex \textit{continuation-based answers for (1)}
+\a All nQNPs and QNPs have the same type, $\langle \langle \textsf{e,t} \rangle \textsf{t} \rangle$; QNPs manipulate their own continuations
+\a The same continuized constituents can combine in more than one order.
+\a Ambiguity arises when more than one combination order is allowed.
+\xe
+
+\vspace{-1em}
+\section{The Idea}
+
+\subsection{Descriptively}
+
+Continuations are a concept hailing from research in computer science. The basic definition that Barker gives, from Kelsey et al. (1998) is that ``a continuation represents the entire (default) future for the computation''. To take Barker's simple example, the following continuations can be defined:
+    
+    \pex Continuations for the sentence \textit{John saw Mary}
+    \a the continuation of \textit{John} is $\lambda x. \; \textrm{\textbf{saw m}} \; x$
+    \a the continuation of \textit{Mary} is $\lambda y . \; \textrm{\textbf{saw} y \textrm{\textbf{j}}}$
+    \a the continuation of \textbf{saw} is $\lambda R . \; R \; \textrm{\textbf{m j}}$
+    \xe
+    
+In essence, the idea is that the continuation of some expression is the function that has a ``hole'' for that expression to fill. More precisely, ``given a subexpression A of type $\alpha$ embedded in an expression B of type $\beta$, the continuation of A relative to B is a function of type $\langle \alpha, \beta \rangle$ abstracting over the denotation of A that characterizes how the meaning of the whole depends on the meaning of the subexpression''. Continuations thus offer a perspective on the relationship between an expression and its subexpressions.
+    
+Barker's goal is to construct a ``Continuized Grammar'' with reference to a non-continuized ``Direct Grammar''. Importantly, continuations can be defined for the expressions of any language with a semantics. This means that we could ask whether or not a grammar for natural language interacts with its continuations regardless of the particular grammar chosen. Still, Barker's continuized grammar will have denotations that don't have counterparts in the direct grammar, namely, QNRs.
+
+\subsection{Definitions}
+
+Continuation values can be somewhat straightforwardly constructed from direct values based on the following reasoning:
+    
+\begin{enumerate}
+    \item Continuations are functions from the type of the direct value.
+    \item Sentences are always of type \textsf{t}.
+    \item Thus, the type of a continuation variable will be a function from the type of the corresponding direct variable to a truth value.
+\end{enumerate}
+    
+\noindent A continuized variable, then, is a function that is looking for a ``direct-variable-sized'' hole. Then, to continuize the grammar, each expression is provided with its own continuation as an argument: a continuized denotation is a function from continuized variables to truth values, that is to say, from  the type of the variables to truth values to truth values. I.e.,``if an expression of category A with semantic type $\alpha$ has direct denotation $\llbracket \textrm{A} \rrbracket$, then the continuized denotation $\ldblbrace \textrm{A} \rdblbrace$ will be a function from A-continuations (type $\langle \alpha, \textsf{t} \rangle$) to the type of the larger expression as a whole, i.e. to a truth value: type \ldblbrace \textrm{A} \rdblbrace = $\langle \langle \alpha , \textsf{t} \rangle , \textsf{t}, \textsf{t} \rangle $''. The table in (6) provides a summary chart of some standard variables and denotations from direct grammars and their continuized counterparts.
+    
+\ex \textit{Summary Table of Direct/Continuized Types} \\
+    
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+|c
+c
+|c
+c
+|c
+c
+|c
+c
+}
+\multicolumn{1}{c}{} & \multicolumn{2}{c|}{direct variables} & \multicolumn{2}{c|}{continuized variables} & \multicolumn{2}{c|}{direct denotations} & \multicolumn{2}{c}{continuized denotations} \\
+\cline{2-9}
+\multicolumn{1}{c}{} & label & type & label & type & label & type & label & type \\
+\hline
+a. & \textit{p, q} & \textsf{t} & \textit{\={p}, \={q}} & $\langle \textsf{t, t} \rangle$ & $\llbracket \textrm{S} \rrbracket$ & \textsf{t} & $\ldblbrace \textrm{S} \rdblbrace$ & $\langle \langle \textsf{t, t} \rangle , \textsf{t} \rangle$ \\
+b. & \textit{x, y, z} & \textsf{e} & \textit{\={x}, \={y}, \={z}} & $\langle \textsf{e, t} \rangle$ & $\llbracket \textrm{NP} \rrbracket$ & \textsf{e} & $\ldblbrace \textrm{NP} \rdblbrace$ & $\langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle$ \\
+c. & \textit{P, Q} & $\langle \textsf{e, t} \rangle$ & \textit{\={P}, \={Q}} & $\langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle$ & $\llbracket \textrm{VP} \rrbracket$ & $\langle \textsf{e, t} \rangle$ & $\ldblbrace \textrm{VP} \rdblbrace$ & $\langle \langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle , \textsf{t} \rangle$ \\
+d. & \textit{R, S} & $\langle \textsf{e} , \langle \textsf{e, t} \rangle \rangle$ & \textit{\={R}, \={S}} & $\langle \langle \textsf{e} , \langle \textsf{e, t} \rangle \rangle , \textsf{t} \rangle$ & $\llbracket \textrm{Vt} \rrbracket$ & $\langle \textsf{e} , \langle \textsf{e, t} \rangle \rangle$ & $\ldblbrace \textrm{Vt} \rdblbrace$ & $\langle \langle \langle \textsf{e} , \langle \textsf{e, t} \rangle \rangle , \textsf{t} \rangle , \textsf{t}\rangle $ \\
+\end{tabularx}
+\normalsize
+\xe
+
+Once these are defined, Barker provides the following schemata for semantic composition in a continuized grammar, which he later generalizes. These are all the basic tools necessary to view QNPs from a continuized standpoint.
+
+\ex \textit{Barker 2002: (9)}
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+Syntax & Direct Semantics & Continuized Semantics \\
+A $\rightarrow$ B & $\llbracket \textrm{B} \rrbracket$ & $ \lambda \={b} . \={b} ( \ldblbrace \textrm{B} \rdblbrace ) $ \\
+A $\rightarrow$ B C & $\llbracket \textrm{B} \rrbracket (\llbracket \textrm{C} \rrbracket)$ & $ \lambda \={a} . \ldblbrace \textrm{B} \rdblbrace ( \lambda b. \ldblbrace \textrm{C} \rdblbrace ( \lambda c . \={a} (bc)))  $\\
+\end{tabularx}
+\xe
+    
+\vspace{-1em}
+\section{Quantifiers}
+
+\subsection{Definitions}
+
+Already the continuation hypothesis has led to an interesting result: the continuized NP denotation, $\ldblbrace \textrm{NP} \rdblbrace$ (in 6b) has the same type as that of the direct denotation of a QNP in the QR system, namely, $\langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle$. The quantifier meaning of NPs is thus a direct consequence of the continuized grammar. Moreover, continuized denotations for QNPs can now be written. 
+
+\ex \textit{Barker 2002: (13)}
+    
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+& Syntax & Continuized Semantics \\
+a. & NP $\rightarrow$ everyone & $ \lambda \={x} \forall x . \={x} (x) $ \\
+b. & NP $\rightarrow$ someone & $ \lambda \={x} \exists x . \={x} (x) $ \\
+\end{tabularx}
+\xe
+
+\noindent In this system, then, QNPs are distinguished from nQNPS by the fact that the former can manipulate their own continuations. While these continuized QNPS have no counterpart in the direct semantics, they are still of type $\langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle$. Because they have the same type, QNPs and nQNPs in the continuized grammar are essentially the same kind of object. 
+
+
+For Barker, in his paper's appendix, continuized determiners themselves are ``choice functions'', type $\langle \langle \langle \langle \textsf{e, t} \rangle , \textsf{e} \rangle , \textsf{t} \rangle , \textsf{t} \rangle$. The utility for such choice functions for present purposes, perhaps generally, is small. Following Barker, though special denotations for determiners can be constructed that gain the following continuized denotation: [NP $\rightarrow$ every \func{Z}] is $ \lambda \={x} \forall x . \func{Z} x \rightarrow \={x} (x) $. 
+    
+The denotations for a small set of  determiners is given in (9), and a small fragment of the grammar is defined in (10).\footnote{ In (9), I've changed the variable name for the continuized quantifiers from \={P} to \={G} to distinguish it from the \={P} in (6). In (10), I've changed the lexical entries in (d) and (e), and I've added (f) and (g). } As can be seen in (10), the continuized denotations of lexical entries are simply the entries themselves.
+
+\ex \textit{Barker 2002: (16), modified}
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+& Syntax & Continuized Semantics \\
+a. & \ldblbrace \textrm{every} \rdblbrace & $ \lam \={G} \={x} \dt \={G} ( \lam P . \forall x \dt P x \rightarrow \={x}(x))$ \\
+b. & \ldblbrace \textrm{a, some} \rdblbrace & $ \lam \={G} \={x} \dt \={G} ( \lam P . \exists x \dt P x \land \={x}(x))$ \\
+c. & \ldblbrace \textrm{no} \rdblbrace & $ \lam \={G} \={x} \dt \={G} ( \lam P . \neg \exists x \dt P x \land \={x}(x))$ \\
+\end{tabularx}
+\xe    
+
+\ex \textit{Barker 2002: (10), modified}
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+& Syntax & Continuized Semantics \\
+a. & S $\rightarrow$ NP VP & $ \lambda \={p} . \ldblbrace \textrm{VP} \rdblbrace (\lam P . \ldblbrace \textrm{NP} \rdblbrace (\lam x . \={p}(Px))) $ \\
+b. & VP $\rightarrow$ Vt NP & $ \lambda \={P} . \ldblbrace \textrm{Vt} \rdblbrace (\lam R . \ldblbrace \textrm{NP} \rdblbrace (\lam x . \={P}(Rx))) $ \\
+c. & VP $\rightarrow$ left & $ \lambda \={P} . \={P}(\func{left}) $ \\
+d. & Vt $\rightarrow$ love & $ \lambda \={R} . \={R}(\func{love}) $ \\
+e. & NP $\rightarrow$ Fanoi & $ \lam \={x} . \={x}(\func{f}) $ \\
+f. & NP $\rightarrow$ every zeekooper & $ \lambda \={x}  . \forall x . \func{zk} \, x \rightarrow \={x} (x) $ \\
+g. & N $\rightarrow$ zeekooper & $ \lambda \={P} . \={P}(\func{zk}) $ \\
+\end{tabularx}
+\xe
+
+\vspace{-1em}
+\subsection{A Sample}
+
+The continuation approach can now be directly compared to the standard QR approach. A simple QR is shown in (11). Under normal type assumptions, without QR \textit{every zeekooper} can't compose with the transitive verb \textit{love}, so the QNP moves to a higher node, creating an abstraction node below it. This way, all the types work out, and the quantifier has the desired scope.
+    
+\ex Fanoi loves every zeekooper \hfill [QR]
+
+\small
+\begin{forest}
+[$\ty{t}$\\$\forall y\dt \func{zk}\,y \rightarrow \func{love}\,y\,\name{f}$
+[$\p{\ty{et}}\ty{t}$\\$\lam P\dt \forall y\dt \func{zk}\,y \rightarrow P\,y$\\every zeekooper, name=top]
+[$\ty{et}$\\ $\lam x\dt \func{love} \,x \,\func{f}$
+[1]
+[$\ty{t}$\\\func{love} \textit{g}\textsub{1} \func{f}
+[$\ty{e}$\\\func{f}\\Fanoi]
+[$\ty{et}$\\$\lam y\dt \, \func{love} \, g\textsub{1} \, y$
+[$\ty{eet}$\\$\lam x\dt \lam y\dt \, \func{love} \, x \, y$\\loves][$\ty{e}$\\\textit{g}\textsub{1}\\\underline{\hspace{1em}}\textsub{1}, name=pro]
+]]]]
+\draw[->, dotted] (pro.south) to[mv] (top);
+\end{forest}
+\xe
+
+In (12) is the same sentence using continuations, with expanded $\beta$-reductions in (13)-(15). To reiterate what's conceptually going on, every constituent is a function from a [context with a hole for A] to [the meaning of that context when A fills that hole]. E.g., in (12), `love' is a function from a verbless context to a `love'-filled context. Therein, lexical entries like `love', `zeekooper', etc. are just individual $\lambda$ terms. More interestingly, higher-level constituents like `loves every zeekooper', a VP, are also functions from contexts missing a VP to a context filled with the VP `loves every zeekooper', and, crucially, this VP was determined compositionally.
+    
+\ex Fanoi loves every zeekooper \hfill [continuation]
+
+\small
+\begin{forest}
+[$\ty{tt}$\\$\lam \={p} . \forall y\dt \func{zk}\,y \rightarrow \={p}(\func{love}\,y\,\name{f})$
+[$\p{\ty{et}}\ty{t}$\\$\lam \={x} . \={x} (\func{f}) $\\ Fanoi]
+[$\p{\p{\ty{et}}\ty{t}}\ty{t}$\\ $ \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P}(\func{love}\,y)$ \\ loves every zeekooper
+[$\p{\p{\ty{e}\p{\ty{et}}}\ty{t}}\ty{t}$ \\ $\lam \={R} . \, \={R}(\func{love})$ \\ loves]
+[$\p{\ty{et}}\ty{t}$\\ $\lam \={x} . \forall y . \func{zk} \, y \rightarrow \={x}(y) $ \\ every zeekooper
+[$\p{\p{\p{\ty{et}}\ty{t}}\ty{t}}\ty{t}$\\$ \lam \={G} \={x} \dt \={G} ( \lam P . \forall x \dt P x \rightarrow \={x}(x))$\\every][$\p{\p{\ty{et}}\ty{t}}\ty{t}$\\$ \lambda \={P} . \={P}(\func{zk}) $\\zeekooper]
+]]]
+\end{forest}
+\xe
+
+\vspace{-1em}
+\ex proof for (11), QNP level
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+& reason & output \\
+a. & (9a), (10g) & $ (\lam \={G} \={x} \dt \={G} ( \lam P . \forall x \dt P x \rightarrow \={x}(x)))( \lambda \={P} . \={P}(\func{zk})) $ \\
+b. & $\beta$ & $\lam \={x} \dt (\lam \={P} \dt \={P} (\func{zk}))(\lam P \dt \forall \dt P\,x \rightarrow \={x}(x))$ \\
+c. & $\beta$ & $\lam \={x} \dt (\lam P \dt \forall x \dt P\,x \rightarrow \={x}(x)) (\func{zk})$ \\
+d. & $\beta$ & $\lam \={x} \dt \forall x \dt \func{zk}\,x \rightarrow \={x}(x)$ \\
+\end{tabularx}
+\xe
+
+\vspace{-1em}
+\ex proof for (11), VP level
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+& reason & output \\
+a. & (10b) & $ \lam \={P} . \ldblbrace \textrm{loves} \rdblbrace (\lam R . \ldblbrace \textrm{every zeekooper} \rdblbrace (\lam x . \={P} (R \, x))) $ \\
+b. & (10c,e) & $ \lam \={P} . ( \lam \={R} . \={R}(\func{love} )) (( \lam R . ( \lam \={x} \forall y . \func{zk} \, y \rightarrow \={x} ( y ) ) ( \lam x . \={P} (R \, x )))) $\\
+c. & $\beta$ & $ \lam \={P} . ( \lam \={R} . \={R} (\func{love} )) (\lam R . \forall y . \func{zk} \, y \rightarrow ( \lam x . \={P} ( R \, x ) ) y ) $ \\
+d. & $\beta $ & $ \lam \={P} . ( \lam \={R} . \={R} (\func{love} )) (\lam R . \forall y . \func{zk} \, y \rightarrow \={P} ( R \, y )) $ \\
+e. & $\beta$ & $ \lam \={P} . ( \lam R . \forall y . \func{zk} \, y \rightarrow \={P} (R \, y)) \func{love} $  \\
+f. & $\beta$ & $ \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P} ( \func{love} \, y ) $ \\
+\end{tabularx}
+\xe
+
+\vspace{-1em}
+\ex proof for (11), S level
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+& reason & output \\
+a. & (10a) & $ \lam \={p} . \ldblbrace \textrm{loves every zeekooper} \rdblbrace (\lam P . \ldblbrace \textrm{Fanoi} \rdblbrace (\lam w . \={p} (P \, w))) $ \\
+b. & (10e), (14f) & $ \lam \={p} . ( \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P} ( \func{love} \, y )) ( \lam P . ( \lam \={z} . \={z} ( \func{f} )) ( \lam w . \={p} (P \, w ))) $ \\
+c. & $\beta$ & $ \lam \={p} . ( \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P} ( \func{love} \, y )) ( \lam P . ( \lam w . \={p} ( P \, w )) \func{f} ) $\\
+d. & $\beta$ & $ \lam \={p} . ( \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P} ( \func{love} \, y )) ( \lam P . \={p} (P \, \func{f} ) ) $ \\
+e. & $\beta$ & $ \lam \={p} . \forall y . \func{zk} \, y \rightarrow ( \lam P . \={p} (P \func{f} )) (\func{love} \, y ) $ \\
+f. & $\beta$ & $ \lam \={p} . \forall y . \func{zk} \, y \rightarrow \={p} ( \func{love} \, y  \, \func{f} ) $ \\
+\end{tabularx}
+\xe
+    
+In (12) the final S level is still continuized, i.e., type \textsf{tt}. This can be applied to a trivial continuation function, the identity function $\lam p . p$, which $\beta$-reduces to $ \forall y . \func{zk} \, y \rightarrow \func{love} \, y  \, \func{f}  $, producing the same result as the QR version.
+    
+\subsection{Scope/Ambiguity}
+
+Per (1), it remains to be seen if/how the continuations approach handles scope displacement, and thereby possible scope ambiguity. In fact, scope displacement arises with the realization that each node can be composed in two ways instead of one. The sentence composition rule could be that from (10a), repeated in (16a), but it could also be that in (16b).
+    
+\ex \textit{Barker 2002: (18), modified}
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+& Syntax & Continuized Semantics \\
+a. & S $\rightarrow$ NP VP & $ \lambda \={p} . \ldblbrace \textrm{VP} \rdblbrace (\lam P . \ldblbrace \textrm{NP} \rdblbrace (\lam x . \={p}(Px))) $ \\
+b. & S $\rightarrow$ NP VP & $ \lambda \={p} . \ldblbrace \textrm{NP} \rdblbrace (\lam x . \ldblbrace \textrm{VP} \rdblbrace (\lam P . \={p}(Px))) $ \\
+\end{tabularx}
+\xe
+
+With (16b) the derivation in (12) could have surface scope by reversing the priority of the quantified NP relative to the Vt, i.e., changing the order of computation. The subject, Fanoi, and the VP could also have had their priority switched, and this is generalizable: every pair of nodes could be composed in two ways. Differences in priority of computation have complementary interpretations; e.g., VP $>$ Subj. (18a) says the subject provides the continuation for the VP, while Subj. $>$ VP (18b) says the VP provides the continuation for the subject. The continuations approach over-generates possible scope readings, but this is not unique to the continuations approach. Of course, it's an empirical question as to which scopal possibilities are actually allowed by the language, i.e., which nodes take priority, just like it's an empirical question as to when QR is or is not allowed.
+
+
+\section{Other Applications}
+
+Barker goes through several other natural language topics for which the continuations approach is useful. Without going into too much detail here, I will briefly describe his conclusions.
+
+First, Barker notes that continuations allow for quantifier scope to be displaced over phrases of arbitrary length. Others have claimed, however, that QNPs can't scope outside of finite clauses. This claim could be accounted for by changing the sentence rules in (16) to those in (17).
+
+\ex \textit{Barker 2002: (20), modified}
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+l
+l
+l
+}
+& Syntax & Continuized Semantics \\
+a. & S $\rightarrow$ NP VP & $ \lambda \={p} . \={p} (\ldblbrace \textrm{VP} \rdblbrace (\lam P . \ldblbrace \textrm{NP} \rdblbrace (\lam x . (Px)))) $ \\
+b. & S $\rightarrow$ NP VP & $ \lambda \={p} .\={p}( \ldblbrace \textrm{NP} \rdblbrace (\lam x . \ldblbrace \textrm{VP} \rdblbrace (\lam P . (Px)))) $ \\
+\end{tabularx}
+\xe
+
+This effectively forces the computation to stop at the S level by ``disrupting the transmission of continuation information between the subconstituents and S''. This only works for sentences, i.e., direct type \textsf{t}, because \={p} expects a \textsf{t}.
+
+Barker goes on to consider other aspects of NP scope. Sentences like \textit{no man from a foreign country was admitted} are scopally ambiguous w/r/t to \textit{no man} and \textit{a country}. The linear scope poses some problem for QR: raising the embedded QNP and then the embedding QNP with a trace leads to an unbound variable and uninterpretable/incorrect truth conditions. The continuations approach, however, provides both linear and inverse readings with equal ease.
+
+Furthermore, some have claimed that NPs are scope islands such that an NP contained in an NP can only move so far as the containing NP. This, however, causes type problems. Still, certain scopal possibilities have been shown to be generally illicit for real sentences. Namely structures like those in (18a), the scope arrangements in (18b) but not (18c) are licit (called Syntactic Constituent Integrity).
+
+\pex \textit{Barker 2002: (24), modified}
+\a [...A...]\textsub{x}[...B...C...]\textsub{y}
+\a [A $>$ B, C], [B, C $>$ A]
+\a *[C $>$ A $>$ B], *[B $>$ A $>$ C]
+\xe
+
+\noindent This too naturally falls out from the continuations approach, though the QR approach would need to rely on stipulation.
+
+Finally, Barker shows that continuations provide a natural account for generalized conjunction, and he provides an explicit generalized schema for continuations grammars. I leave the details of these for another time.
+
+\section{Compositionality}
+
+Barker ends by discussing the compositional nature of continuations. It's been doubted whether compositionality is an empirical issue, to which Barker stresses that compositionality can be falsified. As for continuized grammars, they at least meet the condition that the meanings of complex expressions remain constant under substitution of subexpressions with equivalent meanings. 
+
+However, a stricter definition of compositionality could be invoked, such that ``a syntactic analysis fully disambiguates the expression in question''. In continuized grammars, the denotation of an expression with quantifiers depends in part on the choice of permutation function to determine scope (16a,b). This implies a trade off: either the syntax specifies the permutation function with some system of indices (scope ambiguity is a syntactic maneuver, which splits syntax and LF), or semantic ambiguity must be accepted.
+
+Barker accepts semantic ambiguity and proposes the following definition for compositionality:
+
+    \ex \textit{Barker 2002: (36)} \\ The meaning of a syntactically complex expression is a function only of the meaning of that expression's immediate subexpressions, the syntactic way in which they are combined, \textbf{and their semantic mode of composition}.
+    \xe
+
+\noindent Accordingly, each permutation is ``one mode of composition'': scope ambiguity is ``neither syntactic nor properly semantic'', but instead it's ``metacompositional''.
+
+\section{Conclusion}
+
+Using continuations as developed by Barker for natural language grammars have a number of appealing results: NPs are essentially quantifiers, and all NPs are of the same type; scope ambiguity and some constraints on NP scope arise naturally; generalized conjunction is well-accounted for; it's compositional in a fairly robust way.
+
+At least as it's presented in this paper, the continuations approach seems in some ways less tightly integrated with syntactic processes than the QR approach. Furthermore, it doesn't provide a natural path for dealing with binding. Still, Barker's paper suggests that a continuized grammar could, even almost two decades later, be a useful tool for natural language research.
+
+\section{reference}
+
+Barker, Chris. 2002. Continuations and the Nature of Quantification. \textit{Natural Language Semantics} 10: 211-242.
+
+
+\end{document}

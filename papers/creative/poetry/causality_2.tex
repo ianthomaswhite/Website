@@ -1,0 +1,2525 @@
+\documentclass[12pt, landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[letterpaper, margin = 1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{lipsum}
+\usepackage{amssymb}
+
+\usepackage{hanging}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{multirow}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+
+\usepackage{tikz}
+
+\title{notes on causality}
+\author{Ian Thomas White}
+%\date{Submission to: }
+
+\makeatletter
+\renewcommand{\maketitle}
+{
+\begin{flushleft}
+\textbf{{\large\@title}}
+\newline
+\@author
+%\newline
+%\@date
+\end{flushleft}
+}
+\makeatother
+
+\makeatletter
+\renewcommand{\@dotsep}{10000} 
+\makeatother
+
+\addto\captionsenglish{\renewcommand*\contentsname{}}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{\small{notes on causality}}
+\rhead{\small{Ian Thomas White}}
+\lfoot{\small{\leftmark}}
+\rfoot{\small{\thepage}}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+
+\widowpenalty=100000
+\clubpenalty=100000
+
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\medium\bfseries}
+\titleformat*{\subsubsection}{\small\bfseries}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\centering
+
+\vspace*{2em}
+
+\begin{tikzpicture} [x=1in,y=1in]
+
+
+\draw [thick, fill=black] (4,4)--(4,0)--(0,4)--(4,4);
+\draw [thick, fill=white](2.25,1.75) circle [radius=2.25];
+\draw [thick] (4.5,3.5)--(4.5,-0.5)--(0.5,3.5)--(4.5,3.5);
+\draw [thick, fill=black] (0,0)--(0,4)--(4,0)--(0,0);
+\draw [thick] (0.5,-0.5)--(0.5,3.5)--(4.5,-0.5)--(0.5,-0.5);
+\node [right] at (4,3.9) {\scriptsize notes};
+\node [right] at (4,3.75) {\scriptsize on};
+\node [right] at (4,3.6) {\scriptsize causality};
+\node [left] at (0.5,-0.1) {\scriptsize Ian};
+\node [left] at (0.5,-0.25) {\scriptsize Thomas};
+\node [left] at (0.5,-0.4) {\scriptsize White};
+
+
+%\draw [thick, fill=black] (5,4)--(5,0)--(1,4)--(5,4);
+%\draw [thick, fill=white](2.5,2) circle [radius=2];
+%\draw [thick] (4.5,4.5)--(4.5,0.5)--(0.5,4.5)--(4.5,4.5);
+%\draw [thick, fill=black] (0,0)--(0,4)--(4,0)--(0,0);
+%\draw [thick] (0.5,-0.5)--(0.5,3.5)--(4.5,-0.5)--(0.5,-0.5);
+%\node [right] at (4.5,4.4) {\scriptsize notes};
+%\node [right] at (4.5,4.25) {\scriptsize on};
+%\node [right] at (4.5,4.1) {\scriptsize causality};
+%\node [left] at (0.5,-0.1) {\scriptsize Ian};
+%\node [left] at (0.5,-0.25) {\scriptsize Thomas};
+%\node [left] at (0.5,-0.4) {\scriptsize White};
+
+\end{tikzpicture}
+
+\newpage
+
+\thispagestyle{empty}
+
+\maketitle
+
+\vspace*{-4em}
+
+\tableofcontents
+
+\newpage
+
+\thispagestyle{empty}
+
+\section{$\triangle$}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\bullet\bullet\circ\;\;\bullet\bullet\bullet\;\circ$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 7}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+love has zero bounds if still in & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+bounds of love; in bounds of hatred & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+love has only bounds, so battered- & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+them together there's nothing in. & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+ & & & & & & & & \\
+if Bernie wants all college free, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+i do not mind, but keep in mind & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the bedded tears that leisures bind--- & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+there is the law of tautology. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 12}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+subjecthood called me tomorrow & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+like a bed on a hot summer & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+bed, which itself has been made so & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+it calls me tomorrow before. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+say you'd do anything never & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+if it featured to give me some & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+shapely reprieve from the weather, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+but ask me: i told you, i'd love some. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 16}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+from want of care it suffers none & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+to  caustic on their suffers don & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+my wanting head, since all is done & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the exact same as the last con. & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \\
+ & & & & & & & & \\
+people weeping wants of subtle & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+philosophic reason: simple & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+reason being only butts will & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+bed-justify big pimple be full. & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 40}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+well surely i'm the dumbest bean, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the dumbest bean of all the land: & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+when others weep, i hide my hand; & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+others dying dry my saline. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+of course it's all because of mind & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+which rocky binds in reason sound & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the cosmopolity to ground & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+toilet's gems i've Amazonly mined. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\bullet\circ\bullet\;\;\bullet\bullet\circ\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 2}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+what entered causal into gem & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+redacted being told its depth, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+wrenched had hued a000 daysets, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+while neither knowing shape itself. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+the agonistics set themself & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+before the shapely lonesome beds, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+\textit{gens} so bound in error perfect, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+while i am binding words like mega. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 27}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+tossed a tomato as mouthball & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+toothed, and i fell into backwards & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+the bookshelf so full it unfurls & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+domino problem with drywall. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+molecules hang in the balance,  & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+bound so to sleepwanting valence & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+that, ever should anyone fall, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+laughter's prevented to stop by all. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 37}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+it's ``sometimes better, sometimes worse'' & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+until the day that comes the hearse & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+on the blade of the shoulder which & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+before this housed another's twitch. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+but atoms balled have not produced  & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+reprieve of atoms balled induced & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+to provide, for themselves, that that & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+the atoms balled could not arrive at. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 41}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+we, to have a claim to goodness, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+rubbing raw the outer ear with & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+the tools designed for NASA's ass, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+purchase perfect WIFI bandwidth. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+they who were thieved of their station, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+drooling for flavor and favor & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+in Starbucks, whom browsers must shun, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+downtrickle streetwise to savor none.& \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\circ\bullet\bullet\;\;\bullet\circ\bullet\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 38}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+what skin will flake off today's view, & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+as Heraclitus said of oil, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+sheet's textures known never not new & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+be; blushing skin stilled would still boil. & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+ & & & & & & & & \\
+all that's that Tube Yours has shown, tears,  & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+and have we paused as Britney Spears & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+works out what oil knows with fine grain: & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+lost skin is brained back, as paned pain is. & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} \\
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 47}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+if gem could more aesthetic be, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+never could i break it tacit, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+than rope to in my closet sit & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+enjoying sitting more than me. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+remember what the bird had placed,  & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+stocked of closet space for storage; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+the bird would let it empty waste & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+to want not; me, reject the adage. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 56}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+i can't tell me how much i hate & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+the poems pronounced here, their edge & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+without reason sharp, soft as bait, & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+to unmorals, good meaning, hedge. & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+i don't hate like bored PhD  & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+would careless react in disgust, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+since these poems lone solace be & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+to our hatred now born and since pussed.& \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} \\
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 62}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+witnessed confusion between some & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+pair who knew to cheat the other: & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+customer showing cashier some & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+problem with foam from the frother. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+neither computed the error,  & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+focus bent on own exhaustion, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+lurking molecular terror, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+culpable us understanding none. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\circ\bullet\bullet\bullet\;\;\circ\bullet\bullet\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 43}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+beauty swells of error stillful & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+as corpsed heap of unmembered face & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+ground will fill, wronged of heads willful & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \\
+flipped joyful, eye seeing stream's pace. & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+ & & & & & & & & \\
+it cannot speak to it as craze, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+as corpsed hindrance unmembers all & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+tender ground heads could call downthrall; & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \\
+tired, aren't we: sun paywalled still us lays.  & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 45}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+these are things that Chomsky taught me: & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+nevertheless, it is simply & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+an expression of lack of [an] & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+interest in theory and ex[...]tion. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+these are things that Plato taught me: & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+swear by the dog, you're surprising, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+yet until we begin from the & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+end, so i fear, am i stuttering.  & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 46}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+and so eating asparagus & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+the scholar consoles it with pat, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+intestinal wondering, fat: & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+if abacus only could sus. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+and so eating an abacus & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+the beggar consoles it with gnat, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+intestinal wandering, scat: & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+if only asparagus ate us. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 60}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+as such, if a good narrative & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \\
+could string the outcast masses up & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+from murky circumstance to live & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+and unipleasured smiling sup, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+to the unplied, so this black, box & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \\
+throw as well your chicken dinner, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+switch the bedlight mode to dimmer,& \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+formulate the merry tale that rocks.& \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\thispagestyle{empty}
+
+\section{$\bigtriangledown$}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\bullet\bullet\circ\;\;\circ\bullet\bullet\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 30}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+i've never had a sex in a car, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+except for the time i had sex & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+pretending to be like a car, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+engined for windows of pyrex. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+someone had vomitted texmex & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+upon all my cushiondead seats, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+tachometer red for a wreck, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+thus inner and outer are same sheets. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 39}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+should some such sundry sires as this & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+so soundsome sleep as yet awry, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+it boons the bed, remiss of piss, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+warned of specter-watered outcry. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+nightmares pasture rustling brainfold & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+detasseling gems of grass which spew & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+so eager born, genetic bold; & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+your parents spewed, though, gem that grew us. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 51}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+the reign of the fragment is done; & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+the kingdom of gem has begun; & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+you thought there'd be ethics in not & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+knowing an outcome: you can't not. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+plants are the future, and nothing  & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+regardless of bedsize will cling & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+to nothing but inner regard, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+like chips from Bellagio's graveyard. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 57}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+Patti Scialfa and Katie & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+Holmes and Penelope Cruz and & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+Nazanin Boniadi, of course, & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+Nicole Kidman, Cher, too, and Tom. & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+which bones have felt ages much more & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+than the gems we adore, but, since & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+these be the bones i adore, hence & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+nothing is brittle and nothing more.& \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\bullet\circ\bullet\;\;\bullet\circ\bullet\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 36}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+catharsis is reckless as Jay, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+the host who bechinned would oblige, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+actual beakly appendage, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+if just to experience say. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+if feature of obvious kin & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+access to definite thought is, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+imagine the bluejay's surprise, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+on finding its plumage on Jay's skin. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 44}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+since categorematic birds & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+syncategorematically & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+gird the sky, if rained or cloudy, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+accept with smile their falling turds. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+a festered boardwalk steers of brine & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+persons cattled frowned for seabirds & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+but pauses bow: the fainting kine & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+carouse the airconditioned words mine. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 52}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+necessity and interest guise & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the world around its laden route, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+invoking my bowels surprise, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} \\
+but never spar; the twain salute. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+slipped far in faint route my chair wheeled & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+day after night after evening; & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} \\
+land's lord for hard wood, with eyes peeled, & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+cared more than me rubbed, and me, nodding. & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 53}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+oil every there where oil & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+oils oily oiled oil--- & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+in food, in toy, in hair to coil, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+oil under pasture's soil. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+slipping onward never upward, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+the caterpillar falls from sill, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+not because of Exxon Mobile--- & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+sickly seabird left organic turd. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\circ\bullet\bullet\;\;\bullet\bullet\circ\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 32}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+try to make a life as meager & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+as any sickly seabird would, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+unimposing feathered touch where & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+any pending wreck be seawood. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+now, ignore the phrase subjunctive: & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+any modal imputation & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+redacts the facts that some still live, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+strewnly feathered, sinking, strewn, for fun. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 48}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+would that these stitches would seal us; & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+this much i've asked life to sweet end & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+follicles losing such prowess & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+scorpio moonster's befriended. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+straddling the edge of the sidewalk--- & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+grassland becomes of the middle, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+full smell exhaust not for---me, full, & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+swaying as clockwork a sunful stalk. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 50}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+all celebration calumnies & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+dismainder, which torments to sneeze, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+clumsy forget of misfortune, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+scoring and eating and pouring. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+crumbfully, hatefully lazen & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+atoms that sometimes are mine in & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+that den so reposing and sweet & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+eboys inhabit to beat their meat. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 61}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+the scrawny arms to me belong, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+even though i would not choose them; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+they reek of coinage, swing along & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+like lace of bed that's bled like gem. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+they fell asleep again to let & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the bulbous forehead forced as mine & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+rest upon the berber carpet & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+and waking up to find its lined line. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\circ\bullet\bullet\bullet\;\;\bullet\bullet\bullet\;\circ$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 35}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+gem and bed are made alike in & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+pressure of sphere without passion. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+latter is cornered by scenes that & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+none would be served to reply at. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+former it's fair to reply that & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+nothing so tokened and grabbed at, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+wanting of definite feature, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+time of mine could ever warrant word. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 49}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+not for any pragmatism & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+do the clefts of cetirizine's & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+obstinate sealing concoct in & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+the hatred of healers's whim. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+yet so hatred concoct in it  & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+does, as the dandruff on newly & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+beloveds's cheek won't befit & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+image theirs concocted blank of me. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 58}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+aloneness---take the doubles out, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+mix around remaining letters:  & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+now your password's lost its fetters; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+i'm your only contact, sellout. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+don't we leave me; don't they love it,  & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+message sent from stranger puking, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+countdown hectic pizza nuking:  & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+Digiorno scorched my tongue, so kiss it. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 63}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+carefully castrate me, Yahweh; & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+take my weary load beyond me,  & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+make my mommy-daddy sickly & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+watching baby me get swordplay. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+our body never wanted much  & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+except to want our body much & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+to want our body wanting lunch,  & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+but for me being me not so much. & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\thispagestyle{empty}
+
+\section{$\triangle \bigtriangledown$}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\bullet\circ\circ\;\;\bullet\bullet\circ\;\circ$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 4}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+leaf understood then its ethics & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+like a leaf on the ground as it & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+falls; its lines rejects its edges & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+of countless molecules and shit. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+i love well the leaf still as fault, & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+since both of us, wiping my ass, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+keep the pretense full on asphalt, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+whenever insect errors bite, pass. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 6}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+over and over of course it & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+waits for the next that it waited & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+up last to wait next to still try. & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+day next is day same to wait dead. & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+ & & & & & & & & \\
+couldn't go right to the deathbed & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+you who have hatred to breed you--- & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+i'm joking so right, so behead & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+what only the footwork agreed to. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 23}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+while betending to plank in your & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+pupil, analyses ichor; & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+i wouldn't couch my hope in bits & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+splintered off of bigger tidbit. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+trash kingdom grows bigger all trash, & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+if trash kingdom grows bigger trash; & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+Charlie Kaufman, meet my agent; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+its name is me; give up your argent. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 55}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+all one cannot speak, in silence & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+over pass else curry nonsense, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+but also, all one can express & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+in silence has no meaning less. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+no bug at word's lack will mad go, & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+still gut at bird's tack and side's blow: & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+drawing deposit from withered & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+checking, a bug i will be unheard. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\circ\bullet\circ\;\;\bullet\circ\bullet\;\circ$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 10}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+dandruff collects on the keyboard, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+then all of the scalp gets of blood; & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+seabirds collect on the seaboard, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+then all of the sand gets of bird. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+each set of drops wrenching, gross shard, & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+accrues from beleagueredsome sphere, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+lies limp with poor course to there guard & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+its shapely repose from those bored here. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 13}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+defenses do little for hopes, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+potentate says to the baby; & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+but working is just for the dopes, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+archon reproves Frankie Valli. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+are the four physiognomies & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+one and the same, or does something & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+of perfection attend of these & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+some? if it matters it's nothing same. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 19}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+increasingly hard to be firm & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+given my predispositions & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+to sleep like a bankrupting firm & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+sound on its serfs' acquisitions. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+of course the left has made its end & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+(reckless named) my teary all, and & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{}  & \u{} & \\
+i do agree to start that end & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+all coerced to brainy make by hand. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{}  & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 33}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+every circle draws a map of & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+kallipolis in worthy chains; & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+would that too i'd go there: you have & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+forgot to go, despite my pains. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+kallipolitically speaking, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+if personhood going awry & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+leads itself freedomward leaking, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+it wouldn't be we who survives me. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\circ\bullet\circ\;\;\circ\bullet\circ\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 11}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+freshening freshly refreshment & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+refreshes refreshment afresh. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+to refreshen refreshening & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+freshness freshens fresh refreshment. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+to freshen freshly freshens up & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+fresh refresh. fresh refresh, fresh up & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+freshful fresh afresh to freshen & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+refreshed stalemate unfreshed refreshing. & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 25}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+wreck my life vehicularly & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+headrest confusing with early & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+brain betwitched of hair and curly & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+(Escalade ... Jetta ... or Wrangler ...). & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+even should suicide's dactyl & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+pressure comely reader fretful, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+never forget your desire will & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+never sink me, simply strangle sure. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 42}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+as all of this haze in us is, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+antiperspicuous judgement, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+dehydrated bays known as biz, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+30 and dryeyed i'm downbent, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+scratching at standing desk wooden, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+reminded by splinter to cling & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+consciousness, terrored mutation, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+for nothing with interest for nothing. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 54}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+never fear your obsolescence, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+for firm will obsolescence make & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+obsoleteful obsolescence, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+while thirst your use will hardly slake. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+my matter moved my mattered moves, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+matter moving moving matter, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+since matter never moves before & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+matter moving mattressed matter moves. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\bullet\circ\circ\;\;\circ\circ\bullet\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 3}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+the pile could not the trunk require, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+nor could they who jump upon it, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+even the wrinkles attiring & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+be seen well or passed over, sit. & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+sleep better why don't i: cleaned bed, & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+which is equal to Freddie's (that, & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+beleaguered Prinze), my wrinkles wed; & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+face of mine, as left to habit, sat. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 29}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+i carol the problems of one & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+tomorrow that's infinite played, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+its unremitting time for one & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+to play tomorrow's cuck and spayed. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+that's why, me: i got a doggy, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+eyes of moon and ever playing & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+morrow's next hate, since can't doggy & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} &\\
+gemless shit, unlike me, splaying rote. & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 31}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+each day i beself stronger through & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \\
+not texting what great worrisome & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \\
+thought begot as thought begot through & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+self begot and wet the bed some. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+ode to liquid patch upon me--- & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+smelling sweet, and housemate foulful. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+think now of the great lacking we & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \\
+see waterwise: world, bowels, us all. & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 59}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+must they find each other handsome & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+should they proffer up a chant some; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+they know what wrenching looks have passed, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+while waiting fast made looks aghast. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+if they don't know the pain of want, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+they know the want of pain is not & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+want that pain has long forgot not, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+only pain that want forgot to want. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\thispagestyle{empty}
+
+\section{$\square$}
+
+%\begin{center}
+%\vspace*{\fill}
+%\begin{tikzpicture}
+%\draw [ultra thick] (0,0) rectangle (4,4);
+%\node at (1,1) {};
+%\end{tikzpicture}
+%\vspace*{\fill}
+%\end{center}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\circ\circ\bullet\;\;\bullet\circ\circ\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 5}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+fractional nature between me, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+take my life like nothing worthy & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+of being worthy not to be & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+taken as something unworthy. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+gem that has put you here, rotten, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+surface lain like leopard spotting, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+was bought from pinky Topic's tin: & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+couldn't i sleep as opposed to sing. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 15}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+i wish i'd know the circumstance & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+sanguine to self would be round me & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+whenever i stepped into glance & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+of sanguine stance so formed to be. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+take each matter grained of salt as, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+since each knower small brainfold fails; & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \\
+staring brain fails without fault as & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \\
+sea and shit decide encephaled mails. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 18}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+i tried to set my tears in tasked & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+gem and retreat to my bed, but, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+failing to bother with ablaut, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+bestilled my head the me i asked. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+the tears of knowing finite bends & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+hazardlike blow in the meadow & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+couldn't condemn so the ego & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+of modulation's modulations. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 28}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+each act reclines voidful, lone sums; & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+even craze of love in voidless & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+mattress tattles: love is boredom & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+sly formed to lie back in large mess. & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+ & & & & & & & & \\
+fruit picked at farm's mart for fall sky & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \\
+purpose made from boxspring languor; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+scratchy fauces fail to clamor: & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+glance back at back's blades to know why, sigh. & \'{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\bullet\bullet\bullet\;\;\circ\circ\circ\;\circ$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 8}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+of course i wrote on trees as all & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the world was dying; think it through & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+though: also you would have the gall & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+to keep me, sitting, dying, too. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+if you think a gem will save you, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+don't you think a gem won't save you; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+if you think a bed won't save you, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+don't you think a bed will save you: lol. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 20}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+it's sad to be sad; as it's sad & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+to, saddening, sadden this sad & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+besaddened to sadness as sad, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+so sadness be sad to be sad. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+gibberish pleases so simply & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ever pretending to carry & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+over itself into something & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+meant, as it couldn't pretend a thing. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 24}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+happiness petrichor needles & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+structure apportioned between the & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+follicles rising as beetles, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+even in UNIQLO parka. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+perhaps i didn't weigh the scene; & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+perhaps i didn't deal with strife; & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+perhaps i didn't plant the bean & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+that structured skin and brain to fight life. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 26}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+they think too they'll become different, & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \\
+if difference comes to toward them & \u{} & \'{} & \u{} & \'{} & \'{} & \u{} & \'{} & \u{} & \\
+thinking differently more than when & \'{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} & \\
+difference aroused thought to become. & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+i think that i will be the same,  & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+if sameness too remains for me & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+thinking samely just as when the & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+sameness spurned to thought will think to be. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bullet\bullet\bullet\bullet\;\;\bullet\bullet\bullet\;\bullet$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 9}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+pleonasm eats my ass off: & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+murky what to do about my & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+undersubstanced ass without my & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+telling substance eat my head off. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+substance sprawling bed unwelcome, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+purpose only substance be through & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+1000s people equal me who & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+can't get substance out to get some of. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \u{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 17}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+syntactically similar things & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+be metrically similar too, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+if difference obtained of them sings & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+as straining an anus will poo. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+tomorrow an amphibrach be & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+in substance and framework perforce, & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+unless there are forces to free & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+molossus tomorrow in shit jorts. & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 22}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+Idaho ... North Carolina ...  & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+Maine ... Indiana ... Virginia ... & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+also ... Ohio ... Wisconsin ... & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+next ... Pennsylvania ... Vermont's in ... & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+driving a car can be scary, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+even on army-built highways; & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+barring a triple-A rebate, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+those are the states with the lowest rates. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 34}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+the market will go up and down, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the water rotate smile and frown, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+the traffic change reflect its time, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+and poetry reverse its rhyme. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+if this is beauty, whip my ass & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+until the drooping cows come home: & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+my heart attends to lowliness, & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+my passion bovine, twitter.com. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\subsection{\parbox{10em}{$\varnothing$}}
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 1}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+i did do it, what did do it, & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \\
+which, what did it, it did when that & \'{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} & \\
+was done, too did did do done for & \u{} & \'{} & \'{} & \'{} & \'{} & \'{} & \'{} & \u{} & \\
+what was done for to do it then. & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+ & & & & & & & & \\
+so so sad it was, so perfect & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \\
+that it wrenched great tears wrenching it, & \u{} & \u{} & \'{} & \'{} & \'{} & \'{} & \u{} & \u{} & \\
+wrenched out, too that it, wrenched out, did & \'{} & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \'{} & \\
+what it did when it did me—regret. & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 14}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+stranger facing deeply window: & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+something is held in there, holding & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+coffee in window so scalding & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+to look, to hold, and seen, to go. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+the person learned the bug upon & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+of the coffee the lid was then & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+of itself a displacement when & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+breathing fucked i tripped and landed wrong. & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 21}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+to've attempted historical & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \\
+deconstruction aimed to've bettered & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+us human kine with agile word & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+always will reek of its tongueful. & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+taking sincerely the claims that & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} & \u{} & \u{} & \\
+betoken vast amounts of world & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+fails to notice all the data & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+was of spitup from you when i hurled. & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\vspace*{\fill}
+
+\noindent \textbf{causality 64}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+one can be not able to not & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} & \\
+be not able to not not be & \u{} & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \u{} & \\
+not born able to not bear not & \'{} & \'{} & \'{} & \u{} & \u{} & \'{} & \'{} & \'{} & \\
+to not be able not to be. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \\
+ & & & & & & & & \\
+Carolina was a bullfrog; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+you've been friendly like a bull, dog; & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+please come back like mattress coastline, & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \\
+but that's my time; you've all been great, mine. & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \u{} & \'{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\thispagestyle{empty}
+
+\section{$\bigcirc$}
+
+\newpage
+
+\subsection{\parbox{10em}{$\bigcirc$}}
+
+\vspace*{\fill}
+
+\noindent \hfill \par
+\noindent \textbf{epilogue}
+\noindent \hfill \par
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+>{\lefting\arraybackslash}X
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+}
+
+so i've noticed that everyone thinks that & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+everyone else is incompetent at & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+everything they are responsible for, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+whether accurate, erring, or done for. & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+ & & & & & & & & \\
+well you know that we always will harden & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \\
+hearts against everything possibly skin--- & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+everything actionlike partial will be, & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \\
+while unable to help us us all save me. & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \u{} & \'{} & \u{} & \'{} \\
+
+\end{tabularx}
+\end{center}
+
+\vspace*{\fill}
+
+\end{document}

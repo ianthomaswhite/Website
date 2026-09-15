@@ -1,64 +1,75 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # Script: build-resumes.sh
-# Purpose: Compiles the 1-page LaTeX resume and generates the full resume PDF
-#          directly from pages/background.md (or pages/resume.md) using Pandoc.
-#
-# Workflow:
-#   1. Compiles resume/resume-onepage.tex via pdflatex into pdfs/resume-onepage.pdf.
-#   2. Converts the background/resume Markdown source into pdfs/resume-full.pdf
-#      using Pandoc with standalone LaTeX styling and geometry rules.
-#   3. Cleans up auxiliary LaTeX files (.aux, .log, .out) from the pdfs directory.
-#
-# Dependencies:
-#   - pdflatex (TeX Live / MacTeX)
-#   - pandoc (for Markdown-to-PDF conversion)
+# Purpose: Compiles resumes and all academic/creative papers into the pdfs/ tree.
 # ==============================================================================
 
-# Halt script on any command failure, unset variable expansion, or pipeline error
 set -euo pipefail
 
-# Resolve paths relative to script location
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 PDF_DIR="${ROOT_DIR}/pdfs"
 RESUME_DIR="${ROOT_DIR}/resume"
-PAGES_DIR="${ROOT_DIR}/pages"
+PAPERS_DIR="${ROOT_DIR}/papers"
 
-# Ensure the destination pdfs directory exists
 mkdir -p "${PDF_DIR}"
 
 echo "======================================================"
-echo "  Compiling Resumes for Ian Thomas White Website"
+echo "  Compiling Resumes & Papers for Website"
 echo "======================================================"
 
 # ------------------------------------------------------------------------------
-# 1. Compile 1-Page LaTeX Resume
+# 1. Compile Resumes
 # ------------------------------------------------------------------------------
-# pdflatex runs in nonstopmode so it doesn't hang on interactive prompts;
-# output is redirected directly to the pdfs/ folder.
 if [ -f "${RESUME_DIR}/resume-onepage.tex" ]; then
-    echo "[1/2] Compiling 1-Page LaTeX Resume (resume/resume-onepage.tex)..."
-    pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/resume-onepage.tex" > /dev/null
-    echo "  -> Successfully generated ${PDF_DIR}/resume-onepage.pdf"
+    echo "[*] Compiling 1-Page Resume..."
+    pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/resume-onepage.tex" > /dev/null 2>&1 || true
+    echo "  -> ${PDF_DIR}/resume-onepage.pdf"
 fi
 
-# ------------------------------------------------------------------------------
-# 2. Compile Full CV LaTeX Document
-# ------------------------------------------------------------------------------
 if [ -f "${RESUME_DIR}/cv-full.tex" ]; then
-    echo "[2/2] Compiling Full LaTeX CV (resume/cv-full.tex)..."
-    pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/cv-full.tex" > /dev/null
-    echo "  -> Successfully generated ${PDF_DIR}/cv-full.pdf"
+    echo "[*] Compiling Full CV..."
+    pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/cv-full.tex" > /dev/null 2>&1 || true
+    echo "  -> ${PDF_DIR}/cv-full.pdf"
 fi
 
 # ------------------------------------------------------------------------------
-# 3. Housekeeping: Remove LaTeX Auxiliary Build Artifacts
+# 2. Compile Papers from papers/
 # ------------------------------------------------------------------------------
-# Removes temporary .aux, .log, and .out files to keep the pdfs/ folder clean.
-rm -f "${PDF_DIR}"/*.aux "${PDF_DIR}"/*.log "${PDF_DIR}"/*.out
+if [ -d "${PAPERS_DIR}" ]; then
+    # Compile LaTeX files
+    find "${PAPERS_DIR}" -name "*.tex" | sort | while read -r tex_file; do
+        rel_path="${tex_file#${PAPERS_DIR}/}"
+        sub_dir="$(dirname "${rel_path}")"
+        dest_dir="${PDF_DIR}/${sub_dir}"
+        mkdir -p "${dest_dir}"
+        tex_filename="$(basename "${tex_file}")"
+        echo "[*] Compiling paper: ${rel_path}..."
+        (cd "$(dirname "${tex_file}")" && pdflatex -interaction=nonstopmode -output-directory="${dest_dir}" "${tex_filename}" > /dev/null 2>&1) || true
+        base_name="${tex_filename%.tex}"
+        if [ -f "${dest_dir}/${base_name}.pdf" ]; then
+            echo "  -> ${dest_dir}/${base_name}.pdf"
+        fi
+    done
+
+    # Copy pre-existing PDFs
+    find "${PAPERS_DIR}" -name "*.pdf" | sort | while read -r pdf_file; do
+        rel_path="${pdf_file#${PAPERS_DIR}/}"
+        sub_dir="$(dirname "${rel_path}")"
+        dest_dir="${PDF_DIR}/${sub_dir}"
+        mkdir -p "${dest_dir}"
+        echo "[*] Copying PDF: ${rel_path}..."
+        cp -u "${pdf_file}" "${dest_dir}/"
+        echo "  -> ${dest_dir}/$(basename "${pdf_file}")"
+    done
+fi
+
+# ------------------------------------------------------------------------------
+# 3. Clean LaTeX Auxiliary Build Artifacts Across All pdfs Subdirectories
+# ------------------------------------------------------------------------------
+find "${PDF_DIR}" -type f ! -name "*.pdf" -delete
 
 echo "======================================================"
-echo "  Done. Resumes placed in ${PDF_DIR}/"
+echo "  Done. All PDFs placed in ${PDF_DIR}/"
 echo "======================================================"

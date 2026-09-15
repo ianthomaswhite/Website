@@ -50,21 +50,37 @@ while IFS= read -r line || [ -n "$line" ]; do
 
         ((ACTIVE_COUNT += 1))
 
-        if [ ! -f "$SRC" ]; then
-            echo "[!] Source file missing: ${SRC_RAW}"
-            continue
-        fi
+        if [ -d "$SRC" ]; then
+            # Directory sync
+            mkdir -p "$DEST"
+            if command -v rsync >/dev/null 2>&1; then
+                rsync_out="$(rsync -avi --delete --exclude="*.cls" "$SRC/" "$DEST/" | grep -E '^([<>]|c|\*deleting)' || true)"
+                if [ -n "$rsync_out" ]; then
+                    echo "  [+] Updated directory: ${DEST_RAW} <- ${SRC_RAW}"
+                    ((UPDATED_COUNT += 1))
+                else
+                    echo "  [=] Up to date: ${DEST_RAW}"
+                fi
+            else
+                cp -ru "$SRC/." "$DEST/"
+                echo "  [+] Synced directory: ${DEST_RAW} <- ${SRC_RAW}"
+                ((UPDATED_COUNT += 1))
+            fi
+        elif [ -f "$SRC" ]; then
+            # Ensure target directory exists
+            mkdir -p "$(dirname "$DEST")"
 
-        # Ensure target directory exists
-        mkdir -p "$(dirname "$DEST")"
-
-        # Compare files: only copy if different
-        if [ ! -f "$DEST" ] || ! cmp -s "$SRC" "$DEST"; then
-            cp "$SRC" "$DEST"
-            echo "  [+] Updated: ${DEST_RAW} <- ${SRC_RAW}"
-            ((UPDATED_COUNT += 1))
+            # Compare files: only copy if different
+            if [ ! -f "$DEST" ] || ! cmp -s "$SRC" "$DEST"; then
+                cp "$SRC" "$DEST"
+                echo "  [+] Updated: ${DEST_RAW} <- ${SRC_RAW}"
+                ((UPDATED_COUNT += 1))
+            else
+                echo "  [=] Up to date: ${DEST_RAW}"
+            fi
         else
-            echo "  [=] Up to date: ${DEST_RAW}"
+            echo "[!] Source missing: ${SRC_RAW}"
+            continue
         fi
     fi
 done < "${MANIFEST_FILE}"

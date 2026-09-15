@@ -1,0 +1,714 @@
+\documentclass[]{ling-200b-2}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{ulem}
+
+\usepackage[letterpaper, margin = 1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+%\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{stmaryrd}
+\usepackage{rotating}
+\usepackage{lscape}
+
+\usepackage{hanging}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\usepackage{arydshln}
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepgflibrary{arrows}
+\usetikzlibrary{positioning,shapes.multipart}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{fit}
+%\usepackage{tree-dvips}
+
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{deverbals2.bib}
+\usepackage{csquotes}
+\DeclareLanguageMapping{english}{english-apa}
+
+%\usepackage{linguex}
+%\usepackage{gb4e}
+
+\title{Head Movement: PF?}
+\author{Ian Thomas White}
+\date{}
+
+\makeatletter
+\renewcommand{\maketitle}
+{
+\begin{flushleft}
+\textbf{{\large\@title}}
+\newline
+\@author
+\end{flushleft}
+}
+\makeatother
+
+\titleformat*{\section}{\medium\bfseries}
+\titleformat*{\subsection}{\small\bfseries}
+\titleformat*{\subsubsection}{\small\bfseries}
+
+\newcommand*{\textsup}[1]{\ensuremath{^\textrm{{\scriptsize #1}}}}
+\newcommand*{\textsub}[1]{\ensuremath{_\textrm{{\scriptsize #1}}}}
+\newcommand*{\tinytextsup}[1]{\ensuremath{^\textrm{{\tiny #1}}}}
+\newcommand*{\tinytextsub}[1]{\ensuremath{_\textrm{{\tiny #1}}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ian Thomas White}
+\chead{}
+\rhead{\thepage \ of \pageref{LastPage}}
+
+% \linespread{1.6}
+\widowpenalty=100000
+\clubpenalty=100000
+
+
+\usepackage{enumitem}
+\usepackage{verbatim}
+\newcommand{\pres}[0]{Tns$_\textsc{pres}$}
+\newcommand{\past}[0]{Tns$_\textsc{past}$}
+\usetikzlibrary{decorations.pathreplacing}
+
+\renewcommand{\labelenumi}{\Roman{enumi}.}
+\renewcommand{\labelenumii}{\roman{enumii}.}
+\renewcommand{\labelenumiii}{\alph{enumiii}.}
+
+\begin{document}
+
+\thispagestyle{empty}
+\singlespacing
+\maketitle
+
+\section{Intro}
+
+Head movement (HM) has maintained relatively good standing as a valid syntactic process for explaining several phenomena, namely V-(to-T-)to-C movement, incorporation, and clitics. However, HM still poses a number of problems for syntactic theory, insofar as HM differs from phrasal movement. To deal with these problems some, including Chomsky, have proposed shunting HM into the PF component of the grammar, while others have argued that HM must take place in the narrow syntax. The current paper discusses some analyses that make claims as to what module of the grammar HM must occur in. The paper thus sits at the interface of syntax with the PF and LF components. The organization of the paper is as follows: Section 2 reviews standardly assumed HM, including the problems it poses; Section 2 reviews two accounts that send HM to PF; Section 3 reviews three accounts that argue HM must occur in the narrow syntax; Section 4 reviews two accounts that attempt to give a syntactic story for HM that fixes (some of) the problems from Section 2; finally, Section 5 briefly offers some conclusions..
+
+
+\section[foo]{Head Movement Classic\footnote{Cf. Harley (2004), Harley (2013), and Dékány (2018) for good summaries of the properties listed in this section}}
+
+\subsection{Basics}
+
+Descriptively, HM is a form of Internal Merge in which a head (terminal node) is merged with a non-lower head, as in (1) and (2).\footnote{ I use ``non-lower'' here to include cases like (2), which shows lateral movement. For the rest of the paper, though, I will speak of the ``higher'' and ``lower'' heads to refer to both cases (1) and (2).} Once HM occurs, the syntax treats the new, complex head as a unit for purposes of movement and other processes.\footnote{See below on excorporation.}
+
+\ex HM 1
+
+\begin{adjustbox}
+\small
+\begin{forest}
+    [XP, for tree={s sep=0.5em}
+        [X, name=H2] [YP
+            [Y, name=H1][...]
+        ]
+    ]
+\draw [->, mvt] (H1.south) -- ++(0, -0.5em) -| (H2.south);
+\end{forest}
+\end{adjustbox}\qquad
+\begin{adjustbox}
+$\Rightarrow$
+\end{adjustbox}\qquad
+\begin{adjustbox}
+\small
+\begin{forest}
+    [XP, for tree={s sep=0.5em}
+        [X
+            [X] [Y]
+        ] [YP
+            [\sout{Y}][...]
+        ]
+    ]
+\end{forest}
+\end{adjustbox}
+\xe
+
+\ex HM 2
+
+\begin{adjustbox}
+\small
+\begin{forest}
+    [XP, for tree={s sep=0.5em}
+        [X, name=H2] [Y, name=H1]
+    ]
+\draw [->, mvt] (H1.south) -- ++(0, -0.5em) -| (H2.south);
+\end{forest}
+\end{adjustbox}\qquad
+\begin{adjustbox}
+$\Rightarrow$
+\end{adjustbox}\qquad
+\begin{adjustbox}
+\small
+\begin{forest}
+    [XP, for tree={s sep=0.5em}
+        [X
+            [X][Y]
+        ] [\sout{Y}]
+    ]
+\end{forest}
+\end{adjustbox}
+\xe
+
+There are three classic phenomena that have often been claimed to be HM, summarized in (3)
+
+\pex \textit{Classic Types of Head Movement}
+\a \textbf{Verb movement} up the clausal spine, i.e., some subset of V-to-\textit{v}-to-T-to-C movement, for which (1) is the basic structure.
+\a \textbf{Incorporation}, in which a verb's complement is (at surface level) morphologically conjoined to the verb and for which (2) is the basic structure.
+\a \textbf{Cliticization}, in which verbal arguments undergo movement and attach to the verb head and for which something like (1) is usually entailed.
+\xe
+
+\noindent Verb movement (3a) is perhaps the most discussed form of HM and is the site of much of the debate surrounding HM. The present paper follows suit in focusing on verb movement.
+
+\subsection{Constraints}
+
+However it occurs, HM has been noticed to have (at least) three constraints that distinguish it from phrasal movement; these are listed in (4).
+
+\pex \textit{Constraints on Head Movement}
+\a It is \textbf{strictly local}: it's a relation between two structurally adjacent heads (the Head Movement Constraint (HMC)).
+\a It \textbf{disallows excorporation}: a moved head can't be extracted from its Merged position.
+\a It is \textbf{clause-bound}: it can't move out of its clause.
+\xe
+
+\noindentHead Movement does occur (under standard assumptions) over long distances. In these cases, the ban on excorporation (4b) forces heads being moved to ``roll up'' through each consecutive, adjacent head. The allowed and disallowed structures (post HM) are shown in (5).
+    
+\ex \textit{licit and illicit HM}
+
+\begin{adjustbox}
+\small
+\begin{forest}
+    [WP, for tree={s sep=0.5em}
+        [W
+            [W][X
+                [X][Y]
+            ]
+        ]
+        [XP
+            [\sout{X}
+                [\sout{X}] [\sout{Y}]
+            ] [YP
+                [\sout{Y}][...]
+            ]
+        ]
+    ]
+\end{forest}
+\end{adjustbox}\qquad
+\begin{adjustbox}
+\small
+\begin{forest}
+    [*WP, for tree={s sep=0.5em}
+        [W
+            [W][Y]
+        ]
+        [XP
+            [X
+                [X] [\sout{Y}]
+            ] [YP
+                [\sout{Y}][...]
+            ]
+        ]
+    ]
+\end{forest}
+\end{adjustbox}\qquad
+\begin{adjustbox}
+\small
+\begin{forest}
+    [*WP, for tree={s sep=0.5em}
+        [W
+            [W][Y]
+        ]
+        [XP
+            [X
+            ] [YP
+                [\sout{Y}][...]
+            ]
+        ]
+    ]
+\end{forest}
+\end{adjustbox}
+\xe
+
+
+The three constraints already pose a problem for a unified theory of syntactic movement, which is an important goal for syntax under the burden of the Minimalist Program. Ideally, any set of constraints on HM would be the same as those on phrasal movement, or at least derivable from some more general theory of movement that can explain both movement types. This has proven difficult, though two such attempts will be discussed in section 4. On the other hand, all three of these constraints have been disputed in the literature, though this doesn't strictly entail that phrasal movement and HM are the same.\footnote{ Cf. Dékány 2018 for ``long head-movement'' and excorporation. Cf. Harizanov 2016 and Harizanov \& Gribanova 2019 for HM that's not clause-bound.}
+
+\subsection{Problems}
+
+The problems for HM, unfortunately, don't stop there. HM diverges from phrasal movement in a number of ways, listed in (6) and (7).
+
+\pex \textit{Theory-Internal Problems Posed by Head Movement}
+\a The moved head \textbf{doesn't c-command} its lower copy.
+\a HM \textbf{violates the Extension Condition}: the moved head doesn't Merge at the root.
+\a HM \textbf{violates the Chain Uniformity Condition}: the moved head is both a minimal and maximal element, while the lower copy is only a minimal element.
+\a HM \textbf{violates the A-over-A principle}: both the head and its projection are of category X and the head moves past its projection.
+\a HM \textbf{violates anti-locality}: the higher head's features are checked upon selecting the head or the head-containing phrase (i.e., HM should not be required for feature-checking).
+\a The syntax needs to distinguish between \textbf{when to move a head and when to move a phrase}, the explanatory mechanism for which is unclear.
+\xe
+    
+\pex \textit{Testable Problems Posed by Head Movement}
+\a It's not obvious that head movement causes \textbf{semantic interpretation effects}; the null hypothesis has been that HM has no semantic effects.
+\a \textbf{Feature checking} requirements of clitics have been claimed to require HM.
+\xe
+
+As (6) and (7) indicate, the theory-internal problems greatly overwhelm the testable ones, and the data relevant for (7) is generally quite intricate and subject to difficult judgments. The main battleground for questions of HM has been (7a); the present paper also focuses on (7a), in addition to accounts that attempt to solve the problems in (6). Some other accounts have weighed in on (7b), too, especially more recently.\footnote{ Cf. Roberts 2010, Mathew 2015, Preminger 2019.}
+
+In sum, HM makes constructing a unified theory of syntactic movement difficult. The following sections detail various attempts to deal with that difficulty.
+
+\section{The Place of Head Movement: PF}
+
+The foregoing problems led Chomsky (2000, 2001) to suggest that HM doesn't occur in the narrow syntax at all but that it instead occurs at PF. While Chomsky himself didn't provide positive justification for or an explicit account of PF-based HM, some subsequent accounts defend the possibility. 
+
+\subsection{Boeckx \& Stjepanović 2001}
+
+Shortly after Chomsky's (2000) suggestion, Boeckx \& Stjepanović (2001) claim that there is in fact evidence that HM must occur at PF. They take inspiration from Lasnik's (1995) work on pseudogapping, in which the verb head of a VP is deleted but the object phrase remains, as in (8a). Contra Lasnik they claim that such constructions are evidence that HM occurs post-syntactically. The data in (8) is representative of their analysis.
+
+\pex \textit{Boeckx \& Stjepanović 2001: (2), (4), (5)}
+
+\a Debbie ate the chocolate, and Kazuko did [\textsub{AgrP} the cookie\textsub{i} \sout{[\textsub{VP} eat t\textsub{i}]}] \hfill (\textit{pseudogapping})
+\a *Debbie got chocolate, and Kazuko got\textsub{j} \sout{chocolate} t\textsub{j} too \hfill (\textit{no object movement})
+\a Debbie ate chocolate, and Kazuko [\textsub{T} drank\textsub{j} [\textsub{AgrP} milk\textsub{i} [\textsub{VP} t\textsub{i} t\textsub{i}]]] \hfill (\textit{simple conjunction})
+\xe
+
+The argument rests on noticing that movement of the verb seems to be optional. In constructions without ellipsis, both the verb and object must move (8c). The sentence (8c) would be ungrammatical if only one or neither moved and then stayed overt. However, the contrast in (8a) and (8b) shows that the verb is allowed to remain \textit{in situ} as long as it gets elided (8a), but no such option works for the object phrase (8b). (If the verb remained \textit{in situ} and wasn't elided, the derivation would crash.) Thus, ellipsis bleeds HM (but not object movement). Since ellipsis occurs (by assumption) at PF, HM must also happen at PF if it is to be bled by ellipsis. By putting HM and phrasal movement in different modules, differences between them are trivially accounted for.
+
+\subsection{Schoorlemmer \& Temmerman 2012}
+
+More than a decade later, Schoorlemmer \& Temmerman (2012) look at essentially the inverse phenomenon as Boeckx \& Stjepanovi\'{c} (2001): verb-stranding VP-ellipsis in Portuguese and Irish, in which a VP constituent is elided but the verb head remains. The data in (9) is representative.
+
+\pex \textit{Schoorlemmer and Temmerman 2012: : (2b), (5a), (7a), (11a)}
+
+\small
+\a
+\begingl
+\gla Ar \textbf{Cheannaigh} siad teach? -- Creidim gur \textbf{cheannaigh}. //
+\glb COMP.INTERR buy.PAST they house -- believe.PRES.1SG COMP buy.PAST //
+\glc //
+\glft ``Did they buy a house?'' -- ``I believe they did.'' \hfill (\textit{V heads identical}) //
+\endgl
+\a
+\begingl
+\gla *Níor \textbf{cheannaigh} siad ariamh teach ach dhíol. //
+\glb NEG buy.PAST they ever house but sell.PAST //
+\glc //
+\glft INTENDED: ``They never bought a house but they sold (a house)'' \hfill (\textit{V heads not identical}) //
+\endgl
+\a
+\begingl
+\gla Dúirt mé go \textbf{gceannóinn} é agus \textbf{cheannaigh}. //
+\glb said I COMP buy.CONDIT it and buy.PAST//
+\glc //
+\glft ``I said that I would buy it and I did.'' \hfill (\textit{V heads identical, minus inflection}) //
+\endgl
+\a She met \textbf{Ringo}, but I don't know \textbf{who else}. \hfill (\textit{sluicing})
+\xe
+
+In (9a), the verb has undergone movement to a position (unspecified) outside the VP, and the VP is elided. Schoorlemmer \& Temmerman's analysis starts by assuming, following some prior work, that an elided constituent has certain identity requirements at LF with respect to its antecedent. Specifically, an elided constituent and its antecedent must mutually entail each other.\footnote{ Following Merchant (2001), Schoorlemmer and Temmerman assume that elided phrases are marked as such in the syntax by an [\textsc{e}]-feature. On first blush, this seems to me to violate the Headedness Condition, though I'm not familiar with that work by Merchant.} Verbs that have been stranded outside of VP-ellipsis exhibit these identity requirements. Thus, the verbs in (9a) are identical, and the sentence is grammatical. On the other hand, two different verbs in such constructions causes ungrammaticality (9b). As long as the verbs are semantically and categorically identical, inflectional material can differ between the stranded verb and its antecedent (9c), since this inflectional material originates outside of the elided VP. Object phrases, however, don't have such identity requirements, as in the sluicing example in (9d).\footnote{ Unfortunately Schoorlemmer \& and Temmerman don't provide any Irish or Portuguese data here.}
+    
+The basic idea, then, is that, since verb heads have identity requirements at LF, those heads must be in the ellipsis site by the time the derivation is sent to LF. If the heads are still in the ellipsis site at LF, the heads must not have been moved prior to LF in the syntax; i.e., HM occurs post-syntax at PF. HM is different than phrasal movement because objects can move outside of the ellipsis site in the syntax, before being sent to LF, which is why objects don't need to abide by ellipsis-based identity requirements. In other words, ellipsis counterbleeds HM.
+ 
+\subsection{Takeaways}
+
+Of course, Boeckx \& Stjepanović and Schoorlemmer \& Temmerman are at cross-purposes. While both analyses claim that HM occurs at PF, the former requires that ellipsis occur before HM, and the latter requires that HM occur before ellipsis. These conflicting results could be due to the fact that they look principally at data from different languages. Still, these two accounts are among the few that explicitly argue for a PF account of HM, making it difficult to choose between them.
+
+It's also worth noting that, like Chomsky (2000, 2001) these two accounts don't describe how the PF component actually operates. Both accounts, though, implicitly require that the PF component operates over hierarchical structures, since verb heads can move across arbitrarily long subject strings (e.g., T-to-C movement), as in (10).
+
+\pex \textit{HM Over Increasingly Long Subjects}
+\a Does Bob whom I know from school love the sun?
+\a Does Bob whom I know from school and have hated since he beat me up love the sun?
+\xe
+
+\noindent This problem is especially pertinent for Schoorlemmer and Temmerman, since they assume that an elided phrase is selected by a head with an [E]-feature: PF must know when that phrase (of arbitrary length) ends.
+
+\section{The Place of Head Movement: Narrow Syntax}
+
+Against the above claims for HM occurring at PF, several analyses have tried to show that at least some HM must occur in the narrow syntax. The current section goes through three such accounts, the first using ellipsis phenomena, the next two using scope phenomena.
+
+\subsection{Hartman 2011}
+
+Hartman (2011) also looks at ellipsis phenomena but argues that HM must occur in the narrow syntax. Hartman assumes that two processes interact to determine elided constituents (presumably both at LF): selection of a Parallel Domain (PD) and MaxElide. Selection of PD requires that the elided constituent be semantically identical to its antecedent, which, at least for present purposes, essentially means that the elided constituent can't contain any unbound variables. MaxElide then selects the largest elidable constituent within the PD. Importantly, it's not the case that the selected PD has to be the largest possible PD; it only needs to meet the identity requirements. Hartman discusses the contrast represented by the data in (11).
+
+\pex \textit{Hartman 2011: (32), modified}
+\a Mary will eat something, but I don't know what (*she will) \hfill (\textit{embedded object)} \\ \noindent [\textsub{CP} what \underline{$\lambda$x. [\textsub{TP} she $\lambda$y. will [\textsub{VP} y eat x]]}]
+\a A: Mary will eat something ... B: What (*will she)? \hfill (\textit{matrix object})\\ \noindent [\textsub{CP} what \underline{ $\lambda$x. will $\lambda$z . [\textsub{TP} she $\lambda$y. z [\textsub{VP} y eat x]]}]
+\a Mary will leave, but I don't know when (she will) \hfill (\textit{embedded adverb})\\ \noindent [\textsub{CP} when \dashuline{$\lambda$x. [\textsub{TP} x [\textsub{TP} she }\underline{$\lambda$y . will [\textsub{VP} y leave]}]]]
+\a A: Mary will leave ... B: When (*will she) \hfill (\textit{matrix adverb})\\ \noindent [\textsub{CP} when \underline{ $\lambda$x. will $\lambda$z . [\textsub{TP} x [\textsub{TP} she $\lambda$y. z [\textsub{VP} y leave]]}]
+\a Someone will leave, but I don't know who (will) \hfill (\textit{embedded subject})\\ \noindent [\textsub{CP} who \dashuline{$\lambda$x . [\textsub{TP} x }\underline{$\lambda$y . will [\textsub{VP} y leave]}]]
+\a A: Someone will leave ... B: Who (will)? \hfill (\textit{matrix subject})\\ \noindent [\textsub{CP} who \dashuline{$\lambda$x . [\textsub{TP} x }\underline{$\lambda$y . will [\textsub{VP} y leave]}]]
+\xe
+
+In the above data the solid underlined portion represents the smallest possible PD, and the dotted underline plus the solid underline represents a larger possible PD, hence the optionality in (11c,e,f).\footnote{The dotted underline plus the solid underline is the case in which the optional element is present.} The important contrast is that between (11c) and (11d), in which the TP is optional for the embedded adverb but not the matrix adverb. The problem is that, in the matrix adverb case (32d), the T-head moves up to C, leaving a trace (\textit{z)} that must be bound ($\lambda z$) for ellipsis. If the T-head hadn't moved, the smaller, VP-eliding domain would be available for ellipsis.\footnote{As Hartman notes, this analysis requires that there is no T-to-C movement for subject-Wh questions (11e,f).}
+    
+\subsection{Lechner 2007}
+
+Lechner (2007) claims that inverse-scope readings of sentences with a modal, a universal quantifier, and negation require syntactic HM for the scope reconstruction effects in (12). Namely, the inverse scope reading in (12b) represents a reading in which the modal \textit{can} scopes above \textit{every boy} but below the negation.\footnote{Lechner assumes a system in which the constituent \textit{not every boy} in these cases has the denotation $\llbracket \textbf{every boy} \rrbracket$ and that the negation occupies the specifier of a separate, higher head (see the tree in (13b)).} The \textit{de re} reading is also available, as in (12c).
+
+\pex \textit{Lechner 2007: (6)}
+\a Not every boy can make the basketball team
+\a ``It's not possible that every boy makes the basketball team'' \hfill $\neg \succ \lozenge \succ \forall$
+\a ``There are some boys who can't make the basketball team'' \hfill $\neg \succ \forall \succ \lozenge$
+\xe
+
+\noindent The question for Lechner is how to get the modal \textit{can} sandwiched between negation and the universal for the inverse reading. To answer this question, Lechner provides the structure in (13b).\footnote{ Lechner puts \textit{not every boy} as the head of AgrP instead of as Spec,AgrP. This will become relevant below.}
+
+\pex \textit{Lechner 2007: (26), modified}
+
+\a Not every boy can make the team
+
+\a \scriptsize \begin{forest}
+[AgrP, for tree={s sep=2em}
+    [not\\every\\boy][\xbar{Agr}
+    [Agr][NegP
+        [$\llbracket$\textbf{not}$\rrbracket$][\xbar{Neg}
+            [$\llbracket$\textbf{can}\textsub{2}$\rrbracket$][TP
+                [$\llbracket$\textbf{every boy}\textsub{1}$\rrbracket$][TP
+                    [$\lambda$1][T
+                    [t\textsub{2}][vP/VP
+                        [t\textsub{1} \\ $*\llbracket$\textbf{every boy}\textsub{1}$\rrbracket$]
+                        [ ...
+                        [{make the team}, roof, yshift=-1em]
+                        ]
+                    ]
+                    ]
+                ]
+            ]
+        ]   
+    ]
+    ]
+]
+
+\end{forest}
+\xe
+
+The idea is that the modal can move to a position higher than its Merge position, and it can take scope at the higher or lower position.\footnote{ It's not clear where \textit{can} is actually pronounced, i.e., whether the movement is covert or overt. The data in (15), below, suggests the modal is pronounced in its Merge position, though.} The higher position gives the inverse scope reading (12b), while the lower position gives the \textit{de re} reading (12c). Lechner's analysis crucially relies on the inability of the universal to reconstruct below T, which Lechner calls the Strong Constraint.
+
+\ex \textit{Lechner 2007: (15)} \\ \textbf{Strong Constraint:} A strong NP cannot reconstruct below T\textsup{0}
+\xe
+
+\noindent This is constraints holds, Lechner claims, even under the assumption that the subject originates in some position below T. If the universal could reconstruct below T, Lechner's analysis would fall apart, because the two desired readings in (12) could arise simply by the subject reconstructing.\footnote{ The subject also cannot take scope above negation because \textit{not every boy} must be licensed by the LF $\llbracket \textbf{not} \rrbracket $}
+
+Lechner motivates the Strong Constraint in several ways. To give one example, in sentences like (15) with NPI \textit{ever}, no reading allows the universal to scope below the modal
+    
+    \pex \textit{Lechner 2007: (30), modified}
+    \small
+    \a Not everyone can ever be on the team 
+    \a $*[\neg \succ \lozenge \succ \forall \succ \textrm{NPI}]$
+    \a $*[\neg \succ \textrm{NPI} \succ \lozenge \succ \forall]$
+    \a $\checkmark[\neg \succ \forall \succ \textrm{NPI} \succ \lozenge]$ 
+    \xe
+
+In (15), (15b) is ruled out because the NPI's negative license is blocked by the intervening quantifiers; i.e., unlike (13), \textit{can} cannot move to a higher position. Since the reading in (9c) is also unavailable, it must be because the subject can't reconstruct to a position below the modal, i.e., below T. Lechner concludes, then, that head movement (of the modal) has semantic effects, which means that the head must be moved before LF, namely, in the syntax.
+
+Given (13b), McCloskey (2016) claims there is also a third reading for (12). The modal could take widest scope at the Agr-head, giving the reading in (16d).
+
+\pex \textit{Lechner 2007: (6), modified}
+\a Not every boy can make the basketball team
+\a ``It's not possible that every boy makes the basketball team'' \hfill $\neg \succ \lozenge \succ \forall$
+\a ``There are some boys who can't make the basketball team'' \hfill $\neg \succ \forall \succ \lozenge$
+\a ``It's possible that not every boy makes the basketball team \hfill $\lozenge \succ \neg \succ \forall$
+\xe
+
+\noindent Lechner doesn't entertain this possibility for the simple reason that, unlike McCloskey\s reconstruction of Lechner's analysis, Lechner doesn't move \textit{can} to the Agr-head. In fact, the subject \textit{not every boy} occupies Lechner's Agr-head, the reason for which is unclear. If \textit{can} can move up to the Neg head, it's worth wondering why \textit{can} can't move up to the Agr-head. The analysis in the following section might be able to help in this regard, though 
+
+\subsection{Iatridou \& Zeijlstra (2013)}
+
+Iatridou \& Ziejlstra (2013) diagnose three different types of modals in English, Greek, and Portuguese, with English forms in the table in (17). In fact, they delineate three subtypes of PPIs, including PPI modals, as to what types of entities they can take scope under. For present purposes it only matters that PPI modals cannot take scope under negation. On the other hand, neutral modals can take scope under negation, and NPIs must take scope under negation.
+
+\pex \textit{Iatridou \& Zeijlstra 2013: Table 1, modified}
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+|c
+|>{\centering\arraybackslash}X
+|>{\centering\arraybackslash}X
+|>{\centering\arraybackslash}X
+|
+}
+\hline
+& PPI & Neutral & NPI \\
+\hline
+\hline
+description & can't scope under NEG & can scope under NEG & must scope under NEG \\
+\hline
+deontic & \textit{must, should, ought to, to be to} & \textit{have to, need to} & \textit{need (*not)} \\
+\hline 
+existential & --- & \textit{can, may} & --- \\
+\hline
+\end{tabularx}
+\xe
+
+The data in (18)-(20) shows examples of these three types of modals and how they take scope.
+
+\pex \textit{Iatridou \& Zeijlstra 2013: (68), modified}
+\a John does (not) have to leave. [\textit{or:} John has to leave.]
+\a John can(not) leave.
+\a neutral modal: $[\neg \succ \square / \lozenge], ??[\square / \lozenge \succ \neg]$
+\xe
+
+\pex \textit{Iatridou \& Zeijlstra 2013: (71), modified}
+\a John need *(not) leave.
+\a NPI modal: $[\neg \succ \square], *[\square \succ \neg]$
+\xe
+
+\pex \textit{Iatridou \& Zeijlstra 2013: (81a), (74), modified}
+\a John must (not) leave.
+\a 
+\begingl
+\gla \noindent [Greek] O Yanis dhen prepe na figi //
+\glb {} the Yanis NEG must NA leave. //
+\glc //
+\glft ``Yanis must not leave.'' //
+\endgl
+\a NPI modal: $*[\neg \succ \square], [\square \succ \neg]$
+\xe
+
+The question here is how to get the right scope order when it differs from the word order. In (18b) and (19a) the modal reconstructs to below T and thereby below the negation. In fact, they claim that if the modal can reconstruct it must. In (18a) and (20a) the two scope orders match, and in (20a) the modal cannot reconstruct below negation because it is a PPI. Finally, in (20b) the modal must QR to ``some functional head'' above negation in order to get the right scope.\footnote{ English examples of this aren't provided.} The authors assume that modals start below T for purely theory-internal reasons (and that T selects negation), perhaps a hard pill to swallow.
+
+\subsection{Takeaways}
+
+Hartman (2011) and Schoorlemmer \& Temmerman (2012) are irreconcilable: the latter require V-to-T movement to occur post syntax and the former require T-to-C movement to occur in the syntax. So, it's not clear exactly what to make of the ellipsis data.\footnote{ Cf. Gribanova 2017 contra Schoorlemmer \& Temmerman 2012. Hartman's (2011) assumption of no T-to-C movement is perhaps difficult to accept. Schoorlemmer \& Temmerman (2012) mention Hartman's analysis but not substantively.}
+    
+Iatridou \& Zeijlstra's assumption of modals-below-T can be dispensed with under Lechner's model with AgrP above TP. I.e., modals could still start at T and move up to the Agr-head above negation. This analysis would then also provide the landing site for their PPI modals like those in Greek (20b), which need ``some functional head'', anyway.
+
+McCloskey (2016) notices that Iatridou \& Zeijlstra and Lechner (2007) are contradictory. Namely, Iatridou \& Zeijlstra claim that if a head is able to reconstruct, it must, which rules out the linear scope in (18c). Lechner (2007) claims the same modal, \textit{can}, optionally reconstructs, in order to get the two scope readings. The two situations described in Iatridou \& Zeijlstra versus Lechner, however, are not exactly parallel. Iatridou \& Zeijlstra require the neutral modal to reconstruct in these instances because it must not scope above negation. Lechner's scope ambiguity, on the other hand, refers to two different positions below negation. The possibility of \textit{can} scoping above negation doesn't arise in Lechner's account.
+    
+As mentioned above, though, it's still a question for Lechner's analysis whether the modal can take scope above negation at the Agr-head, and this question becomes especially pertinent if we assume that the Greek modal from (20b) takes scope from that position.\footnote{ Even if we didn't use AgrP for the Greek modal, if the Greek modal can take scope above negation somewhere, it's an open question for Lechner's analysis whether \textit{can} is able to take scope there as well.} The contradiction McCloskey notes now becomes visible: if \textit{can} is moved to a place above negation (the Agr-head) in (13b), Iatridou \& Zeijlstra would say that, since it can reconstruct below negation, it must. This would imply, however, that, if \textit{can} can reconstruct to its initial position below the LF position of \textit{every boy}, it must. Only one reading, then, the \textit{de re} reading of (12c), would be possible.
+
+It's worth wondering whether linear scope is possible with neutral modals. I provide some equivocal data in (21). The sentences in (21a,c) represent the modal scoping below negation, as expected. The sentences in (21b,d), though, represent the modal scoping above negation.
+    
+\pex  
+\a John may not leave, even if he wants
+\a ?John may not leave, if he wants
+\a John doesn't need to leave
+\a ?John needs not to leave
+\xe
+    
+The intonation of (21b,c) might suggest these are cases of constituent negation, but, if not, the data would suggest a path for unifying Iatridou \& Zeijlstra's and Lechner's accounts. In any case, the conditions that allow or disallow reconstruction remain unclear.
+
+\section{Fixing Head Movement}
+
+This section will discuss two accounts that, in different ways, attempt to give a syntactic story of HM that takes care of (most of) the problems in (6).
+
+\subsection{Harley 2004/2013}
+
+Harley (2004) posits a system in which ``head movement'' results are gained without any actual movement occurring; in this way, phrasal movement and HM are fundamentally different, but only one type of movement obtains.\footnote{ Harley 2013 stands by the analysis in Harley 2004.} Following some previous accounts, Harley utilizes a process called ``Conflation''. Therein, certain heads are phonologically defective, which is a feature marked in the syntax (for Harley [+affix]). When these phonologically defective heads are Merged, they project and also gain the phonological properties (the \textit{p-sig}) of the selected head. The conflated heads are then sent to PF. Though the  \textit{p-sigs} are copied with each merge, each copy is only pronounced once, in their final locations, for reasons of Economy. As desired for HM, \textit{p-sigs} can ``roll up'' through the tree, provided more than one head with [+affix] is merged. Note, also, that defective \textit{p-sigs} do not map onto null phonological exponents nor vice versa. I provide a simple, hypothetical example in (22).\footnote{ The word \textit{sribdl} here is made up.}
+
+
+\ex Schema for Conflation
+
+\begin{forest}
+[CP\textsub{srib-d-l}, for tree={s sep=1em}
+    [C\textsub{srib-d-l} \\ $\langle$+affix$\rangle$ \\ srib-d-l][TP\textsub{srib-d}
+        [DP][\xbar{T}\textsub{srib-d}
+            [T\textsub{srib-d} \\ $\langle$+affix$\rangle$ \\ srib-d][VP
+                [V\textsub{srib} \\ srib]
+                [DP]
+            ]
+        ]
+    ]
+]
+\end{forest}
+\xe
+
+In (22), the VP merges with its object and its \textit{p-sig} projects. The defective T-head merges with the VP and its \textit{p-sig}, \textit{-d}, is conflated with the \textit{p-sig} of the VP, \textit{srib}. The subject DP is merged and the combined \textit{p-sig}, \textit{srib-d}, is projected. Finally, the defective C-head is merged and its \textit{p-sig}, \textit{-l}, is conflated with the conflated T's \textit{p-sig} to get \textit{srib-d-l}. When the derivation is sent to PF, \textit{srib-d-l} is pronounced once at its final C-position.
+
+Harley furthermore claims that conflation must occur as soon as possible (it can't ``procrastinate''), from which is derived the First Sister Principle, hence the contrast in (23b) and (23c).
+
+\pex \textit{Harley 2004: (12), modified}
+\a the farmer grows wheat quickly
+\a a wheat-growing farmer
+\a *a quick-growing (of wheat) farmer
+\a the wheat grows quickly
+\a the quick-growing wheat
+\xe
+
+\noindnet Cases such as (23b,e) occur because the defective verb head's \textit{p-sig} is Conflated with whatever Merges first with the verb (i.e., these are cases of incorporation from (2b). However, in (23c), the adverb \textit{quick} would Merge after the object, so the verb can't be Conflated with the adverb.
+
+Harley claims that at least lexical categories have to be specified in the lexicon for [+affix], [--affix], or both. This account therefore dramatically increases the size of the lexicon. It's not clear, though, as Harley admits, what governs which heads have which [+affix] feature. Nor is it clear how certain systematic properties might arise, e.g., why [+affix]/conflated verbs are licit in nominal contexts (\textit{the script-writer}) but not in verbal contexts (\textit{to script-write}).
+
+\subsection{Matushansky 2006}
+
+Matushansky (2006) develops a system for HM in which the syntax and PF modules are tightly integrated. The underlying motivation of the system, unlike Harley's (2004), is to show that HM and phrasal movement are essentially the same type of phenomenon. Matushansky assumes two general conditions per (24) and (25).
+
+\pex  \textit{Head Movement Generalization, Matushansky 2006: (5)} \\ \textit{(from Pesetsky \& Torrego 2001)}
+\a If XP is the complement of H, copy the head of XP into the local domain of H.
+\a Otherwise, copy XP into the local domain of H.
+\xe
+
+\ex  \textit{Transparence Condition, Matushansky 2006: (9)} \\ A head ceases to be accessible once another head starts to project
+\xe
+
+\noindent Once these conditions are set up, Matushansky develops the process in (26)/(27) for HM.
+
+\pex \textit{HM According to Matushansky 2006}
+\a C-Selection is the trigger for head movement: a head C-Selects another, still-accessible head (i.e., by the Transparence Condition, the closest head).
+\a The selected head is Merged at the root, i.e., in the specifier of the selecting head.
+\a The two heads are then fused together by a separate process called \textbf{M-Merger}, which is defined as a morphological process (i.e., at PF)
+\a The sub-heads of the new complex head are now opaque to the syntax.
+\xe
+
+\ex  \textit{Matushansky 2006: (10)}
+
+\begin{adjustbox}
+\small
+\begin{forest}
+[XP $\Rightarrow$, for tree={s sep=0.5em}
+    [X\textsup{0}\textsub{[uF]}, name=H2]
+    [YP
+        [ZP]
+        [\xbar{Y}
+            [Y\textsup{0}\textsub{[iF]}, name=H1] [WP]
+        ]
+    ]
+]
+\draw [->, mvt] (H1.south) -- ++(0, -0.5em) -| (H2.south);
+\end{forest}
+\end{adjustbox}\qquad
+\begin{adjustbox}
+\small
+\begin{forest}
+[XP $\Rightarrow$, for tree={s sep=0.5em}
+[Y\textsup{0}\textsub{i}]
+[\xbar{X}
+    [X\textsup{0}]
+    [YP
+        [ZP]
+        [\xbar{Y}
+            [t\textsub{i}] [WP]
+        ]
+    ]
+]
+]
+\end{forest}
+\end{adjustbox}\qquad
+\begin{adjustbox}
+\small
+\begin{forest}
+[XP, for tree={s sep=0.5em}
+    [X\textsup{0}
+    [Y\textsup{0}\textsub{i}][X\textsup{0}]
+    ]
+    [YP
+        [ZP]
+        [\xbar{Y}
+            [t\textsub{i}] [WP]
+        ]
+    ]
+]
+\end{forest}
+\end{adjustbox}
+\xe
+
+The head Y in (27) is targeted instead of the higher specifier ZP because C-Select, which selects the projecting head Y, must occur before Agree. On the other hand, phrasal movement can still generally occur because of the Transparence Condition, which would make the head Y opaque to syntactic operations were it not moved as in (27).\footnote{ For Matushansky all movement is generalized pied-piping, and in general the syntax tries to move the smallest amount possible. If some higher head needs a feature checked, and that feature is on a head that's become opaque, the smallest element containing that feature-bearing head is moved.} Still, the timing of these operations remains somewhat unclear: in (23), the selecting head X has already projected in the first step, so the lower head Y should already be opaque for HM. Perhaps Matushansky means something like ``a head ceases to be accessible once the head that selects it no longer projects''. If not, it would seem that the order of operations must be as follows: 
+
+\pex \textit{More Explicit Order of Operations of HM/M-Merger}
+\a X\textsup{0} C-selects YP containing Y\textsup{0}
+\a Y\textsup{0} is targeted for HM (triggered by the C-Select)
+\a X\textsup{0} merges with YP and projects
+\a X\textsup{0} merges with Y\textsup{0} and projects
+\a m-merger
+\xe
+
+\noindent In other words C-select (28a) and Merger (28c) of the phrase with the selecting head are interrupted by selection of the head for HM (28b), and the selection of the head for HM (28b) and that head's Merge with selecting head (28d) are separated by the Merge of the phrase with the selecting head (28c).
+
+Moreover, Matushansky's system boldly requires that every head is a phase, since every head needs to become opaque to allow M-Merger (at PF) to occur; each head triggers spell-out.\footnote{ Matushansky suggests M-Merger occurs without movement, too, but it is uncertain whether HM can occur without M-Merger.} Finally, it's worth noting that Matushansky argues that the supposed lack of semantic effects of HM is generally irrelevant: nothing requires movement to have semantic effects, and the usual elements targeted by HM (verbs) wouldn't have semantic effects even under the assumption that they've moved.
+
+
+\subsection{Takeaways}
+
+The accounts of HM in Harley (2004) and Matushansky (2006) do have some merits. They both: derive the ban on excorporation, make HM fit the Extension Condition, fix HM's c-command problem, and rework (in distinct ways) the difference between HM and phrasal movement. According to Harley (2013), Matushansky's system still violates the Chain Uniformity Condition, though this seems like a matter of definition. More importantly, both of these systems fundamentally do the same thing. Namely, they both redefine C-Select to accommodate HM at the expense of making the syntax-PF interface more complicated. The difference between them comes down to whether or not HM and phrasal movement constitute the same or different phenomena. The empirical question, then, remains the same: whether or not HM does or does not have semantic effects. As Harley (2004) notes, her analysis predicts that HM will have not semantics effects, while Matushansky's system leaves open that possibility (while also claiming semantic effects would be rare).
+
+\section{Conclusion}
+
+This paper has reviewed several accounts of HM: two that claim it must occur at PF, three that claim it must occur in the narrow syntax, and two that try to give a syntactic(ish) account of HM. At this point, the PF hypothesis for all HM seems to be largely neglected. Some more recent accounts, e.g., Harizanov \& Gribanova (2019), maintain that some HM occurs in the syntax and that some HM occurs at PF. The semantic effects of HM remain murky as well, and the question, if we are to follow Matushansky, may be a \textit{non sequitur} anyway. Accounts such as Preminger (2019) attempt to give a more syntactically motivated justification for syntactic HM.
+
+As it stands, the null hypothesis remains, I think, on the side of keeping HM as at least partially a syntactic phenomenon. What that must look like, however, is less certain, but the theoretical trade-off, at least given the accounts discussed here, seems to be this: make the syntax itself  more complicated by having two types of movement, or make the syntax-PF interface more complicated. Further research, in addition to those mentioned, is needed to make that choice.
+
+\section{References}
+\small
+
+\noindent Boeckx, Cedric \& Sandra Stjepanović. 2001. Head-ing toward PF. \textit{Linguistic Inquiry} 32(2). 345-355.
+
+\noindent \hfill \par
+
+\noindent Chomsky, Noam. 2000. Minimalist inquiries: The framework. In Roger Martin, David Michaels \& Juan Uriagereka (eds.), \textit{Step by step: Essays in honor of Howard Lasnik}, 89-155. Cambridge, MA: MIT Press.
+
+\noindent \hfill \par
+
+\noindent Chomsky, Noam. 2001. Derivation by phase. In Michael Kenstowicz (ed.), \textit{Ken Hale: A life in language}, 1-52. Cambridge, MA: MIT Press.
+
+\noindent \hfill \par
+
+\noindent Dékány, Éva. 2018. Approaches to head movement: a critical assessment. \textit{Glossa: a journal of general linguistics} 32(1). 65-108.
+
+\noindent \hfill \par
+
+\noindent Grivanova, Vera. 2017. Head movement and ellipsis in the expression of Russian polarity focus. \textit{Natural Language and Linguistic Theory} 35(4). 1079-1121.
+
+\noindent \hfill \par
+
+\noindent Harizanov \& Gribanova. 2019. Wither head movement? \textit{Natural Language and Linguistic Theory} 37. 461-522.
+
+\noindent \hfill \par
+
+\noindent Harley, Heidi. 2004. Merge, conflation, and head movement: The First Sister Principle revisited. In Keir Moulton \& Matthew Wolf (eds.), \textit{Proceedings of NELS} 34 1. 239-254. Amherst, MA: GLSA.
+
+\noindent \hfill \par
+
+\noindent Harley, Heidi. 2013. Getting morphemes in order: Merger, affixation, and head movement. In LisaLai-Shen Cheng \& Norbert Corver (eds.), \textit{Diagnosing syntax} (Oxford Studies in Theoretical Linguistics), 44-74. Oxford: Oxford University Press.
+
+\noindent \hfill \par
+
+\noindent Hartman, Jeremy. 2011. The semantic uniformity of traces: Evidence from ellipsis parallelism. \textit{Linguistic Inquiry} 42(3). 367-388.
+
+\noindent \hfill \par
+
+\noindent Iatridou, Sabine \& Hedde Zeijlstra. 2013. Negation, polarity, and deontic modals. \textit{Linguistic Inquiry} 42(3). 367-388.
+
+\noindent \hfill \par
+
+\noindent Lasnik, Howard. 1995. A note on pseudogapping. In \textit{MIT working papers in linguistics 27: Papers in minimalist syntax}, 143-163.
+
+\noindent \hfill \par
+
+\noindent Lechner, Winfried. 2007. Interpretive effects of head movement. MS., University of Tübingen, version 2.
+
+\noindent \hfill \par
+
+\noindent Matthew, Rosmin. 2015. \textit{Head Movement in syntax}. Amsterdam: John Benjamins.
+
+\noindent \hfill \par
+
+\noindent Matushansky, Ora. 2006. Head movement in linguistic theory. \textit{Linguistic Inquiry} 37(1). 69-109
+
+\noindent \hfill \par
+
+\noindent McCloskey, Jim. 2016. Interpretation and the typology of head movement: A re-assessment. \textit{Handout of a talk presented at the Workshop on the Status of Head Movement in Linguistic Theory}.
+
+\noindent \hfill \par
+
+\noindent Merchant, Jason. 2001. \textit{The Syntax of Silence: Sluicing, islands and the theory of ellipsis}. Oxford: OUP.
+
+\noindent \hfill \par
+
+\noindent Pesetsky, David and Esther Torrego. 2001. T-to-C movement: Causes and consequences. In \textit{Ken Hale: A life in language}, ed. by Michael Kenstowicz, 355-426. Cambridge, MA: MIT Press.
+
+\noindent \hfill \par
+
+\noindent Preminger, Omer. 2019. What the PCC tells us about ``abstract'' agreement, head movement, and locality. \textit{Glossa: a journal of general linguistics} 4(1): 13. 1-42.
+
+\noindent \hfill \par
+
+\noindent Roberts, Ian. 2010. \textit{Agreement and head movement: Clitics, incorporation, and defective goals} (Linguistic Inquiry Monograph 59). Cambridge, MA: MIT Press.
+
+\noindent \hfill \par
+
+\noindent Schoorlemmer, Erik \& Tanja Temmerman. 2012. Head movement as a PF-phenomenon: Evidence from identity under ellipsis. In Jaehoon Choi, E. Alan Hogue, Jeffrey Punske, Deniz Tat, Jessamyn Schertz \& Alex Trueman (Eds., \textit{Proceedings of the 29th West Coast Conference on Formal Linguistics}. 232-240. Somerville, MA: Cascadilla Proceedings Project
+
+
+\end{document}

@@ -34,23 +34,8 @@ jobs:
 
       - name: Compile LaTeX Documents and Generate PDFs
         run: |
-          mkdir -p pdfs
-
-          # 1. Compile 1-Page LaTeX resume if present
-          if [ -f "resume/resume-onepage.tex" ]; then
-            pdflatex -interaction=nonstopmode -output-directory=pdfs resume/resume-onepage.tex || true
-          fi
-
-          # 2. Compile Full CV LaTeX document if present
-          if [ -f "resume/cv-full.tex" ]; then
-            pdflatex -interaction=nonstopmode -output-directory=pdfs resume/cv-full.tex || true
-          fi
-
-          # 3. Compile any papers found in papers/
-          find papers -name "*.tex" -exec pdflatex -interaction=nonstopmode -output-directory=pdfs {} + 2>/dev/null || true
-
-          # Clean up LaTeX aux/log files from pdfs folder
-          rm -f pdfs/*.aux pdfs/*.log pdfs/*.out
+          chmod +x scripts/build-resumes.sh
+          ./scripts/build-resumes.sh
 
       - name: Setup Haskell Environment
         uses: haskell-actions/setup@v2
@@ -77,7 +62,7 @@ jobs:
       - name: Bundle PDFs and CNAME into _site
         run: |
           mkdir -p _site/pdfs
-          cp -r pdfs/*.pdf _site/pdfs/ 2>/dev/null || true
+          cp -a pdfs/. _site/pdfs/
           cp CNAME _site/CNAME
 
       - name: Upload Pages Artifact

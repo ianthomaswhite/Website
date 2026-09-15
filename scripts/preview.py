@@ -199,7 +199,14 @@ def inline_formatting(text):
     # Italic *text* (negative lookaround prevents matching inside bold markers)
     text = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<em>\1</em>', text)
     # Links [text](url) - supports mailto:, absolute URLs, and root-relative paths
-    text = re.sub(r'\[(.*?)\]\((mailto:[^\s)]+|https?://[^\s)]+|/[^\s)]*)\)', r'<a href="\2">\1</a>', text)
+    def _link_replace(m):
+        label = m.group(1)
+        url = m.group(2)
+        if url.endswith(".pdf") or url.startswith("http"):
+            return f'<a href="{url}" target="_blank" rel="noopener">{label}</a>'
+        return f'<a href="{url}">{label}</a>'
+
+    text = re.sub(r'\[(.*?)\]\((mailto:[^\s)]+|https?://[^\s)]+|/[^\s)]*)\)', _link_replace, text)
     return text
 
 def render_template(template_str, context):
@@ -264,9 +271,7 @@ def build_site():
 
     # Copy static PDFs (resumes, papers)
     if PDFS_DIR.exists():
-        (SITE_DIR / "pdfs").mkdir(parents=True, exist_ok=True)
-        for pdf in PDFS_DIR.glob("*.pdf"):
-            shutil.copy(pdf, SITE_DIR / "pdfs" / pdf.name)
+        shutil.copytree(PDFS_DIR, SITE_DIR / "pdfs", dirs_exist_ok=True)
 
     # Load templates from templates/editorial/
     default_tpl = (TEMPLATES_DIR / "default.html").read_text(encoding="utf-8")

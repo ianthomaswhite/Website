@@ -1,0 +1,328 @@
+\documentclass[12pt]{article}
+
+\usepackage[letterpaper, margin = 1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+%\usepackage{lipsum}
+\usepackage[fleqn]{amsmath}
+\usepackage{setspace}
+\usepackage{stmaryrd}
+\usepackage{expex}
+\usepackage{tikz}
+\usepackage{hanging}
+
+\usepackage{pdflscape}
+
+%%% layout
+\usepackage[hmargin=1in,vmargin=0.75in]{geometry}
+\usepackage{enumitem}
+
+\usepackage{tabularx}
+
+%%% for math
+\usepackage{mathtools, amssymb, stmaryrd}
+\usepackage{delimset}
+  % expanding parens: (  )
+  \newcommand{\p}[1]{\brk*{#1}}
+  % expanding denotation brackets: [[  ]]
+  \newcommand{\sv}[1]{\delim{\llbracket}{\rrbracket}*{#1}}
+  % if putting a tree in brackets, the tree must be re-centered, or else the
+  % brackets will stretch symmetrically above and below the baseline anchor (the root by default)
+  \newcommand{\svtree}[1]{\sv{\vcenter{\hbox{#1}}}}
+%\setlength{\mathindent}{0pt}
+
+%%% font stuff
+%\usepackage{libertine}
+\usepackage{zi4}
+\usepackage[dvipsnames]{xcolor}
+  \colorlet{tycolor}{Cyan}
+  \colorlet{dncolor}{Red}
+
+%%% trees
+\usepackage[linguistics,edges]{forest}
+  \forestset{%
+    default preamble={% this makes all the edges straight
+      for tree={% and steamrolls through empty nonterminals
+        l=0pt,
+        calign=fixed edge angles,
+        calign angle=60,
+        delay={if content={}{%
+          for current and siblings={anchor=north},
+          inner sep=0pt,
+          edge path={%
+            \noexpand\path[\forestoption{edge}]
+            (!u.parent anchor) -- (.children) \forestoption{edge label};
+          }
+        }{}}
+      }
+    },
+  }
+  \tikzset{% convenience path for adding movement arrows
+    label distance=3pt,
+    mv/.style={to path={-- ++(0,-{#1}) -| (\tikztotarget)}},
+    mv/.default=0.2
+  }
+
+\lingset{
+    %aboveglftskip=-1.25em,
+    belowglpreambleskip=0pt,
+    everyglpreamble=\it,
+    everygla={},
+    %aboveexskip=0.1ex,
+    %belowexskip=0.1ex,
+    interpartskip=0em,
+    numoffset=1em,
+    Everyex=\onehalfspacing
+    }
+
+%%% some little macros
+% formula stuff
+\newcommand{\lam}{\lambda}
+\newcommand{\ty}[1]{\texttt{\color{cyan} #1}}
+\newcommand{\dt}{{.}\mkern\thinmuskip}
+\newcommand{\func}[1]{\textbf{\textsf{#1}}}
+\newcommand{\name}[1]{\textbf{\textsf{#1}}}
+
+% tree stuff
+\newcommand{\trace}[1]{\texttt{\_\_$_{#1}$}}
+\newcommand{\pro}[1]{\text{pro$_{#1}$}}
+\newcommand{\pabs}[2][]{\ensuremath{#2_{#1}}}
+\newcommand{\remap}[2]{\ensuremath{[#1 \mapsto #2]}}
+
+%%% your task
+\newcommand{\FILLIN}[1][dncolor]{%
+  {\color{#1}%
+    \begin{tabular}{p{1in}}
+      \hline\strut\\\hline
+    \end{tabular}}}
+    
+\newcommand{\pp}{%
+  \mathbin{{+}\mspace{-8mu}{+}}%
+  }
+    
+\usepackage{bussproofs}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+    
+\title{Permutation Power in MGs and CCGs}
+\author{Ian Thomas White}
+\date{}
+
+%\usepackage[backend=biber, style=apa]{biblatex}
+%\addbibresource{201c.bib}
+%\usepackage{csquotes}
+%\DeclareLanguageMapping{english}{english-apa}
+
+
+\makeatletter
+\renewcommand{\maketitle}
+{
+\begin{flushleft}
+\textbf{{\large\@title}}
+\newline
+\@author
+\end{flushleft}
+}
+\makeatother
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\medium\bfseries}
+\titleformat*{\subsubsection}{\small\bfseries}
+
+
+\newcommand*{\textsup}[1]{\ensuremath{^\textrm{{\scriptsize #1}}}}
+\newcommand*{\textsub}[1]{\ensuremath{_\textrm{{\scriptsize #1}}}}
+\newcommand*{\tinytextsup}[1]{\ensuremath{^\textrm{{\tiny #1}}}}
+\newcommand*{\tinytextsub}[1]{\ensuremath{_\textrm{{\tiny #1}}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ian Thomas White}
+\chead{}
+\rhead{\thepage \ of \pageref{LastPage}}
+
+% \linespread{1.6}
+\widowpenalty=100000
+\clubpenalty=100000
+
+\renewcommand{\labelenumi}{\Alph{enumi}.}
+%\renewcommand{\labelenumii}{\fbox{\Alph{enumii}}}
+%\renewcommand{\labelenumiii}{\fbox{\roman{enumiii}}}
+
+
+\begin{document}
+\maketitle
+
+\section{overview}
+
+\noindent Since the generative turn, determining the class of grammars that characterizes natural language has been a foundational task of modern linguistics. The formal results therein on a wide array of grammars has been substantial, especially in establishing equivalencies based on weak generative capacity (the set of possible strings produced). Of course, the inability for a certain class of grammars to produce some set of strings, including strings that definitely occur in natural language, is often good grounds for ruling out that class. That said, the possibility for using weak generative capacity to determine the appositeness of different grammar classes to natural language is limited, impossible for weakly equivalent grammars. Just because some string is producable does not mean it is producable in the right way: whether that be for reasons of strong generative capacity, some other notion of structural equivalence, difficulty in production/parsing, etc.\\
+
+\noindent The present project seeks to think about and compare grammar formalisms in more robust ways than mere weak generative capacity. Specifically, it looks at the different word order permutations that CCGs and MGs can produce once certain, independently motivated, notions of selection are held fixed, following on the heels of Stabler (2011) and Steedman (2020). It's well known that CCGs are weakly less powerful than MGs. Despite that fact, CCGs, again, once selection is fixed, can produce a larger (and incomparable) set of word order permutations than MGs can, at least as Stabler defines them: 22 vs 16. This turns out to be an artefact of certain formal choices Stabler makes, such that modifying those choices allows MGs to produce an equal (still incomparable) set of permutations.\\
+
+\noindent The basic question at hand, then, is: How can we characterize and explain why MGs and CCGs produce their respective word orders (theitr ``permutation power'')? Put differently, can enough common ground between these two very different formalisms be found in order for us to compare their word order power? An important part of this question is defining ``selection'' across different formalisms. Headway is made here in converting CCGs to LIGs, moving them ``toward'' MGs, and thereby allowing CCG operations to be coded without CCGs' adjacency requirement. Furthermore, the MG-CCG discrepancy, informally speaking, is about what sorts of ``bidirectionality'' each formalism can handle, i.e., how they manipulate different sides of a string context. (This is how MGs' permutation power is bumped up from 16 to 22.) It remains to be seen what characterizes MGs' permutation power for \textit{n} elements. From there, the formal relationship between MGs' permutation power and the CCG-derived LIGs needs to be clarified.
+
+\section{background}
+
+\noindent Since Joshi (1985), \textit{mildly context sensitive grammars} (MCSGs) have been the primary contender for the class of grammars that contains natural language. In the 80s and 90s, a number of MCSGs were kicked around that were all weakly equivalent to a (certain formulation of a) long-standing formalism, Combinatory Categorial Grammars (CCGs), especially following Steedman (1985, cf. 2000). Then, in 1997, Stabler introduced a new strain of MCSGs by formalizing traits of the Minimalist Program into Minimalist Grammars (MGs). MGs, often tacitly assumed by working syntacticians, are strictly more powerful than CCGs in terms of string output. MGs are also weakly equivalent to another important grammar formalism, Multiple Context Free Grammars (MCFGs).
+
+
+\section{starting point: Steedman vs. Stabler}
+
+
+\noindent As it stands, the grammar formalism that models, or best approximates, natural language remains rather undecided, despite much progress made on the formal properties of many grammars. Stabler (2011) and Steedman (2020) have each claimed that their respective grammars capture a particular aspect of natural language: Greenberg's Universal 20, i.e., the set of possible word orders in noun  phrases, comprising the four elements Dem-Num-Adj-N (e.g., \textit{these four young boys}). (Similarly for verb phrase elements.) \\
+
+\noindent Of course, given four NP elements, there are 24 logically possible permutations. Both Stabler and Steedman assume that, among all natural languages, only some subset of that 24 are actually witnessed. They differ as to which orders are, in fact, witnessed, though they both take their start from Cinque (2005). Stabler follows Cinque closely and accepts 14 attested orders, while Steedman, using later results, accepts 22 attested orders. Stabler's 14 is a subset of Steedman's 22.\\
+
+\noindent Both authors then set out to discover which orders of their respective subsets their respective grammars can actually produce. They also make two crucial assumptions as to what constitutes an acceptable word-order derivation. First, the Dem-Num-Adj-N order is fixed as the base order across languages, regardless of surface orders. Second, no other heads may be introduced. Accordingly, given the four vocabulary items, Dem-Num-Adj-N, from now on more abstractly 1-2-3-4, Steedman fixes their category (though slash direction can vary), and Stabler fixes their selector-selectee attributes.\\
+
+\noindent Under these assumptions, Steedman finds that CCGs can get exactly the 22 he wants, while Stabler finds that MGs (in various forms) can get the 14 he wants plus two extra. Again, MGs are weakly stronger than CCGs, so it is at least superficially curious that CCGs, under these restrictions, can achieve more word orders than MGs. Furthermore, the two extra orders that Stabler can derive (relative to his/Cinque's 14) are those same two that Steedman cannot derive, meaning MGs and CCGs, under these definitions, produce incomparable sets of word orders.\\
+
+\noindent Steedman provides a formal characterization of the possible word orders for \textit{n} elements, showing that CCGs can get all and only the ``separable permutations''. Separable permutations are defined by the ``forbidden'' orders 3-1-4-2 and  2-4-1-3. That is, for any set of ordered of elements $a_1 < a_2 < ... < a_n$ no subset comprising $a_i < a_{i+1} < a_{i+2} < a_{i+3}$ may appear in the order $a_{i+2} ... a_i ... a_{i+3} ... a_{i+1}$ or its reverse $a_{i+1} ... a_{i+3} ... a_i ... a_{i+2}$. Stabler, on the other hand, provides no such characterization for \textit{n} elements.\\
+
+\noindent It's worth noting that these selectional assumptions are neither capricious nor an instance of special pleading. Of course, Cinque motivates them on his own syntactic and cartographic grounds. Regardless, it is usually assumed that natural language will use only a subset of the full set of possible relationships among some alphabet of symbols. It's not the case, it seems, that all non-terminals symmetrically select each other: some hierarchy obtains. Cinque's/Steedman's/Stabler's particular selectional choices are open to empirical scrutiny. However, abstracting away from the particular NP selectional requirements to generalized order permutations allows us to see the effects of maintaining selection pressure on productive capacity in a general way, i.e., without committing to any particular set of selectional requirements. All this to say, it is useful in a general way to consider grammar formalisms under the assumption that some kind of selection obtains.
+
+\section{what we've learned}
+
+\subsection{CCGs}
+
+\noindent On the CCG side of things, the first step is fitting CCGs into a normal form (Eisner 1996), in order to remove any spurious derivational ambiguity. That is, assuming the full suite of vocabulary items (i.e., slash directions) and modes of combinations (i.e., application, harmonic/crossing composition) many CCG word orders can be derived in multiple ways. For example, the order 1-2-3-4 can be produced using only application or using only composition. This normal form can be thought of in terms of primary and secondary categories (Joshi, Vijay-Shanker, and Weir 1990), essentially functions and arguments, respectively. The normal form essentially requires primary arguments to ``zig-zag'': the (left/right) output of some CCG rule cannot apply (i.e., be primary argument) in the same direction (i.e., to its left/right). (Stanojevi\'{c} and Steedman (2021) use a different type of CCG normal form, based on binary separating trees. It appears that separating tree normal form can be somewhat easily translated into Eisner's normal form, but this needs to be verified.)\\
+
+\noindent Once normal form is enforced, the word order permutations derivable via CCG can be strictly sorted according to primary and secondary arguments. In other words, different word orders are slotted into different ways of using the 1-2-3-4 elements as primary or secondary categories, e.g., whether 3 acts as a primary category over 4 vs. 3 and 4 being secondary categories to 2. (Note that 1, under the current assumptions, will always be a primary category.) The chart below represents how the word order permutations get slotted by the normal form CCG. The left column shows the possible primary/secondary slots, where parentheses separate primary from secondary categories, and commas separate secondary categories under the same primary category. E.g., ``(1(2(3),4)'' means 2 is primary relative to 3, and 1 is primary relative to 2-3 and to 4. The second column shows how many word orders each slot can derive, and the third column which orders those are. The final row is the union of all the other slots.\\
+
+\noindent\begin{tabularx}{\textwidth}{
+    |>{\centering\arraybackslash}X
+    |>{\centering\arraybackslash}X
+    |>{\centering\arraybackslash}X
+    |
+    }
+   \multicolumn{3}{l}{\textbf{CCG primary/secondary category slots}} \\
+    \hline
+    1(2,3,4) & 2 & 3124, 4213, (*2413, *3142) \\
+    \hline
+    1(2(3),4) & 4 & 2314, 3214, 4123, 4132 \\
+    \hline
+    1(2,3(4)) & 4 & 2134, 2143, 3412, 4312 \\
+    \hline
+    1(2(3,4)) & 4 & 1324, 1423, 3241, 4231 \\
+    \hline
+    (1(2(3(4))) & 8 & 1234, 1243, 1342, 1432, 2341, 2431, 3421, 4321 \\
+    \hline
+    \ast1(2(4),3) & --- & --- \\
+    \hline
+    $\bigcup$ & 22 & all minus \ast2413, \ast3142 \\
+    \hline
+\end{tabularx}\\\\
+
+\noindent Thus, derivations with three primary categories produce 8 of the 22 word orders, and so on. There are four logically possible ways of having two primary categories, though one of these is formally prohibited: there's simply no way to ``get off the ground'' by combining 2 and 4. There is one way to have only one primary category, and this can get only 2 of the 22 word orders. Any other word orders produced with only 1 primary category won't be in normal form any more, won't properly zig-zag, meaning that derivation should have been slotted elsewhere. One might think the two impossible (i.e., separable) permutations might be gotten by the 1-primary-category slot, but, again, there is no way for this derivation to get off the ground. Non-incidentally, the 2 1-primary-category orders require crossing composition at each step (minus the final), i.e., they require a maximal amount of crossing composition. \\
+
+\noindent Though it remains to be proved, it seems as though, for any \textit{n} elements, there will always be exactly two word orders derivable with only one primary category, unlike the other slots, which will grow with \textit{n}. That is, the 1-primary-category slot will not grow with \textit{n}, and this slot is characterized by the \textit{ith} and \textit{i+1th} element occurring on alternating ends of the string, in either possible direction. It also remains to be seen how the impossible (separable) word orders grow within the other primary-secondary slots with increasing \textit{n} elements.\\
+
+\noindent In the interest of eventually comparing CCGs and MGs, it will be necessary to find some kind of formal common ground. Since CCGs are weakly less expressive than MCFGs, any CCG can be translated into an equivalent MCFG (Vijay-Shanker and Weir 1994), though this takes, at minimum, a rather winding route through two other CCG equivalents: first, Linear Index Grammars (LIGs) and second, Head Grammars (HGs). (HGs are a dimension-limited type of MCFG.) When the normal form CCGs are converted to LIGs and HGs, some interesting equivalences occur. The primary/secondary category distinction gets manifested in LIGs as number of ``spines'', one spine per primary category. Spines essentially track an LIG's stack downwards to its respective terminal node. The root node will always kick off a spine and will also be a 1-node. Thus, the 1-primary-category CCG is converted into an LIG with a single spine, starting from the root 1-node down to the ``1'' terminal. Similarly, when those LGs are converted into HGs, the number of spines get manifested as number of wrapping operations. (Really, ``substantive wrapping'', wraps corresponding to actual CCG categories, for technical reasons stemming from the conversion process.) Again, each such-produced HG will end with a wrap of the 1 element.\\
+
+\noindent So, the word order permutations derivable by CCGs can be characterized in LIGs as spines and in HGs as wraps, both of which are notions much closer to MCFG (and therefore MG) structures than separable permutations themselves. More generally, the slots in the CCG table and the LIG/HG versions suggests a way to think about selection across these formalisms as a set of (in some abstract sense) function-aergument relations. Still, the exact grounds for comparison is a bit murky, though progress can also be made on the MG side.
+
+\subsection{MGs}
+
+\noindent Less is formally clear on the MG side of the ordering problem. Stabler shows that various incarnations of MGs are all weakly equivalent and are able to get exactly the same set of 16 permutations of 1-2-3-4. Again, though, he doesn't show what orders MGs get for \textit{n} elements. Very superficially, all of the orders that Stabler's MGs are unable to produce end in the element 3 or the element 4. More substantively, the two extra orders that Stabler derives (to get 16 orders instead of Cinque's 14) are exactly the two orders that CCG cannot get, those orders that, in LIG land, have only 1 spine.\\
+
+\noindent Before trying to compare CCGs and MGs more fully, though, it's worth getting a better handle on MGs. Of course, any MG is defined by the two operations Merge and Move. Stabler considers several possible combinations of Merge and Move definitions. For the word order problem, two other restrictions get put into play. First, each vocabulary item gets only one selectee feature, i.e., there are no specifiers. Second, each vocabulary item gets only one licensee feature, i.e., items can only move once. \\
+
+\noindent All of the MG variations Stabler considers always have the Move operation working in one direction (leftward), and he always has Merge at least able to go rightward. (In some versions Merge is allowed to also (but not only) move leftward.) This conceals what seem to be important facts about how MGs work because once the direction of Merge and Move are allowed to freely modulate, some interesting facts come out.\\
+
+\noindent While it's true, per Stabler, that allowing the Merge direction to be freely choosen doesn't increase word order capacity, the same is not true for Move. Namely, equipping an MG with leftward and rightward movement makes it possible to get all 24 logically possible permutations, regardless of which Merge direction is chosen. On the other hand, if Merge and Move are defined to both work only in one direction (both rightward or both leftward), a much smaller set of word orders become possible. Interestingly, the word orders produced when Merge and Move go left are the exact reverse orders as those produced when Merge and Move go right. (It's a separate, but interesting, question as to whether these highly restricted MGs are even weakly equivalent to Stabler's more standard MGs.)\\
+
+\noindent What Stabler does, wittingly or not, is to ensure that Merge and Move work at cross purposes, with, again, the additional restriction that Move is always leftward, allowing him to get his 16 orders. If Merge and Move are flipped, however, with Move only rightward (and at least leftward Merge), the reverse set of 16 orders can be derived. Obviously there is overlap among the two sets of 16. However, the two sets of 16 also overlap in word orders that they cannot produce. That is, given the union of MGs with only leftward Move (and at least rightward Merge) and of MGs with only rightward Move (and at least leftward Merge), MGs still can only get 22 out of the 24 logically possible word order permutations. Strikingly, the two orders this union still lack are exactly those that CCGs can only get with the maximal zig-zag normal form, i.e., when the LIG as only one spine. This means, furthermore, that MGs can get (at least some subset of) the separable permutations and is unable to get at least two of the non-separable permutations.\\
+
+\noindent These results are summarized in the table below. The first column describes Me(rge)/Mo(ve) direction combinations. E.g., ``MeL-MoLR'' means ``Merge is leftward, Move is leftward or rightward''. (And ``or'' here means either direction is allowed.) The second column shows how many words that combination can get (where the ``inverse'' symbol indicates reverse word order relative to the same ``non-inverse'' set).
+
+\noindent \begin{tabularx}{\textwidth}{
+    |>{\centering\arraybackslash}X
+    |>{\centering\arraybackslash}X
+    |>{\centering\arraybackslash}X
+    |
+    }
+   \multicolumn{3}{c}{\textbf{MGs}} \\
+    \hline
+    MeR-MoL & 16 & (Stabler) \\
+    MeL-MoL & 5 & -- \\
+    MeLR-MoL & 16 & (Stabler) \\
+    \hline
+    MeL-MoR & 16\textsup{-1} & -- \\
+    MeR-MoR & 5\textsup{-1} & -- \\
+    MeLR-MoR & 16\textsup{-1} &  -- \\
+    \hline
+    MeL-MoLR & 24 & \\
+    MeR-MoLR & 24 & -- \\
+    MeLR-MoLR & 24 & -- \\
+    \hline
+    MeL(R)-MoR $\cup$ Me(L)R-MoL & 22 & \ast4213, \ast3124\\
+    \hline
+    \end{tabularx} \\
+\\
+
+\noindent Just as the two 1-primary-cagegory CCGs require maximal zig-zagging, the two separable permutations that MGs get require a diagnosable derivational structure. At least for $n=4$, these two separable permutations require Merge and Move to be alternated: i.e., for remnant movement to occur. It's not clear that this represents anything maximal, as in the CCG, however. In any case, the results above show that ``getting the most'' out of MGs require bidirectionality in some sense: of Merge and/or Move. Furthermore, curiously, modulating Merge has a less substantial effect than modulating Move, such that allowing Move to do all the bidirecational work makes all permutations derivable. The point is, perhaps unsurprisingly, that how one sets up an MG can drastically alter the selection-based structures the MG can get, even if (as Stabler more or less shows) the weak generative capacity is the same. Thus, whether one allows rightward and/or leftward movement in an MG has some actual empirical stakes. Those who wish to bar rightward movement will need to attend to how their selectional assumptions play along with that interdiction.
+
+\section{what we need to learn}
+
+\noindent As it stands, there are three primary tasks that need to be sorted out. First, the formal characterization for \textit{n} elements remains to be discovered for which word order permutations MGs can and can't produce, most importantly for the union of the two single-Move-direction MGs (the last row of the MG table above). \\
+
+\noindent Second, and subsequently, the relationship between the results in the first task needs to be tied to the single-spined CCGs (those with one primary category). Right now, for four elements, MGs' two impossible orders track: 1) exactly CCGs' single-spine slots and 2) the separable permutations. (They amount, for $n=4$, to the same thing.) Both these facts may be an artefact of four's smallness, as it were, and neither are obviously the case as \textit{n} grows. More likely, MGs will be able to get some subset of the separable permutations. Ideally, though, that subset will be formally characterizable in some significant way.\\
+
+\noindent Third, it's necessary to think about MGs in terms of MCFGs, of which HGs are a subclass. That way MGs and CCGs can ``meet in the middle'', by conversion, at MCFGs. This will allow MG selectional criteria to be thought of in the same way as the CCG-derived-HG selectional criteria. Once MGs and CCGs have a common structural vocabulary, their respective permutation powers will be rendered comparable and clear.\\
+
+\noindent An additional, minor question is, as mentioned, whether or not the highly restricted MGs, those with Move and Merge both and only in the same direction, are weakly equivalent to MGs with Merge and Move set at some kind of cross purpose. This question, though, doesn't directly impinge upon those above.
+
+
+\section{References}
+
+\begin{hangparas}{.25in}{1}
+\small
+Cinque, Guglielmo. 2005. Deriving Greenberg's universal 20 and its exceptions. \textit{Linguistic Inquiry}, 8:36:315-332.
+
+Joshi, Aravind. 1985. Tree adjoining grammars: How much context-sensitivity is required to provide reasonable structural descriptions? In \textit{Natural Language Parsing: Psychological Perspectives}, Studies in Natural Language Processing, pages 206-250, Cambridge University Press.
+
+Joshi, Aravind, Vijay Shanker, K., and David Weir. The Convergence of Mildly Context-Sensitive Grammar Formalisms. January 1990.
+
+Stabler, Edward. 1997. Derivational Minimalism. In \textit{International Conference on Logical Aspects of Computational Linguistics}, pages 68-95, Nancy.
+
+Stabler, Edward. 2011. Computational perspectives on minimalism. In Boeckx, Cedric, editor, \textit{Oxford Handbook of Linguistic Minimalism}. Oxford University Press, pages 617-641.
+
+Steedman, Mark. 1985. Dependency and coordination in the grammar of Dutch and English. \textit{Language}, 61:523-568.
+
+Steedman, Mark. 2000. \textit{The Syntactic Process}. MIT Press, Cambridge, MA.
+
+Steedman, Mark. 2020. A formal universal of natural language grammar. \textit{Language}, 96: 618-660.
+
+Stanojevi\'{c}, Milo\v{s} and Steedman, Mark. 2021. Formal Basis of a Language Universal. \textit{Computational Linguistics}, 47(1): 9-42
+
+Vijay-Shanker, K. and Weir, David. 1994. The equivalence of four extensions of context-free grammars. \textit{Mathematical Systems Theory / Theory of Computer Systems}, 27 (6): 511-546.
+
+\end{hangparas}
+
+\end{document}
+
+
+\section{timeline}
+
+The remaining results-to-be require some time allotted for coding the necessary grammars in Haskell, in order to find patterns for \textit{n} elements. (So far, translations have been done, tediously, by hand.) The idea, then, is to have a prelinary results and a rought draft by mid-summer. And a final draft by the start of Fall Quarter 2023.
+
+
+- stipulation that MGs can't go in two directions
+
+- upgrading ccg
+- reason from ccg to hg rather than mg to ccg
+- lfg to mcfg
+- results about weak expressivity not interesting in and of themselves, relative to fixed body of facts separately is what's important: holding fixed 1-2-3-4, holding context free core - distorted by movement
+- how do different grammars move around fixed selection
+- holding fixed selectional requirements
+
+- CCG with only applicative are same as MG with just merge (8 orders), then they bring in other stuff - ccg allows scrambling via crossing, MG etc.
+- crossing composition like successive cyclicity, but still local
+-relationship between crossing and MG move+merge (remnant movement)
+
+- don't talk about: general linguistic idea is that there is some spine (cartographic), every body things that there are some selection requirements ... weak expressivity never the main result
+- symbols in sigma star have independently derived relationships - CCG and chomsky get left/right variation (both descendents of ajdkevic to get more then 2-n word orders)

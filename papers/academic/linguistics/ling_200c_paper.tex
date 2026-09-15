@@ -1,0 +1,397 @@
+\documentclass[12pt]{article}
+
+\usepackage[letterpaper, margin = 1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+%\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{stmaryrd}
+\usepackage{expex}
+\usepackage{tikz}
+
+\usepackage{pdflscape}
+
+%%% layout
+\usepackage[hmargin=1in,vmargin=0.75in]{geometry}
+\usepackage{enumitem}
+
+\usepackage{tabularx,colortbl}
+%\usepackage[table]{xcolor}
+\usepackage{multirow}
+
+%%% for math
+\usepackage{mathtools, amssymb, stmaryrd}
+\usepackage{delimset}
+  % expanding parens: (  )
+  \newcommand{\p}[1]{\brk*{#1}}
+  % expanding denotation brackets: [[  ]]
+  \newcommand{\sv}[1]{\delim{\llbracket}{\rrbracket}*{#1}}
+  % if putting a tree in brackets, the tree must be re-centered, or else the
+  % brackets will stretch symmetrically above and below the baseline anchor (the root by default)
+  \newcommand{\svtree}[1]{\sv{\vcenter{\hbox{#1}}}}
+
+%%% font stuff
+%\usepackage{libertine}
+\usepackage{zi4}
+\usepackage[dvipsnames]{xcolor}
+  \colorlet{tycolor}{Cyan}
+  \colorlet{dncolor}{Red}
+
+%%% trees
+\usepackage[linguistics,edges]{forest}
+  \forestset{%
+    default preamble={% this makes all the edges straight
+      for tree={% and steamrolls through empty nonterminals
+        l=0pt,
+        calign=fixed edge angles,
+        calign angle=60,
+        delay={if content={}{%
+          for current and siblings={anchor=north},
+          inner sep=0pt,
+          edge path={%
+            \noexpand\path[\forestoption{edge}]
+            (!u.parent anchor) -- (.children) \forestoption{edge label};
+          }
+        }{}}
+      }
+    },
+  }
+  \tikzset{% convenience path for adding movement arrows
+    label distance=3pt,
+    mv/.style={to path={-- ++(0,-{#1}) -| (\tikztotarget)}},
+    mv/.default=0.2
+  }
+
+\lingset{
+    %aboveglftskip=-1.25em,
+    belowglpreambleskip=0pt,
+    everyglpreamble=\it,
+    everygla={},
+    aboveexskip=0.1ex,
+    %belowexskip=0.1ex,
+    interpartskip=0em,
+    numoffset=1em,
+    Everyex=\singlespacing
+    }
+
+%%% some little macros
+% formula stuff
+\newcommand{\lam}{\lambda}
+\newcommand{\ty}[1]{\texttt{\color{cyan} #1}}
+\newcommand{\dt}{{.}\mkern\thinmuskip}
+\newcommand{\func}[1]{\textbf{\textsf{#1}}}
+\newcommand{\name}[1]{\textbf{\textsf{#1}}}
+
+% tree stuff
+\newcommand{\trace}[1]{\texttt{\_\_$_{#1}$}}
+\newcommand{\pro}[1]{\text{pro$_{#1}$}}
+\newcommand{\pabs}[2][]{\ensuremath{#2_{#1}}}
+\newcommand{\remap}[2]{\ensuremath{[#1 \mapsto #2]}}
+
+%%% your task
+\newcommand{\FILLIN}[1][dncolor]{%
+  {\color{#1}%
+    \begin{tabular}{p{1in}}
+      \hline\strut\\\hline
+    \end{tabular}}}
+    
+\newcommand{\pp}{%
+  \mathbin{{+}\mspace{-8mu}{+}}%
+  }
+    
+\usepackage{bussproofs}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+    
+\title{Review: Tree Adjoining Grammars}
+\author{Ian Thomas White}
+\date{}
+
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{201c.bib}
+\usepackage{csquotes}
+\DeclareLanguageMapping{english}{english-apa}
+
+
+\makeatletter
+\renewcommand{\maketitle}
+{
+\begin{flushleft}
+\textbf{{\large\@title}}
+\newline
+\@author
+\end{flushleft}
+}
+\makeatother
+
+\titleformat*{\section}{\medium\bfseries}
+\titleformat*{\subsection}{\small\bfseries}
+
+\newcommand*{\textsup}[1]{\ensuremath{^\textrm{{\scriptsize #1}}}}
+\newcommand*{\textsub}[1]{\ensuremath{_\textrm{{\scriptsize #1}}}}
+\newcommand*{\tinytextsup}[1]{\ensuremath{^\textrm{{\tiny #1}}}}
+\newcommand*{\tinytextsub}[1]{\ensuremath{_\textrm{{\tiny #1}}}}
+
+\newcommand*{\bbar}[1]{\ensuremath{\overline{\textrm{#1}}}}
+\newcommand*{\ra}{\ensuremath{\rightarrow}\space}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ian Thomas White}
+\chead{}
+\rhead{\thepage \ of \pageref{LastPage}}
+
+% \linespread{1.6}
+\widowpenalty=100000
+\clubpenalty=100000
+
+\renewcommand{\labelenumi}{\Alph{enumi}.}
+%\renewcommand{\labelenumii}{\fbox{\Alph{enumii}}}
+%\renewcommand{\labelenumiii}{\fbox{\roman{enumiii}}}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+
+\section{Introduction}
+
+Since the beginning of generative grammar, an important question has been which class of grammars characterizes the human language faculty, and a number of fruitful developments have been made toward answering that question. The key goal therein is to find a class of formal grammars that generates both the strings and structural descriptions of all natural languages (weak and strong generative capacity, respectively), without generating strings and structures that fall outside the scope of any language. One avenue that attempts this Goldilocks problem is research into tree adjoining grammars (TAGs), especially in the work of Joshi. The present paper reviews the major results of three papers from Joshi (and co-authors) on Tree-Adjoining Grammars.
+
+\section{Joshi 1985}
+
+Joshi 1985 is a relatively informal presentation of the main results gained by considering TAGs as the basis for natural language and is based on the more formal presentation in Joshi, Levy, \& Takahashi 1975. Joshi (1985) starts off by defining and illustrating the basic structures and operations that characterize TAGs, with special consideration to the relationship between TAGs and Context Free Grammars (CFGs).
+
+Therein, the two basic structures for any given TAG, together called elementary trees, are: initial trees as in (1) and auxiliary trees as in (2). The former trees always have a root node S and terminal symbols at the ``frontier'' (bottom) of the tree. The latter trees always have some non-terminal X as the root and terminal symbols plus another non-terminal X (the foot) at the root.\footnote{The requirements for terminal nodes at the frontier are modified in (some of) Joshi's later papers on TAGs; see below.} The basic operation is, eponymously, adjoining, or adjunction, as in (3) which composes an auxiliary tree with some other tree. Adjoining works as follows: for some tree $\gamma$ with an interior node \textit{n} of category X and subtree \textit{t} under \textit{n}, i) \textit{t} is ``excised'', ii) an auxiliary tree $\beta$ with root (and foot) X is inserted at \textit{n}, iii) \textit{t} is attached to the X foot in the auxiliary tree, the result being a new tree $\gamma'$.\footnote{ How this works computationally isn't made clear here. In later works the original subtree \textit{t} is deleted and a copy is replaced below the adjoined tree.}
+
+\ex \textit{initial tree schema}\\ \includegraphics[scale=0.35]{initial.png}
+\xe
+
+\ex \textit{auxiliary tree schema}\\ \includegraphics[scale=0.35]{aux.png}
+\xe
+
+\ex \textit{adjoining schema}\\ \includegraphics[scale=0.35]{adjoin.png}
+\xe
+
+From these definitions Joshi draws an important conclusion: TAGs are strictly more powerful than CFGs; namely, there is a TAG that is weakly and strongly equivalent to any CFG, but the reverse is not true (though some CFGs are weakly and/or strongly equivalent to some TAGs). Furthermore, although TAGs can generate languages (weakly and strongly) that CFGs cannot, they are still not as powerful as context-sensitive languages (CSGs), which makes them a good candidate for the particular problem of finding a fitting grammar for natural language. As is well known, CFGs are unable to produce some structures common to natural language, while CSGs produce many strings uncommon to natural language. The table in (4) summarizes some stringsets that the various types of grammars can and cannot generate, per Joshi.
+
+\ex \textit{stringsets/grammars}
+
+\small
+\begin{tabularx}{0.7\textwidth}{
+|c
+|>{\centering\arraybackslash}X
+|c
+|c
+|c
+|
+}
+\hline 
+& stringset & CFG & TAG & CSG \\
+\hline
+a & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (nesting dependencies) & \checkmark & \checkmark & \checkmark \\
+\hline
+b & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (crossing dependencies) & & \checkmark & \checkmark \\
+\hline
+c & $\{(ab)^n\epsilon c^n \; | \; n \geq 0\}$ & & \checkmark & \checkmark \\
+\hline
+d & $\{a^nb^n\epsilon c^n \; | \; n \geq 0\}$ & & & \checkmark \\
+\hline
+e & $\{w\epsilon w \; | \; w \in \{a,b\}^*\}$ & & & \checkmark \\
+\hline
+\end{tabularx}
+\xe
+
+Joshi proceeds to discuss two linguistically motivated modifications to the basic TAG model: links and adjoining constraints. Links, shown graphically in (5), encode particular asymmetric c-command relations between node pairs in elementary trees, such that the lower node must dominate the empty string. Generally, in linguistic contexts, the pair of nodes will be of the same category. The main point here is that links are preserved after adjoining, i.e., can occur over long distances. Nesting or crossing dependencies can be produced by adjoining trees to elementary trees with defined links, a useful property for natural language modeling.
+
+\ex \textit{links schema}
+
+\includegraphics[scale=0.35]{links.png}
+\xe
+
+Adjoining constraints (6) define Left-Right (LR) and Top-Bottom (TB) contexts on auxiliary trees, any of which constraints may be empty; i.e., they restrict the contexts into which auxiliary trees can adjoin. The LR context specifies a proper analysis, a cut, of the adjoined-to tree that passes through that tree's relevant node (where the auxiliary tree will be adjoined), while the TB context specifies some path from the adjoined-to tree's root through the relevant node and to that tree's frontier.
+
+\ex \textit{constraints schema}
+
+\includegraphics[scale=0.35]{constraints.png}
+\xe
+
+Links, however, do not fundamentally change the expressive power of TAGs, while adjoining constraints do. Specifically, some important stringsets that TAGs without adjoining constraints can't generate can be generated by TAGs with adjoining constraints; table (4) is updated in (7).
+
+\ex \textit{stringsets/grammars update}
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+|c
+|>{\centering\arraybackslash}X
+|c
+|c
+|c
+|c
+|
+}
+\hline 
+& stringset & CFG & TAG & TAG+AC & CSG \\
+\hline
+a & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (nesting dependencies) & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+b & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (crossing dependencies) & & \checkmark & \checkmark & \checkmark \\
+\hline
+c & $\{(ab)^n\epsilon c^n \; | \; n \geq 0\}$ & & \checkmark & \checkmark & \checkmark \\
+\hline
+d & $\{a^nb^n\epsilon c^n \; | \; n \geq 0\}$ & & & \checkmark & \checkmark \\
+\hline
+e & $\{w\epsilon w \; | \; w \in \{a,b\}^*\}$ & & & \checkmark & \checkmark \\
+\hline
+\end{tabularx}
+\xe
+
+Relative to CSGs, however, TAGs are still quite limited, which follows from three important properties discussed by Joshi. First, the number of cross-serial dependencies that TAGs can produce is limited: while TAGs can characterize cross-serial dependencies between an arbitrary number of pairs of dependent sets, they cannot characterize cross-serial dependencies between more than two dependent sets. E.g., the structure in (8) is impossible while those in (9) are possible. The table in (7) is updated in (10).
+
+\ex \textit{cross-serial dependency between three sets}
+
+\includegraphics[scale=0.35]{3cross.png}
+\xe
+
+\ex \textit{cross-serial dependencies between two sets}
+
+\includegraphics[scale=0.35]{2cross.png}
+\xe
+
+\ex \textit{stringsets/grammars update}
+
+\small
+\begin{tabularx}{0.9\textwidth}{
+|c
+|>{\centering\arraybackslash}X
+|c
+|c
+|c
+|c
+|
+}
+\hline 
+& stringset & CFG & TAG & TAG+AC & CSG \\
+\hline
+a & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (nesting dependencies) & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+b & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (crossing dependencies) & & \checkmark & \checkmark & \checkmark \\
+\hline
+c & $\{(ab)^n\epsilon c^n \; | \; n \geq 0\}$ & & \checkmark & \checkmark & \checkmark \\
+\hline
+d & $\{a^nb^n\epsilon c^n \; | \; n \geq 0\}$ ($\leq 2$ crossing dep.) & & & \checkmark & \checkmark \\
+\hline
+e & $\{w\epsilon w \; | \; w \in \{a,b\}^*\}$ ($\leq 2$ crossing dep.) & & & \checkmark & \checkmark \\
+\hline
+f & $\{a^nb^n\epsilon c^n \; | \; n \geq 0\}$ ($\textgreater 2$ crossing dep.) & & & & \checkmark \\
+\hline
+g & $\{w\epsilon w \; | \; w \in \{a,b\}^*\}$ ($\textgreater 2$ crossing dep.) & & & & \checkmark \\
+\hline
+h & $\{a^nb^nc^n\epsilon d^ne^n \; | \; w \in \{a,b\}^*\}$ & & & & \checkmark \\
+\hline
+i & $\{w\epsilon w\epsilon w \; | \; w \in \{a,b\}^*\}$ & & & & \checkmark \\
+\hline
+\end{tabularx}
+\xe
+
+Second, TAGs have what Joshi calls the ``constant growth property''. At each stage of a tree's derivation, a sentence, i.e., an S-rooted tree, is produced (because initial trees are defined as having an S-root). What this entails is that the lengths of the terminal strings during a derivation increase by a constant rate, based on the fixed lengths of the adjoined auxiliary trees, and the length of the final output string is a linear combination of the length of the terminal strings of initial and adjoined trees. This means that stringsets like $\{a^{2^n} \; | \; n \geq 1\}$ and $\{a^{n^2} \; | \; n \geq 1\}$ can't be generated by any TAG.\footnote{I'm not sure if CSGs can generate these.}
+
+Third, TAG parsing is ``possibly only slightly worse'' than that of CFGs, in time $O(n^4)$. In sum, these three properties restrict TAGs from being wildly more powerful than CFGs, unlike CSGs, while TAGs can still, unlike CFGs, generate cross-serial dependencies.
+
+The rest of the paper is devoted to (somewhat simplified) linguistic examples used to show the usefulness of TAGs for representing natural language. I won't repeat the details of these examples here, but I will highlight a few key points. First, it's assumed that every subcategorization frame (e.g., transitive verb, ditransitive verb, intransitive verb, etc.) has its own initial tree defined in the grammar.\footnote{Note that passive forms of transitive, intransitive, etc. forms have separately defined initial trees.} Moreover, not all initial trees correspond to matrix sentences, as in the case of control and raising frames, for which the initial embedded \textit{to} clauses are initial trees (to which appropriate finite clauses can be adjoined). Second, it's assumed that lexical items are inserted at each stage of the derivation, i.e., with each choice of elementary tree; it's further assumed that ``we can check a variety of constraints'', like agreement, on the lexical items as they are inserted into the trees.\footnote{Presumably this is a separate or additional mechanism from the TAGs as they were before defined, but it's not clear.}
+
+Perhaps more interestingly, there are separate initial trees defined for the \textit{wh-}question (initial tree) counterparts of non-\textit{wh} frames (11), in which an empty string sits \textit{in situ} at the bottom of the tree and is linked to (per the above definition) the \textit{wh}-phrase at the top of the tree, and there are a number of auxiliary trees for relative clauses (12).
+
+\ex \textit{wh-question initial tree example}
+
+\includegraphics[scale=0.50]{wh-.png}
+\xe
+
+\ex \textit{relative clause auxiliary tree example}
+
+\includegraphics[scale=0.50]{rel.png}
+\xe
+
+The main result from defining structures in this way is that island constraints don't need to be defined separately. Instead, island conditions are ruled by the fact that there is no initial tree that corresponds to a frame that could produce an island-violating sentence. For example, the sentence in (13a) is ruled out by the fact that there is no initial tree corresponding to (13b) (although (13b) is \textit{a priori} possible in some TAG).
+
+\pex \textit{island conditions ruled out}
+\a * To whom did you wonder what John did?
+\a * To whom what did John do?
+\xe
+
+Joshi presents this result as a huge advantage over transformational grammars, which must define, in perhaps an \textit{ad hoc} way, which transformations are disallowed to prevent island violations. I'm not sure how strong this argument is actually. As Joshi admits, the set of elementary trees in the TAG model is going to be quite large, though finite. Not only is that set large, but it will be larger than the set of initial or basic frames (however they're defined) in transformational grammars because the transformational grammars won't define passive and \textit{wh-} forms separately. Joshi's argument is essentially saying that it's less \textit{ad hoc} to directly define only the allowed structures in the elementary trees than it is to define restrictions on otherwise over-productive transformational rules. However, we don't actually have empirical access to the allowed (or disallowed) initial trees (they are by definition not matrix sentences). That is, the allowed initial trees are still defined by looking at what structures would lead to island violations, so the gain for TAGs in this case seems somewhat overstated, regardless of the other merits of TAGs.\footnote{Frank (2004) makes a very similar argument to that of Joshi here.}
+
+Still, TAGs do have a number of qualities that make them useful for modelling natural language. In addition to those described abstractly above, the fact that linking relations are preserved during derivations allows long-distance dependencies to obtain as desired (e.g., with further embedding). Joshi also shows how the cross-serial dependencies, one of TAGs' advantages over CFGs, can be applied to embedded phrases in Dutch.
+
+\section{Joshi \& Schabes 1991}
+
+This paper makes some significant updates to TAGs without fundamentally changing their expressive power. The changes are summarized in (14). Unless otherwise stated, everything else in the system remains the same as described above.
+
+\pex \textit{changes to TAGs}
+\a Elementary trees no longer need to only have terminal symbols at their frontiers. A mix of terminals and non-terminals can appear there, but at least one terminal must appear.
+\a Adjoining is reformed from just ``excising'' a subtree of the adjoined-to tree to a process that deletes and makes a copy of the relevant subtree.
+\a There is a second operation called substitution that takes place only on specially marked non-terminal frontier nodes: a non-terminal node of category X is replaced by another tree with a root node of category X. E.g., a tree with non-terminal NP can get substituted for a tree with a [NP [D N]] structure. Adjoining is disallowed on nodes marked for substitution.
+\a Derivation trees are defined, which unambiguously represent the construction of any given tree in a given TAG, since finished derived trees on their own don't give enough information to detail how they were constructed. These don't play too important a role here, though.
+\a Most importantly---the ``lexical'' part---each elementary structure is associated with, i.e., contains a realized instantiation of, one lexical item called the ``anchor''. Each lexical item is associated in the lexicon with a finite set of elementary structures.
+\xe
+
+Substitution is added for ``linguistic reasons'', which aren't spelled out, though it does make the elementary trees simpler, and the addition is what, I assume, motivates the more lax requirements for the frontiers of elementary trees. This swap is then why the expressive power of TAGs doesn't fundamentally change. 
+
+A main result of this paper, though, is that it basically specifies the lexicon as the storehouse for elementary trees. These elementary trees constitute the category of a given lexical item. These elementary trees must, by definition, be finite. Furthermore, the authors claim that they ``require that the combining operations combine a finite set of structures into a finite number of structures''. It's not clear to me whether this refers only to lexicon-based derivations or syntactic ones as well. If the latter, it would seem to be a departure from the general Chomskyan/Humboldtian claim of ``infinite use of finite means''.
+
+Lexicalized grammar is actually a class that includes TAGs, and many types of formalism can be lexicalized. The remainder of the paper is devoted to proving several propositions about lexicalized grammars. Without going into their explanations, two important such propositions are that: i) lexicalized grammars are finitely ambiguous (can be parsed a finite number of ways); ii) it is decidable whether or not a string is accepted by a lexicalized grammar. Finally, they show that CFGs can be lexicalized with TAGs, but, crucially, adjoining is necessary; i.e., substitution on its own cannot be used to lexicalize CFGs. In fact adjunction is sufficient for such lexicalization, but substitution makes it ``more compact''. The results here, namely, the close relationship between TAGs and CFGs, seem to further argue for TAGs as a viable model for natural language, though such an argument is not explicitly stated.
+
+\section{Joshi, Becker \& Rambow 2000}
+
+This short paper tackles the long debate over whether to assign unacceptability to a problem of competence (grammar) or of performance. The basic claim is that the reason a particular class of sentences is ungrammatical should be treated as an empirical question, and it should not be \textit{a priori} assumed that performance is the underlying issue.\footnote{That is, when it's a question pertaining to the formal language. Obviously, syntacticians make bids for ungrammaticality all the time.} Rather, they show that it's an empirical choice whether to find a grammar that rules out certain unacceptable sentences as ungrammatical or to develop performance criteria to do so.
+
+They begin by going over the known problem of center-embedding in English. They agree with the usual argument that the unacceptability of center-embedded sentences stems from a performance issue. The basic argument is that a constraint on an arbitrary level of center embedding makes sense in neither FSGs nor CFGs\footnote{FSGs are also linguistically inadequate, of course.}; specifically, such a constraint would have to be stated outside the FSG/CFG framework. Nor is there some other grammar that reasonably includes such a restriction.
+
+They then go on to describe and analyze a somewhat similar linguistic phenomenon in German: scrambling at two and more levels of embedding. Scrambling in German allows constituents of embedded clauses to move to higher clauses, and the order of the moved constituents can change relative to their original positions. However, similar to English center-embedding, scrambling over more than two levels of embedding is very difficult to interpret.
+
+They define the two constraints on LTAG grammars in (15) from which they will argue.\footnote{LTAG refers to lexicalized TAGs as described in the previous section.}
+
+\pex \textit{co-occurrence constraints}
+\a weak co-occurrence constraint (WCC) \\ All substitution nodes must be filled with the appropriate trees, i.e., the trees of those lexical items which are the arguments of the lexical anchor.
+\a strong co-occurrence constraint (SCC) \\ If a verb V$_i$ subcategorizes an S, then, when an elementary tree anchored on V$_i$ is adjoined to an S node in a tree anchored by V$_j$, V$_j$ is an argument of V$_i$; i.e., the V$_i$ tree cannot be adjoined to an arbitrary S node.
+\xe
+
+The first constraint ensures that each elementary tree includes the lexical anchor and its argument positions, and no other arguments. The second constraint ensures that each elementary tree is semantically coherent and that trees are combined in a ``semantically coherent manner''. They show, then, that an LTAG following WCC can produce sentences of the form in (16) only for \textit{k} $\leq$ 4, while an LTAG following WCC+SCC can produce such sentences only for \textit{k} $\leq$ 1.
+
+\ex $\{\sigma(NP_1, ..., NP_k)V_k ... V_1 \; | \; k \in \func{N} \; \textrm{and}\;  \sigma \; \textrm{a permutation}\}$
+\xe
+
+Since LTAGs following these two constraints cannot get the right limit on scrambling embedding, they consider an extension to LTAGs called tree-local multi-component LTAGs (MC-LTAGs). In this model, auxiliary trees can comprise a set of trees, as long as at least one of the trees is anchored to a lexical item. Furthermore, adjoining works the same, with the additional requirement that all elements of an auxiliary tree set be adjoined to distinct nodes in the same elementary tree. They claim that MC-LTAGs are weakly but not strongly equivalent to LTAGs: MC-LTAGs are slightly more powerful.
+
+As it turns out, MC-LTAGs under SCC can handle all sentences up to two levels of embedding, and no more than two, exactly as desired for German scrambling phenomena. The authors use this to force the competence versus performance choice. If MC-LTAGs are accepted, then German scrambling un/acceptability can be viewed as a grammatical, and therefore competence, issue. On the other hand, if, for some reason, one still wants to claim that the scrambling phenomena are a performance issue, some other well-motivated grammar that allows more than two levels of embedding must be found.\footnote{Of course, MC-LTAGs could be shown to be linguistically inadequate for orthogonal reasons, in which case the question would remain open.}
+
+\section{Conclusion}
+
+There seem to be a number of empirical advantages for choosing tree adjoining grammars, in their various instantiations, as a model for the human language faculty. Most notably, they capture a number of complex stringsets found in natural languages without being immensely more powerful than CFGs. To accept TAGs over some kind of transformational or minimalist grammar might require at least a conceptual overhaul when carried into nuts-and-bolts syntax, even if the TAGs end up being equivalent in a number of ways. Still, syntacticians, I think, might do well to attend to how the underlying formal grammar allows, impinges upon, or modulates their empirical claims.
+
+\section*{References}
+
+\small
+
+Frank, R. (2004). Restricting grammatical complexity. \textit{Cognitive Science}, 28(5).
+
+\noindent \hfill \par
+\noindent Joshi, A.K. (1985). Tree adjoining grammars: How much context sensitivity is required to provide reasonable structural descriptions? In D. Dowty, L. Karttunen, A. Zwicky (Eds.), \textit{Natural Language Parsing: Psychological, Computational and Theoretical Perspectives} (pp. 206-250). Cambridge: Cambridge University Press.
+
+\noindent \hfill \par
+\noindent Joshi, A.K. \& Schabes, Y. (1991). Tree-Adjoining Grammars and Lexicalized Grammars. Technical Report.
+
+\noindent \hfill \par
+\noindent Joshi, A.K., Levy, L., \& Takahashi, M. (1975). Tree adjunct grammars. \textit{Journal of Computer and System Sciences}, 10(1), 136-163.
+
+\noindent \hfill \par
+\noindent Joshi, A.K., Becker, T., \& Rambow, O. (2000). Complexity of scrambling: A new twist to the competence-performance distinction. In A. Abeill\'{e}, O. Rambow (Eds.), \textit{Tree Adjoining Grammars: Formalisms, Linguistic Analysis and Processing} (pp. 167-181). Stanford, CA: CSLI.
+
+
+\end{document}
