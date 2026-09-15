@@ -149,6 +149,6 @@ I am an academically trained linguist with substantial tech-industry experience.
 
 ## Downloads
 
-### <a href="/pdfs/resume-onepage.pdf" target="_blank" rel="noopener">One-Page Resume</a>
-
 ### <a href="/pdfs/cv-full.pdf" target="_blank" rel="noopener">Full CV</a>
+
+### <a href="/pdfs/resume-onepage.pdf" target="_blank" rel="noopener">One-Page Resume</a>
