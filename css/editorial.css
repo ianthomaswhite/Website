@@ -317,20 +317,33 @@ p {
   text-wrap: pretty;
 }
 
-/* Links: No underlines sitewide, yellow cross-out on hover */
+/* Links: No underlines sitewide, yellow cross-out on hover matching nav-item */
 a {
   color: var(--text-main);
-  text-decoration: none;
+  text-decoration: none !important;
+  position: relative;
+  display: inline-block;
   transition: color 0.15s ease;
 }
 
 a:hover {
   color: var(--text-main);
-  text-decoration: line-through;
-  text-decoration-color: var(--accent-yellow);
-  text-decoration-thickness: 2px;
-  text-decoration-skip-ink: none;
-  background-color: transparent;
+  text-decoration: none !important;
+  background-color: transparent !important;
+}
+
+a:hover::after {
+  content: "" !important;
+  position: absolute !important;
+  left: -2px !important;
+  right: -2px !important;
+  top: 52% !important;
+  height: 2px !important;
+  background-color: var(--accent-yellow) !important;
+  width: auto !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  display: block !important;
 }
 
 .sidebar-name:hover,
@@ -339,7 +352,9 @@ a:hover {
   background-color: transparent !important;
 }
 
+.sidebar-name::after,
 .sidebar-name:hover::after,
+.social-btn::after,
 .social-btn:hover::after {
   content: none !important;
   display: none !important;
@@ -465,11 +480,7 @@ hr {
 }
 
 .post-title-link:hover {
-  text-decoration: line-through;
-  text-decoration-color: var(--accent-yellow);
-  text-decoration-thickness: 2px;
-  text-decoration-skip-ink: none;
-  background-color: transparent;
+  background-color: transparent !important;
   opacity: 1;
 }
 
@@ -588,13 +599,13 @@ hr {
 
 /* Strictly suppress any download/cloud icons or decorations across all PDF links */
 a[href*=".pdf"]::before,
-a[href*=".pdf"]::after,
 a[href*="/pdfs/"]::before,
-a[href*="/pdfs/"]::after,
 a[download]::before,
-a[download]::after,
 .download-link::before,
-.download-link::after {
+a[href*=".pdf"]:not(:hover)::after,
+a[href*="/pdfs/"]:not(:hover)::after,
+a[download]:not(:hover)::after,
+.download-link:not(:hover)::after {
   content: "" !important;
   display: none !important;
   background: none !important;
