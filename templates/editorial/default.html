@@ -97,15 +97,22 @@
                     link.setAttribute('rel', 'noopener');
                     link.removeAttribute('download');
 
-                    // Remove any injected icon/cloud/download elements inside the link
-                    var injected = link.querySelectorAll('svg, img, i, [class*="icon"], [class*="cloud"], [class*="download"]');
-                    injected.forEach(function(el) { el.remove(); });
+                    // Remove any and all child elements inside the PDF link (extensions inject viewer links/buttons/spans)
+                    while (link.firstElementChild) {
+                        link.firstElementChild.remove();
+                    }
 
-                    // Check immediately adjacent siblings (often injected by extensions)
+                    // Remove any extension-injected sibling elements following the link
                     var next = link.nextElementSibling;
-                    if (next && (next.matches('svg, img, i, [class*="icon"], [class*="cloud"], [class*="download"]') ||
-                                 (next.className && typeof next.className === 'string' && (next.className.indexOf('cloud') !== -1 || next.className.indexOf('download') !== -1 || next.className.indexOf('icon') !== -1)))) {
-                        next.remove();
+                    while (next && (
+                        next.tagName === 'A' ||
+                        next.tagName === 'BUTTON' ||
+                        next.matches('svg, img, i, [class*="icon"], [class*="cloud"], [class*="download"], [class*="pdf"], [class*="view"], [class*="acrobat"], [class*="adobe"], [title*="View"], [aria-label*="View"]') ||
+                        (next.className && typeof next.className === 'string' && /cloud|download|icon|view|pdf|acrobat|adobe/i.test(next.className))
+                    )) {
+                        var toRemove = next;
+                        next = next.nextElementSibling;
+                        toRemove.remove();
                     }
                 });
             }
