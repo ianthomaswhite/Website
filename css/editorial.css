@@ -157,8 +157,8 @@ body {
 .nav-item:hover::after {
   content: "";
   position: absolute;
-  left: -2px;
-  right: -2px;
+  left: 0;
+  right: 0;
   top: 52%;
   height: 2px; /* Slightly smaller cross out */
   background-color: var(--accent-yellow);
@@ -321,6 +321,7 @@ p {
 a {
   color: var(--text-main);
   text-decoration: none !important;
+  position: relative;
   transition: color 0.15s ease;
 }
 
@@ -328,10 +329,20 @@ a:hover {
   color: var(--text-main);
   text-decoration: none !important;
   background-color: transparent !important;
-  background-image: linear-gradient(var(--accent-yellow), var(--accent-yellow));
-  background-repeat: no-repeat;
-  background-size: 100% 2px;
-  background-position: 0 53%;
+}
+
+a:hover::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 52% !important;
+  height: 2px !important;
+  background-color: var(--accent-yellow) !important;
+  width: auto !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  display: block !important;
 }
 
 .content-right ul > li > a,
@@ -598,13 +609,13 @@ hr {
 
 /* Strictly suppress any download/cloud icons or decorations across all PDF links */
 a[href*=".pdf"]::before,
-a[href*=".pdf"]::after,
 a[href*="/pdfs/"]::before,
-a[href*="/pdfs/"]::after,
 a[download]::before,
-a[download]::after,
 .download-link::before,
-.download-link::after {
+a[href*=".pdf"]:not(:hover)::after,
+a[href*="/pdfs/"]:not(:hover)::after,
+a[download]:not(:hover)::after,
+.download-link:not(:hover)::after {
   content: "" !important;
   display: none !important;
   background: none !important;
