@@ -77,12 +77,6 @@ body {
   letter-spacing: 0.05em;
   color: var(--text-main);
   text-decoration: none;
-  transition: background-color 0.12s ease;
-  padding: 0 2px;
-}
-
-.subpage-name:hover {
-  background-color: var(--accent-yellow);
 }
 
 /* Homepage Oversize Name (Left Justified, No Header) */
@@ -137,16 +131,18 @@ p {
   margin-bottom: 1.3rem;
 }
 
-/* Links: No underlines, subtle temporary yellow highlight on hover */
+/* Links: No underlines, tight yellow border box on hover */
 a {
   color: var(--text-main);
   text-decoration: none;
-  transition: background-color 0.12s ease;
-  padding: 0 2px;
+  padding: 0 3px;
+  border: 1.5px solid transparent;
+  margin: 0 -4.5px;
+  transition: color 0.12s ease, border-color 0.12s ease;
 }
 
 a:hover {
-  background-color: var(--accent-yellow);
+  border-color: var(--accent-yellow);
 }
 
 ul, ol {
@@ -201,17 +197,18 @@ pre code {
 .action-link {
   color: var(--text-main);
   text-decoration: none;
-  padding: 2px 4px;
-  transition: background-color 0.12s ease;
+  padding: 0 3px;
+  border: 1.5px solid transparent;
+  margin: 0 -4.5px;
+  transition: color 0.12s ease, border-color 0.12s ease;
   cursor: pointer;
   background: none;
-  border: none;
   font-family: inherit;
   font-size: inherit;
 }
 
 .action-link:hover {
-  background-color: var(--accent-yellow);
+  border-color: var(--accent-yellow);
 }
 
 .resume-entry {
@@ -331,12 +328,6 @@ pre code {
 .bottom-link {
   color: var(--text-main);
   text-decoration: none;
-  padding: 2px 4px;
-  transition: background-color 0.12s ease;
-}
-
-.bottom-link:hover {
-  background-color: var(--accent-yellow);
 }
 
 /* Print Stylesheet */

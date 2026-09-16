@@ -131,39 +131,7 @@ body {
   font-family: var(--font-grotesque);
   font-size: 1.35rem;
   font-weight: 600;
-  color: var(--text-main);
-  text-decoration: none !important;
-  display: inline-block;
-  position: relative;
-  width: fit-content;
-  text-align: right;
   transition: opacity 0.15s ease;
-}
-
-.nav-item:hover {
-  background-color: transparent !important;
-  opacity: 1;
-}
-
-/* Active & Hover Page Indicator: Yellow Cross-Out Line */
-.nav-item.active,
-.nav-item:hover {
-  position: relative;
-  opacity: 1;
-  /* Do not bold the active text */
-}
-
-.nav-item.active::after,
-.nav-item:hover::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 52%;
-  height: 2px; /* Slightly smaller cross out */
-  background-color: var(--accent-yellow);
-  z-index: 1;
-  pointer-events: none;
 }
 
 /* Social Media & Contact Icon Links:
@@ -317,59 +285,36 @@ p {
   text-wrap: pretty;
 }
 
-/* Links: No underlines sitewide, yellow cross-out on hover matching nav-item */
+/* ONE RULE FOR ALL SITUATIONS: Yellow Box Around Link Text */
 a {
   color: var(--text-main);
-  text-decoration: none !important;
-  position: relative;
-  transition: color 0.15s ease;
+  text-decoration: none;
+  padding: 0 3px;
+  border: 1.5px solid transparent;
+  margin: 0 -4.5px;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
-a:hover {
+a:hover,
+.nav-item.active {
   color: var(--text-main);
-  text-decoration: none !important;
-  background-color: transparent !important;
+  text-decoration: none;
+  border-color: var(--accent-yellow);
 }
 
-a:hover::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  top: 52% !important;
-  height: 2px !important;
-  background-color: var(--accent-yellow) !important;
-  width: auto !important;
-  z-index: 1 !important;
-  pointer-events: none !important;
-  display: block !important;
-}
-
-.content-right ul > li > a,
-.page-content ul > li > a {
-  text-indent: 0 !important;
-}
-
-.sidebar-name:hover,
-.social-btn:hover,
-.nav-item:hover {
-  background-image: none !important;
+.sidebar-name,
+.social-btn {
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .sidebar-name:hover,
 .social-btn:hover {
-  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
   background-color: transparent !important;
 }
-
-.sidebar-name::after,
-.sidebar-name:hover::after,
-.social-btn::after,
-.social-btn:hover::after {
-  content: none !important;
-  display: none !important;
-}
-
 ul, ol {
   margin-left: 1.5rem;
   margin-bottom: 1.35rem;
@@ -484,13 +429,10 @@ hr {
 }
 
 .post-title-link {
-  text-decoration: none;
-  display: inline-block;
   transition: opacity 0.15s ease;
 }
 
 .post-title-link:hover {
-  background-color: transparent !important;
   opacity: 1;
 }
 
@@ -609,13 +551,13 @@ hr {
 
 /* Strictly suppress any download/cloud icons or decorations across all PDF links */
 a[href*=".pdf"]::before,
+a[href*=".pdf"]::after,
 a[href*="/pdfs/"]::before,
+a[href*="/pdfs/"]::after,
 a[download]::before,
+a[download]::after,
 .download-link::before,
-a[href*=".pdf"]:not(:hover)::after,
-a[href*="/pdfs/"]:not(:hover)::after,
-a[download]:not(:hover)::after,
-.download-link:not(:hover)::after {
+.download-link::after {
   content: "" !important;
   display: none !important;
   background: none !important;

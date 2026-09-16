@@ -33,6 +33,7 @@ Thumbs.db
 preview_*.png
 .ffprofile/
 
-# Private local documentation
+# Private local documentation & rules
 OPERATIONS.md
+GEMINI.md
 
