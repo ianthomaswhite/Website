@@ -33,6 +33,8 @@ jobs:
             texlive-latex-recommended \
             texlive-fonts-recommended \
             texlive-latex-extra \
+            texlive-pictures \
+            texlive-science \
             pandoc
 
       - name: Compile LaTeX Documents and Generate PDFs
