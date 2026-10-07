@@ -1,6 +1,4 @@
-\documentclass[11pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\documentclass[12pt]{article}
 
 \usepackage[letterpaper, margin = 1in]{geometry}
 \usepackage{fancyhdr}
@@ -12,19 +10,18 @@
 \usepackage{amssymb}
 \usepackage{setspace}
 \usepackage{stmaryrd}
+\usepackage{expex}
+\usepackage{tikz}
 
-\usepackage{hanging}
-\usepackage{tabularx}
-\usepackage{multirow}
-\usepackage{array}
-\usepackage{multirow}
-\renewcommand\tabularxcolumn[1]{m{#1}}
-\usepackage{arydshln}
-
+\usepackage{pdflscape}
 
 %%% layout
-\usepackage[hmargin=1in,vmargin=0.75in]{geometry}
+
 \usepackage{enumitem}
+
+\usepackage{tabularx,colortbl}
+%\usepackage[table]{xcolor}
+\usepackage{multirow}
 
 %%% for math
 \usepackage{mathtools, amssymb, stmaryrd}
@@ -69,6 +66,18 @@
     mv/.default=0.2
   }
 
+\lingset{
+    %aboveglftskip=-1.25em,
+    belowglpreambleskip=0pt,
+    everyglpreamble=\it,
+    everygla={},
+    aboveexskip=0.1ex,
+    %belowexskip=0.1ex,
+    interpartskip=0em,
+    numoffset=1em,
+    Everyex=\singlespacing
+    }
+
 %%% some little macros
 % formula stuff
 \newcommand{\lam}{\lambda}
@@ -90,20 +99,24 @@
       \hline\strut\\\hline
     \end{tabular}}}
     
-\usepackage{expex}
-\lingset{interpartskip=0em, belowpreambleskip=0em}
-%\usepackage{linguex}
+\newcommand{\pp}{%
+  \mathbin{{+}\mspace{-8mu}{+}}%
+  }
+    
+\usepackage{bussproofs}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+    
+\title{Review: Tree Adjoining Grammars}
+\author{Ian Thomas White}
+\date{}
 
 \usepackage[backend=biber, style=apa]{biblatex}
-\addbibresource{}
+\addbibresource{201c.bib}
 \usepackage{csquotes}
 \DeclareLanguageMapping{english}{english-apa}
 
-%\usepackage{gb4e}
-
-\title{Barker 2002: Continuations and the Nature of Quantification}
-\author{Ian Thomas White}
-\date{}
 
 \makeatletter
 \renewcommand{\maketitle}
@@ -116,7 +129,7 @@
 }
 \makeatother
 
-\titleformat*{\section}{\medium\bfseries}
+\titleformat*{\section}{\large\bfseries}
 \titleformat*{\subsection}{\small\bfseries}
 
 \newcommand*{\textsup}[1]{\ensuremath{^\textrm{{\scriptsize #1}}}}
@@ -124,8 +137,8 @@
 \newcommand*{\tinytextsup}[1]{\ensuremath{^\textrm{{\tiny #1}}}}
 \newcommand*{\tinytextsub}[1]{\ensuremath{_\textrm{{\tiny #1}}}}
 
-\newcommand*{\ldblbrace}{\{\mskip-5mu\{}
-\newcommand*{\rdblbrace}{\}\mskip-5mu\}}
+\newcommand*{\bbar}[1]{\ensuremath{\overline{\textrm{#1}}}}
+\newcommand*{\ra}{\ensuremath{\rightarrow}\space}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -137,7 +150,9 @@
 \widowpenalty=100000
 \clubpenalty=100000
 
-\renewcommand{\labelenumi}{\roman{enumi}.}
+\renewcommand{\labelenumi}{\Alph{enumi}.}
+%\renewcommand{\labelenumii}{\fbox{\Alph{enumii}}}
+%\renewcommand{\labelenumiii}{\fbox{\roman{enumiii}}}
 
 
 \begin{document}
@@ -145,354 +160,238 @@
 \thispagestyle{empty}
 \maketitle
 
-\section{Intro}
+\section{Introduction}
 
-This paper is an overview of Chris Barker's (2002) ``Continuations and the Nature of Quantification''. Barker's basic goal is to show how modeling natural language meaning on continuations can account for several important properties of nominal quantification, as well as a couple other canonical topics in semantics. The current paper essentially follows the logic of Barker's: section 2 lays out the problem and goals as Barker sees them; section 3 details the basic concepts and definitions that Barker gives for continuations; section 4 discusses how continuations can be used to model nominals and provides a sample derivation; section 5 highlights some other useful applications of continuations;  section 6 goes through Barker's thoughts on compositionality; finally, section 7 offers some conclusions.
+Since the beginning of generative grammar, an important question has been which class of grammars characterizes the human language faculty, and a number of fruitful developments have been made toward answering that question. The key goal therein is to find a class of formal grammars that generates both the strings and structural descriptions of all natural languages (weak and strong generative capacity, respectively), without generating strings and structures that fall outside the scope of any language. One avenue that attempts this Goldilocks problem is research into tree adjoining grammars (TAGs), especially in the work of Joshi. The present paper reviews the major results of three papers from Joshi (and co-authors) on Tree-Adjoining Grammars.
 
-\section{The Problem/Solutions}
+\section{Joshi 1985}
 
-Barker notes that NPs pose three primary questions, detailed in (1).
-    
-\pex \textit{Barker 2002: (1)}
+Joshi 1985 is a relatively informal presentation of the main results gained by considering TAGs as the basis for natural language and is based on the more formal presentation in Joshi, Levy, \& Takahashi 1975. Joshi (1985) starts off by defining and illustrating the basic structures and operations that characterize TAGs, with special consideration to the relationship between TAGs and Context Free Grammars (CFGs).
 
-\a \textbf{Duality of NP meaning:} What (if anything) unifies the meanings of quantificational versus non-quantificational NPs [QNPs and nQNPs]?
+Therein, the two basic structures for any given TAG, together called elementary trees, are: initial trees as in (1) and auxiliary trees as in (2). The former trees always have a root node S and terminal symbols at the ``frontier'' (bottom) of the tree. The latter trees always have some non-terminal X as the root and terminal symbols plus another non-terminal X (the foot) at the root.\footnote{The requirements for terminal nodes at the frontier are modified in (some of) Joshi's later papers on TAGs; see below.} The basic operation is, eponymously, adjoining, or adjunction, as in (3) which composes an auxiliary tree with some other tree. Adjoining works as follows: for some tree $\gamma$ with an interior node \textit{n} of category X and subtree \textit{t} under \textit{n}, i) \textit{t} is ``excised'', ii) an auxiliary tree $\beta$ with root (and foot) X is inserted at \textit{n}, iii) \textit{t} is attached to the X foot in the auxiliary tree, the result being a new tree $\gamma'$.\footnote{ How this works computationally isn't made clear here. In later works the original subtree \textit{t} is deleted and a copy is replaced below the adjoined tree.}
 
-\a \textbf{Scope displacement:} Why does the semantic scope of a quantificational NP sometimes differ from its syntactic scope?
-
-\a \textbf{Scope ambiguity:} How does scope ambiguity arise?
-
+\ex \textit{initial tree schema}\\ \includegraphics[scale=0.35]{initial.png}
 \xe
 
-\noindent Of course, the possibility of scope ambiguity is conditioned on the possibility of scope displacement. These questions, though, Barker stresses, are worth keeping separate. Both a standard direct grammar (see below) and Barker's continuized grammar over-generate possible scope-displaced readings. This requires that whatever scopes, and therefore the conditions for ambiguity, are possible for some given set of sentences be discovered/defined.
-    
-As it stands, the standard account, as most famously laid out in Heim \& Kratzer (1998), uses Quantifier Raising (QR) to deal with QNPs. Given that nQNPs are type \textsf{e}, QNPs are type $\langle \langle \textsf{e,t} \rangle , \textsf{t} \rangle$, and transitive verbs are $\langle \textsf{e} \langle \textsf{e,t} \rangle \rangle$, object QNPs that are in the canonical verb-complement position cause a type mismatch with the verb. Without a type-shifting operator, this problem can be solved by raising the QNP and leaving a pronoun trace. In sum, the QR accounts generally provide the following answers for the questions in (1).
-    
-\pex \textit{QR-based Answers for (1)}
-\a All nQNPs are type \textsf{e}; all QNPs are type $\langle \langle \textsf{e} , \textsf{t} \rangle , \textsf{t} \rangle$ with a trace pronoun of type \textsf{e}.
-\a Some QNPs QR to positions above their syntactic position.
-\a Ambiguity arises when a QNP can take scope from more than one position.
-\xe
-    
-Barker, however, counter-offers the Continuation Hypothesis in (3).\footnote{ Barker also claims that Montague (1973) implicitly utilized a limited form of continuations.}
-    
-\ex \textit{Barker 2002: (2)} \\ \textbf{The Continuation Hypothesis:} Some linguistic expressions (in particular QNPs) have denotations that manipulate their own continuations.
+\ex \textit{auxiliary tree schema}\\ \includegraphics[scale=0.35]{aux.png}
 \xe
 
-\noindent This hypothesis will allow substantively different answers to the questions in (1), including the claim that continuations naturally allow for QNPs to have the same type as nQNPs, perhaps a welcome result. The continuation approach's answers to (1), to be detailed through the rest of this paper, are summarized in (4).
-
-\pex \textit{continuation-based answers for (1)}
-\a All nQNPs and QNPs have the same type, $\langle \langle \textsf{e,t} \rangle \textsf{t} \rangle$; QNPs manipulate their own continuations
-\a The same continuized constituents can combine in more than one order.
-\a Ambiguity arises when more than one combination order is allowed.
+\ex \textit{adjoining schema}\\ \includegraphics[scale=0.35]{adjoin.png}
 \xe
 
-\vspace{-1em}
-\section{The Idea}
+From these definitions Joshi draws an important conclusion: TAGs are strictly more powerful than CFGs; namely, there is a TAG that is weakly and strongly equivalent to any CFG, but the reverse is not true (though some CFGs are weakly and/or strongly equivalent to some TAGs). Furthermore, although TAGs can generate languages (weakly and strongly) that CFGs cannot, they are still not as powerful as context-sensitive languages (CSGs), which makes them a good candidate for the particular problem of finding a fitting grammar for natural language. As is well known, CFGs are unable to produce some structures common to natural language, while CSGs produce many strings uncommon to natural language. The table in (4) summarizes some stringsets that the various types of grammars can and cannot generate, per Joshi.
 
-\subsection{Descriptively}
+\ex \textit{stringsets/grammars}
 
-Continuations are a concept hailing from research in computer science. The basic definition that Barker gives, from Kelsey et al. (1998) is that ``a continuation represents the entire (default) future for the computation''. To take Barker's simple example, the following continuations can be defined:
-    
-    \pex Continuations for the sentence \textit{John saw Mary}
-    \a the continuation of \textit{John} is $\lambda x. \; \textrm{\textbf{saw m}} \; x$
-    \a the continuation of \textit{Mary} is $\lambda y . \; \textrm{\textbf{saw} y \textrm{\textbf{j}}}$
-    \a the continuation of \textbf{saw} is $\lambda R . \; R \; \textrm{\textbf{m j}}$
-    \xe
-    
-In essence, the idea is that the continuation of some expression is the function that has a ``hole'' for that expression to fill. More precisely, ``given a subexpression A of type $\alpha$ embedded in an expression B of type $\beta$, the continuation of A relative to B is a function of type $\langle \alpha, \beta \rangle$ abstracting over the denotation of A that characterizes how the meaning of the whole depends on the meaning of the subexpression''. Continuations thus offer a perspective on the relationship between an expression and its subexpressions.
-    
-Barker's goal is to construct a ``Continuized Grammar'' with reference to a non-continuized ``Direct Grammar''. Importantly, continuations can be defined for the expressions of any language with a semantics. This means that we could ask whether or not a grammar for natural language interacts with its continuations regardless of the particular grammar chosen. Still, Barker's continuized grammar will have denotations that don't have counterparts in the direct grammar, namely, QNRs.
-
-\subsection{Definitions}
-
-Continuation values can be somewhat straightforwardly constructed from direct values based on the following reasoning:
-    
-\begin{enumerate}
-    \item Continuations are functions from the type of the direct value.
-    \item Sentences are always of type \textsf{t}.
-    \item Thus, the type of a continuation variable will be a function from the type of the corresponding direct variable to a truth value.
-\end{enumerate}
-    
-\noindent A continuized variable, then, is a function that is looking for a ``direct-variable-sized'' hole. Then, to continuize the grammar, each expression is provided with its own continuation as an argument: a continuized denotation is a function from continuized variables to truth values, that is to say, from  the type of the variables to truth values to truth values. I.e.,``if an expression of category A with semantic type $\alpha$ has direct denotation $\llbracket \textrm{A} \rrbracket$, then the continuized denotation $\ldblbrace \textrm{A} \rdblbrace$ will be a function from A-continuations (type $\langle \alpha, \textsf{t} \rangle$) to the type of the larger expression as a whole, i.e. to a truth value: type \ldblbrace \textrm{A} \rdblbrace = $\langle \langle \alpha , \textsf{t} \rangle , \textsf{t}, \textsf{t} \rangle $''. The table in (6) provides a summary chart of some standard variables and denotations from direct grammars and their continuized counterparts.
-    
-\ex \textit{Summary Table of Direct/Continuized Types} \\
-    
 \small
-\begin{tabularx}{0.9\textwidth}{
-l
+\begin{tabularx}{0.7\textwidth}{
 |c
-c
+|>{\centering\arraybackslash}X
 |c
-c
 |c
-c
 |c
-c
+|
 }
-\multicolumn{1}{c}{} & \multicolumn{2}{c|}{direct variables} & \multicolumn{2}{c|}{continuized variables} & \multicolumn{2}{c|}{direct denotations} & \multicolumn{2}{c}{continuized denotations} \\
-\cline{2-9}
-\multicolumn{1}{c}{} & label & type & label & type & label & type & label & type \\
+\hline 
+& stringset & CFG & TAG & CSG \\
 \hline
-a. & \textit{p, q} & \textsf{t} & \textit{\={p}, \={q}} & $\langle \textsf{t, t} \rangle$ & $\llbracket \textrm{S} \rrbracket$ & \textsf{t} & $\ldblbrace \textrm{S} \rdblbrace$ & $\langle \langle \textsf{t, t} \rangle , \textsf{t} \rangle$ \\
-b. & \textit{x, y, z} & \textsf{e} & \textit{\={x}, \={y}, \={z}} & $\langle \textsf{e, t} \rangle$ & $\llbracket \textrm{NP} \rrbracket$ & \textsf{e} & $\ldblbrace \textrm{NP} \rdblbrace$ & $\langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle$ \\
-c. & \textit{P, Q} & $\langle \textsf{e, t} \rangle$ & \textit{\={P}, \={Q}} & $\langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle$ & $\llbracket \textrm{VP} \rrbracket$ & $\langle \textsf{e, t} \rangle$ & $\ldblbrace \textrm{VP} \rdblbrace$ & $\langle \langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle , \textsf{t} \rangle$ \\
-d. & \textit{R, S} & $\langle \textsf{e} , \langle \textsf{e, t} \rangle \rangle$ & \textit{\={R}, \={S}} & $\langle \langle \textsf{e} , \langle \textsf{e, t} \rangle \rangle , \textsf{t} \rangle$ & $\llbracket \textrm{Vt} \rrbracket$ & $\langle \textsf{e} , \langle \textsf{e, t} \rangle \rangle$ & $\ldblbrace \textrm{Vt} \rdblbrace$ & $\langle \langle \langle \textsf{e} , \langle \textsf{e, t} \rangle \rangle , \textsf{t} \rangle , \textsf{t}\rangle $ \\
+a & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (nesting dependencies) & \checkmark & \checkmark & \checkmark \\
+\hline
+b & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (crossing dependencies) & & \checkmark & \checkmark \\
+\hline
+c & $\{(ab)^n\epsilon c^n \; | \; n \geq 0\}$ & & \checkmark & \checkmark \\
+\hline
+d & $\{a^nb^n\epsilon c^n \; | \; n \geq 0\}$ & & & \checkmark \\
+\hline
+e & $\{w\epsilon w \; | \; w \in \{a,b\}^*\}$ & & & \checkmark \\
+\hline
 \end{tabularx}
-\normalsize
 \xe
 
-Once these are defined, Barker provides the following schemata for semantic composition in a continuized grammar, which he later generalizes. These are all the basic tools necessary to view QNPs from a continuized standpoint.
+Joshi proceeds to discuss two linguistically motivated modifications to the basic TAG model: links and adjoining constraints. Links, shown graphically in (5), encode particular asymmetric c-command relations between node pairs in elementary trees, such that the lower node must dominate the empty string. Generally, in linguistic contexts, the pair of nodes will be of the same category. The main point here is that links are preserved after adjoining, i.e., can occur over long distances. Nesting or crossing dependencies can be produced by adjoining trees to elementary trees with defined links, a useful property for natural language modeling.
 
-\ex \textit{Barker 2002: (9)}
+\ex \textit{links schema}
+
+\includegraphics[scale=0.35]{links.png}
+\xe
+
+Adjoining constraints (6) define Left-Right (LR) and Top-Bottom (TB) contexts on auxiliary trees, any of which constraints may be empty; i.e., they restrict the contexts into which auxiliary trees can adjoin. The LR context specifies a proper analysis, a cut, of the adjoined-to tree that passes through that tree's relevant node (where the auxiliary tree will be adjoined), while the TB context specifies some path from the adjoined-to tree's root through the relevant node and to that tree's frontier.
+
+\ex \textit{constraints schema}
+
+\includegraphics[scale=0.35]{constraints.png}
+\xe
+
+Links, however, do not fundamentally change the expressive power of TAGs, while adjoining constraints do. Specifically, some important stringsets that TAGs without adjoining constraints can't generate can be generated by TAGs with adjoining constraints; table (4) is updated in (7).
+
+\ex \textit{stringsets/grammars update}
 
 \small
 \begin{tabularx}{0.9\textwidth}{
-l
-l
-l
+|c
+|>{\centering\arraybackslash}X
+|c
+|c
+|c
+|c
+|
 }
-Syntax & Direct Semantics & Continuized Semantics \\
-A $\rightarrow$ B & $\llbracket \textrm{B} \rrbracket$ & $ \lambda \={b} . \={b} ( \ldblbrace \textrm{B} \rdblbrace ) $ \\
-A $\rightarrow$ B C & $\llbracket \textrm{B} \rrbracket (\llbracket \textrm{C} \rrbracket)$ & $ \lambda \={a} . \ldblbrace \textrm{B} \rdblbrace ( \lambda b. \ldblbrace \textrm{C} \rdblbrace ( \lambda c . \={a} (bc)))  $\\
-\end{tabularx}
-\xe
-    
-\vspace{-1em}
-\section{Quantifiers}
-
-\subsection{Definitions}
-
-Already the continuation hypothesis has led to an interesting result: the continuized NP denotation, $\ldblbrace \textrm{NP} \rdblbrace$ (in 6b) has the same type as that of the direct denotation of a QNP in the QR system, namely, $\langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle$. The quantifier meaning of NPs is thus a direct consequence of the continuized grammar. Moreover, continuized denotations for QNPs can now be written. 
-
-\ex \textit{Barker 2002: (13)}
-    
-\small
-\begin{tabularx}{0.9\textwidth}{
-l
-l
-l
-}
-& Syntax & Continuized Semantics \\
-a. & NP $\rightarrow$ everyone & $ \lambda \={x} \forall x . \={x} (x) $ \\
-b. & NP $\rightarrow$ someone & $ \lambda \={x} \exists x . \={x} (x) $ \\
+\hline 
+& stringset & CFG & TAG & TAG+AC & CSG \\
+\hline
+a & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (nesting dependencies) & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+b & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (crossing dependencies) & & \checkmark & \checkmark & \checkmark \\
+\hline
+c & $\{(ab)^n\epsilon c^n \; | \; n \geq 0\}$ & & \checkmark & \checkmark & \checkmark \\
+\hline
+d & $\{a^nb^n\epsilon c^n \; | \; n \geq 0\}$ & & & \checkmark & \checkmark \\
+\hline
+e & $\{w\epsilon w \; | \; w \in \{a,b\}^*\}$ & & & \checkmark & \checkmark \\
+\hline
 \end{tabularx}
 \xe
 
-\noindent In this system, then, QNPs are distinguished from nQNPS by the fact that the former can manipulate their own continuations. While these continuized QNPS have no counterpart in the direct semantics, they are still of type $\langle \langle \textsf{e, t}\rangle , \textsf{t} \rangle$. Because they have the same type, QNPs and nQNPs in the continuized grammar are essentially the same kind of object. 
+Relative to CSGs, however, TAGs are still quite limited, which follows from three important properties discussed by Joshi. First, the number of cross-serial dependencies that TAGs can produce is limited: while TAGs can characterize cross-serial dependencies between an arbitrary number of pairs of dependent sets, they cannot characterize cross-serial dependencies between more than two dependent sets. E.g., the structure in (8) is impossible while those in (9) are possible. The table in (7) is updated in (10).
 
+\ex \textit{cross-serial dependency between three sets}
 
-For Barker, in his paper's appendix, continuized determiners themselves are ``choice functions'', type $\langle \langle \langle \langle \textsf{e, t} \rangle , \textsf{e} \rangle , \textsf{t} \rangle , \textsf{t} \rangle$. The utility for such choice functions for present purposes, perhaps generally, is small. Following Barker, though special denotations for determiners can be constructed that gain the following continuized denotation: [NP $\rightarrow$ every \func{Z}] is $ \lambda \={x} \forall x . \func{Z} x \rightarrow \={x} (x) $. 
-    
-The denotations for a small set of  determiners is given in (9), and a small fragment of the grammar is defined in (10).\footnote{ In (9), I've changed the variable name for the continuized quantifiers from \={P} to \={G} to distinguish it from the \={P} in (6). In (10), I've changed the lexical entries in (d) and (e), and I've added (f) and (g). } As can be seen in (10), the continuized denotations of lexical entries are simply the entries themselves.
+\includegraphics[scale=0.35]{3cross.png}
+\xe
 
-\ex \textit{Barker 2002: (16), modified}
+\ex \textit{cross-serial dependencies between two sets}
+
+\includegraphics[scale=0.35]{2cross.png}
+\xe
+
+\ex \textit{stringsets/grammars update}
 
 \small
 \begin{tabularx}{0.9\textwidth}{
-l
-l
-l
+|c
+|>{\centering\arraybackslash}X
+|c
+|c
+|c
+|c
+|
 }
-& Syntax & Continuized Semantics \\
-a. & \ldblbrace \textrm{every} \rdblbrace & $ \lam \={G} \={x} \dt \={G} ( \lam P . \forall x \dt P x \rightarrow \={x}(x))$ \\
-b. & \ldblbrace \textrm{a, some} \rdblbrace & $ \lam \={G} \={x} \dt \={G} ( \lam P . \exists x \dt P x \land \={x}(x))$ \\
-c. & \ldblbrace \textrm{no} \rdblbrace & $ \lam \={G} \={x} \dt \={G} ( \lam P . \neg \exists x \dt P x \land \={x}(x))$ \\
-\end{tabularx}
-\xe    
-
-\ex \textit{Barker 2002: (10), modified}
-
-\small
-\begin{tabularx}{0.9\textwidth}{
-l
-l
-l
-}
-& Syntax & Continuized Semantics \\
-a. & S $\rightarrow$ NP VP & $ \lambda \={p} . \ldblbrace \textrm{VP} \rdblbrace (\lam P . \ldblbrace \textrm{NP} \rdblbrace (\lam x . \={p}(Px))) $ \\
-b. & VP $\rightarrow$ Vt NP & $ \lambda \={P} . \ldblbrace \textrm{Vt} \rdblbrace (\lam R . \ldblbrace \textrm{NP} \rdblbrace (\lam x . \={P}(Rx))) $ \\
-c. & VP $\rightarrow$ left & $ \lambda \={P} . \={P}(\func{left}) $ \\
-d. & Vt $\rightarrow$ love & $ \lambda \={R} . \={R}(\func{love}) $ \\
-e. & NP $\rightarrow$ Fanoi & $ \lam \={x} . \={x}(\func{f}) $ \\
-f. & NP $\rightarrow$ every zeekooper & $ \lambda \={x}  . \forall x . \func{zk} \, x \rightarrow \={x} (x) $ \\
-g. & N $\rightarrow$ zeekooper & $ \lambda \={P} . \={P}(\func{zk}) $ \\
-\end{tabularx}
-\xe
-
-\vspace{-1em}
-\subsection{A Sample}
-
-The continuation approach can now be directly compared to the standard QR approach. A simple QR is shown in (11). Under normal type assumptions, without QR \textit{every zeekooper} can't compose with the transitive verb \textit{love}, so the QNP moves to a higher node, creating an abstraction node below it. This way, all the types work out, and the quantifier has the desired scope.
-    
-\ex Fanoi loves every zeekooper \hfill [QR]
-
-\small
-\begin{forest}
-[$\ty{t}$\\$\forall y\dt \func{zk}\,y \rightarrow \func{love}\,y\,\name{f}$
-[$\p{\ty{et}}\ty{t}$\\$\lam P\dt \forall y\dt \func{zk}\,y \rightarrow P\,y$\\every zeekooper, name=top]
-[$\ty{et}$\\ $\lam x\dt \func{love} \,x \,\func{f}$
-[1]
-[$\ty{t}$\\\func{love} \textit{g}\textsub{1} \func{f}
-[$\ty{e}$\\\func{f}\\Fanoi]
-[$\ty{et}$\\$\lam y\dt \, \func{love} \, g\textsub{1} \, y$
-[$\ty{eet}$\\$\lam x\dt \lam y\dt \, \func{love} \, x \, y$\\loves][$\ty{e}$\\\textit{g}\textsub{1}\\\underline{\hspace{1em}}\textsub{1}, name=pro]
-]]]]
-\draw[->, dotted] (pro.south) to[mv] (top);
-\end{forest}
-\xe
-
-In (12) is the same sentence using continuations, with expanded $\beta$-reductions in (13)-(15). To reiterate what's conceptually going on, every constituent is a function from a [context with a hole for A] to [the meaning of that context when A fills that hole]. E.g., in (12), `love' is a function from a verbless context to a `love'-filled context. Therein, lexical entries like `love', `zeekooper', etc. are just individual $\lambda$ terms. More interestingly, higher-level constituents like `loves every zeekooper', a VP, are also functions from contexts missing a VP to a context filled with the VP `loves every zeekooper', and, crucially, this VP was determined compositionally.
-    
-\ex Fanoi loves every zeekooper \hfill [continuation]
-
-\small
-\begin{forest}
-[$\ty{tt}$\\$\lam \={p} . \forall y\dt \func{zk}\,y \rightarrow \={p}(\func{love}\,y\,\name{f})$
-[$\p{\ty{et}}\ty{t}$\\$\lam \={x} . \={x} (\func{f}) $\\ Fanoi]
-[$\p{\p{\ty{et}}\ty{t}}\ty{t}$\\ $ \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P}(\func{love}\,y)$ \\ loves every zeekooper
-[$\p{\p{\ty{e}\p{\ty{et}}}\ty{t}}\ty{t}$ \\ $\lam \={R} . \, \={R}(\func{love})$ \\ loves]
-[$\p{\ty{et}}\ty{t}$\\ $\lam \={x} . \forall y . \func{zk} \, y \rightarrow \={x}(y) $ \\ every zeekooper
-[$\p{\p{\p{\ty{et}}\ty{t}}\ty{t}}\ty{t}$\\$ \lam \={G} \={x} \dt \={G} ( \lam P . \forall x \dt P x \rightarrow \={x}(x))$\\every][$\p{\p{\ty{et}}\ty{t}}\ty{t}$\\$ \lambda \={P} . \={P}(\func{zk}) $\\zeekooper]
-]]]
-\end{forest}
-\xe
-
-\vspace{-1em}
-\ex proof for (11), QNP level
-
-\small
-\begin{tabularx}{0.9\textwidth}{
-l
-l
-l
-}
-& reason & output \\
-a. & (9a), (10g) & $ (\lam \={G} \={x} \dt \={G} ( \lam P . \forall x \dt P x \rightarrow \={x}(x)))( \lambda \={P} . \={P}(\func{zk})) $ \\
-b. & $\beta$ & $\lam \={x} \dt (\lam \={P} \dt \={P} (\func{zk}))(\lam P \dt \forall \dt P\,x \rightarrow \={x}(x))$ \\
-c. & $\beta$ & $\lam \={x} \dt (\lam P \dt \forall x \dt P\,x \rightarrow \={x}(x)) (\func{zk})$ \\
-d. & $\beta$ & $\lam \={x} \dt \forall x \dt \func{zk}\,x \rightarrow \={x}(x)$ \\
+\hline 
+& stringset & CFG & TAG & TAG+AC & CSG \\
+\hline
+a & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (nesting dependencies) & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+b & $\{a^n\epsilon b^n \; | \; n \geq 0\}$ (crossing dependencies) & & \checkmark & \checkmark & \checkmark \\
+\hline
+c & $\{(ab)^n\epsilon c^n \; | \; n \geq 0\}$ & & \checkmark & \checkmark & \checkmark \\
+\hline
+d & $\{a^nb^n\epsilon c^n \; | \; n \geq 0\}$ ($\leq 2$ crossing dep.) & & & \checkmark & \checkmark \\
+\hline
+e & $\{w\epsilon w \; | \; w \in \{a,b\}^*\}$ ($\leq 2$ crossing dep.) & & & \checkmark & \checkmark \\
+\hline
+f & $\{a^nb^n\epsilon c^n \; | \; n \geq 0\}$ ($\textgreater 2$ crossing dep.) & & & & \checkmark \\
+\hline
+g & $\{w\epsilon w \; | \; w \in \{a,b\}^*\}$ ($\textgreater 2$ crossing dep.) & & & & \checkmark \\
+\hline
+h & $\{a^nb^nc^n\epsilon d^ne^n \; | \; w \in \{a,b\}^*\}$ & & & & \checkmark \\
+\hline
+i & $\{w\epsilon w\epsilon w \; | \; w \in \{a,b\}^*\}$ & & & & \checkmark \\
+\hline
 \end{tabularx}
 \xe
 
-\vspace{-1em}
-\ex proof for (11), VP level
+Second, TAGs have what Joshi calls the ``constant growth property''. At each stage of a tree's derivation, a sentence, i.e., an S-rooted tree, is produced (because initial trees are defined as having an S-root). What this entails is that the lengths of the terminal strings during a derivation increase by a constant rate, based on the fixed lengths of the adjoined auxiliary trees, and the length of the final output string is a linear combination of the length of the terminal strings of initial and adjoined trees. This means that stringsets like $\{a^{2^n} \; | \; n \geq 1\}$ and $\{a^{n^2} \; | \; n \geq 1\}$ can't be generated by any TAG.\footnote{I'm not sure if CSGs can generate these.}
 
-\small
-\begin{tabularx}{0.9\textwidth}{
-l
-l
-l
-}
-& reason & output \\
-a. & (10b) & $ \lam \={P} . \ldblbrace \textrm{loves} \rdblbrace (\lam R . \ldblbrace \textrm{every zeekooper} \rdblbrace (\lam x . \={P} (R \, x))) $ \\
-b. & (10c,e) & $ \lam \={P} . ( \lam \={R} . \={R}(\func{love} )) (( \lam R . ( \lam \={x} \forall y . \func{zk} \, y \rightarrow \={x} ( y ) ) ( \lam x . \={P} (R \, x )))) $\\
-c. & $\beta$ & $ \lam \={P} . ( \lam \={R} . \={R} (\func{love} )) (\lam R . \forall y . \func{zk} \, y \rightarrow ( \lam x . \={P} ( R \, x ) ) y ) $ \\
-d. & $\beta $ & $ \lam \={P} . ( \lam \={R} . \={R} (\func{love} )) (\lam R . \forall y . \func{zk} \, y \rightarrow \={P} ( R \, y )) $ \\
-e. & $\beta$ & $ \lam \={P} . ( \lam R . \forall y . \func{zk} \, y \rightarrow \={P} (R \, y)) \func{love} $  \\
-f. & $\beta$ & $ \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P} ( \func{love} \, y ) $ \\
-\end{tabularx}
+Third, TAG parsing is ``possibly only slightly worse'' than that of CFGs, in time $O(n^4)$. In sum, these three properties restrict TAGs from being wildly more powerful than CFGs, unlike CSGs, while TAGs can still, unlike CFGs, generate cross-serial dependencies.
+
+The rest of the paper is devoted to (somewhat simplified) linguistic examples used to show the usefulness of TAGs for representing natural language. I won't repeat the details of these examples here, but I will highlight a few key points. First, it's assumed that every subcategorization frame (e.g., transitive verb, ditransitive verb, intransitive verb, etc.) has its own initial tree defined in the grammar.\footnote{Note that passive forms of transitive, intransitive, etc. forms have separately defined initial trees.} Moreover, not all initial trees correspond to matrix sentences, as in the case of control and raising frames, for which the initial embedded \textit{to} clauses are initial trees (to which appropriate finite clauses can be adjoined). Second, it's assumed that lexical items are inserted at each stage of the derivation, i.e., with each choice of elementary tree; it's further assumed that ``we can check a variety of constraints'', like agreement, on the lexical items as they are inserted into the trees.\footnote{Presumably this is a separate or additional mechanism from the TAGs as they were before defined, but it's not clear.}
+
+Perhaps more interestingly, there are separate initial trees defined for the \textit{wh-}question (initial tree) counterparts of non-\textit{wh} frames (11), in which an empty string sits \textit{in situ} at the bottom of the tree and is linked to (per the above definition) the \textit{wh}-phrase at the top of the tree, and there are a number of auxiliary trees for relative clauses (12).
+
+\ex \textit{wh-question initial tree example}
+
+\includegraphics[scale=0.50]{wh-.png}
 \xe
 
-\vspace{-1em}
-\ex proof for (11), S level
+\ex \textit{relative clause auxiliary tree example}
 
-\small
-\begin{tabularx}{0.9\textwidth}{
-l
-l
-l
-}
-& reason & output \\
-a. & (10a) & $ \lam \={p} . \ldblbrace \textrm{loves every zeekooper} \rdblbrace (\lam P . \ldblbrace \textrm{Fanoi} \rdblbrace (\lam w . \={p} (P \, w))) $ \\
-b. & (10e), (14f) & $ \lam \={p} . ( \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P} ( \func{love} \, y )) ( \lam P . ( \lam \={z} . \={z} ( \func{f} )) ( \lam w . \={p} (P \, w ))) $ \\
-c. & $\beta$ & $ \lam \={p} . ( \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P} ( \func{love} \, y )) ( \lam P . ( \lam w . \={p} ( P \, w )) \func{f} ) $\\
-d. & $\beta$ & $ \lam \={p} . ( \lam \={P} . \forall y . \func{zk} \, y \rightarrow \={P} ( \func{love} \, y )) ( \lam P . \={p} (P \, \func{f} ) ) $ \\
-e. & $\beta$ & $ \lam \={p} . \forall y . \func{zk} \, y \rightarrow ( \lam P . \={p} (P \func{f} )) (\func{love} \, y ) $ \\
-f. & $\beta$ & $ \lam \={p} . \forall y . \func{zk} \, y \rightarrow \={p} ( \func{love} \, y  \, \func{f} ) $ \\
-\end{tabularx}
-\xe
-    
-In (12) the final S level is still continuized, i.e., type \textsf{tt}. This can be applied to a trivial continuation function, the identity function $\lam p . p$, which $\beta$-reduces to $ \forall y . \func{zk} \, y \rightarrow \func{love} \, y  \, \func{f}  $, producing the same result as the QR version.
-    
-\subsection{Scope/Ambiguity}
-
-Per (1), it remains to be seen if/how the continuations approach handles scope displacement, and thereby possible scope ambiguity. In fact, scope displacement arises with the realization that each node can be composed in two ways instead of one. The sentence composition rule could be that from (10a), repeated in (16a), but it could also be that in (16b).
-    
-\ex \textit{Barker 2002: (18), modified}
-
-\small
-\begin{tabularx}{0.9\textwidth}{
-l
-l
-l
-}
-& Syntax & Continuized Semantics \\
-a. & S $\rightarrow$ NP VP & $ \lambda \={p} . \ldblbrace \textrm{VP} \rdblbrace (\lam P . \ldblbrace \textrm{NP} \rdblbrace (\lam x . \={p}(Px))) $ \\
-b. & S $\rightarrow$ NP VP & $ \lambda \={p} . \ldblbrace \textrm{NP} \rdblbrace (\lam x . \ldblbrace \textrm{VP} \rdblbrace (\lam P . \={p}(Px))) $ \\
-\end{tabularx}
+\includegraphics[scale=0.50]{rel.png}
 \xe
 
-With (16b) the derivation in (12) could have surface scope by reversing the priority of the quantified NP relative to the Vt, i.e., changing the order of computation. The subject, Fanoi, and the VP could also have had their priority switched, and this is generalizable: every pair of nodes could be composed in two ways. Differences in priority of computation have complementary interpretations; e.g., VP $>$ Subj. (18a) says the subject provides the continuation for the VP, while Subj. $>$ VP (18b) says the VP provides the continuation for the subject. The continuations approach over-generates possible scope readings, but this is not unique to the continuations approach. Of course, it's an empirical question as to which scopal possibilities are actually allowed by the language, i.e., which nodes take priority, just like it's an empirical question as to when QR is or is not allowed.
+The main result from defining structures in this way is that island constraints don't need to be defined separately. Instead, island conditions are ruled by the fact that there is no initial tree that corresponds to a frame that could produce an island-violating sentence. For example, the sentence in (13a) is ruled out by the fact that there is no initial tree corresponding to (13b) (although (13b) is \textit{a priori} possible in some TAG).
 
-
-\section{Other Applications}
-
-Barker goes through several other natural language topics for which the continuations approach is useful. Without going into too much detail here, I will briefly describe his conclusions.
-
-First, Barker notes that continuations allow for quantifier scope to be displaced over phrases of arbitrary length. Others have claimed, however, that QNPs can't scope outside of finite clauses. This claim could be accounted for by changing the sentence rules in (16) to those in (17).
-
-\ex \textit{Barker 2002: (20), modified}
-
-\small
-\begin{tabularx}{0.9\textwidth}{
-l
-l
-l
-}
-& Syntax & Continuized Semantics \\
-a. & S $\rightarrow$ NP VP & $ \lambda \={p} . \={p} (\ldblbrace \textrm{VP} \rdblbrace (\lam P . \ldblbrace \textrm{NP} \rdblbrace (\lam x . (Px)))) $ \\
-b. & S $\rightarrow$ NP VP & $ \lambda \={p} .\={p}( \ldblbrace \textrm{NP} \rdblbrace (\lam x . \ldblbrace \textrm{VP} \rdblbrace (\lam P . (Px)))) $ \\
-\end{tabularx}
+\pex \textit{island conditions ruled out}
+\a * To whom did you wonder what John did?
+\a * To whom what did John do?
 \xe
 
-This effectively forces the computation to stop at the S level by ``disrupting the transmission of continuation information between the subconstituents and S''. This only works for sentences, i.e., direct type \textsf{t}, because \={p} expects a \textsf{t}.
+Joshi presents this result as a huge advantage over transformational grammars, which must define, in perhaps an \textit{ad hoc} way, which transformations are disallowed to prevent island violations. I'm not sure how strong this argument is actually. As Joshi admits, the set of elementary trees in the TAG model is going to be quite large, though finite. Not only is that set large, but it will be larger than the set of initial or basic frames (however they're defined) in transformational grammars because the transformational grammars won't define passive and \textit{wh-} forms separately. Joshi's argument is essentially saying that it's less \textit{ad hoc} to directly define only the allowed structures in the elementary trees than it is to define restrictions on otherwise over-productive transformational rules. However, we don't actually have empirical access to the allowed (or disallowed) initial trees (they are by definition not matrix sentences). That is, the allowed initial trees are still defined by looking at what structures would lead to island violations, so the gain for TAGs in this case seems somewhat overstated, regardless of the other merits of TAGs.\footnote{Frank (2004) makes a very similar argument to that of Joshi here.}
 
-Barker goes on to consider other aspects of NP scope. Sentences like \textit{no man from a foreign country was admitted} are scopally ambiguous w/r/t to \textit{no man} and \textit{a country}. The linear scope poses some problem for QR: raising the embedded QNP and then the embedding QNP with a trace leads to an unbound variable and uninterpretable/incorrect truth conditions. The continuations approach, however, provides both linear and inverse readings with equal ease.
+Still, TAGs do have a number of qualities that make them useful for modelling natural language. In addition to those described abstractly above, the fact that linking relations are preserved during derivations allows long-distance dependencies to obtain as desired (e.g., with further embedding). Joshi also shows how the cross-serial dependencies, one of TAGs' advantages over CFGs, can be applied to embedded phrases in Dutch.
 
-Furthermore, some have claimed that NPs are scope islands such that an NP contained in an NP can only move so far as the containing NP. This, however, causes type problems. Still, certain scopal possibilities have been shown to be generally illicit for real sentences. Namely structures like those in (18a), the scope arrangements in (18b) but not (18c) are licit (called Syntactic Constituent Integrity).
+\section{Joshi \& Schabes 1991}
 
-\pex \textit{Barker 2002: (24), modified}
-\a [...A...]\textsub{x}[...B...C...]\textsub{y}
-\a [A $>$ B, C], [B, C $>$ A]
-\a *[C $>$ A $>$ B], *[B $>$ A $>$ C]
+This paper makes some significant updates to TAGs without fundamentally changing their expressive power. The changes are summarized in (14). Unless otherwise stated, everything else in the system remains the same as described above.
+
+\pex \textit{changes to TAGs}
+\a Elementary trees no longer need to only have terminal symbols at their frontiers. A mix of terminals and non-terminals can appear there, but at least one terminal must appear.
+\a Adjoining is reformed from just ``excising'' a subtree of the adjoined-to tree to a process that deletes and makes a copy of the relevant subtree.
+\a There is a second operation called substitution that takes place only on specially marked non-terminal frontier nodes: a non-terminal node of category X is replaced by another tree with a root node of category X. E.g., a tree with non-terminal NP can get substituted for a tree with a [NP [D N]] structure. Adjoining is disallowed on nodes marked for substitution.
+\a Derivation trees are defined, which unambiguously represent the construction of any given tree in a given TAG, since finished derived trees on their own don't give enough information to detail how they were constructed. These don't play too important a role here, though.
+\a Most importantly---the ``lexical'' part---each elementary structure is associated with, i.e., contains a realized instantiation of, one lexical item called the ``anchor''. Each lexical item is associated in the lexicon with a finite set of elementary structures.
 \xe
 
-\noindent This too naturally falls out from the continuations approach, though the QR approach would need to rely on stipulation.
+Substitution is added for ``linguistic reasons'', which aren't spelled out, though it does make the elementary trees simpler, and the addition is what, I assume, motivates the more lax requirements for the frontiers of elementary trees. This swap is then why the expressive power of TAGs doesn't fundamentally change. 
 
-Finally, Barker shows that continuations provide a natural account for generalized conjunction, and he provides an explicit generalized schema for continuations grammars. I leave the details of these for another time.
+A main result of this paper, though, is that it basically specifies the lexicon as the storehouse for elementary trees. These elementary trees constitute the category of a given lexical item. These elementary trees must, by definition, be finite. Furthermore, the authors claim that they ``require that the combining operations combine a finite set of structures into a finite number of structures''. It's not clear to me whether this refers only to lexicon-based derivations or syntactic ones as well. If the latter, it would seem to be a departure from the general Chomskyan/Humboldtian claim of ``infinite use of finite means''.
 
-\section{Compositionality}
+Lexicalized grammar is actually a class that includes TAGs, and many types of formalism can be lexicalized. The remainder of the paper is devoted to proving several propositions about lexicalized grammars. Without going into their explanations, two important such propositions are that: i) lexicalized grammars are finitely ambiguous (can be parsed a finite number of ways); ii) it is decidable whether or not a string is accepted by a lexicalized grammar. Finally, they show that CFGs can be lexicalized with TAGs, but, crucially, adjoining is necessary; i.e., substitution on its own cannot be used to lexicalize CFGs. In fact adjunction is sufficient for such lexicalization, but substitution makes it ``more compact''. The results here, namely, the close relationship between TAGs and CFGs, seem to further argue for TAGs as a viable model for natural language, though such an argument is not explicitly stated.
 
-Barker ends by discussing the compositional nature of continuations. It's been doubted whether compositionality is an empirical issue, to which Barker stresses that compositionality can be falsified. As for continuized grammars, they at least meet the condition that the meanings of complex expressions remain constant under substitution of subexpressions with equivalent meanings. 
+\section{Joshi, Becker \& Rambow 2000}
 
-However, a stricter definition of compositionality could be invoked, such that ``a syntactic analysis fully disambiguates the expression in question''. In continuized grammars, the denotation of an expression with quantifiers depends in part on the choice of permutation function to determine scope (16a,b). This implies a trade off: either the syntax specifies the permutation function with some system of indices (scope ambiguity is a syntactic maneuver, which splits syntax and LF), or semantic ambiguity must be accepted.
+This short paper tackles the long debate over whether to assign unacceptability to a problem of competence (grammar) or of performance. The basic claim is that the reason a particular class of sentences is ungrammatical should be treated as an empirical question, and it should not be \textit{a priori} assumed that performance is the underlying issue.\footnote{That is, when it's a question pertaining to the formal language. Obviously, syntacticians make bids for ungrammaticality all the time.} Rather, they show that it's an empirical choice whether to find a grammar that rules out certain unacceptable sentences as ungrammatical or to develop performance criteria to do so.
 
-Barker accepts semantic ambiguity and proposes the following definition for compositionality:
+They begin by going over the known problem of center-embedding in English. They agree with the usual argument that the unacceptability of center-embedded sentences stems from a performance issue. The basic argument is that a constraint on an arbitrary level of center embedding makes sense in neither FSGs nor CFGs\footnote{FSGs are also linguistically inadequate, of course.}; specifically, such a constraint would have to be stated outside the FSG/CFG framework. Nor is there some other grammar that reasonably includes such a restriction.
 
-    \ex \textit{Barker 2002: (36)} \\ The meaning of a syntactically complex expression is a function only of the meaning of that expression's immediate subexpressions, the syntactic way in which they are combined, \textbf{and their semantic mode of composition}.
-    \xe
+They then go on to describe and analyze a somewhat similar linguistic phenomenon in German: scrambling at two and more levels of embedding. Scrambling in German allows constituents of embedded clauses to move to higher clauses, and the order of the moved constituents can change relative to their original positions. However, similar to English center-embedding, scrambling over more than two levels of embedding is very difficult to interpret.
 
-\noindent Accordingly, each permutation is ``one mode of composition'': scope ambiguity is ``neither syntactic nor properly semantic'', but instead it's ``metacompositional''.
+They define the two constraints on LTAG grammars in (15) from which they will argue.\footnote{LTAG refers to lexicalized TAGs as described in the previous section.}
+
+\pex \textit{co-occurrence constraints}
+\a weak co-occurrence constraint (WCC) \\ All substitution nodes must be filled with the appropriate trees, i.e., the trees of those lexical items which are the arguments of the lexical anchor.
+\a strong co-occurrence constraint (SCC) \\ If a verb V$_i$ subcategorizes an S, then, when an elementary tree anchored on V$_i$ is adjoined to an S node in a tree anchored by V$_j$, V$_j$ is an argument of V$_i$; i.e., the V$_i$ tree cannot be adjoined to an arbitrary S node.
+\xe
+
+The first constraint ensures that each elementary tree includes the lexical anchor and its argument positions, and no other arguments. The second constraint ensures that each elementary tree is semantically coherent and that trees are combined in a ``semantically coherent manner''. They show, then, that an LTAG following WCC can produce sentences of the form in (16) only for \textit{k} $\leq$ 4, while an LTAG following WCC+SCC can produce such sentences only for \textit{k} $\leq$ 1.
+
+\ex $\{\sigma(NP_1, ..., NP_k)V_k ... V_1 \; | \; k \in \func{N} \; \textrm{and}\;  \sigma \; \textrm{a permutation}\}$
+\xe
+
+Since LTAGs following these two constraints cannot get the right limit on scrambling embedding, they consider an extension to LTAGs called tree-local multi-component LTAGs (MC-LTAGs). In this model, auxiliary trees can comprise a set of trees, as long as at least one of the trees is anchored to a lexical item. Furthermore, adjoining works the same, with the additional requirement that all elements of an auxiliary tree set be adjoined to distinct nodes in the same elementary tree. They claim that MC-LTAGs are weakly but not strongly equivalent to LTAGs: MC-LTAGs are slightly more powerful.
+
+As it turns out, MC-LTAGs under SCC can handle all sentences up to two levels of embedding, and no more than two, exactly as desired for German scrambling phenomena. The authors use this to force the competence versus performance choice. If MC-LTAGs are accepted, then German scrambling un/acceptability can be viewed as a grammatical, and therefore competence, issue. On the other hand, if, for some reason, one still wants to claim that the scrambling phenomena are a performance issue, some other well-motivated grammar that allows more than two levels of embedding must be found.\footnote{Of course, MC-LTAGs could be shown to be linguistically inadequate for orthogonal reasons, in which case the question would remain open.}
 
 \section{Conclusion}
 
-Using continuations as developed by Barker for natural language grammars have a number of appealing results: NPs are essentially quantifiers, and all NPs are of the same type; scope ambiguity and some constraints on NP scope arise naturally; generalized conjunction is well-accounted for; it's compositional in a fairly robust way.
+There seem to be a number of empirical advantages for choosing tree adjoining grammars, in their various instantiations, as a model for the human language faculty. Most notably, they capture a number of complex stringsets found in natural languages without being immensely more powerful than CFGs. To accept TAGs over some kind of transformational or minimalist grammar might require at least a conceptual overhaul when carried into nuts-and-bolts syntax, even if the TAGs end up being equivalent in a number of ways. Still, syntacticians, I think, might do well to attend to how the underlying formal grammar allows, impinges upon, or modulates their empirical claims.
 
-At least as it's presented in this paper, the continuations approach seems in some ways less tightly integrated with syntactic processes than the QR approach. Furthermore, it doesn't provide a natural path for dealing with binding. Still, Barker's paper suggests that a continuized grammar could, even almost two decades later, be a useful tool for natural language research.
+\section*{References}
 
-\section{reference}
+\small
 
-Barker, Chris. 2002. Continuations and the Nature of Quantification. \textit{Natural Language Semantics} 10: 211-242.
+Frank, R. (2004). Restricting grammatical complexity. \textit{Cognitive Science}, 28(5).
+
+\noindent \hfill \par
+\noindent Joshi, A.K. (1985). Tree adjoining grammars: How much context sensitivity is required to provide reasonable structural descriptions? In D. Dowty, L. Karttunen, A. Zwicky (Eds.), \textit{Natural Language Parsing: Psychological, Computational and Theoretical Perspectives} (pp. 206-250). Cambridge: Cambridge University Press.
+
+\noindent \hfill \par
+\noindent Joshi, A.K. \& Schabes, Y. (1991). Tree-Adjoining Grammars and Lexicalized Grammars. Technical Report.
+
+\noindent \hfill \par
+\noindent Joshi, A.K., Levy, L., \& Takahashi, M. (1975). Tree adjunct grammars. \textit{Journal of Computer and System Sciences}, 10(1), 136-163.
+
+\noindent \hfill \par
+\noindent Joshi, A.K., Becker, T., \& Rambow, O. (2000). Complexity of scrambling: A new twist to the competence-performance distinction. In A. Abeill\'{e}, O. Rambow (Eds.), \textit{Tree Adjoining Grammars: Formalisms, Linguistic Analysis and Processing} (pp. 167-181). Stanford, CA: CSLI.
 
 
 \end{document}
