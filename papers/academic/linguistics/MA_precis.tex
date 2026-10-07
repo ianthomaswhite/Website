@@ -159,7 +159,7 @@
 \maketitle
 \thispagestyle{empty}
 
-\section{overview}
+\section{Overview}
 
 \noindent Since the generative turn, determining the class of grammars that characterizes natural language has been a foundational task of modern linguistics. The formal results therein on a wide array of grammars has been substantial, especially in establishing equivalencies based on weak generative capacity (the set of possible strings produced). Of course, the inability for a certain class of grammars to produce some set of strings, including strings that definitely occur in natural language, is often good grounds for ruling out that class. That said, the possibility for using weak generative capacity to determine the appositeness of different grammar classes to natural language is limited, impossible for weakly equivalent grammars. Just because some string is producable does not mean it is producable in the right way: whether that be for reasons of strong generative capacity, some other notion of structural equivalence, difficulty in production/parsing, etc.\\
 
@@ -167,12 +167,12 @@
 
 \noindent The basic question at hand, then, is: How can we characterize and explain why MGs and CCGs produce their respective word orders (theitr ``permutation power'')? Put differently, can enough common ground between these two very different formalisms be found in order for us to compare their word order power? An important part of this question is defining ``selection'' across different formalisms. Headway is made here in converting CCGs to LIGs, moving them ``toward'' MGs, and thereby allowing CCG operations to be coded without CCGs' adjacency requirement. Furthermore, the MG-CCG discrepancy, informally speaking, is about what sorts of ``bidirectionality'' each formalism can handle, i.e., how they manipulate different sides of a string context. (This is how MGs' permutation power is bumped up from 16 to 22.) It remains to be seen what characterizes MGs' permutation power for \textit{n} elements. From there, the formal relationship between MGs' permutation power and the CCG-derived LIGs needs to be clarified.
 
-\section{background}
+\section{Background}
 
 \noindent Since Joshi (1985), \textit{mildly context sensitive grammars} (MCSGs) have been the primary contender for the class of grammars that contains natural language. In the 80s and 90s, a number of MCSGs were kicked around that were all weakly equivalent to a (certain formulation of a) long-standing formalism, Combinatory Categorial Grammars (CCGs), especially following Steedman (1985, cf. 2000). Then, in 1997, Stabler introduced a new strain of MCSGs by formalizing traits of the Minimalist Program into Minimalist Grammars (MGs). MGs, often tacitly assumed by working syntacticians, are strictly more powerful than CCGs in terms of string output. MGs are also weakly equivalent to another important grammar formalism, Multiple Context Free Grammars (MCFGs).
 
 
-\section{starting point: Steedman vs. Stabler}
+\section{Starting Point: Steedman vs. Stabler}
 
 
 \noindent As it stands, the grammar formalism that models, or best approximates, natural language remains rather undecided, despite much progress made on the formal properties of many grammars. Stabler (2011) and Steedman (2020) have each claimed that their respective grammars capture a particular aspect of natural language: Greenberg's Universal 20, i.e., the set of possible word orders in noun  phrases, comprising the four elements Dem-Num-Adj-N (e.g., \textit{these four young boys}). (Similarly for verb phrase elements.) \\
@@ -187,7 +187,7 @@
 
 \noindent It's worth noting that these selectional assumptions are neither capricious nor an instance of special pleading. Of course, Cinque motivates them on his own syntactic and cartographic grounds. Regardless, it is usually assumed that natural language will use only a subset of the full set of possible relationships among some alphabet of symbols. It's not the case, it seems, that all non-terminals symmetrically select each other: some hierarchy obtains. Cinque's/Steedman's/Stabler's particular selectional choices are open to empirical scrutiny. However, abstracting away from the particular NP selectional requirements to generalized order permutations allows us to see the effects of maintaining selection pressure on productive capacity in a general way, i.e., without committing to any particular set of selectional requirements. All this to say, it is useful in a general way to consider grammar formalisms under the assumption that some kind of selection obtains.
 
-\section{what we've learned}
+\section{What We've Learned}
 
 \subsection{CCGs}
 
@@ -268,7 +268,7 @@
 
 \noindent Just as the two 1-primary-cagegory CCGs require maximal zig-zagging, the two separable permutations that MGs get require a diagnosable derivational structure. At least for $n=4$, these two separable permutations require Merge and Move to be alternated: i.e., for remnant movement to occur. It's not clear that this represents anything maximal, as in the CCG, however. In any case, the results above show that ``getting the most'' out of MGs require bidirectionality in some sense: of Merge and/or Move. Furthermore, curiously, modulating Merge has a less substantial effect than modulating Move, such that allowing Move to do all the bidirecational work makes all permutations derivable. The point is, perhaps unsurprisingly, that how one sets up an MG can drastically alter the selection-based structures the MG can get, even if (as Stabler more or less shows) the weak generative capacity is the same. Thus, whether one allows rightward and/or leftward movement in an MG has some actual empirical stakes. Those who wish to bar rightward movement will need to attend to how their selectional assumptions play along with that interdiction.
 
-\section{what we need to learn}
+\section{What We Need to Learn}
 
 \noindent As it stands, there are three primary tasks that need to be sorted out. First, the formal characterization for \textit{n} elements remains to be discovered for which word order permutations MGs can and can't produce, most importantly for the union of the two single-Move-direction MGs (the last row of the MG table above). \\
 
@@ -308,7 +308,7 @@ Vijay-Shanker, K. and Weir, David. 1994. The equivalence of four extensions of c
 \end{document}
 
 
-\section{timeline}
+\section{Timeline}
 
 The remaining results-to-be require some time allotted for coding the necessary grammars in Haskell, in order to find patterns for \textit{n} elements. (So far, translations have been done, tediously, by hand.) The idea, then, is to have a prelinary results and a rought draft by mid-summer. And a final draft by the start of Fall Quarter 2023.
 
