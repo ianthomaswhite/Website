@@ -25,11 +25,13 @@ echo "======================================================"
 if [ -f "${RESUME_DIR}/resume-onepage.tex" ]; then
     echo "[*] Compiling 1-Page Resume..."
     pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/resume-onepage.tex" > /dev/null 2>&1 || true
+    pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/resume-onepage.tex" > /dev/null 2>&1 || true
     echo "  -> ${PDF_DIR}/resume-onepage.pdf"
 fi
 
 if [ -f "${RESUME_DIR}/cv-full.tex" ]; then
     echo "[*] Compiling Full CV..."
+    pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/cv-full.tex" > /dev/null 2>&1 || true
     pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" "${RESUME_DIR}/cv-full.tex" > /dev/null 2>&1 || true
     echo "  -> ${PDF_DIR}/cv-full.pdf"
 fi
@@ -46,6 +48,7 @@ if [ -d "${PAPERS_DIR}" ]; then
         mkdir -p "${dest_dir}"
         tex_filename="$(basename "${tex_file}")"
         echo "[*] Compiling paper: ${rel_path}..."
+        (cd "$(dirname "${tex_file}")" && pdflatex -interaction=nonstopmode -output-directory="${dest_dir}" "${tex_filename}" > /dev/null 2>&1) || true
         (cd "$(dirname "${tex_file}")" && pdflatex -interaction=nonstopmode -output-directory="${dest_dir}" "${tex_filename}" > /dev/null 2>&1) || true
         base_name="${tex_filename%.tex}"
         if [ -f "${dest_dir}/${base_name}.pdf" ]; then

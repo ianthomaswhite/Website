@@ -119,7 +119,8 @@
 
 
 \makeatletter
-\renewcommand{\maketitle}
+\renewcommand{\maketitle
+\thispagestyle{empty}}
 {
 \begin{flushleft}
 \textbf{{\large\@title}}
@@ -156,6 +157,7 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{empty}
 
 \section{overview}
 
