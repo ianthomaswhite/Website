@@ -17,7 +17,6 @@
 \usepackage{pdflscape}
 
 %%% layout
-\usepackage[hmargin=1in,vmargin=0.75in]{geometry}
 \usepackage{enumitem}
 
 \usepackage{tabularx}
@@ -119,8 +118,7 @@
 
 
 \makeatletter
-\renewcommand{\maketitle
-\thispagestyle{empty}}
+\renewcommand{\maketitle}
 {
 \begin{flushleft}
 \textbf{{\large\@title}}
@@ -131,7 +129,7 @@
 \makeatother
 
 \titleformat*{\section}{\large\bfseries}
-\titleformat*{\subsection}{\medium\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
 \titleformat*{\subsubsection}{\small\bfseries}
 
 
@@ -213,9 +211,9 @@
     \hline
     (1(2(3(4))) & 8 & 1234, 1243, 1342, 1432, 2341, 2431, 3421, 4321 \\
     \hline
-    \ast1(2(4),3) & --- & --- \\
+    $\ast$1(2(4),3) & --- & --- \\
     \hline
-    $\bigcup$ & 22 & all minus \ast2413, \ast3142 \\
+    $\bigcup$ & 22 & all minus $\ast$2413, $\ast$3142 \\
     \hline
 \end{tabularx}\\\\
 
@@ -261,7 +259,7 @@
     MeR-MoLR & 24 & -- \\
     MeLR-MoLR & 24 & -- \\
     \hline
-    MeL(R)-MoR $\cup$ Me(L)R-MoL & 22 & \ast4213, \ast3124\\
+    MeL(R)-MoR $\cup$ Me(L)R-MoL & 22 & $\ast$4213, $\ast$3124\\
     \hline
     \end{tabularx} \\
 \\
