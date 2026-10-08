@@ -13,9 +13,9 @@ This site is a statically compiled portfolio, research clearinghouse, and blog b
 - `posts/` — Blog posts and notes (Markdown).
 - `templates/` — HTML layout templates.
 - `css/` — Stylesheets and print media styles.
-- `resume/` — LaTeX source for the 1-page resume.
-- `papers/` — Published research papers and essays (LaTeX).
-- `scripts/` — Helper scripts for syncing files and local PDF compilation.
+- `resume/` — LaTeX source for the 1-page resume and Full CV.
+- `pdfs/` — Pre-compiled PDFs synced from private repositories and compiled CV.
+- `scripts/` — Helper scripts for syncing pre-compiled PDFs and local previews.
 - `sync-manifest.conf` — Mapping configuration for publishing selected files from private repositories.
 - `.github/workflows/deploy.yml` — Automated CI/CD pipeline.
 

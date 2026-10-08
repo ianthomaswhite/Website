@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # Script: build-resumes.sh
-# Purpose: Compiles resumes and all academic/creative papers into the pdfs/ tree.
+# Purpose: Compiles local LaTeX documents (Full CV) into the pdfs/ tree.
 # ==============================================================================
 
 set -euo pipefail
@@ -11,12 +11,11 @@ ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 PDF_DIR="${ROOT_DIR}/pdfs"
 RESUME_DIR="${ROOT_DIR}/resume"
-PAPERS_DIR="${ROOT_DIR}/papers"
 
 mkdir -p "${PDF_DIR}"
 
 echo "======================================================"
-echo "  Compiling Resumes & Papers for Website"
+echo "  Compiling CV for Website"
 echo "======================================================"
 
 # ------------------------------------------------------------------------------
