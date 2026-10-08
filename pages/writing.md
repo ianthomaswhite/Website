@@ -7,6 +7,8 @@ isWriting: true
 
 ### Linguistics
 
+<div class="sub-section">
+
 #### Computational
 
 - [Permutation Power in MGs and CCGs](/pdfs/academic/linguistics/MA_precis.pdf)
@@ -23,15 +25,23 @@ isWriting: true
 - [Attic Greek Aorist/Future Passives](/pdfs/academic/linguistics/ling_205_final_paper.pdf)
 - [Head Movement: PF?](/pdfs/academic/linguistics/ling_200b_paper.pdf)
 
+</div>
+
 ### Literature
+
+<div class="sub-section">
+
+#### Classics
 
 - [Discrete Infinity and Ring Structure in Penelope's Weaving Trick](/pdfs/academic/literature/weaving.pdf)
 
-### Teaching
+#### Teaching
 
 - [CSCL 1301W: Syllabus and Assignment Materials](/pdfs/academic/teaching/1301w_syllabus_materials.pdf)
 - [CSCL 1301W: Teaching Materials and Text Notes](/pdfs/academic/teaching/1301w_teaching_materials.pdf)
 - [Reading/Writing Review Materials](/pdfs/academic/teaching/gram2.pdf)
+
+</div>
 
 ## Creative
 

@@ -157,6 +157,9 @@ def simple_markdown_to_html(md_text):
         elif stripped.startswith("#### "):
             html_lines.append(f"<h4>{inline_formatting(stripped[5:])}</h4>")
             continue
+        elif stripped.startswith("##### "):
+            html_lines.append(f"<h5>{inline_formatting(stripped[6:])}</h5>")
+            continue
         elif stripped == "---":
             html_lines.append("<hr>")
             continue

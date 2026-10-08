@@ -72,6 +72,7 @@ fi
 # 3. Clean LaTeX Auxiliary Build Artifacts Across All pdfs Subdirectories
 # ------------------------------------------------------------------------------
 find "${PDF_DIR}" -type f ! -name "*.pdf" -delete
+    find "${PAPERS_DIR}" -type f ! -name "*.tex" ! -name "*.bib" ! -name "*.cls" ! -name "*.png" ! -name "*.jpg" ! -name "*.md" -delete
 
 echo "======================================================"
 echo "  Done. All PDFs placed in ${PDF_DIR}/"

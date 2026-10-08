@@ -13,8 +13,8 @@ This document records all changes applied to the sample documents in `documents/
 - **Header Activation**: Configured `\pagestyle{fancy}` uniformly.
 
 ### Bibliography Indentation
-- For `biblatex`-managed documents (`ling_201c_final_paper.tex`, `ling_205_final_paper.tex`, `deverbals3.tex`, `weaving.tex`), hanging indentation was made explicit and uniform with `\setlength{\bibhang}{0.5in}` alongside `apa` style hanging indentation.
-- For manual bibliographies (such as syllabus text lists and precis references), hanging indentation environments (`\begin{hangparas}{.25in}{1}`) are preserved.
+- For `biblatex`-managed documents (`ling_205_final_paper.tex`, `deverbals3.tex`, `weaving.tex`), hanging indentation was made explicit and uniform with `\setlength{\bibhang}{0.5in}` alongside `apa` style hanging indentation.
+- For all documents with built-in/manual bibliographies (`ling_200b_paper.tex`, `ling_200c_paper.tex`, `ling_201c_final_paper.tex`, `ling_209_paper.tex`, `MA_precis.tex`, `1301w_syllabus_materials.tex`), hanging indentation was standardized with `\begin{hangparas}{.25in}{1}` and single spacing.
 
 ---
 
@@ -34,8 +34,10 @@ This document records all changes applied to the sample documents in `documents/
   - In appendix derivations: Fixed `five lads younr` $\rightarrow$ `five lads young`.
 
 #### 2. `ling_201c_final_paper.tex`
-- **Formatting**:
-  - Explicit hanging indentation: `\setlength{\bibhang}{0.5in}` added to preamble with `biblatex`.
+- **Formatting & References**:
+  - Added dedicated `\section{References}` using `\begin{hangparas}{.25in}{1}` and `\small` single spacing.
+  - Added complete citations including Barker, Bernardi, & Shan (2010, *SALT* 20: 109–127, https://doi.org/10.3765/salt.v20i0.2569), Bernardi & Moortgat (2010), Kubota & Uegaki (2009), Murray (2010), and Potts (2005).
+  - Loaded `\usepackage{hanging}`.
 - **Spelling / Grammar**:
   - Line 266: Fixed `A consituent is` $\rightarrow$ `A constituent is`.
 
