@@ -7,13 +7,21 @@ isWriting: true
 
 ### Linguistics
 
+#### Computational
+
 - [Permutation Power in MGs and CCGs](/pdfs/academic/linguistics/MA_precis.pdf)
-- [Head Movement: PF?](/pdfs/academic/linguistics/ling_200b_paper.pdf)
 - [Review: Tree Adjoining Grammars](/pdfs/academic/linguistics/ling_209_paper.pdf)
+
+#### Semantics
+
 - [Barker 2002: Continuations and the Nature of Quantification](/pdfs/academic/linguistics/ling_200c_paper.pdf)
 - [Barker, Bernardi, Shan (2010): Principles of Interdimensional Meaning Interaction](/pdfs/academic/linguistics/ling_201c_final_paper.pdf)
-- [Attic Greek Aorist/Future Passives](/pdfs/academic/linguistics/ling_205_final_paper.pdf)
+
+#### Syntax
+
 - [The Argument Structure of Deverbal Nouns](/pdfs/academic/linguistics/deverbals3.pdf)
+- [Attic Greek Aorist/Future Passives](/pdfs/academic/linguistics/ling_205_final_paper.pdf)
+- [Head Movement: PF?](/pdfs/academic/linguistics/ling_200b_paper.pdf)
 
 ### Literature
 

@@ -98,7 +98,7 @@
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
     
-\title{Barker, Bernadi, Shan (2010): \\ Principles of interdimensional meaning interaction}
+\title{Barker, Bernadi, Shan (2010): \\ Principles of Interdimensional Meaning Interaction}
 \author{Ian Thomas White}
 \date{}
 
@@ -148,13 +148,13 @@
 \thispagestyle{empty}
 \maketitle
 
-\section{intro}
+\section{Intro}
 
 Side-issue entailments seem to operate in a different realm than at-issue entailments: the former are unable to be modified by any surrounding semantic material. This fact poses an acute problem for compositional semantics, as side-issue entailments are by no means marginal. This means that compositionally accounting for, or at least explicitly rejecting as such, side-issue entailments is not a marginal task but a constitutive problem for a compositional semantics. Barker, Bernadi, \& Shan (2010) take up this task and propose a means for accounting for side-issue entailments in a compositional way. Their analysis relies crucially on undelimited continuations, denotations that are defined ove the semantic context, to analogize side-issue entailments to indexicals.
 
 The present paper essentially follows the logic of the Barker, Bernadi \& Shan paper (henceforth, BBS). Section 1 discusses some empirical facts about side-issue entailments. Section 3 gives a brief overview of two former accounts that treat side-issue content. Section analogizes side-issue content to indexicals. Section 5 presents the computational framework that BBS use for their proposal, the latter of which is described in in section 6. Finally, section 7 discusses some outstanding issues, and section 8 concludes the paper.
 
-\section{at-issue versus side-issue entailments}
+\section{At-Issue versus Side-Issue Entailments}
 
 The basic, descriptive distinction between at-issue and side-issue entailments is that the former act as ``news'', new information, while the latter are negatively defined as not-at-issue entailments. For BBS, there are two broad types of side-issue entailments: presuppositions and what I will call ``comments'', the latter of which comprises, at least for BBS, supplements, expressives, and epithets. Examples of each of these are in (1) and (2).
     
@@ -213,7 +213,7 @@ BBS do note, or caveat, some possible interactions between at-issue and side-iss
 \a Ian said to me this morning that he hates to mow that wretchedass lawn of his.
 \xe
  
-\section{prior accounts}
+\section{Prior Accounts}
 
 BBS discuss two then-recent, prior accounts of side-issues: Potts (2005) and Kubota \& Uegaki (2009).\footnote{ In this section BBS say ``Potts (2007)'', but it's clear they mean ``Potts (2005)''.} Potts' account provides an explicit method for computing at-issue and side-issue content. Therein, side-issues are left ``dangling'' during at-issue computation. All side-issues are computed at the very end of the derivation. A toy schematic of the system is givein in (10). Side-issues dangle underneath the uninterpreted $\bullet$, to be later computed, while at-issue content is computed as normal.
     
@@ -241,7 +241,7 @@ BBS discuss two then-recent, prior accounts of side-issues: Potts (2005) and Kub
 The system in Kubota \& Uegaki (2009), on the other hand, is compositional.  Side-issue content is computed in parallel, i.e. separately but simultaneously, with at-issue content. Side-issue content, moreover, takes scope over a special ``Assn (assertion)'' type. While this system is compositional, it cannot (on its own) explain the non-interaction constraint. Nothing prevents there being some expression in the lexicon that can modify this special type, like \textit{negex} above. Of course, Kubota \& Uegaki could stipulate that there is no such lexical modifier, but this would be less desirable than deriving the facts from the system.
 
 
-\section{indexicals analogy}
+\section{Indexicals Analogy}
 
 What BBS want, then, is a system that is both i) compositional and that ii) allows side-issues to exist on a separate plane without contributing to a sentence's meaning. Side-issue content needs access to the utterance level without being tamperable there: a ``rachet mechanism'' is needed to prevent complete propositions from being re-opened and modified.
 
@@ -261,7 +261,7 @@ BBS follow Kaplan in thinkig that context combines with content to determine mea
     
 The same idea can be applied to comments. The idea is, again, to use a function from contexts to contents, which is a continuations-passing computation. There are basic two kinds of continuations: i) undelimted (A $\rightarrow \bot$) and ii) delimited (A $\rightarrow$ R$_\signa$). In the former type, $\bot$ is a ``ratchet'', a function that essentially ends a derivation. It thus makes sense to identify ``Assn'' with $\bot$.
 
-\section{Lambek-Grishin calculus and continuations}
+\section{Lambek-Grishin Calculus and Continuations}
 
 BBS take the Lambek-Grishin calculus  as their framework for analyzing/computing side-issue entailment. While the actual mechanics are somewhat opaque in this paper, the basic takeaway is that the Lambek-Grishin calculus is a Categorial Grammar, i.e., function application occurs over syntactic categories beefed up with a Logic, i.e., a proof system.\footnote{A constituent is of a certain category iff the cartesian product of its subconstituents form a subset of the category.} Therein,  both expressions and their duals, i.e., contexts, can be precisely calculated. For example, a constituent of type \textit{A}, some structure, can be shown to be parallel to an \textit{A}-type context, a structure with an \textit{A}-hole. This concept is visually represented in (14).
 
@@ -281,7 +281,7 @@ BBS take the Lambek-Grishin calculus  as their framework for analyzing/computing
 
 Descriptively, (15a) builds a structure B, (15b) builds a stucture context-B, and (15c) ``cuts'' them, i.e., combines them to end the operation. Importantly, for BBS' ratchet-goal, the calculus provides a special type \textit{R}, the result type, which represents a complete derivation (equivalent to $\bot$, above). The Lambek-Grishin calculus thus provides a straightforward way of formulating continuations: the continuation of an expression of Type A is a function from objects of type \textit{A} to \textit{R}.
     
-\section{proposal}
+\section{Proposal}
 
 In prior work on Lambek-Grishin continuations, including for purposes of calculating quantifier scope (cf. (13b), above), sentence are of type \textsf{t}, so \textit{R} is of type \textsf{t}. Importantly, expressions don't know that they are type \textsf{t}, quantifiers merely have type \textsf{t} baked into their lexical denotations. BBS, on the otherhand, want to identify \textit{R} with speech acts / utterances, not with propositions. This means \textit{R} must be of a different type than \textsf{t}, the type of a context update.
 
@@ -299,7 +299,7 @@ The type of \textit{R}, then, is identified as \textsf{e $\rightarrow$ (s $\righ
   
 The point is that the indexical in (16a) can take the speaker \textit{s} as an argument such that \textit{s} isn't modified by further computation. For (16b), \textit{s} is again the speaker, and \textit{c} is the context set, and $\pi_1$ and $\pi_2$ return the first and second elements of an ordered pair, respectively. Thus (16b) updates the first proposition set in the context (side-issue content) with the proposition  \fun{BAD}, while the second proposition set (at-issue content) remains unchanged. Note that the normal, i.e., non-expressive, adjective in (16c) has the same type as the expressive in (16b). The crucial difference is that denotations of side-issue content rely on the type of \textit{R} in a way that denotations of at-issue content don't. Namely, at-issue content denotations are \textit{polymorphic} in the result type: they would have the same semantic type regardless of what type \textit{R} is. This is not the case with indexicals and side-issue content because they are lexically defined as taking parts of \textit{R} as arguments. Thus at-issue \textit{beautiful} can't tamper with \textit{damn} once \textit{damn} has been launched.
 
-\section{remaining issues}
+\section{Remaining Issues}
 
 There are several remaining issues that need to be addressed. First, as BBS themselves note, the system as it stands allows side-issue content to go straight to the utterance level without being tampered with by at-issue content. However, the system doesn't provide generally for the (supposed) inability of side-issue content to tamper with other side-issue content. Of course, it's an empirical question whether or not side-issues can play amongst themselves, separately from at-issue content. Detailing such self-tampering might be a key to dealing with the example from (8b). The more general problem in this vein includes presuppositions. That is, the theory must account for the difference between presuppositions and comments w/r/t the principle of non-interaction (6a,b).
 
@@ -307,7 +307,7 @@ Second, BBS don't explain how expressive vesus non-expressive versions of the sa
 
 Finally, more empirical and theoretical work needs to be done on the question of speaker orientation in comments, as mentioned about (3,4), above. In particular, I think it would be worth exploring the relationship between speakers, as an untamperable fact of the discussion, and the extensions of names. As is commonly assumed, names are considered to have stable extensions across worlds, so I think it would be worth exploring whether side-issue content could compute such extensions directly, or perhaps via indexicals as suggested for (9), above. This might be a way of preserving the major claims of the system in BBS while also allowing more semantic leeway for non-speaker-oriented side-issue content.
 
-\section{outro}
+\section{Outro}
 
 The present paper has summarized and discussed the main developments from Barker, Bernardi, \& Shan (2010). The basic takeaway is that the difference between side-issue and at-issue content can be treated compositionally and unambiguously in the realm of semantics. To do so the Lambek-Grishin calculus is used to define continuized denotations for side-issue elements that can proceed ``ballistically'' to the level of the utterance. This is an important development towards the goal of systematically integrating otherwise pragmatic phenomena into a compositional semantics.
 

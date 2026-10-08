@@ -140,3 +140,44 @@ This document records all changes applied to the sample documents in `documents/
   - *Against*: Fixed `self-taught philospher` $\rightarrow$ `self-taught philosopher`, `among philosphers` $\rightarrow$ `among philosophers`, `definiton` $\rightarrow$ `definition`, `foonote` $\rightarrow$ `footnote`, `not usefl` $\rightarrow$ `not useful`, `negative verstion` $\rightarrow$ `negative version`, `philospher` $\rightarrow$ `philosopher`.
   - *Saussure*: Fixed `despite ther getting little` $\rightarrow$ `despite their getting little`, `psycholingusitics` $\rightarrow$ `psycholinguistics`, `Abstact` $\rightarrow$ `Abstract`, `change occured` $\rightarrow$ `change occurred`, `verificaiton` $\rightarrow$ `verification`, `relabled` $\rightarrow$ `relabeled`, `syntamgatic` $\rightarrow$ `syntagmatic`, `lingusitics` $\rightarrow$ `linguistics`.
   - *Chomsky*: Fixed `Structuralistm` $\rightarrow$ `Structuralism`, `somthing like this` $\rightarrow$ `something like this`, `simplicification` $\rightarrow$ `simplification`, `can be prased in` $\rightarrow$ `can be parsed in`, `inuitive` $\rightarrow$ `intuitive`, `semanitc` $\rightarrow$ `semantic`.
+
+---
+
+## 3. Title Capitalization Pass (All Academic Samples)
+
+Applied Title Case capitalization across document titles and all sections, subsections, and subsubsections (excluding numbered linguistic examples and mathematical notation):
+- **`samples/literature/weaving.tex`**: Capitalized title (*The Metonymy of Weaving and Speech in the Odyssey*), sections, subsections, and subsubsections.
+- **`samples/teaching/1301w_teaching_materials.tex`**: Standardized Title Case across all parts, lecture overviews, and text notes.
+- **`samples/teaching/1301w_syllabus_materials.tex`**: Standardized Title Case across all syllabus and assignment headings.
+- **`samples/teaching/gram2.tex`**: Capitalized document title (*English Grammar: Rules and Guidelines*) and all section headings.
+- **`samples/linguistics/MA_precis.tex`**: Capitalized all sections, subsections, and appendix headings.
+- **`samples/linguistics/ling_201c_final_paper.tex`**: Capitalized title (*On the Syntax of Turkish Copular Clauses*) and all section/subsection titles.
+- **`samples/linguistics/ling_200b_paper.tex`**: Standardized section and subsection headings to Title Case.
+- **`samples/linguistics/ling_200c_paper.tex`**: Standardized section and subsection headings to Title Case.
+- **`samples/linguistics/deverbals3.tex`**: Capitalized document title (*The Argument Structure of Nominalizations*) and all section/subsection headers.
+- **`samples/linguistics/ling_209_paper.tex`**: Standardized section and subsection headings to Title Case.
+- **`samples/linguistics/ling_205_final_paper.tex`**: Standardized section and subsection headings to Title Case.
+
+---
+
+## 4. Teaching Materials Part Formatting
+
+Updated the `\part` styling in `1301w_syllabus_materials.tex` and `1301w_teaching_materials.tex`:
+- Removed explicit "Part 1", "Part 2", etc., numbering prefixes from headers.
+- Scaled part title font to `\large\bfseries` (one font size up from the part-internal `\normalsize` / `\medium` section headers).
+- Preserved part entries in `\tableofcontents`.
+
+---
+
+## 5. Linguistics: `MA_precis.tex` Landscape Appendix & MG Tree Fixes
+
+- **Landscape Appendix**:
+  - Implemented `\usepackage{pdflscape}`.
+  - Wrapped the appendix in `\begin{landscape} ... \end{landscape}` immediately following the references.
+  - Keeps the main body (pages 1–7) in portrait orientation while displaying the wide grammar derivations and trees (pages 8–47) in landscape.
+- **MG Tree Rendering & Compilation Fixes**:
+  - Provided `\providecommand{\medium}{\normalsize}` to prevent undefined macro errors.
+  - Corrected math syntax inside `forest` nodes (e.g. `\N'` $\rightarrow$ `N'`, `\epsislon` $\rightarrow$ `\epsilon`).
+  - Escaped out-of-math `\ast` occurrences in `tabularx` tables (`$*$` / `*`).
+  - Removed dangling line breaks `\\` on section headings.
+  - Successfully verified error-free compilation and full rendering of all CCG, LIG, and MG tree diagrams.

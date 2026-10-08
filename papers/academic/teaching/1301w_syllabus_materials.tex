@@ -57,6 +57,20 @@
 \titleformat*{\subsection}{\small\bfseries}
 \titleformat*{\subsubsection}{\small\bfseries}
 
+\makeatletter
+\renewcommand\part{%
+  \par\bigskip
+  \secdef\@part\@spart}
+\def\@part[#1]#2{%
+  \refstepcounter{part}%
+  \addcontentsline{toc}{part}{#1}%
+  {\noindent\large\bfseries #2\par}%
+  \nobreak\smallskip}
+\def\@spart#1{%
+  {\noindent\large\bfseries #1\par}%
+  \nobreak\smallskip}
+\makeatother
+
 \begin{document}
 
 \thispagestyle{empty}
