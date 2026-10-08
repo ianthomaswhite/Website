@@ -34,6 +34,12 @@ isWriting: true
 #### Classics
 
 - [Discrete Infinity and Ring Structure in Penelope's Weaving Trick](/pdfs/academic/literature/weaving.pdf)
+- [Lysistrata's Unproductive Wool-Working and Its Origin in Penelope](/pdfs/academic/literature/lysistrata.pdf)
+
+#### Modern
+
+- [Commodity Value in Marx and Aristotle](/pdfs/academic/literature/marx_aristotle.pdf)
+- [Boredom in Adorno, Baudelaire, and Benjamin](/pdfs/academic/literature/adormo_baudelaire.pdf)
 
 #### Teaching
 

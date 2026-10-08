@@ -206,3 +206,42 @@ Updated the `\part` styling in `1301w_syllabus_materials.tex` and `1301w_teachin
   - Standardized `MA_precis.tex`, `ling_209_paper.tex`, `ling_200b_paper.tex`, `ling_200c_paper.tex`, `ling_201c_final_paper.tex`, and `ling_205_final_paper.tex` to have uniform hanging indentation (`\begin{hangparas}{.25in}{1}`) with single spacing.
 - **Attic Greek (205) Built-in References**:
   - Converted bibliography from `biblatex`/`biber` to a built-in `\section{References}` using `\begin{hangparas}{.25in}{1}` containing the full citations for all cited authors (Alexiadou & Doron 2012, Bobaljik 2000, Embick 1997, Grestenberger 2015/2019, Halle & Marantz 1993, Merchant 2015, Ramón 2014, Reed 2014, Schreiner 2021, Tronci 2018).
+
+---
+
+## 7. Literature: `academic/samples/literature/` Additions
+
+Created and standardized three papers converted from Google Docs markdown sources in `academic/samples/literature/`:
+
+### 1. `adormo_baudelaire.tex` (*Boredom in Adorno, Baudelaire, and Benjamin*)
+- **Layout & Structure**: 12pt article, 1-inch margins, `\doublespacing` body, `fancyhdr` header (`Ian Thomas White` / `\thepage \ of \pageref{LastPage}`), title page suppression (`\thispagestyle{empty}`), and `\tableofcontents` with `\newpage`.
+- **Foreign Language & Accents**: Loaded fontenc `[LGR, T1]`, babel `[greek.ancient, english]`, and alphabeta for French and German accents (*ennui*, *ménagerie*, *vie moderne*, *Gallerte*, *Kristall*, etc.).
+- **Typography & Quotes**: Formatted extended excerpts as single-spaced blockquotes. Structured Baudelaire's poem *Au Lecteur* in an appendix with proper LaTeX `verse` environment.
+- **Footnotes & Citations**: Transformed all 53 markdown endnotes into proper in-text `\footnote{...}` elements. Built-in `Works Cited` section with hanging indentation (`\begin{hangparas}{.25in}{1}`).
+- **Spelling & Objective Grammar Corrections**:
+  - Fixed typos: `extolation` $\rightarrow$ `extollation`, `defacto` $\rightarrow$ `de facto`, `apparati` $\rightarrow$ `apparatuses`, `insofar as something they comprise` $\rightarrow$ `insofar as they comprise`, `It maybe possible` $\rightarrow$ `It may be possible`, `while Adorno does, like Baudelaire, maintains` $\rightarrow$ `while Adorno, like Baudelaire, maintains`, `aporiai` $\rightarrow$ `aporiae`.
+  - Punctuation/cleanups: Footnote 39 `Nor is this “mistake” seem negatively motivating` $\rightarrow$ `Nor does this “mistake” seem negatively motivating`.
+
+### 2. `lysistrata.tex` (*Lysistrata's Unproductive Wool-Working and Its Origin in Penelope*)
+- **Layout & Structure**: 12pt article, 1-inch margins, `\doublespacing` body, `fancyhdr` header (`Ian Thomas White` / `\thepage \ of \pageref{LastPage}`), `\thispagestyle{empty}`, and `\tableofcontents`. All original document paragraph divisions and indentations preserved.
+- **Section Heading**: Bibliography section titled `\section*{References}` with corresponding TOC entry.
+- **Foreign Language & Greek Typography**: Polytonic Greek rendered cleanly across the text (e.g., ὑπερῷον, καταβαίνω, πόλεμον τολυπεύειν, δόλους τολυπεύω, ποιήσαι τολύπην μεγάλην, φᾶρος, χλαῖνα, etc.).
+- **Tables**:
+  - **Table 1 (Scansions)**: Formatted with shaded light gray columns for feet 5 and 7 (`>{\columncolor{graycol}}c`), dark gray accent for the frame line (`\cellcolor{darkergray}`), vertical borders on speech blocks, and proper caesura dividers ($\mid$).
+  - **Table 2 (Conversational Sequence)**: Two-tier header structure (`Lysistrata` | `Proboulos` | `Lysistrata`) with precise vertical separators matching source design.
+  - **Table 3 (Wool Sequences Matrix)**: Multi-row spanned cells, solid horizontal section dividers (`\hline`), and dashed horizontal/vertical borders (`\hdashline`, `:c:c:...:`) via `arydshln`.
+- **Footnotes & Citations**:
+  - Fixed footnote numbering sequence around Table 1: Footnote 26 is placed in the preceding paragraph, Footnote 27 is attached to line 585 in Table 1 (`\footnotemark` / `\footnotetext`), and Footnote 28 begins the subsequent text ("I don't want to be accused of special pleading..."), maintaining a complete 1-to-1 correspondence across all 54 footnotes.
+  - References formatted with standard inverted/hanging indentation (`\begin{hangparas}{.25in}{1}`).
+- **Spelling & Objective Grammar Corrections**:
+  - Fixed typos: `PRoboulos` $\rightarrow$ `Proboulos`, `fit the the sense` $\rightarrow$ `fit the sense`, `stripp` $\rightarrow$ `strip`, `divied up map` $\rightarrow$ `divided up map`, `Penelope’s rouse` $\rightarrow$ `Penelope’s ruse`, `sheering` $\rightarrow$ `shearing`, `“to performe` $\rightarrow$ `“to perform`, `identical citationa` $\rightarrow$ `identical citations`, `the *hyperoone* refers` $\rightarrow$ `the *hyperoon* refers`, `dis-and-rerobing` $\rightarrow$ `dis- and rerobing`, `share the use one particular word` $\rightarrow$ `share the use of one particular word`, `which is doesn’t vary` $\rightarrow$ `which doesn’t vary`, `tactic tantalization` $\rightarrow$ `tactile tantalization`, `useable` $\rightarrow$ `usable`.
+
+### 3. `marx_aristotle.tex` (*Commodity Value in Marx and Aristotle*)
+- **Layout & Structure**: Title set to *Commodity Value in Marx and Aristotle*. Standard 12pt article, 1-inch margins, `fancyhdr` header (`Ian Thomas White` / `\thepage \ of \pageref{LastPage}`), `\thispagestyle{empty}`, and `\tableofcontents`.
+- **Foreign Language & Greek/German Typography**: Full polytonic Greek support for Aristotle quotations and terminology (e.g., οὔτ᾿ ἰσότης μὴ οὔσης συμμετρίας, τῇ μὲν οὖν ἀληθείᾳ, νόμισμα, μέσος, ὑποκείμενον, οὐσία, etc.), and German economic terminology (*Gallerte*, *Kristall*, *Substanz*, *Kommensurabilität*).
+- **Tables & Quotes**: Converted the Substratum argument progression comparison into a formatted `tabularx` table with clear column headers. Formatted Marx and Aristotle excerpts into single-spaced blockquotes.
+- **Footnotes & Citations**: Converted all 48 markdown endnotes into in-text `\footnote{...}` commands. Built-in `Works Cited` with hanging indentation (`\begin{hangparas}{.25in}{1}`).
+- **Spelling & Objective Grammar Corrections**:
+  - Fixed typos: `Tranlsated` $\rightarrow$ `Translated`, `Intersting` $\rightarrow$ `Interesting`, `in tum` $\rightarrow$ `in turn`, `heiddeger` $\rightarrow$ `Heidegger`, `germaine` $\rightarrow$ `germane`, `.Let us now` $\rightarrow$ `Let us now`, `capital one` $\rightarrow$ `chapter one`.
+  - Normalized placeholder works cited entries for Postone, Derrida, Heidegger, and Marx's doctoral dissertation.
+
