@@ -1,100 +1,109 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # Script: sync.sh
-# Purpose: Pulls allowed files from private local repositories into the Website
-#          repository according to sync-manifest.conf.
+# Purpose: Pulls pre-compiled PDFs directly from private sample repositories
+#          (academic, creative, professional) into the Website pdfs/ tree,
+#          and compiles the local Full CV (resume/cv-full.tex).
 # ==============================================================================
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
-MANIFEST_FILE="${ROOT_DIR}/sync-manifest.conf"
 
-if [ ! -f "${MANIFEST_FILE}" ]; then
-    echo "Error: Manifest file '${MANIFEST_FILE}' not found."
-    exit 1
-fi
+PDF_DIR="${ROOT_DIR}/pdfs"
+RESUME_DIR="${ROOT_DIR}/resume"
+
+ACADEMIC_SRC="${HOME}/Records/documents/academic/samples"
+CREATIVE_SRC="${HOME}/Records/documents/creative/samples"
+PROF_SRC="${HOME}/Records/documents/professional/samples"
+
+mkdir -p "${PDF_DIR}/academic/linguistics"
+mkdir -p "${PDF_DIR}/academic/literature"
+mkdir -p "${PDF_DIR}/academic/teaching"
+mkdir -p "${PDF_DIR}/creative/film"
+mkdir -p "${PDF_DIR}/creative/poetry"
+mkdir -p "${PDF_DIR}/creative/other"
 
 echo "======================================================"
-echo "  Syncing Private Repositories &rarr; Website"
+echo "  Syncing Pre-Compiled PDFs -> Website"
 echo "======================================================"
 
-ACTIVE_COUNT=0
-UPDATED_COUNT=0
+copy_pdf() {
+    local src="$1"
+    local dest="$2"
 
-# Process manifest line by line.
-# Format per line: <source_path> -> <destination_relative_to_repo>
-while IFS= read -r line || [ -n "$line" ]; do
-    # Strip leading and trailing whitespace characters
-    trimmed="$(echo "$line" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
-
-    # Ignore blank lines and comment lines starting with '#'
-    if [[ -z "$trimmed" || "$trimmed" =~ ^# ]]; then
-        continue
-    fi
-
-    # Parse lines matching pattern: 'SOURCE -> DESTINATION'
-    if [[ "$trimmed" =~ (.*)[[:space:]]*-\>[[:space:]]*(.*) ]]; then
-        SRC_RAW="${BASH_REMATCH[1]}"
-        DEST_RAW="${BASH_REMATCH[2]}"
-
-        # Trim extra whitespace surrounding the extracted source and destination tokens
-        SRC_RAW="$(echo "$SRC_RAW" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
-        DEST_RAW="$(echo "$DEST_RAW" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
-
-        # Safely expand leading tilde (~) to the user's home directory ($HOME)
-        SRC="${SRC_RAW/#\~/$HOME}"
-        # Destination is always anchored relative to the website repository root
-        DEST="${ROOT_DIR}/${DEST_RAW}"
-
-        ((ACTIVE_COUNT += 1))
-
-        if [ -d "$SRC" ]; then
-            # Directory sync
-            mkdir -p "$DEST"
-            if command -v rsync >/dev/null 2>&1; then
-                rsync_out="$(rsync -avi --delete --exclude="*.cls" "$SRC/" "$DEST/" | grep -E '^([<>]|c|\*deleting)' || true)"
-                if [ -n "$rsync_out" ]; then
-                    echo "  [+] Updated directory: ${DEST_RAW} <- ${SRC_RAW}"
-                    ((UPDATED_COUNT += 1))
-                else
-                    echo "  [=] Up to date: ${DEST_RAW}"
-                fi
-            else
-                cp -ru "$SRC/." "$DEST/"
-                echo "  [+] Synced directory: ${DEST_RAW} <- ${SRC_RAW}"
-                ((UPDATED_COUNT += 1))
-            fi
-        elif [ -f "$SRC" ]; then
-            # Ensure target directory exists
-            mkdir -p "$(dirname "$DEST")"
-
-            # Compare files: only copy if different
-            if [ ! -f "$DEST" ] || ! cmp -s "$SRC" "$DEST"; then
-                cp "$SRC" "$DEST"
-                echo "  [+] Updated: ${DEST_RAW} <- ${SRC_RAW}"
-                ((UPDATED_COUNT += 1))
-            else
-                echo "  [=] Up to date: ${DEST_RAW}"
-            fi
+    if [ -f "$src" ]; then
+        mkdir -p "$(dirname "$dest")"
+        if [ ! -f "$dest" ] || ! cmp -s "$src" "$dest"; then
+            cp "$src" "$dest"
+            echo "  [+] Updated: ${dest#${ROOT_DIR}/} <- $(basename "$src")"
         else
-            echo "[!] Source missing: ${SRC_RAW}"
-            continue
+            echo "  [=] Up to date: ${dest#${ROOT_DIR}/}"
         fi
+    else
+        echo "  [!] Missing: $src"
     fi
-done < "${MANIFEST_FILE}"
+}
 
-echo "------------------------------------------------------"
-if [ "$ACTIVE_COUNT" -eq 0 ]; then
-    echo "Manifest is currently empty."
-    echo "To map files, add lines to 'sync-manifest.conf':"
-    echo "  ~/path/to/private-file.tex -> destination/path.tex"
+# ------------------------------------------------------------------------------
+# 1. Academic Samples
+# ------------------------------------------------------------------------------
+if [ -d "$ACADEMIC_SRC" ]; then
+    echo "[*] Syncing Academic PDFs..."
+    find "$ACADEMIC_SRC" -name "*.pdf" | sort | while read -r src_pdf; do
+        rel="${src_pdf#${ACADEMIC_SRC}/}"
+        category="$(echo "$rel" | cut -d'/' -f1)"
+        fname="$(basename "$src_pdf")"
+        dest_pdf="${PDF_DIR}/academic/${category}/${fname}"
+        copy_pdf "$src_pdf" "$dest_pdf"
+    done
 else
-    echo "Sync finished. Checked ${ACTIVE_COUNT} file(s), updated ${UPDATED_COUNT} file(s)."
-    if [ "$UPDATED_COUNT" -gt 0 ]; then
-        echo "Rebuilding PDFs..."
-        "${SCRIPT_DIR}/build-resumes.sh"
-    fi
+    echo "[!] Academic samples folder not found: $ACADEMIC_SRC"
 fi
+
+# ------------------------------------------------------------------------------
+# 2. Creative Samples
+# ------------------------------------------------------------------------------
+if [ -d "$CREATIVE_SRC" ]; then
+    echo "[*] Syncing Creative PDFs..."
+    find "$CREATIVE_SRC" -name "*.pdf" | sort | while read -r src_pdf; do
+        rel="${src_pdf#${CREATIVE_SRC}/}"
+        category="$(echo "$rel" | cut -d'/' -f1)"
+        fname="$(basename "$src_pdf")"
+        dest_pdf="${PDF_DIR}/creative/${category}/${fname}"
+        copy_pdf "$src_pdf" "$dest_pdf"
+    done
+else
+    echo "[!] Creative samples folder not found: $CREATIVE_SRC"
+fi
+
+# ------------------------------------------------------------------------------
+# 3. Professional Samples (1-Page Resume)
+# ------------------------------------------------------------------------------
+if [ -d "$PROF_SRC" ]; then
+    echo "[*] Syncing Professional PDFs..."
+    find "$PROF_SRC" -name "*.pdf" | sort | while read -r src_pdf; do
+        dest_pdf="${PDF_DIR}/resume-onepage.pdf"
+        copy_pdf "$src_pdf" "$dest_pdf"
+    done
+else
+    echo "[!] Professional samples folder not found: $PROF_SRC"
+fi
+
+# ------------------------------------------------------------------------------
+# 4. Compile Full CV from Website Repo (resume/cv-full.tex)
+# ------------------------------------------------------------------------------
+if [ -f "${RESUME_DIR}/cv-full.tex" ]; then
+    echo "[*] Compiling Full CV (website repo)..."
+    (cd "${RESUME_DIR}" && pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" cv-full.tex > /dev/null 2>&1) || true
+    (cd "${RESUME_DIR}" && pdflatex -interaction=nonstopmode -output-directory="${PDF_DIR}" cv-full.tex > /dev/null 2>&1) || true
+    echo "  -> ${PDF_DIR}/cv-full.pdf"
+fi
+
+# Clean any non-PDF auxiliary artifacts in pdfs/
+find "${PDF_DIR}" -type f ! -name "*.pdf" -delete
+
+echo "======================================================"
+echo "  Done. PDFs updated directly from private repositories."
 echo "======================================================"
