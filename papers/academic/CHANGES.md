@@ -42,8 +42,11 @@ This document records all changes applied to the sample documents in `documents/
   - Line 266: Fixed `A consituent is` $\rightarrow$ `A constituent is`.
 
 #### 3. `ling_205_final_paper.tex`
-- **Formatting**:
-  - Explicit hanging indentation: `\setlength{\bibhang}{0.5in}` added to preamble with `biblatex`.
+- **Formatting & References**:
+  - Added `\tableofcontents` and `\newpage`.
+  - Converted external `\printbibliography` to built-in `\section{References}` using `\begin{hangparas}{.25in}{1}` and `\small` single spacing.
+  - Added complete citations directly in `.tex` for Alexiadou & Doron (2012), Bobaljik (2000), Embick (1997), Grestenberger (2015, 2019), Halle & Marantz (1993), Merchant (2015), Ramón (2014), Reed (2014), Schreiner (2021), and Tronci (2018).
+  - Cleaned `hangparas` definition to eliminate active quote interference in math mode.
 - **Spelling / Grammar**:
   - Line 423: Fixed `Panini's prinicple` $\rightarrow$ `Panini's principle`.
   - Line 457: Fixed `Panini's prinicple` $\rightarrow$ `Panini's principle`.
@@ -183,3 +186,23 @@ Updated the `\part` styling in `1301w_syllabus_materials.tex` and `1301w_teachin
   - Escaped out-of-math `\ast` occurrences in `tabularx` tables (`$*$` / `*`).
   - Removed dangling line breaks `\\` on section headings.
   - Successfully verified error-free compilation and full rendering of all CCG, LIG, and MG tree diagrams.
+
+---
+
+## 6. Table of Contents & References Updates
+
+- **Table of Contents (TOC) Added**:
+  - Added `\tableofcontents` and `\newpage` following `\maketitle` in:
+    - `ling_209_paper.tex` (*Review: Tree Adjoining Grammars*)
+    - `MA_precis.tex` (*Permutation Power in MGs and CCGs*)
+    - `ling_205_final_paper.tex` (*Attic Greek Aorist/Future Passives*)
+    - `ling_200b_paper.tex` (*Head Movement: PF?*)
+    - `ling_200c_paper.tex` (*Barker 2002: Continuations and the Nature of Quantification*)
+    - `ling_201c_final_paper.tex` (*Barker, Bernardi, Shan 2010: Principles of Interdimensional Meaning Interaction*)
+- **TAGs (209) PDF Compilation Fix**:
+  - The `hanging` package was redefining active punctuation marks (`'` and `` ` ``), causing infinite recursion and `TeX capacity exceeded` errors whenever prime symbols (`\gamma'`) occurred in math mode.
+  - Replaced `\usepackage{hanging}` with an isolated macro definition of `hangparas` (`\hangindent` + `\hangafter` via `\everypar`), allowing full, clean PDF generation in VS Code without TeX capacity or math mode collision errors.
+- **Hanging Indentation Standardization**:
+  - Standardized `MA_precis.tex`, `ling_209_paper.tex`, `ling_200b_paper.tex`, `ling_200c_paper.tex`, `ling_201c_final_paper.tex`, and `ling_205_final_paper.tex` to have uniform hanging indentation (`\begin{hangparas}{.25in}{1}`) with single spacing.
+- **Attic Greek (205) Built-in References**:
+  - Converted bibliography from `biblatex`/`biber` to a built-in `\section{References}` using `\begin{hangparas}{.25in}{1}` containing the full citations for all cited authors (Alexiadou & Doron 2012, Bobaljik 2000, Embick 1997, Grestenberger 2015/2019, Halle & Marantz 1993, Merchant 2015, Ramón 2014, Reed 2014, Schreiner 2021, Tronci 2018).

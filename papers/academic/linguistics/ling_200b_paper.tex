@@ -16,7 +16,11 @@
 \usepackage{rotating}
 \usepackage{lscape}
 
-\usepackage{hanging}
+\makeatletter
+\newcommand{\hangpara}[2]{\hangindent#1\hangafter#2\noindent}
+\newenvironment{hangparas}[2]{\setlength{\parindent}{\z@}%
+  \everypar={\hangpara{#1}{#2}}}{\par}
+\makeatother
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{array}
@@ -89,13 +93,15 @@
 \thispagestyle{empty}
 \singlespacing
 \maketitle
+\tableofcontents
+\newpage
 
 \section{Intro}
 
 Head movement (HM) has maintained relatively good standing as a valid syntactic process for explaining several phenomena, namely V-(to-T-)to-C movement, incorporation, and clitics. However, HM still poses a number of problems for syntactic theory, insofar as HM differs from phrasal movement. To deal with these problems some, including Chomsky, have proposed shunting HM into the PF component of the grammar, while others have argued that HM must take place in the narrow syntax. The current paper discusses some analyses that make claims as to what module of the grammar HM must occur in. The paper thus sits at the interface of syntax with the PF and LF components. The organization of the paper is as follows: Section 2 reviews standardly assumed HM, including the problems it poses; Section 2 reviews two accounts that send HM to PF; Section 3 reviews three accounts that argue HM must occur in the narrow syntax; Section 4 reviews two accounts that attempt to give a syntactic story for HM that fixes (some of) the problems from Section 2; finally, Section 5 briefly offers some conclusions..
 
 
-\section[foo]{Head Movement Classic\footnote{Cf. Harley (2004), Harley (2013), and Dékány (2018) for good summaries of the properties listed in this section}}
+\section[Head Movement Classic]{Head Movement Classic\footnote{Cf. Harley (2004), Harley (2013), and Dékány (2018) for good summaries of the properties listed in this section}}
 
 \subsection{Basics}
 

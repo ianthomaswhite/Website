@@ -13,7 +13,11 @@
 \usepackage{setspace}
 \usepackage{stmaryrd}
 
-\usepackage{hanging}
+\makeatletter
+\newcommand{\hangpara}[2]{\hangindent#1\hangafter#2\noindent}
+\newenvironment{hangparas}[2]{\setlength{\parindent}{\z@}%
+  \everypar={\hangpara{#1}{#2}}}{\par}
+\makeatother
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{array}
@@ -144,6 +148,8 @@
 
 \thispagestyle{empty}
 \maketitle
+\tableofcontents
+\newpage
 
 \section{Intro}
 

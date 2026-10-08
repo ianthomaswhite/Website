@@ -21,7 +21,11 @@
 \usepackage{amsmath}
 \usepackage[math-style=ISO]{unicode-math}
 
-\usepackage{hanging}
+\makeatletter
+\newcommand{\hangpara}[2]{\hangindent#1\hangafter#2\noindent}
+\newenvironment{hangparas}[2]{\setlength{\parindent}{\z@}%
+  \everypar={\hangpara{#1}{#2}}}{\par}
+\makeatother
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{array}
@@ -37,11 +41,11 @@
 \usetikzlibrary{fit}
 %\usepackage{tree-dvips}
 
-\usepackage[backend=biber, style=apa]{biblatex}
-\setlength{\bibhang}{0.5in}
-\addbibresource{205.bib}
+%\usepackage[backend=biber, style=apa]{biblatex}
+%\setlength{\bibhang}{0.5in}
+%\addbibresource{205.bib}
 \usepackage{csquotes}
-\DeclareLanguageMapping{english}{english-apa}
+%\DeclareLanguageMapping{english}{english-apa}
 
 %\usepackage{linguex}
 %\usepackage{gb4e}
@@ -97,6 +101,8 @@
 \thispagestyle{empty}
 \singlespacing
 \maketitle
+\tableofcontents
+\newpage
 
 \section{Introduction}
 
@@ -456,8 +462,31 @@ In any case, the VIs in (11) and the redundancy rules in (9,10,12) can account r
 
 This paper has presented a DM approach to a curious puzzle in Attic Greek: the fact that aorist passive forms take active endings while the related future passive takes middle-passive endings. The paper uses underspecification of vocabulary items and redundancy rules, both of which use spans and require Panini's principle, to account for this strange data. That redundancy rules might operate using the same principle, Panini's principle, as VIs do is an interesting and fruitful result, and represents an advantage over an analysis that chooses inward sensitivity to synsem features over redundancy rules: redundancy rules still follow a more general principle while allowing cyclic vocabulary insertion (another general feature of the system) to remain in place. Furthermore, redundancy rules provide a natural way of producing diachronic change that's not ``analogy'': these rules could hypothetically be added relatively easily to the morphology component of the grammar. This is especially true if the redundancy rules utilize language-specific innovations, like the distinct passive in aorist Greek. If the [+act, --act] account is on the right track, the passive could split off fairly easily diachronically, and redundancy rules could then target it easily. Similarly, the prevalence of Attic future deponents can be explained by this rule being added in the Morphology. Furthermore, these rules, unlike dissociated morphemes, don't require the morphology to be able to change the structural output of the syntax, only to change featural content, a much less powerful claim. Of course, the possibility that the feature structure [+F, --F] is possible needs to be further explored, as it has wide-ranging consequences on the morphological component and how synsem features are organized. Finally, as mentioned, a number of the precise details about the Attic inflectional system still need to be worked out. In any case, this seems like a fruitful first step for this longstanding puzzle.
 
+\section{References}
+
+\begin{hangparas}{.25in}{1}
 \small
-\nocite{*}
-\printbibliography
+Alexiadou, Artemis \& Edit Doron. 2012. The syntactic construction of two non-active Voices: Passive and middle. \textit{Journal of Linguistics} 48(1). 1--34. \url{https://doi.org/10.1017/S0022226711000338}.
+
+Bobaljik, Jonathan David. 2000. The Ins and Outs of Contextual Allomorphy. In Kleanthes Gorhmann \& Caro Struijke (eds.), \textit{University of Maryland Working Papers in Linguistics} 10. 35--71. College Park, MD: University of Maryland.
+
+Embick, David. 1997. \textit{Voice and the Interfaces of Syntax}. Ph.D. thesis, University of Pennsylvania.
+
+Grestenberger, Laura. 2015. More span-conditioned allomorphy: Voice morphology in Classical Greek. Handout, NELS: Concordia University, Montreal. \url{https://lauragrestenberger.files.wordpress.com/2017/11/nels-handout.pdf}.
+
+Grestenberger, Laura. 2019. Ancient Greek verbal morphology from a Modern (Greek) perspective. Technical report. \url{https://lauragrestenberger.files.wordpress.com/2020/01/gc3b6ttingen_greekverb.pdf}.
+
+Halle, Morris \& Alec Marantz. 1993. Distributed Morphology and the Pieces of Inflection. In Kenneth Hale \& Samuel Jay Keyser (eds.), \textit{The View from Building 20: Essays in Honor of Sylvain Bromberger}, 111--176. Cambridge, MA: MIT Press.
+
+Merchant, Jason. 2015. How much context is enough? Two cases of span-conditioned stem allomorphy. \textit{Linguistic Inquiry} 46(2). 273--303. \url{https://doi.org/10.1162/ling_a_00182}.
+
+Ram{\'o}n, Jos{\'e} Luis Garc{\'i}a. 2014. From aktionsart to aspect and voice: on the morphosyntax of the Greek aorists with -$\eta$- and -$\theta\eta$-. In Annamaria Bartolotta (ed.), \textit{Proceedings of the 8th International Meeting on Greek Linguistics}. Louvain-La-Neuve: Peeters.
+
+Reed, Sylvia. 2014. A distributed morphology analysis of tense and aspect in Greek. In Annamaria Bartolotta (ed.), \textit{Proceedings of the 8th International Meeting on Greek Linguistics}, 277--289. Louvain-La-Neuve: Peeters.
+
+Schreiner, Sylvia L. R. 2021. Span-conditioned allomorphy and late linearization: Evidence from the Classical Greek perfect. Technical report.
+
+Tronci, Liana. 2018. Aorist voice patterns in the diachrony of Greek: The New Testament as a sample of Koine. \textit{Journal of Greek Linguistics} 18(2). 241--280. \url{https://doi.org/10.1163/15699846-01802005}.
+\end{hangparas}
 
 \end{document}
