@@ -1,0 +1,1649 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[letterpaper, margin = 1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+%\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{stmaryrd}
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepgflibrary{arrows}
+\usetikzlibrary{positioning,shapes.multipart}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{fit}
+%\usepackage{tree-dvips}
+
+\usepackage{linguex}
+
+\usepackage[backend=biber, style=apa]{biblatex}
+\setlength{\bibhang}{0.5in}
+\addbibresource{deverbals2.bib}
+\usepackage{csquotes}
+\DeclareLanguageMapping{english}{english-apa}
+
+%\usepackage{gb4e}
+
+\title{The Aargument Structure of Deverbal Nouns}
+\author{Ian Thomas White}
+\date{}
+
+
+
+\makeatletter
+\renewcommand{\maketitle}
+{
+\begin{flushleft}
+\textbf{{\large\@title}}
+\newline
+\@author
+\end{flushleft}
+}
+\makeatother
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\medium\bfseries}
+\titleformat*{\subsubsection}{\small\bfseries}
+
+\newcommand*{\textsup}[1]{\ensuremath{^\textrm{{\scriptsize #1}}}}
+\newcommand*{\textsub}[1]{\ensuremath{_\textrm{{\scriptsize #1}}}}
+\newcommand*{\tinytextsup}[1]{\ensuremath{^\textrm{{\tiny #1}}}}
+\newcommand*{\tinytextsub}[1]{\ensuremath{_\textrm{{\tiny #1}}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ian Thomas White}
+\chead{Deverbal Nouns}
+\rhead{\thepage \ of \pageref{LastPage}}
+
+% \linespread{1.6}
+\doublespacing
+\widowpenalty=100000
+\clubpenalty=100000
+
+\begin{document}
+
+
+\thispagestyle{empty}
+\begin{singlespacing}
+\maketitle
+\begin{small}\tableofcontents\end{small}
+\end{singlespacing}
+
+\newpage
+
+\section{Introduction}\label{intro}
+
+Deverbal nominals, because they display both verbal and nominal properties, have been a mainstay for syntactic theory almost since the beginning of the generative tradition. Recent work attempting to integrate the behavior of these forms into a Minimalist framework has proved fruitful but incomplete, and some core properties of deverbal nominals remain unexplained. Most pressing, and studied, is the fact that the aarguments of English deverbal nominals are optional in systematic ways, even when the analogous aarguments are obligatory in the corresponding verb. In this paper I will try to explain that fact in an explicit way.
+
+In trying to explain that fact, I will fine-tune several assumptions long-maintained in the literature. First, syntacticians have mostly assumed that the aargument structures of deverbal nominals are, in some way, modelled after their corresponding verbs. Alexiadou (2009: 253), e.g., declares that there is a ``certain amount of consensus'' that ``[d]erived nouns that have aargument structure inherit this in some form from their verbal source".\footnote{ Strictly speaking, Marantz (1997), however, does not make this assumption, as will be discussed later.} The Distributed Morphology (DM) framework has facilitated this assumption's longevity, because DM's syntactic approach to word formation makes structures and sub-structures easily transferable between different phenomena. However, DM in no way requires the assumption that deverbal and verbal structures are identical in any particular sense. Furthermore, on DM assumptions, what it actually means for a nominal to ``inherit'' aargument structure is not particularly clear. In this paper, I will tie nominal aarguments to verbal counterparts but will deny that there is direct mapping from the latter to the former. Based on evidence presented in this paper, it also appears, in fact, that, on a descriptive level, deverbal nominals can display aargument structures that are distinct from their corresponding verbs, even while verbalizing structure is present.
+
+Second, many assume that the internal aargument of both verbal structures and deverbal nominals, is selected or can be selected by the root (i.e., the internal aargument starts as the complement of the root). This also turns out to be false, at least in the case of deverbals. Furthermore, allowing the root to select aarguments has some more general, potentially undesirable theoretical consequences. The internal aargument will thus be shown here to originate above the root, selected by the verbalizing and/or nominalizing heads. 
+
+Finally, most accounts have assumed that there is only one possible nominalizing head that can appear in deverbal phenomena. I will present evidence, however, that there are two little-n nominalizing heads, which produce different effects on the nominal aargument structure; i.e., like verbs, there appears to be more than one ``flavor'' of nominal categorizing head. The specific empirical evidence used to counter-argue these two long-held assumptions will be that the two forms of English deverbal nominals with internal aarguments, the [internal aargument]-\textsc{poss} and the \textit{of}-[internal aargument], have (at least for some speakers) different properties with respect to the aarguments they allow.
+
+The goal of this paper, then, is to explain how the aarguments of deverbal nominals are selected and why they are optional relative to their verbal counterparts. Two types of selection will work in tandem, syntactic and semantic. The former will govern categorial/featural selection via Merge, and the latter will govern type-drive function application. The system developed here will therein claim that roots have semantic requirements for certain aarguments, similar to the implicit system in Chomsky (1970). More specifically, roots have a set number of variable requirements at LF; e.g., verbs that manifest as strictly causative, like \textit{destruction}, will require that two event variables (causing event and caused event) and two entity variables (internal and external) be filled or bound lest the semantics crash. However, while the roots require these variables, other functional heads, like little-v and \textsc{voice}, provide the actual semantic roles for these variables. How these semantic requirements get fulfilled depends on a combination of syntactic selection and semantic variable binding, including existential binding. However, in line with roots not selecting internal aarguments, as above, the model here strips roots of all syntactic features, interpretable and uninterpretable. Thus, what it means for an object to ``be an aargument'' is essentially a semantic property, separate from syntactic selection.
+
+The primary contribution of this paper, then, is to present a systematic account, in both syntactic and semantic terms, of all the English deverbal phenomena scattered throughout the literature. Most importantly, I will provide explicit mechanisms for deriving the optionality of both internal and external aarguments, as those mechanisms in prior accounts have either lacked explicit formulation or only dealt with a subset of important facts. Per above, roots will be given explicit semantic requirements, as will the heads that govern aargument optionality (here, \textsc{pass}, \textsc{num}, and little-n)---these formulations have thus far been absent in the literature. To do this, I will assume a number of things from prior literature, namely, how selection operates and what syntactic objects are relevant for deverbals. I will have to depart from the prior literature in several ways, though. Again, I will show that there are two little-n nominalizers, instead of just one. Moreover, contra most syntactic accounts of deverbals, these little-n's must be merged before \textsc{voice}; similarly, \textsc{voice} can appear in both its active and passive forms, instead of just the passive. Finally, I will hypothesize that interarboreal movement can replace phenomena usually attributed to \textit{of}-insertion.
+
+The paper is organized as follows. Section \ref{model} will preview the model developed here and will define the theoretical assumptions that undergird it; section \ref{factss} will detail the relevant, controversial and uncontroversial, facts about English deverbal nominals; section \ref{priors} will discuss how several key accounts of deverbal nominals have dealt with these facts; section \ref{disc} will synthesize the facts and the previous accounts in order to detail necessary constraints on the model developed here; section \ref{strucs} will provide syntactic and semantic examples of the model in detail; section \ref{cons} will discuss the wider applicability of the model; finally, section \ref{conc} will conclude and discuss what aspects of the model need further exploration.
+
+\section{The Theoretical Model}\label{model}
+
+In this paper, I will present a model for English deverbal nominals that account for their nominal-seeming and verbal-seeming properties. In essence, the objective of this paper is to provide a model which can account for all of the following data.
+
+\singlespacing
+
+\ex. \label{introdata}
+\a. *(the horde) destroyed *(the city)
+\b. the (horde's) destruction of the city
+\c. the horde's destruction *(of the city)
+\c. the destruction ??(of the city) by the horde
+\d. the city was destroyed (by the horde)
+\e. \label{intro1} the destruction of the city (by the horde)
+\f. the city's destruction (\%by the horde)
+\f. the destruction (of the city)
+\f. the (city's) destruction
+\f. the city-destruction (?by the horde)
+\z. \z. \par
+
+\doublespacing
+
+The model developed here will assume that deverbal nominals and their aarguments are built exclusively in the syntax. The generalized structure for deverbal nominals is below. In this structure, a lexical root is selected by a verbalizing little-v, and so on through the nominalizing little-n, the number head \textsc{num}, the \textsc{voice} head, a passive head \textsc{pass} (depending on which \textsc{voice} is present), and finally the determiner. The little-v selects the internal aargument and \textsc{voice} selects the external aargument. All the deverbals discussed in this paper will have these basic elements in essentially this order.
+
+\singlespacing
+
+\ex. \label{schema} generalized schema for deverbal nominals
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=25pt, sibling distance=20pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. D 
+    [. D\textsub{(poss)} ] [. \textsc{(pass)}
+        [. \textsc{(pass)} ] [. \textsc{voice} 
+            [. D\textsub{external} ] [. \textsc{voice} 
+                [. \textsc{voice} ] [. \textsc{num}
+                    [. \textsc{num} ] [. n
+                        [.  n ] [. v 
+                            [. D\textsub{internal} ] [. v
+                                [. v  ] [. $\sqrt{}$ ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+
+\end{tikzpicture}
+\par \hfill \par
+\doublespacing
+
+At this point in linguistic history it's not unique to locate deverbal phenomena exclusively in the syntax. Using little-v and little-n as categorizers for lexical roots is a staple of the Distributed Morphology (DM) framework accepted by several accounts of deverbals, including the present account. Most prior accounts assume that the internal aargument is root-selected, but the idea that the little-v introduces the internal aargument is not a new idea. I will make selection by little-v necessary and will make the motivations for this choice more explicit than it has been elsewhere. From Alexiadou (2009) and Harley (2009), both on deverbal nominals, I take two ideas. First, the head that introduces the external aargument, usually called \textsc{voice}, must be separate from the verbalizing little-v; second, the \textsc{num} head plays a key role in determining the presence or absence of internal aarguments. Finally, the \textsc{pass} head is directly from Bruening (2013).
+
+The structure above differs from those in prior accounts. To my knowledge, all syntactic accounts of deverbal nominals assume that the deverbal is built up in the same order as that of the verb until the nominalizer is plopped on top. In other words the \textsc{voice} is swapped with the little-n and, if it's present, \textsc{num}.
+
+\singlespacing
+
+\ex. \label{schema1} typical generalized schema for deverbal nominals
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=25pt, sibling distance=20pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. D 
+    [. D\textsub{(poss)} ] [. \textsc{(num)}
+        [. \textsc{(num)} ] [. n 
+            [. n ] [. \textsc{voice} 
+                [. D\textsub{external} ] [. \textsc{voice}
+                    [. \textsc{voice} ] [. v 
+                        [. ?D\textsub{internal} ] [. v
+                            [. v  ] [. $\sqrt{}$ 
+                                [. $\sqrt{}$ ] [. ?D\textsub{internal} ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+
+\end{tikzpicture}
+\par \hfill \par
+\doublespacing
+
+This structure, for a variety of reasons, will prove unable to account for deverbal nominal phenomena, nor is it theoretically necessary. In addition to little-v selecting internal aarguments, there are three other crucial differences between the present account and most prior accounts, though these differences are not immediately apparent from the difference between \ref{schema} and \ref{schema1}. First, the little-n form in \ref{schema} can have two ``flavors'', whereas prior accounts assume there is only one little-n. Second, while \textsc{voice} is typically viewed as having an active and a passive ``flavor'', the deverbals literature typically allows only the passive \textsc{voice} to appear with deverbals. I will dispense with that restriction. Finally, I will argue that \textit{of}-insertion is impossible, and I will show other ways of deriving the \textit{of} in sentences like \ref{intro1}.
+
+As mentioned, Distributed Morphology is the basic framework on which the above model will be built. Embick (2015) provides a comprehensive overview of DM, but I will lay out the relevant tenets here. Most broadly, I assume that there is no productive or opaque pre-syntactic lexicon; all word formation is syntactic. Words are a set of terminal nodes (morphemes) built in the syntax by Merge. Word formation utilizes head movement, and I will follow, e.g., Bobaljik and Brown (1997) in assuming that head movement occurs via interarboreal movement.\footnote{ Though I will present a case that contradicts their claim about the impossibility of interarboreal XP movement.} Morphemes either are functional, comprising a set of syntactic and semantic (synsem) features (categorial features (n, v, etc.) and subcategorial features ([+pl], [--pres], etc.)) or are lexical (here, only roots). Functional morphemes gain phonological content post-syntactically via vocabulary insertion (VI) defined as a markedness competition over synsem features, which are by definition interpretable features. Whether roots begin with or later gain phonological content is an open question, but it is not crucial for the present paper. It is crucial, however, to note that roots are, by assumption, both acategorial and completely lacking in synsem features. On the other hand, whether roots can bear uninterpretable features is a matter of debate and will be discussed later in section \ref{disc2.1}.
+
+Marantz (1997), discussed in section \ref{priors3.1}, is an early and key text on deverbal nominals in the DM framework. Though that paper has no explicit semantic derivations, the model therein locates semantic requirements for aarguments in the acategorial roots. The model presented in this paper will make extensive use of semantic requirements of roots, as well.
+
+The syntactic driver of the model in \ref{schema} is the formulation of Minimalist assumptions described in Merchant (2019). Namely, selection is the basic syntactic relation and Merge the basic operation for regulating selection. Therein, selectional features are (ordered) lists of categorial (n, v, etc.), subcategorial ([+pl], [--past], etc.), and lexical (roots) syntactic objects. These lists are properties of syntactic nodes, and different heads start with idiosyncratic selectional lists. Selection occurs when one node $\alpha$ merges with another node $\beta$ such that $\beta$ matches the foremost (remaining) feature in $\alpha$'s selectional list. During Merge, a complex syntactic node is created that comprises three things: i) the selecting node (of some category) minus its selectional list, $\alpha-\ell$, ii) the selected head $\beta$, and iii) the complex node $\gamma$ defined as having category features and the remaining selectional features from $\alpha$. The explicit formulation is in \ref{mergedef} below, directly from Merchant (2019). \ref{mergedefa} describes the parts of the complex node; \ref{mergedefb} describes the redefining of the selectional list; \ref{mergedefc} describes the category and selectional properties of the new node.
+
+\singlespacing
+
+\ex. \label{mergedef} Merge($\alpha$,$\beta$) \hfill [= Merchant (2019: (2))]\\
+For syntactic objects $\alpha$,$\beta$, where $\alpha$ bears a nonempty selectional list $\ell = \langle\bullet\nospace F_1,\ldots,\bullet\nospace F_n\rangle$ of selectional features, and $\beta$ bears a categorial feature F$'$ that matches $\bullet\nospace F_1$, call $\alpha$ the head, and
+\a. \label{mergedefa} let $\alpha = \{\gamma,\{\alpha-\ell,\beta\}\}$; call $\gamma$ the projection of $\alpha$, and
+\b. \label{mergedefb} if $n > 1$, let $\ell = \langle\bullet\nospace F_2,\ldots,\bullet\nospace F_n\rangle$, else let $\ell = \varnothing$, and
+\c. \label{mergedefc} let $\gamma = $
+\begin{math}
+  \left[
+    \begin{array}{l}
+      \textsc{cat\space}[cat(\alpha)] \\
+      \textsc{sel\space} \space [\ell].
+    \end{array}
+  \right]
+\end{math}
+\z. \z. \par
+
+\doublespacing
+
+
+The list of features relevant for selection, then, is essentially an uninterpretable feature, hence why Merchant equates the process with ``checking''. This means that selectional lists must be empty by the time VI occurs, since, by hypothesis, all uninterpretable features must be checked before exiting the syntax. Furthermore, head movement does not entail the re-checking of selectional features and is constrained enough by minimal distance requirements. For the model developed here, selection looks like \ref{mergex},\footnote{ The full version is in section\ref{strucs1}.} in which the little-v starts with a selectional list that gets progressively checked off as new elements are merged.
+
+\singlespacing
+
+\ex. \label{mergex} example of Merge between little-v and a root
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=35pt, sibling distance=-5pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+
+\Tree
+[. (d)\space v\textsub{\textsc{cause}} 
+    [. D \edge[roof]; {the city} ] [. (c)\space v\textsub{\textsc{cause}}\scriptsize{$\langle\bullet\nospace D\rangle$}
+        [. \node(v){(b)\space v\textsub{\textsc{cause}} \\ \scriptsize{$\langle\bullet\nospace \{\sqrt{destr-},\ldots\},\bullet\nospace D\rangle$}}; $\varnothing$ ] [. $\sqrt{}$ (a)\space $\sqrt{destr-}$ ]
+    ]
+]
+
+\end{tikzpicture}
+\par\hfill \par
+
+\doublespacing
+
+Finally, I will assume two things with regard to verbal structure. First, as mentioned, I will assume a relatively standard model for the ``split'' nature of the verb.\footnote{ A long thread of literature has shown this, starting with Larson (1988) and Kratzer (1996). In this vein, Harley (2009) is directly relevant to this paper. See Harley (2018) for a good summary of the development of this idea.} Namely, a typical verb comprises a root, some verbalizing head, little-v, and some possibly-optional set of external aargument-introducing heads, \textsc{voice} among them. The \textsc{voice} head introduces the canonical external aargument (often an agent-like entity) and is unilaterally distinct from the event-introducing head little-v. Second, I will follow Pylkk\"{a}nen (2008) in assuming that a causative structure is bi-eventive and that a causative little-v doesn't syntactically require some kind of external aargument.
+
+\section{Facts about Deverbal Nominals}\label{factss}
+
+\subsection{Basic Facts}\label{facts1}
+
+A number of basic facts obtain for deverbal nominals that are not always explicitly or fully accounted for in work that treats them. At least since Lees (1960) and Chomsky (1970), though, one two-part fact related to aargument structure has been a consistent sticking point. Namely, at least in pre-theoretic terms, deverbal nominals seem to inherit interpretational attributes from their associated verbs, especially with regard to the aarguments they can or cannot take. On the other hand, despite this apparent inheritance, the aarguments of deverbal nominals also appear to be optional, even when they are obligatory for the associated verbs. For these two observations see \ref{inherit}, in which (a)-(b) and (g)-(i) highlight the optionality difference between the verbal form and the deverbal nominal. Both the external aargument and the internal aargument are optional in the deverbal.\footnote{ In this paper I use ``internal aargument'' and ``external aargument'' to refer to the pre-theoretic set of canonical roles attributed to these terms, as well as to the fact that the set of external aargument roles will be assumed to originate higher in the structure than the internal roles. However, they no longer refer to the fact that one, and not the other, is ``internal'' to a particular verbal projection.} But, as will become important later, the internal aargument can occur without the external but not (usually) vice versa, as in (c) and (d). The judgement on (g) is disputed, and I will derive much of my later analysis to explaining that fact.
+
+\singlespacing
+\ex. \label{inherit}
+\a. *(the horde) destroyed *(the city) \hfill [active/causative verbal]
+\b. the (horde's) destruction of the city \hfill [``active/causative'' nominal]
+\c. \label{inherit4} the horde's destruction *(of the city) \hfill [``active/causative'' nominal]
+\c. \label{inherit3} the destruction ??(of the city) by the horde \hfill [``active/causative'' nominal]
+\d. the city was destroyed (by the horde) \hfill [passive/causative verbal]
+\e. the destruction of the city (by the horde) \hfill [``passive/causative'' nominal]
+\f. the city's destruction (\%by the horde) \hfill [``passive/causative'' nominal]
+\f. \label{inherit1} the destruction (of the city) \hfill [``passive?/?'' nominal]
+\f. \label{inherit2} the (city's) destruction \hfill [``passive?/?'' nominal]
+\f. the city-destruction (?by the horde) \hfill [compound word nominal]
+\z. \z. \par
+
+\doublespacing
+
+A second fact is often not given explicit analysis but will be crucial here. English deverbal nominals can show up in three basic forms, as defined by the internal aargument's location. English allows the the prenominal [internal aargument]-\textsc{poss} ([IA]-\textsc{poss}) form \ref{inherit2}, the post-nominal \textit{of}-[internal aargument] (\textit{of}-[IA]) form \ref{inherit1}, and the pre-nominal, perhaps compound word, [internal aargument]-[nominal] form (2-j). I will mostly ignor this third form, but it will be given some mention. Both of these first two forms are called ``passive'' deverbals in different accounts.\footnote{ Grimshaw (1990), Alexiadou (2001), etc. use ``passive'' for the [IA]-\textsc{poss} form, following others. Chomsky (1970), however, implies that the \textit{of}-[IA] would be the basic “passive” form.} Relatedly, the external aargument can appear in two forms: the [external aargument]-\textsc{poss} ([EA]-\textsc{poss}) form \ref{inherit4} and the \textit{by}-[external aargument] (\textit{by}-[EA]) form \ref{inherit3}. Furthermore, the pre-\textsc{poss} aargument, when it is the only aargument or aargument-seeming entity present, defaults to being interpreted as the internal aargument. An external aargument or (agent-like) possessor reading occurs only with some coercion.\footnote{ This is implicitly counter to some claims for the [IA]-\textsc{poss}, as in Marantz (1997).}
+
+\singlespacing
+
+\ex. 
+\a. * the destruction of the horde \hfill [horde as agent]
+\b. * the horde's destruction \hfill [horde as agent]
+\z. \z. \par
+
+\doublespacing
+
+A subpart to the second fact is the necessity of some form of (what is usually called) genitive case, either via \textit{of} \ref{gen1} or \textsc{poss} \ref{gen2}. Since this is strictly not true of the internal aarguments in the verbal domain, the genitive requirement in deverbal nominals is usually ascribed to nominals' general inability to assign Case,\footnote{ Though Grimshaw (1990) ascribes it to nominals' inability to properly mark theta roles.} requiring either movement or some repair strategy.
+
+\singlespacing
+\ex. 
+\a. \label{gen1} the destruction *(of) the city
+\b. \label{gen2} the city*('s) destruction
+\z. \z. \par
+
+\doublespacing
+
+A third fact is the set of relationships between the deverbal nominal and the verbal passive, such that they seem to share structure in some sense. Both seem to be defective Case markers relative the active verbal forms. More apparently, the external object in both is optional and, if present, can be expressed with a \textit{by}-[EA] phrase. Though, the nominal form has the [EA]-\textsc{poss} form available to it, while the passive does not. On the other hand, the (apparent) aarguments, especially the \textit{by}-[EA] of deverbal nominals, are sometimes claimed to be semantically restricted relative to those of the associated verbs. Bruening (2013) has countermanded most of the relevant cases of deverbals' seemingly semantic defectiveness, and I won't be particularly concerned with that claim here. However, squaring the link between deverbal nominal and verbal passive phenomena remains important. 
+
+These three basic facts are summarized in \ref{facts}.
+
+\singlespacing
+
+\ex. \label{facts} basic facts about English deverbal nominals
+\a. fact 1
+\a. the aarguments of deverbal nominals are related to the aarguments of their verbal counterparts
+\b. the aarguments of deverbal nominals are optional even when their verbal correlates are not
+\z.
+\b. fact 2
+\a. there are three forms in which the deverbal internal aargument appears: [IA]-\textsc{poss}, \textit{of}-[IA], [IA]-[nominal]
+\b. there are two forms in which the deverbal external aargument appears: [EA]-\textsc{poss}, \textit{by}-[EA]
+\b. deverbals are deficient Case markers, internal aarguments get genitive case
+\z.
+\b. fact 3
+\a. deverbal nominals and verbal passives appear structurally similar
+\b. the semantic range of deverbal aarguments sometimes appears limited
+\z. \z. \z.
+
+\doublespacing
+
+
+\noindent Most important here are the first and second facts, though the third will also be relevant. It's important to note that dealing with the first and second facts listed here are formally distinct questions, but one fact will usually constrain the possibilities of the other. The analysis in this paper will show that the difference between the two deverbal nominal forms (the second fact) has important implications for possible aargument structure (the first fact).
+
+\subsection{Eventive/Noneventive Deverbal Nominals}\label{facts2}
+
+Grimshaw (1990) details an important ambiguity in the nominal system.\footnote{ This ambiguity is still widely accepted, including in the present paper. I will, however, dispute some of the judgements as to which deverbal nominals fall into which camp.} Deverbal nominals that look identical can differ as to whether or not they allow eventive interpretations.\footnote{ For Grimshaw ``eventive'' means that the nominal gains in the lexicon an eventive aargument in its theta-grid. As will be detailed later, for present purposes, ``eventive'' will come to mean that there is a little-v head merged in the syntax that provides event semantics. The event semantics, however, can be suppressed.} Specifically, Grimshaw delineates three types of nominals: i) complex event nominals, which have eventive interpretations and structure, ii) simple event nominals, which refer to events but don't have eventive interpretations or structure, iii) result nominals which have nothing to do with events. For present purposes and diagnostics, the important distinction is between the first type and the second two types. (The latter two include non-deverbal nominals, too.) This division is relevant to deverbal nominals because, Grimshaw argues, it is specifically those deverbals with aargument structure that have eventive properties.
+
+Grimshaw's goal is to relate the different types of deverbal nominals to the apparent optionality of deverbal aarguments. Specifically, Grimshaw redefines optionality: instead of one nominal object optionally picking aarguments, there is an option between one nominal that must select aarguments and another nominal that cannot select aarguments. These two different nominals can appear identical and are only diagnosable via a set of tests for eventive structure. Whether or not a deverbal allows an aargument is then tethered to whether the nominal can be shown to have eventive properties. Those deverbals that do have eventive properties can and must take aarguments, and those that don't cannot and must not. 
+
+Grimshaw develops a series of diagnostics for disambiguating between a deverbal in its eventive/aargument-taking form and a deverbal in its non-eventive forms.\footnote{ See Alexiadou (2007: 497-501) for a summative list with examples. I will go through some of them later for my own purposes, so I won't repeat them here.} To summarize them: i) complex event nominals, i.e., nominals with aargument structure, are required by the presence of certain aspectual modifiers, agentive \textit{by}-phrases, agent-oriented modifiers, and implicit aargument control (i.e., purpose clauses); ii) complex event nominals behave like mass nouns (can only be definite and singular), cannot appear as predicates, and disallow prenominal temporal genitives. A relatively clear example is shown in the  difference between \textit{exam}, an unambiguous result (non-eventive) nominal, and \textit{examination}, which is ambiguous between result and eventive readings. In \ref{result1}, \textit{exam} unilaterally rejects both the aspectual modifier \textit{frequent} and any aarguments; \textit{examination} in \ref{result2} is also a result nominal, since it rejects \textit{frequent} when the aargument is absent; \textit{examination} in \ref{result3} is unambiguously a complex event nominal (hence the obligatory internal aargument) because it is aspectually modified by \textit{frequent}.
+
+\singlespacing
+
+\ex. \label{result}
+\a. \label{result1} the (*frequent) exam (*of the patients) was regulated \hfill [result]
+\b. \label{result2} the (*frequent) examination was regulated \hfill [result]
+\b. \label{result3} the frequent examination *(of the patients) was regulated \hfill [eventive]
+\z. \z. \par
+
+\doublespacing
+
+It turns out that the situation is slightly more complicated than Grimshaw's presentation suggests. Grimshaw notes that nominals with aarguments cannot be count nouns, since they must be definite and singular, as in \ref{count}. It's also the case, contra Grimshaw, that deverbal nominals that have no article, such that they are unambiguous mass nouns, can under certain conditions\footnote{ Namely, that the semantic context can provide a clear implicit aargument, as will be seen.} be aspectually marked, even without aarguments present, as in \ref{noarg}. In other words, \ref{noarg} shows that eventive deverbals do not obligatorily select aarguments, implying that deverbal aarguments are even more optional than Grimshaw claims. Grimshaw's hypothetical judgements for \ref{noarg} are in \ref{noarg1}.
+
+\singlespacing
+
+\ex. \label{count} \a. * the destructions of the city took three days
+\b. * a destruction of the city will take three days
+\b. the (*frequent) examinations were needed to end the virus
+\b. * an examination of the patient was needed to end the virus \hfill [on relevant event reading]
+\z. \z.
+
+\ex.\label{noarg} \a. (*the) frequent destruction (of the prairie) is good for the prairie's soil
+\b. (*the) construction (of the house) in only three weeks is pertinent for the new house's sale
+\z. \z. \par
+
+\ex.\label{noarg1} \a. (*the) frequent destruction *(of the prairie) is good for the prairie's soil
+\b. (*the) construction *(of the house) in only three weeks is pertinent for the new house's sale
+\z. \z. \par
+
+\doublespacing
+
+The takeaway is that deverbals can show up in forms with aargument structure and forms without aargument structure, and this is linked to eventive properties. For Grimshaw, aarguments and event structure cannot occur separately, but this seems no longer to be the case. Instead, eventive interpretation requires a mass noun, and aarguments require eventive interpretation. Therefore, aarguments require a mass noun, but eventive interpretation does not entail the presence of aarguments.
+
+\subsection{[IA]-POSS Deverbals}\label{facts3}
+
+The [IA]-\textsc{poss} deverbal nominal form has failed to consistently receive explicit treatment in deverbals literature. To the extent that this form is treated, the judgements and subsequent analyses are disputed. The dispute revolves around three questions: i) whether or not the [IA]-\textsc{poss} is eventive, per Grimshaw (1990); whether or not the internal aargument of the [IA]-\textsc{poss} form has the same status has that of the \textit{of}-[IA] form (i.e., whether the former is an ``actual'' aargument); iii) whether or not the [IA]-\textsc{poss} and the \textit{of}-[IA] forms are identical at some stage in the derivation. By definition, a negative response to (i) entails a negative response to (ii). As far as I know, all accounts that respond positively to (ii) also respond positively to (iii), but this is not a necessary conclusion. I will discuss the various accounts in more detail in section \ref{priors}. To foreshadow, though, the model presented here responds positively to (i) and (ii) and negatively to (iii).
+
+\subsubsection{Eventivity of the [IA]-POSS}\label{facts3.1}
+
+Whether or not the [IA]-\textsc{poss} deverbal nominal has eventive properties is disputed in the literature. E.g., Grimshaw (1990) most clearly rejects it having such interpretation, Alexiadou (2001, 2009) claims it is (in a limited way) eventive but distinct from the \textit{of}-[IA] form, and Marantz (1997) assumes it's essentially identical to the \textit{of}-[IA] form and therefore eventive. At this point, most accounts seem to indicate that, contra Grimshaw (1990), the [IA]-\textsc{poss} form has some eventive interpretation, and I will argue in that vein.
+
+Thus, in my judgement, the [IA]-\textsc{poss} form passes Grimshaw (1990)'s tests for aspectual modification in the exact same way that the \textit{of}-[IA] form does (and unlike result nominals).\footnote{ As far as I know, only Grimshaw (1990) and Hamamatsu (2013) explicitly subjects the [IA]-\textsc{poss} deverbal to the battery of diagnostics for eventivity. Alexiadou (2001) presents some diagnostics in this vein but not comprehensively. Examples (14)-(21), then, constitute new judgements for claims in Grimshaw (1990: 49-59). As another example of judgement disagreement, Grimshaw argues the phrase \textit{the solution of the problem} is ungrammatical because solution doesn’t take aarguments, and therefore that \textit{solution} in \textit{the problem’s solution} also isn’t aargument taking. However, the \textit{solution of the problem} seems to me perfectly grammatical, and Grimshaw (1990: 82) herself hedges that it is only ungrammatical “for many speakers at least”.} The data in \ref{eventive1}-\ref{eventive2} makes this clear. If the [IA]-\textsc{poss} form (the (b) sentences) were not eventive, it would pattern with the unambiguous result nominals (the (c) and (d) sentences) and not the uncontroversially eventive deverbals (the (a) sentences).\footnote{ Grimshaw disagrees only on the (b) sentences of \ref{eventive1}-\ref{eventive2}. A COCA search lists five unique results for the string “ ’s frequent *tion”, indicating my judgements are not idiosyncratic.}
+
+\singlespacing
+\ex. \label{eventive1}
+\a. the construction of the plane in three weeks \hfill [eventive]
+\b. the plane's construction in three weeks \hfill [eventive]
+\c. *the manufacture of the plane in three weeks \hfill [non-eventive]
+\d. *the plane's manufacture in three weeks \hfill [non-eventive]
+\z. \z. 
+\ex. 
+\a. the destruction of the city in only 5 minutes \hfill [eventive]
+\b. the city's destruction in only 5 minutes \hfill [eventive]
+\c. *the massacre of the city in only 5 minutes \hfill [non-eventive]
+\d. *the city's massacre in only 5 minutes \hfill [non-eventive]\footnotemark
+\z. \z. 
+\ex.
+\a. the frequent expression of anger is unhealthy \hfill [eventive]
+\b. anger's frequent expression is unhealthy \hfill [eventive]
+\c. *the frequent facial expression (of anger) is unhealthy \hfill [non-eventive]
+\d. *anger's frequent facial expression is unhealthy \hfill [non-eventive]
+\z. \z. 
+\ex. \label{eventive2}
+\a. the frequent examination of the patient during lockdown \hfill [eventive]
+\b. the patient's frequent examination during lockdown \hfill [eventive]
+\c. *the frequent exam of the patient during lockdown \hfill [non-eventive]
+\d. *the patient's frequent exam during lockdown \hfill [non-eventive]
+\z. \z. \par
+\footnotetext{ Alexiadou (2001) claims that the [IA]-\textsc{poss} form has a degraded set of possible aspectual modifiers, offering the following data:
+\ex. \textit{Alexiadou (2001: 52 (69))}
+\a. the city's destruction in five minutes
+\b. *the city's destruction for just five minutes
+\z. \z. 
+\ex. \textit{Alexiadou (2001: 52 (70))}
+\a. the destruction of the city in five minutes
+\b. the destruction of the city for five minutes
+\z. \z. 
+However, I disagree on the judgement for (ii-b), as would Grimshaw (1990). I would even reject the \textit{for} modifier with the verb, as well.
+\ex. 
+\a. the horde destroyed the city in five minutes
+\b. ??the horde destroyed the city for five minutes
+\z. \z. 
+}
+\par \par
+
+\doublespacing
+
+\noindent Furthermore, the [IA]-\textsc{poss} form cannot occur predicatively and resists pluralization, as in \ref{pred1}-\ref{pred2} and \ref{plur1}-\ref{plur2}, respectively. Again, in these cases, the [IA]-\textsc{poss} form patterns with the \textit{of}-[IA] deverbals and not the unambiguous result nominals.
+
+\singlespacing
+
+\ex. \label{pred1}
+\a. *that was the destruction of the city \hfill [eventive]
+\b. *that was the city's destruction \hfill [eventive]
+\b. that was the destruction \hfill [non-eventive]
+\z. \z. 
+\ex. \label{pred2}
+\a. *that was the assignment of the problem \hfill [eventive]
+\b. *that was the the problem's assignment \hfill [eventive]
+\c. that was the assignment \hfill [non-eventive]
+\z. \z. 
+\ex. \label{plur1}
+\a. *never forget the destructions of the city \hfill [eventive]
+\b. *never forget the city's destructions \hfill [eventive]
+\c. ?never forget the destructions \hfill [non-eventive]
+\z. \z. 
+\ex. \label{plur2}
+\a. *the assignments of the problems took a long time \hfill [eventive]
+\b. *the problems' assignments took a long time \hfill [eventive]
+\c. the assignments took a long time \hfill [non-eventive]
+\z. \z. \par \par
+
+
+\doublespacing
+
+All the evidence here seems to suggest that the [IA]-\textsc{poss} deverbal, like the \textit{of}-[IA] deverbal, allows eventive interpretations.\footnote{ There is another potential diagnostic not in Grimshaw, though the data is not particularly conclusive. Deverbals may allow adverbial, rather than adjectival modification, which would indicate eventivity. Alexiadou (2007) claims this to be possible at least in some languages, though the literature is by no means settled on this matter. A COCA search, e.g., produces the following: \textit{avoiding completion of the content too early or too late}. On my judgements, the adjectival form seems markedly worse than the adverbial form, though neither seem perfectly grammatical. 
+\ex. 
+\a. ?the construction of the tunnel (too) poorly worried the commuters \hfill [eventive]
+\b. *the construction of the tunnel poor worried the commuters \hfill [eventive]
+\b. ?the tunnel's construction (too) poorly worried the commuters \hfill [eventive]
+\b. *the tunnel's construction poor worried the commuters \hfill [eventive]
+\b. *the construction too poorly worried the commuters \hfill [non-eventive]
+\b. *the construction poor worried the commuters \hfill [non-eventive]
+\b. the city was constructed too poorly \hfill [verbal]
+\b. *the city was constructed poor \hfill [verbal]
+\z. \z. } Since the presence of event interpretation is correlated to the presence of aarguments, this furthermore suggests that the internal aargument of both forms could have the same status; namely, that the [IA]-\textsc{poss} form is not interpreted as an aargument by means different than those for the \textit{of}-[IA] form. Per section \ref{facts2}, this is not necessarily the case, as eventive forms don't strictly entail aarguments in any particular sense, and event interpretations can occur under certain circumstances without internal aarguments. Thus, the following examples obtain, correlated to \ref{eventive1}-\ref{eventive2}, above. The circumstances are such that an internal object can be reasonably inferred from immediate context. This fact is seldom remarked upon, as far as I know, and will require novel explanation in the model in section \ref{strucs}.\footnote{ See, however, Sleeman and Brito (2007) for claims that eventive nouns don't require aarguments, though their general paradigm is somewhat convoluted with regard to result nominals.}
+
+\singlespacing
+
+\ex. 
+\a. (*the) construction in three weeks is a poor time frame *(for tunnels)
+\b. (*the) destruction in only 5 minutes is expected *(for a city of that size)
+\b. frequent expression is unhealthy *(when it comes to anger)
+\b. frequent examination causes problems *(for sickly patients)
+\z. \z. \par
+
+\doublespacing
+
+In any case, I will assume that the [IA]-\textsc{poss} deverbal is eventive like other eventive nominals.
+
+
+\subsubsection{[IA]-POSS and \textit{by}-[EA]}\label{facts3.2}
+
+There is evidence, though it's disputed in the literature, that the [IA]-\textsc{poss} and \textit{of}-[IA] forms are distinct, at least for some speakers, however that distinction might derive. Namely, unlike the \textit{of}-[IA] form (and unlike verbal forms), the [IA]-\textsc{poss} form fails Grimshaw (1990)'s tests for agent-oriented modifiers.\footnote{ Grimshaw originally uses these in the same breath as the prior aspectual marker tests, i.e., for showing that the [IA]-\textsc{poss} form is not eventive. It's already been shown that the [IA]-\textsc{poss} form is eventive, so the question remains open as to whether or not a legitimate aargument is present.} Thus, on my judgements, the [IA]-\textsc{poss} form can't occur with \textit{by}-[EA] phrases or with purpose clauses (since the latter would include \textsc{pro} referring to an external aargument of some sort).\footnote{ Again, the judgements here are quite disputed. The examples here constitute a novel collocation of forms throughout the literature. Much of the literature, especially those that don't distinguish (explicitly or by omission) between the two forms, simply assume that the sentences I mark as ungrammatical are grammatical (e.g., Chomsky (1970), Marantz (1997), Hamamatsu (2013)). Grimshaw (1990) agrees with my judgements but only under the assumption that the [IA]-\textsc{poss} form is non-eventive. Grimshaw also explicitly notes that these judgements are disputed. Alexiadou (2001) disagrees with my judgements but notes that Doron and Rappaport-Hovav (1991) agree with my judgements. Roeper (2004) accepts \textit{by}-phrases but rejects purpose clauses, for reasons similar to Grimshaw (1990). In any case, the possibility, in at least a subset of idiolects, for differences within two deverbal forms is enough to support my aargument here. That is, if any difference obtains, that difference needs to be accommodated in the model.}
+
+\singlespacing
+\ex.
+\a. the book was translated (in order) to make it more accessible
+\b. the translation of the book (in order) to make it more accessible
+\c. *the book's translation (in order) to make it more accessible
+\z. \z. 
+\ex.
+\a. the city was destroyed (in order) to build the new palace
+\b. the destruction of the city (in order) to build the new palace
+\c. *the city's destruction (in order) to build the new palace
+\z. \z. 
+\ex. 
+\a. the city was destroyed (by the horde)
+\b. the destruction of the city (by the horde) caused many to feel
+\c. the city's destruction (*by the horde) caused many to flee
+\z. \z. 
+\ex. 
+\a. the patient was frequently examined (by negligent doctors)
+\b. the frequent examination of the patient (by negligent doctors)
+\c. the patient's frequent examination (*by negligent doctors)\footnotemark
+\z. \z. \par
+
+\footnotetext{ See Grimshaw (1990: 84 (91)) for some of the examples here and her judgements. The contrast below can be ruled out by more general rules regulating double \textsc{poss}.
+\ex.
+\a. the horde's destruction of the city
+\b. *the horde's the city's destruction}
+
+\par
+
+
+\doublespacing
+
+
+This evidence suggests that the two deverbal forms are structurally distinct prior to one's or both's aargument movement into their surface positions; otherwise, there would be no way to derive the fact that agent-oriented modifiers are allowed in one but not the other. The two forms resemble two canonical verbal forms, too. The [IA]-\textsc{poss} form is inchoative-like, since it features an internal aargument and bars external aarguments, and the \textit{of}-[IA] form resembles the causative/passive alternation, since it features an internal aargument and alternating forms of the external aargument. These are descriptive at this point, having no precise technical meaning, but they are useful labels. Regardless, it must be the case that English displays two different patterns of eventive deverbal nominals.
+
+What is perhaps even more curious is that the possible set of internal and external aarguments in the deverbal nominals can also differ from the possible set in verbal forms.\footnote{ Only Chomsky (1970) and Marantz (1997) note this nominal-verbal discrepancy explicitly, with reference to the difference between nominal and verbal forms of the root for \textit{grow}. Chomsky (1970) assumes an outdated framework. Marantz (1997) uses vague terminology to characterize the nominal-verbal split, making its actual structure obscure. } Namely, the ``inchoative'' deverbal is allowed even when the analogous verbal form is not, and vice versa. 
+
+\singlespacing
+
+\ex. 
+\a. *the riverbank was disintegrated (by rushing rapids) \hfill [passive verbal]
+\b. (?)the disintegration of the riverbank (by rushing rapids) \hfill [``passive'' deverbal]
+\z. \z. 
+\ex. 
+\a. the riverbank disintegrated (*by rushing rapids) \hfill [inchoative verb]
+\b. the riverbank's disintegration (*by rushing rapids) \hfill [``inchoative'' deverbal]
+\z. \z. 
+\ex. 
+\a. the city was destroyed (by the horde) \hfill [passive verbal]
+\b. the destruction of the city (by the horde) \hfill [``passive'' deverbal]
+\z. \z.
+\ex. 
+\a. *the city destroyed \hfill [inchoative verbal]
+\b. the city's destruction (*by the horde) \hfill [``inchoative'' deverbal]
+\z. \z. \par \par
+
+
+\doublespacing
+
+In sum, the [IA]-\textsc{poss} deverbal form is generally eventive. This form also can have properties that mark it as distinct from both the \textit{of}-[IA] deverbal and the verbal forms. Any adequate explanation of deverbal nominals will have to account for these facts. Ideally, a model of deverbals could easily account for idiolects in which agent-oriented phrases are licit and for idiolects in which agent-oriented phrases are illicit.
+
+At this point, where the internal aargument of the [IA]-\textsc{poss} form originates is not clear. In the existing literature there are essentially two answers to this question: i) the internal aargument is merged directly in the pre-\textsc{poss} position\footnote{ Grimshaw (1990), Alexiadou (2009), Harley (2009).} or ii) the internal aargument is originally identical to or a transformation of the \textit{of}-[IA] form.\footnote{ Chomsky (1970), Marantz (1997), Radford (2004), Hamamatsu (2013).} Ultimately, I will claim that neither of these obtain but that the internal aargument is introduced below the \textsc{poss} level while remaining structurally unrelated to the \textit{of}-[IA] form. Below I go through how how prior literature has dealt with these and other facts surrounding deverbal nominals.
+
+\section{Prior Solutions}\label{priors}
+
+\subsection{Lexical versus Transformational Accounts}\label{priors1}
+
+Broadly speaking there have been two ways to account for the behavior of deverbal nominals: a lexical approach and a transformational approach.\footnote{ See Rozwadowska (2006) for a summary of the literature up to that time, after which the lexical approaches become increasingly less prevalent.} Ostensibly, the former follows from Chomksy (1970) but more reasonably follows from Grimshaw (1990).\footnote{ See Marantz (1997) for a critique against Chomsky (1970) being the lexicalist progenitor. It is true, per Marantz, that in Chomsky (1970) a morphologically productive lexicon is not strictly invoked, but the status of lexical objects is not fully clear. When Chomsky writes that ``we postulate that there is a feature [+cause] which can be assigned to certain verbs \textit{as a lexical property}'' (Chomsky (1970: 215), emphasis added), presumably ``lexical property'' refers to a property of the base rule V $\rightarrow$ [+cause]. On the other hand, aargument structure therein is not category-specific but is, vaguely, some kind of subcategorial property, presumably in the lexicon or referring to the X-bar structure as a whole. So ``lexicon'' seems to refer both to base rules and to subcategorial properties. The same lack of clarity pertains to the Configurational Hypothesis of Giorgi and Longobardi (1991), a supposedly lexical offshoot of Chomsky (1970).} The basic hypothesis of the lexical approach is that there is a productive, opaque-and-prior-to-syntax lexicon that produces complex entities for syntactic computation. Grimshaw (1990) is the theoretical (and, in many ways, historical) endpoint of this type of account, positing that all deverbal nominals, eventive and non-eventive, are produced in the lexicon, prior to syntax.
+
+On the other hand, the transformational approach refers to those which posit some explicit syntactic link between the verbal and deverbal forms. It gains its name from Lees (1960), when ``transformational'' was, strictly speaking, a meaningful term. Lees claims that deverbals are formed via transformations from sentences. More recently, ``neo-transformationalist'' accounts, to use Rozwadowska (2006)'s term, make use of some syntactically produced verbal structure within deverbal nominals.\footnote{ I.e., they are not ``transformational'' in the strict sense.} Some early accounts in this vein are Picallo (1991) and Borer (1993). Both posit an interaction between a productive lexicon and a productive syntax such that eventive deverbals are made in the syntax (with or without verbal projections, respectively) while non-eventive deverbals are made in the lexicon. Most modern approaches fall, in this broad sense, under the transformational label, many using a DM framework.\footnote{ Marantz (1997), though sometimes lumped in this category, also doesn't really fit here, since he doesn't include verbal structure in deverbals, apart from some gerund forms.} 
+
+The basic debate, then, is whether: i) deverbal nominals are formed directly in the lexicon, such that the lexicon contains separate entries for deverbal nominals and their associated verbs, or ii) deverbal nominals are formed directly in the syntax, such that the lexicon doesn’t produce or even distinguish between deverbal and verbal categories. Given Minimalist assumptions, the lexical paradigm is by hypothesis ruled out, and work in the DM line has produced fruitful results. Thus, the present paper will, as described in section \ref{model}, continue in that vein under DM assumptions. The results here, though, will also add to the evidence for the basic intuition behind DM: that separate categorial heads are fundamental, productive units of syntactic derivation and that a productive lexicon is unnecessary for deriving lexical-seeming variation.
+
+Still, despite their differences, both lexical and transformational accounts of deverbals tend to rest on at least one common assumption: that both eventive and aargument structure properties of deverbals are derived, in some way, from verbal objects. In the lexical accounts, the lexicon derives deverbal aargument structure from verbal aargument structure. Most modern DM accounts assume that both eventive properties and aargument structure must be ``verbal'' in some sense.\footnote{ Again, this doesn't directly apply to Marantz (1997).} Often times the designation of ``verbal'' to aargument structure in deverbal nominals is not particularly sensical, since the designation can refer to cases in which the deverbal technically allows a different set of aargument introducing heads than the verbal, particularly with respect to \textsc{voice}. What the claim usually means is that between a deverbal and a verbal there is at most a one-to-one mapping or some ordered deficient mapping. In other words, the order of the verbal structure is always assumed to be maintained. There is no a priori reason for this assumption, though. In any case, the following subsections, will review some important aspects of prior, relatively archetypal accounts, since several common threads amongst them have yet to be adequately tied down, especially with regard to the English [IA]-\textsc{poss} deverbal form.
+
+\subsection{Grimshaw (1990)}\label{priors2}
+
+As mentioned, Grimshaw (1990) links the presence or absence of aargument structure in deverbal nominals to the presence or absence, respectively, of event structure. This means there are two types of deverbal noun.\footnote{ Again, as will be seen below, the question of absence of event structure will become one of syntactic or semantic suppression, per Alexiadou (2009) and Harley (2009).} She explains this by claiming that each type is made separately in the lexicon. Specifically, the eventive form is derived from the verb by the suppression, in the noun's theta grid, of the verb's external aargument and the latter's replacement by an \textsc{ev(ent)} aargument; i.e., \textsc{ev} becomes the nominal's external aargument. The eventive deverbal thus has aargument structure, which includes an event. On the other hand, result nominals, even if they look identical to eventive forms, have no verbal derivation, no aargument structure and, by extension, no \textsc{ev} aargument.
+
+This resolves the apparent optionality of deverbal internal aarguments: those with and without aarguments are simply different types of nominals. Supposedly the optionality of external aarguments in deverbal nominals (and in verbal passives) is explained by the quasi-aargument status, what Grimshaw calls an ``a[argument]-adjunct'' of the suppressed, verbal external aargument. These a-adjuncts are ``licensed by a-structure ... but are not available for the purposes of theta-marking'' (Grimshaw (1990:109). This also is supposed to explain why the presence of an agent adjunct forces the appearance of the internal aargument, as in \ref{inherit3} above.\footnote{ However, Grimshaw (1990: 88) also claims that sentences like \textit{a new publication by the MIT press} and \textit{a nomination by the senate} are grammatical. This will be taken up further in section \ref{strucs3}} This intermediate status of the external aargument appears to me to be a somewhat ad hoc description, however, and the formal mechanism by which an a-adjunct interacts with aarguments proper is unclear. This conditional optionality of the internal aargument is still a sticking point for more recent accounts, too.
+
+More crucially, Grimshaw (1990) stakes a claim as to the status of the [IA]-\textsc{poss} deverbal form, as well as the [EA]-\textsc{poss}, a claim which is still accepted in many more recent accounts. Namely, the pre-\textsc{poss} slot is not an aargument bearing slot, neither for internal nor external aarguments. Thus, neither \textit{horde} in \ref{grimshaw1} nor \textit{city} in \ref{grimshaw2} is licensed by any aargument structure of \textit{destruction}. Instead, both are merged directly in the pre-\textsc{poss} DP slot.
+
+\singlespacing
+
+\ex. 
+\a. \label{grimshaw1} the horde's destruction of the city
+\b. \label{grimshaw2} the city's destruction
+\z. \z. \par
+
+\doublespacing
+
+\noindent For Grimshaw, this entails that \ref{grimshaw2} is not eventive, since no aargument structure is actually present. In other words, despite appearances, the [IA]-\textsc{poss} form and the \textit{of}-[IA] forms are fundamentally distinct. As part of her aargument, Grimshaw puts the [IA]-\textsc{poss} forms through her eventivity tests. The [IA]-\textsc{poss} form, in her judgement, does not allow aspectual modifiers like the \textit{of}-[IA] form does.\footnote{ This is the precise point at which my above judgements in section \ref{facts3.1} differ from Grimshaw's.}
+
+\singlespacing
+
+\ex. \textit{Grimshaw (1990: 83 (87-a,b,c))}
+\a. The politician's nomination \hfill [non-eventive]
+\b. *The politician's frequent/constant nomination \hfill [non-eventive]
+\b. The politicians' nominations \hfill [non-eventive]
+\z. \z.
+\ex. \textit{Grimshaw (1990: 83 (88-a,b))}
+\a. The construction of the building in three weeks \hfill [eventive]
+\b. *The building's construction in three weeks \hfill [non-eventive]
+\z. \z. \par
+
+\doublespacing
+
+Similarly, Grimshaw claims that the [IA]-\textsc{poss} form fails when paired with external aargument adjuncts, since there is no aargument structure to (however vaguely) license them. She provides the following judgements.\footnote{ Per \ref{facts3.2}, I agree with Grimshaw's judgements on these, though for reasons different from hers. Again, the judgements here are disputed in the literature, and were disputed even when Grimshaw (1990) was written. Grimshaw (1990: 88) admits, for example, that ``the co-occurrence [for some] of \textit{by}-phrases with possessive passive nominals remains something of a mystery''.}
+
+\singlespacing
+
+\ex. \textit{Grimshaw (1990: 85 (93-a,b)}
+\a. The examination of the patient to determine whether ... \hfill [eventive]
+\b. The patient's examination to determine whether ... \hfill [non-eventive]
+\z. \z.
+\ex. \textit{Grimshaw (1990: 87 (100a), 88 (102-a,b)}
+\a. The city's destruction by the enemy ... \footnote{ On this sentence Grimshaw is quoting Kayne (1984), but she expresses doubt as to its grammaticality in the text.} \hfill [non-eventive]
+\b. ?? The books' publication by the MIT Press \hfill [non-eventive]
+\b. ?? The politician's nomination by the senate \hfill [non-eventive]
+\z. \z. \par
+
+\doublespacing
+
+Due to her stance on [IA]-\textsc{poss} deverbals, there is no special mystery as to why the genitive marker is needed; it is a normal possessive form. For the \textit{of}-[IA], however, Grimshaw claims, unlike many accounts prior and subsequent to her, that \textit{of}-insertion is unnecessary and that Case does not introduce the need for \textit{of}.\footnote{ Though, presumably, \textit{of} does provide necessary Case to the internal aargument.} Rather, \textit{of} is just a semantically relevant theta-transmitter, needed because nominals are defective theta-markers: ``nominals can license only PPs and not bare maximal projections of any kind'' (Grimshaw 1990: 73). Presumably, though it's not explained, \textit{of} gets merged like any other preposition.\footnote{ I will ultimately agree with Grimshaw that \textit{of} is merged normally but the framework I assume has no need for ``theta-markers'' in any strict sense. In that way, \textit{of} still seems to be primarily about Case.}
+
+Grimshaw's solution, based on lexicon-produced theta-roles, is not feasible at this point. In particular, since words under DM are built in the syntax, the lack of eventivity can't be used to diagnose a lack of aargument structure (qua theta-grid) wholesale. Still, Grimshaw produces some claims that are still relevant): i) the selectional order of aarguments in the deverbal is dependent, at least indirectly, on the selectional order in the verbal; ii) the optionality facts for deverbals' external aargument are already a bit murky; iii) the \textit{of}-[IA] and [IA]-\textsc{poss} forms are not only different structures but also feature different types of deverbal nominals and of (non-)aarguments. A summary of Grimshaw's relevant contributions and remain problems is in \ref{grimshawsummary}.
+
+\singlespacing
+
+\ex.\label{grimshawsummary} summary of Grimshaw (1990)
+\a. contributions to the present model
+\a. diagnostics for eventive versus non-eventive deverbals
+\b. doesn't require \textit{of}-insertion
+\b. data that [IA]-\textsc{poss} is not licit with agent-oriented modifiers
+\z.
+\b. unresolved problems
+\a. system is based on an opaque, pre-syntactic lexicon, so its conception of aargument structure isn't transferable to Minimalist accounts
+\z. 
+\b. claims disputed here
+\a. [IA]-\textsc{poss} is not eventive
+\b. [IA]-/[EA]-\textsc{poss} forms are not actual aarguments but are inserted directly to the pre-\textsc{poss} position
+\z. \z. \z. \par \par
+
+\doublespacing
+
+\subsection{Recent Solutions}\label{priors3}
+
+A generative lexicon is not very tenable under Minimalist assumptions, and a number of accounts have developed to integrate deverbal facts into contemporary frameworks. These accounts, with relatively canonical representatives discussed below, can be split by whether or not they include explicit verbal structure in deverbal nominals.\footnote{ Rozwadowska (2006)'s ``neo-transformationalist'' label.} The majority of recent accounts tend to argue for the presence of explicit verbal structure in deverbal nominals, with the (often tacit) assumption that ``verbal'' structure entails that aargument structure is mapped from the verbal to the deverbal in an ordered way. As will become apparent, there is no logical or empirical reason to assume that verbal structure, as a particular ordered set of syntactic objects, is requisite to account for the verbal properties of deverbal nominals.
+
+The accounts discussed below deal with essentially the same set of facts, but the same issues occur as those remaining in Grimshaw (1990): i) the mapping between verbal and deverbal aarguments; ii) the facts regarding the licitness of external aarguments; iii) the relationship between the [IA]-\textsc{poss} and the \textit{of}-[IA], including the presence of Case markers. All of them, though, argue for or assume a DM syntactic model, in which word formation is exclusively syntactic.
+
+\subsubsection{Marantz (1997)}\label{priors3.1}
+
+Marantz (1997) is somewhat of an exception among recent accounts in denying the presence of verbal architecture in the deverbal form. This is motivated by the claim that the verbalizing heads in the causative verbal forms of the roots \textit{destroy} \ref{Marantzd1} and \textit{grow} \ref{Marantzg1} must be identical. If they were present in the deverbal forms, the verbalizers would thus still be identical;\footnote{ Harley (2009), discussed in the next section, shows that the little-v must be present in deverbal nominals.} however, the ``causative'' deverbal is licit for \textit{destroy} \ref{Marantzd2} and illicit for \textit{grow} \ref{Marantzg2}. Hence, the following contrasts obtain.
+
+\singlespacing
+\ex. \label{Marantzd} \textit{Marantz (1997: 213 (12))}
+\a. \label{Marantzd1} that John destroyed the city \hfill [transitive\footnote{ ``Transitive'' and ``intransitive'' are the terms Marantz uses.} verb allowed]
+\b. *that the city destroyed \hfill [intransitive verb not allowed]
+\c. \label{Marantzd2} John's destruction of the city \hfill [transitive deverbal allowed]
+\d. the city's destruction \hfill [intransitive deverbal allowed]
+\z. \z.
+
+\ex. \label{Marantzg}\textit{Marantz (1997: 215 (13)}
+\a. \label{Marantzg1} that John grows tomatoes \hfill [transitive verb allowed]
+\b. that tomatoes grow \hfill [intransitive verb allowed]
+\c. \label{Marantzg2} *John's growth of the tomatoes \hfill [transitive deverbal no allowed]
+\d. the tomatoes' growth \hfill [intransitive deverbal allowed]
+\z. \z. \par
+
+\doublespacing
+
+\noindent Deverbal nominals for Marantz feature a nominalizing context and no verbalizer.\footnote{ Marantz on this point claims inspiration from Chomsky (1970) insofar as the verbalizing and nominalizing heads are in some sense analogous to Chomsky attributing category features to base rules. Marantz, though, also analogizes roots, a concept foreign to the paradigm Chomsky was working in, to some unexplained, implicit entity or concept. What must be the case is that ``roots'', as category-neutral entities, are somehow analogous to the category-neutral X-bar framework itself.} Marantz uses the determiner D as the nominalizer, but this is functionally analogous to the little-n that develops later in DM frameworks.\footnote{ Where the \textit{-tion} suffix comes from in Marantz's model is unclear.} Aargument structure in verbal forms and deverbal nominals, then, is somehow separately impacted by verbalizing and nominalizing heads, respectively. In other words, the only thing in common between the verbal \textit{destroy} and the nominal \textit{destruction} is the root.
+
+\singlespacing
+
+\ex. \label{Marantz} \textit{Marantz (1997: (16), (17))} \\ destruction \hspace{2in} destroy
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=35pt, sibling distance=25pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. D 
+    [. D ] [. $\sqrt{destroy}$
+        [. $\sqrt{destroy}$ ] [. {the city} ] 
+    ]
+]
+
+\begin{scope}[shift={(3in,0in)}]
+\Tree
+[. v-1 
+    [. v-1 ] [. $\sqrt{destroy}$
+        [. $\sqrt{destroy}$ ] [. {the city} ] 
+    ]
+]
+\end{scope}
+
+\end{tikzpicture}
+
+\par \hfill \par
+
+\doublespacing
+
+Marantz attributes the actual requirement of aarguments to the root, rather than to functional heads. That roots have requirements for certain aarguments is adopted in the model here in section \ref{strucs}. However, the actual mechanism for how aarguments are required and selected is unclear in that model: aarguments can be selected by the root, can be merely ``implied by the root'' (Marantz 1997: 218, 220), or can be selected by a category head without root ``implication'' at all.\footnote{ Radford (2004) develops a more explicit model for how little-n gets merged in various forms but that doesn't explain the relevant facts about deverbal aarguments.} Marantz also offers no account as to why deverbals require \textit{of}, though he would likely claim some form of \textit{of}-insertion, since this is what Chomsky (1970) claims.\footnote{ The problems for \textit{of}-insertion for modern accounts is discussed further below section \ref{strucs3}} The internal aargument in both the [IA]-\textsc{poss} form and in the \textit{of}-[IA] form is selected by the root, meaning they are, in terms of aargument selection, the same,\footnote{ Chomsky (1970) also maintains this stance. Data that refutes the two forms being at some level the same will also be presented below.} contra Grimshaw (1990); however, like in Grimshaw (1990), the external aargument in something like (2-b), above, is directly merged at the DP level. This DP external aargument is interpreted as such because it is ``implied'' by the root and because ``[the] `possessors' of NPs may be interpreted in almost any kind of semantic relation with the respect to the possessed NP'' (Marantz 1997: 218).\footnote{ This is a very common assumption throughout the deverbals literature. Data that refutes it is in sections \ref{facts3.2} and \ref{disc}.} How the \textit{by}-[EA] is introduced is not clear. Marantz (1997) thus treats the internal aargument as more ``fundamental'' than the external. The account, as it stands, has no explanation for the optionality of the deverbals' internal aargument, which is among the most pressing facts of deverbal phenomena. A summary of Marantz's contributions and remaining issues is in \ref{marantzsummary}.
+
+\singlespacing
+
+\ex. \label{marantzsummary} summary of Marantz (1997)
+\a. contributions to the present model
+\a. roots have semantic requirements for certain aarguments
+\b. [IA]-\textsc{poss} is eventive
+\z.
+\b. unresolved issues
+\a. no explicit semantics
+\b. no explanation of aargument optionality
+\b. no verbalizing little-v in the deverbal forms, instead the root is selected directly by a nominalizing context (D, equivalent to little-n)
+\z.
+\b. claims disputed here
+\a. [IA]-poss is originally the same as the \textit{of}-[IA]
+\b. [EA]-\textsc{poss} is inserted directly to the pre-\textsc{poss} position
+\b. roots select internal aarguments
+\b. requires \textit{of}-insertion
+\z. \z. \z. \par \par
+
+\doublespacing
+
+
+\subsubsection{Alexiadou (2009) and Harley (2009)}\label{priors3.2}
+
+Alexiadou (2009) and Harley (2009), both in the same volume, are representative of the claim that deverbals have some kind of internal verbal architecture, namely an event-introducing little-v. Therein, a verb-like structure is built up, and a nominalizing little-n, with its particular suffix, is added on top of this structure, followed by a \textsc{num} head and a determiner layer.\footnote{ I'm assuming this is where they would put \textsc{num} based on Alexiadou (2007). Neither Alexiadou (2009) nor Harley (2009) explicitly spells out \textsc{num}'s location or function.} Their model looks like that in \ref{harlexi}.
+
+\singlespacing
+\ex. \label{harlexi} generalized schema for Alexiadou (2009) and Harley (2009)
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=25pt, sibling distance=20pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. D 
+    [. D\textsub{(poss)} ] [. \textsc{num}
+        [. \textsc{num} ] [. n 
+            [. n ] [. \textsc{(voice)} 
+                [. (D\textsub{external}) ] [. \textsc{(voice)}
+                    [. \textsc{(voice)} ] [. v 
+                        [. ?D\textsub{internal} ] [. v
+                            [. v  ] [. $\sqrt{}$ 
+                                [. $\sqrt{}$ ] [. ?D\textsub{internal} ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+
+\end{tikzpicture}
+\par \hfill \par
+\doublespacing
+
+Both authors claim that external aarguments are unilaterally introduced by \textsc{voice}, contrary to the then-standard assumption that they were introduced by little-v.\footnote{ This is a fairly normal assumption at this point. Harley (2018) provides a good history/summary of the split-verb hypothesis. Harley (2011) provides non-English data specifically on the split between \textsc{voice} and little-v.} I will assume \textsc{voice} introduces external aarguments, as well, in the model below in section \ref{strucs}.
+
+The two accounts differ, however, on how \textsc{voice} manifests in deverbals. Alexiadou (2009) maintains the stance of Alexiadou (2001) such that deverbals include (namely, below the little-n, as in \ref{harlexi}) an ``intransitive'' \textsc{voice} head, which (optionally) introduces the \textit{by}-[EA],\footnote{ Alexiadou (2007) explains ``transitive'' here as a \textsc{voice} head that is specified for [--external aargument].} but a causative \textsc{voice} head is not licit in the deverbal. Harley (2009), however, seems to indicate that no \textsc{voice} head is licit in deverbals, though \textit{by} phrases are not discussed there. 
+
+On the other hand, both assume, as with Grimshaw (1990), that neither the pre-\textsc{poss} theme nor the pre-\textsc{poss} agent roles are true aarguments.\footnote{ Still, Alexiadou (2001, 2007) assumes that the \textit{by}-phrase is licit in both the [IA]-\textsc{poss} and \textit{of}-[IA] forms. What it would mean for the \textit{by}-[EA] to be licensed without a true internal aargument is unclear.} Instead, any pre-\textsc{poss} aargument is merged directly to pre-\textsc{poss} position, high up in the structure (i.e., to the specifier position of the topmost D in \ref{harlexi}). 
+
+Both accounts maintain that internal aarguments are stable across deverbal and verbal domains. Harley does so by assumption, such that roots, or the lowest functional heads,\footnote{ Hence why the D\textsub{internal} nodes in \ref{harlexi} are equivocal.} are assumed to unilaterally select their internal aarguments.\footnote{ Where internal aarguments originate is not explicitly detailed in any systematic way.} Alexiadou leaves open the question as to what selects the internal aargument, the options being the root or the verbalizing little-v. Alexiadou notes, though, that ``[i]n principle, for AS nouns, these layers should be no different from those of the corresponding verbs'' (Alexiadou 2009: 273).\footnote{ Note that this is a much more stringent claim than Alexiadou's opening claim that ``in order for a noun to have aargument structure (AS) this must have been a verb at some point in its derivational history'' (Alexiadou 2009: 253). This claim is much more general and amounts to an observed fact about English, rather than to a derived theoretical claim.} This turns out, in the view presented here, to be correct, but there seems to be no a priori reason for this assumption. Alexiadou even argues for ``a distinction between layers that introduce aarguments and layers that function as simple verbalizers'' (ibid.). Alexiadou, then, is making a sharp distinction between category phenomena and heads that introduce aarguments. This means that the assumption that little-v and \textsc{voice}, as a unit, constitute ``verbal'' properties is relatively meaningless. Moreover, the distinction leaves open the possibility for little-v and \textsc{voice} to be deployed separate from each other. The model in section \ref{strucs} will do just that.
+
+On the other hand, Alexiadou, contra Grimshaw (1990), maintains that the [IA]-\textsc{poss} deverbal is eventive.\footnote{ Or she at least seems to maintain this, in line with Alexiadou (2001) and Alexiadou (2007).} Harley is unclear on this point, but it seems that she considers the [IA]-\textsc{poss} to be non-eventive. Both accounts also assume that \textit{of}-insertion occurs in the case of the \textit{of}-[IA] form.
+
+Some crucial conclusions surface from these two papers that will prove useful in the model developed below. Most importantly, an event-introducing little-v is shown to be present in all deverbals, even those with result interpretations.\footnote{ Harley (2009) shows this most clearly by arguing from result deverbals that have an \textit{overt} verbalizing head. This effectively refutes the model in Marantz (1997) as seen in \ref{Marantz}.} Therein, the absence of eventive structure is no longer a criterion for the optionality of deverbal internal aarguments, as seen in Grimshaw (1990), because such structure is always present. However, the lack of explicit aarguments and lack of eventive interpretation are still correlated.\footnote{ That is, the presence of event interpretation is still linked to aargument structure, per Alexiadou (2009).}
+
+Second, both Harley and Alexiadou reach similar conclusions about deriving the deverbals' internal aargument optionality. Namely, the presence of the internal aargument in deverbal nominals is linked, in some way, to the mass/count distinction, as hinted at above. Alexiadou more explicitly links the optionality to the number, here \textsc{num}, head. Neither account works out this solution in any detail, so how \textsc{num} and internal aarguments are correlated is entirely unclear. Moreover, the structures generated in their accounts would introduce \textsc{num} and the internal aarguments extremely far apart in the tree. While this is not an a priori problem, it would force a huge disconnect between syntactic selection and semantic aargument binding.
+
+A number of other issues remain, as well. First, there are empirical difficulties for maintaining that [IA]/[EA]-\textsc{poss} forms are not selected like other aarguments aarguments but are instead introduced at the DP level above \textsc{num}. Namely, the pre-\textsc{poss} deverbal should be ambiguous between an agent and a theme reading when no other aargument is present, but this is not the case. A related issue attends the external aargument generally. While Harley (2009) and Alexiadou (2009) account for the optionality of the internal aargument, they do not account for the relationships between the [EA] and the [IA]. Finally, generally speaking, \textit{of}-insertion poses some theoretical and empirically issues that make it difficult to concede.\footnote{ Again, \textit{of}-insertion will be detailed in section \ref{strucs3}.}
+
+In sum, the possible architecture for deverbal nominals is made clearer by these accounts. Namely, an active \textsc{voice} head is likely not below a little-n nominalizer, and there is no necessary link between aargument-introducing heads and any given categorizing head. However, most of the facts about deverbal nominals still remain unclear: the location and optionality of the internal object, the role and eventive status of the [IA]-\textsc{poss} form, the optionality of the external aargument, and the presence of genitive markers. A summary of their contributions and remaining issues is in \ref{harlexisummary}.
+
+\singlespacing
+
+\ex. \label{harlexisummary} summary of Alexiadou (2009) and Harley (2009)
+\a. contributions to the present model
+\a. little-v is separate from \textsc{voice}
+\b. \textsc{num} and the mass-count distinction play a role in modulating the presence of aarguments
+\b. the [IA]-\textsc{poss} form is eventive
+\z. 
+\b. unresolved issues
+\a. no explicit semantics
+\b. external aarguments under-explained
+\b. \textsc{num} head influence is hypothesized but not formalized
+\z. 
+\b. claims disputed here
+\a. no \textsc{voice} or only passive \textsc{voice} in deverbals
+\b. the little-n selects, i.e., is above, \textsc{voice}, if \textsc{voice} is present
+\b. all pre-\textsc{poss} aarguments are merged directly to the pre-\textsc{poss} slot
+\b. roots (can) select internal aarguments
+\b. requires \textit{of}-insertion
+\z. \z. \z. \par \par
+
+\doublespacing
+
+\subsubsection{Bruening (2013) and Merchant (2019)}\label{priors3.3}
+
+Much of the explicit analysis to follow in section \ref{strucs} below is directly inspired by Bruening (2013) and Merchant (2019). The former is explicitly about deverbal nominals (and verbal passives), while the latter is concerned with syntactic selection more generally.
+
+Bruening (2013) is mostly concerned with the presence or absence of \textit{by}-[EA] phrases in verbal passives and deverbal nominals. He assumes much of the same basic architecture for deverbal nominals as that of Harley (2009) and Alexiadou (2009): an essentially verbal structure that is capped by a nominal head. Like Alexiadou (2009), Bruening argues for a \textsc{voice} head as part of deverbal structure, which can introduce a \textit{by}-phrase. Bruening is explicit that the \textsc{voice} head is always present in the relevant (i.e., eventive) cases, even if the \textit{by}-phrase itself is absent.\footnote{ The system is slightly different than that of Alexiadou (2009). For Bruening, the active and passive \textsc{voice} heads are the same, but a separate \textsc{pass} head that selects for \textsc{voice} allows passive phenomena. This strikes me as a more explicit and consistent form than Alexiadou's [--external aargument] feature.} But an external aargument in a ``causative'' [EA]-\textsc{poss} deverbal is merged directly to the specifier of the nominal.\footnote{ The nominal in Bruening's system is analogous to the topmost D in \ref{harlexi}, so Bruening agrees with the prior accounts that the EA merges directly to the pre-\textsc{poss} position.} Little attention is spent on the internal aarguments, and only the \textit{of}-[IA] form is considered, which is just a prepositional phrase selected by the verb.\footnote{ Again, in this system, this is roughly analogous to selection by the root. The analysis of the internal aargument is made somewhat more sophisticated in Bruening (2018), discussed below in section \ref{strucs3}.}
+
+The problems for this model are essentially the same as those discussed above for Alexiadou (2009) and Harley (2009), at least insofar as the relevant topics are discussed: all the facts about internal aarguments remain unexplained, essentially by omission. However, this model develops two very important mechanisms for explaining optionality that the present paper will exploit. First, often utilized for little-v's, is that the nominalizing head can be merged according to one of two possible sets of selectional features.\footnote{ This implicitly becomes three possible sets in Bruening (2018), in order to account for the internal object optionality. The account there, though, doesn't explicitly deal with the problem of eventivity in the deverbals.} This amounts, essentially, to there being more than one ``flavor'' of nominalizer, a concept commonly deployed for little-v. Unlike the account in the present paper, these ``flavors'' only differ in terms of selectional lists, not in the semantics they require/introduce.\footnote{ This is because the nominalizing heads there are semantically vacuous.} Still, this is a useful route for deverbal optionality facts. Second, functional heads, including the nominalizer, are given the power to existentially bind semantic variables, and an obligatory semantic aargument can be satisfied by being so bound. This explicitly allows the presence of certain functional heads, like \textsc{voice}, even if the aargument itself is not present. That a separate passive head selects \textsc{voice} is also an important explanatory device. In general, the model below in section \ref{strucs} will follow Bruening (2013: 23) in claiming that ``there are two modes of selection, syntactic and semantic''. Syntax governs categorial/featural selection, and semantics governs type-drive feature application.
+
+Merchant (2019) is not about deverbal nominals in any specific sense, although they do appear as examples. Merchant provides an explicit system for syntactic selection, based on the checking of selectional features on categorizing heads, that can account for the apparently idiosyncratic prepositions that occur with certain roots. Namely, the same root will appear with different prepositions depending on which categorizing head selects the root. This means that (some) categorizing heads, which get pronounced as various category-motivated suffixes, select both roots and prepositional phrases directly, rather than it being the case that roots select aarguments and that prepositions get belatedly inserted. Categorizing heads can also be specified to select for other categorizing heads as well, such that the prepositional selection is controlled by the innermost categorizing head. 
+
+Two other important facts arise from Merchant (2019). First, all of the prepositional phrases selected by the categorizers are, on my intuitions at least, optional. Merchant doesn't notice this, so no explanation is offered for how this would be the case. Still, this optionality means that the model is directly applicable to phenomena that require optional aarguments. Second, ``aargument'', although again the generalization is not explicit, becomes exclusively a semantic term, somewhat similar to Marantz (1997). I.e., ``selection'' is a syntactic operation and ``aarguments'' are semantic requirements of the root (or, by extension, certain categorizing heads).\footnote{ This is in some ways, then, a more explicit version of the model in Marantz (1997).} A summary of their contributions and remaining issues is in \ref{brueningsummary}.
+
+\singlespacing
+
+\ex. \label{brueningsummary} Bruening (2013) and Merchant (2019) summary
+\a. contributions to the present model
+\a. separation between syntactic and semantic selection
+\b. more than one little-n
+\b. optionality via existentially binding variables (Bruening)
+\b. \textsc{pass} head selects \textsc{voice} (Bruening)
+\b. formal definition of Merge (Merchant)
+\b. categorizers defined as selecting (optional) prepositional phrases (Merchant)\footnotemark
+\z. 
+\b. unresolved issues
+\a. internal aarguments given little attention
+\b. relationship between ``selection'' and ``aargument'' is unclear (Merchant)
+\z. 
+\b. claims disputed here
+\a. little-n / nominalizer above \textsc{voice} (Bruening)
+\b. roots select internal aargument (Bruening)
+\z. \z. \z. \par \par 
+
+\footnotetext{ I will use Merchant's formulation for prepositional adjuncts rather than Bruening's.}
+
+\doublespacing
+
+\subsection{Internal Aarguments}\label{priors3}
+
+I will briefly note that some relatively recent work has argued that functional heads can and do introduce internal aarguments, similar to the account developed here. Harley (2009) sometimes shows adjectival small clauses in which the little-a selects an internal aargument. Embick (2004), cited by Alexiadou (2009), provides a model in which the little-v verbalizer selects (or directly merges with) internal aarguments.\footnote{ Namely for certain non-agentive forms, and it's unclear there why the root selects the internal aargument in the agentive forms.} Similarly, Marantz (2001, 2005) seems to suggest that only categorizing heads can introduce aarguments.\footnote{ The manuscripts for these are difficult to parse, being what appear to be notes for public lectures. Gallego (2014) draws the same conclusion about categorizing heads in Marantz (2001, 2005), though.} Finally Marantz (2013) seems to suggest that little-v selects aarguments, but that paper is generally unclear as to where precisely internal aargument selection is occurring. In these accounts, however, the theoretical and empirical motivations for invoking little-v-selection instead of root-selection are not always clear.
+
+\subsection{Summary} \label{priors4}
+
+The remaining claims to be disputed and where they will be disputed are in \ref{sumsum}.
+
+\singlespacing
+
+\ex. \label{sumsum} aggregate claims disputed here
+\a. [IA]-/[EA]-\textsc{poss} are merged directly to pre-\textsc{poss} \hfill [sections \ref{disc1} and \ref{disc3}]
+\b. [IA]-\textsc{poss} and \textit{of}-[IA] are the same \hfill [sections \ref{facts3.2} and \ref{disc1}]
+\b. roots select internal aarguments \hfill [section \ref{disc2}] 
+\b. little-n is merged above \textsc{voice} \hfill [sections \ref{disc2} and \ref{disc3}]
+\b. \textit{of}-insertion \hfill [section \ref{strucs3}]
+\z. \z. \par \par
+
+\doublespacing
+
+Furthermore, the model developed in section \ref{strucs} seeks to rectify the following remaining problems in \ref{sumsum1}, aggregated from the foregoing accounts.
+
+\singlespacing
+
+\ex. \label{sumsum1} aggregate remaining issues
+\a. no explicit semantics that includes internal aarguments
+\b. no explicit explanation of the full range of aargument optionality
+\b. little-v's role is inconsistent
+\b. the syntax and semantics of \textsc{num} are unclear
+\b. the relationship between ``aarguments'' and ``selection'' is unclear
+\z. \z. \par \par
+
+\doublespacing
+
+\section{Discussion}\label{disc}
+
+The foregoing models provide all the necessary tools to account for the varied facts about deverbals: aargument optionality, the two internal aargument forms, and Case markings. Based on the foregoing, I'm going to dispute several claims throughout the literature and therein discuss some of the  constraints on any possible model for English deverbal nominals.
+
+\subsection{Problems with Direct Merge to Pre-POSS}\label{disc1}
+
+Much of the literature claims that both internal and external aargument-like entities get merged directly to the pre-\textsc{poss} position. Grimshaw (1990), Alexiadou (2009), and Harley (2009) all claim that the internal aargument of the IA-\textsc{poss} form and the external aargument of the [EA]-\textsc{poss} form are merged directly to the pre-\textsc{poss} position. Marantz (1997) and Bruening (2013, 2018) claim that the external aargument of the [EA]-\textsc{poss} form is merged there. 
+
+For the [IA]-\textsc{poss} form, there is good evidence that the internal aargument starts lower in the tree, i.e., is introduced similarly to other internal aarguments.\footnote{ As mentioned in section \ref{facts3.2}, those that assume the internal aargument of the [IA]-\textsc{poss} form starts low also assume it is selected just like that of the \textit{of}-[IA] form, e.g. Marantz (1997).} First, if the internal aargument (of some root) were merged at the pre-\textsc{poss} level, and it was getting its semantic interpretation from that position,\footnote{ E.g., the ``possessive nexus'', though none of the prior accounts are particularly clear on the semantic constraints on aarguments.} any aargument in that position should still pattern with result nominals in terms of interpretation. Specifically, the default interpretation of the pre-\textsc{poss} entity in result nominals is some agent-like entity, what is variously called the ``possessive nexus'' of interpretation; theme-like readings are possible but require interpretive coercion. The opposite is true of the pre-\textsc{poss} position with eventive deverbals. In that case, the theme reading is default, and the agent(-like) reading is difficult even to coerce. This is difficult to explain if the theme interpretation doesn't have its source, whatever it may be, from somewhere below \textsc{poss}. Thus, the following contrasts hold.
+
+\singlespacing
+\ex. 
+\a. the city's destruction \hfill [eventive: theme, ?agent]
+\b. the horde's destruction \hfill [eventive: theme, ?agent]
+\z. \z. 
+\ex. 
+\a. the city's massacre \hfill [non-eventive: ??theme, ?agent]
+\b. the horde's massacre \hfill [non-eventive: ?theme, agent]
+\z. \z. 
+\ex. 
+\a. John's assassination \hfill [eventive: theme, ?agent]
+\b. John's murder \hfill [non-eventive: ?theme, agent]
+\z. \z. \par \par
+
+\doublespacing
+
+This means that the [IA]-\textsc{poss} is getting at least is interpretation from some entity below \textsc{poss}. This would have to be some semantic aargument, since the \textsc{poss} occurs in both eventive and result types. Following Alexiadou (2009) and Harley (2009), \textsc{num} mediates eventivity and aargument possibility. Thus, the semantic function determining whether or not a theme is possible would occur before that theme is merged. On the other hand, that semantic function would occur after the theme is merged in the \textit{of}-[IA] form. This would mean that there are four, not two, \textsc{num} heads, to deal with the two subtypes of the two forms. 
+
+Furthermore, resultative constructions give positive evidence that some kind of movement is occurring. The deverbal nominal allows resultative phrases analogous to those allowed by the verb.\footnote{ Judgements are again somewhat disputed here, and the sentences are often degraded even for verbal forms. Alexiadou (2001), e.g., claims that the \textit{of}-[IA] can take resultatives that the [IA]-\textsc{poss} cannot, but, for the example sentences she uses, my judgement would reject those in the \textit{of}-[IA] examples.}
+
+\singlespacing
+\ex. 
+\a. the horde destroyed the city to rubble
+\b. the (horde's) destruction of the city to rubble
+\c. the city's destruction to rubble
+\z. \z. 
+\ex. 
+\a. the mortician incinerated the body to ashes
+\b. the (mortician's) incineration of the body to ashes
+\c. the body's incineration to ashes
+\z. \z. \par \par
+
+
+\doublespacing
+
+Taken with the evidence showing that, unlike many pre-\textsc{poss} forms, the [IA]-\textsc{poss} deverbal form is eventive, the data here strongly indicates that the internal aargument is selected in the same manner as other aarguments, namely by some head below at least \textsc{poss} that can designate it as such. If Alexiadou (2009) and Harley (2009) are correct in correlating the presence of aarguments to \textsc{num}, then the aargument would also need to be selected below the \textsc{num} head.
+
+On the other hand, data from section \ref{facts3.2} has already shown that the [IA]-\textsc{poss} form and the \textit{of}-[IA] form are distinct. It's no longer an option to account for the aargument structure differences of these two forms by claiming that the former does not include an actual aargument. Thus, it must be the case that the two forms have some structural distinction below \textsc{poss}. Assuming, again, that Alexiadou (2009) and Harley (2009) are right in linking aargument optionality to \textsc{num}, the distinction should also be below \textsc{num}. The most parsimonious assumption would be that the difference between two types of nominal aargument structures lies in the difference between two types of nominalizing little-n's, especially since this would likely be selected by \textsc{num}. In other words, following Bruening (2013, 2018), there appears to be (at least) two different ``flavors'' of little-n, just like there are flavors of little-v. This is given more detail in the next section.
+
+\subsection{Internal Aargument Selection}\label{disc2}
+
+I will recap some facts about deverbal internal aarguments. First, there are two (possible) forms that deverbal nominals can take with regard to their internal aarguments: the [IA]-\textsc{poss} and the \textit{of}-[IA]. Both of these forms must be eventive, must be designated as aarguments in the same manner, and must be selected below \textsc{poss} and below \textsc{num}. Moreover, though they share those features, these two forms must be structurally distinct, since they are different with respect to the external aarguments they allow. Thus, the two forms must be structurally distinct from each other somewhere below \textsc{poss} and \textsc{num}. Second, the deverbal structures need to be distinct from their verbal counterparts, not only due to the presence of some functional little-n, but also with regard to the aarguments they allow.
+
+I see no need to introduce a completely new head, so, without further evidence, I'm going to assume no functional heads that haven't already been used in the literature. This leaves several options for dealing with the sub-\textsc{num} differences. Given the respective [IA] for each deverbal form, the options are: i) a combination or root-selection and either little-v or little-n-selection; ii) some combination of little-v and little-n selection; iii) selection only by little-v; iv) selection by two different little-n's.\footnote{ Note that another logical option is excluded: two different versions of the root. This would be contradictory to basic DM assumptions about roots.}
+
+I will argue against root-selection below, which discounts option (i). Options (ii) and (iii) will still require two separate ``flavors'' of little-n, to account for the varying phenomena between the two types of deverbals. On the surface, this makes (iv) the most parsimonious with respect to deverbals. However, the little-v would still need to select the internal aargument in the verbal forms. As will become clear later, there is a semantic ordering problem in allowing the little-n of the [IA]-\textsc{poss} form to select its internal aargument. This leaves options (ii) and (iii), which, as will be seen, are difficult to distinguish empirically. I will provide options for both of these below.
+
+Finally, the internal aarguments of deverbals need to be optional, and this optionality is related to the \textsc{num} head in some way and not to the presence or absence of little-v. However, this doesn't necessitate that the aarguments are optional in both types of deverbals. It could be the case, as will be argued here, that the ``optionality'' applies only to one of the deverbal types. Furthermore, the internal aargument is seemingly not optional when some external aargument is present.
+
+\subsubsection{Root Selection and VOICE Location}\label{disc2.1}
+
+Some evidence can be brought to bear on the possibility of root-selection. First, it is possible to construct chains of categorizing suffixes such that the same suffix shows up more than once in the same word, as below. These strike me as forced but not ungrammatical and certainly not uninterpretable.\footnote{ Note that \textit{instruction} can be eventive: e.g., \textit{the students' frequent instruction by quality teachers}.}
+
+\singlespacing
+
+\ex. 
+\a. \label{fake1} instruction
+\b. instructional
+\b. instructionalize
+\b. \label{fake2} instructionalization
+\z. \z. \par
+
+
+\doublespacing
+
+\noindent An internal aargument is licit in both the more basic nominal form \ref{fake1} and the more complex nominal form \ref{fake2}. However, the internal aargument is interpreted differently when in the more basic form than when in the more complex form. That difference in interpretation, moreover, reflects the different interpretation of the nominal itself, leading to semantic ill-formedness for different internal aarguments.
+
+\singlespacing
+
+\ex. 
+\a. the instruction of the students
+\b. \# instruction of the pamphlets
+\b. \# the instructionalization of the students
+\b. instructionalization of the pamphlets
+\z. \z. \par
+
+\doublespacing
+
+It makes sense to instruct students but not pamphlets, and it makes sense to instructionalize pamphlets but not students. If the internal aargument were selected by the root there would be no systematic way to produce this contrast. Instead, the highest little-v (or little-n) seems to be performing selection. These examples can, like normal deverbal nominals, have a \textit{by}-[EA] as well, and, again interpretation attends the outermost suffix. This implies that little-v and little-n form a ``unit'' of some sort, with \textsc{voice} optionally being added on top, rather than, as in almost all accounts of deverbals, \textsc{voice} coming between little-v and little-n. 
+
+\singlespacing
+
+\ex. 
+\a. the instruction of the students by the new teacher
+\b. instructionalization of the pamphlets by the new administrator
+\z. \z. \par
+
+
+\doublespacing
+
+A positive aargument for allowing the little-v to select the internal aargument, rather than the root, is that this would more seamlessly account for the data in Merchant (2019). Merchant shows that little-v's, like little-n's and little-a's, at least sometimes have idiosyncratic selectional requirements for prepositional phrases. E.g., per Merchant, the little-v selects the prepositional aargument \textit{for the null aargument} in \textit{he accounted for the null aargument}. It makes sense, to allow the little-v to unilaterally select the internal aargument, rather than assume that sometimes the little-v selects it and sometimes the root does.
+
+
+Finally, given the formalization of selection in Merchant (2019), it's important to note that allowing roots to select aarguments at all commits one to a particular theoretical stance on roots. As detailed in section \ref{model}, a selectional list is essentially an uninterpretable feature. This means that, under DM assumptions, if roots select, roots can have uninterpretable features but not interpretable features that allow vocabulary insertion. This is, of course, an empirical question, and not one that can be answered here. Allowing any features on roots would not likely be the null hypothesis for DM, though.\footnote{ See Embick (2001) for an aargument for roots having uninterpretable features. See Gallego (2014) for the opposite.}
+
+
+\subsection{External Aarguments}\label{disc3}
+
+External aarguments must also be optional. They usually appear illicit when there is no internal aargument present. As Harley (2009) shows, the head that introduces the external aargument must be distinct from the little-v eventive head. Again, there is no need to introduce a new head, so it's fair to assume that \textsc{voice} introduces the external aarguments.
+
+The external aargument can also show up in two forms, like the internal aargument: the [EA]-\textsc{poss} and the \textit{by}-[EA]. It's uncontroversial at this point to assume that a passive \textsc{voice} head is licit in deverbal nominals, and, as Bruening (2013) shows, the \textit{by}-[EA] is essentially the same in the deverbal nominal and the verbal passive. On the other hand, most have assumed that the [EA]-\textsc{poss} external aargument is merged directly at DP. At this point, there seems to be no reason to maintain this, as it's been shown that the pre-\textsc{poss} slot can host a legitimate aargument. Thus, I will assume that the active \textsc{voice} head can occur with deverbal nominals, as well.
+
+On the other hand, the [EA]-\textsc{poss} form can only occur with the \textit{of}-[IA] form. In some idiolects the \textit{by}-[EA] can occur with the [IA]-\textsc{poss}, but in others the [IA]-\textsc{poss} allows no external aargument. As seen in section \ref{disc2.1}, it seems like \textsc{voice} gets merged after the little-n-little-v complex, rather than, as is usually assumed, between little-v and little-n. There is another aargument for locating \textsc{voice} above little-n. Namely, any system that includes the \textsc{voice} head as getting merged before the little-n will require one of the following in the \textit{of}-[IA] form: i) \textit{of}-insertion, ii) the roots' ability to select an \textit{of}-phrase, iii) the little-v's ability to select an \textit{of}-phrase.\footnote{ Again, barring the introduction of new functional heads.} This is necessary for word order to work out, i.e., for the \textit{by}-phrase to occur after the \textit{of}-phrase. I argue against \textit{of}-insertion in section \ref{strucs3}, and I argue against root-selection in general in section \ref{disc2.1}. Per Merchant (2019), it would be possible for the little-v to be specified to select an \textit{of}-phrase, but this would miss the generalization that \textit{of} only occurs in nominal situations. Thus, it makes more sense to assume there is a little-n that selects for an \textit{of}-phrase and that this little-n (and, by extension, all little-n's) is merged before \textsc{voice}.
+
+\subsection{Basic Schema}\label{disc4}
+
+Given the foregoing, the basic syntactic schema for deverbal nominals should look something like the following, copied from \ref{schema}. There is a little-v, one of two little-n's, a \textsc{num} head, and a \textsc{voice} (and \textsc{pass}) head.
+
+\singlespacing
+
+\singlespacing
+
+\ex. \label{schema2} generalized schema for deverbal nominals
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=25pt, sibling distance=20pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. D 
+    [. D\textsub{(poss)} ] [. \textsc{(pass)}
+        [. \textsc{(pass)} ] [. \textsc{voice} 
+            [. D\textsub{external} ] [. \textsc{voice} 
+                [. \textsc{voice} ] [. \textsc{num}
+                    [. \textsc{num} ] [. n
+                        [.  n ] [. v 
+                            [. D\textsub{internal} ] [. v
+                                [. v  ] [. $\sqrt{}$ ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+
+\end{tikzpicture}
+\par \hfill \par
+\doublespacing
+
+The question is how to make sure the analysis can entail the various obligatory and optional aarguments across verbal and nominal domains. The basic tack here, following Marantz (1997) and especially Bruening (2013), will be to split requirements across syntactic and semantic domains. Specifically, roots have aargument requirements, which occur in the semantics. Syntactic heads, however, have selectional requirements that can include nodes that fulfill semantic requirements but are definitionally distinct. This is somewhat similar to the suggestion in Chomsky (1970) and Marantz (1997) but updated for minimalist assumptions and made more semantically explicit. Roots, in a sense, have a ``theta-grid", though this occurs at LF, rather than in the lexicon.
+
+\section{Analysis/Structures}\label{strucs}
+
+I will assume that the roots like those of \textit{destruction}, $\sqrt{destr-}$, actually, require four aarguments: an event, an internal aargument (IA) of some sort, an external aargument (EA) of some sort, and another event.\footnote{ Again, the ``IA'' and ''EA'' roles are just catchall terms for the various possible internal and external roles, respectively.} Furthermore, to account for the effects noted by Alexiadou (2009) and Harley (2009), I'll assume that the \textsc{num} head has either a [+\textsc{mass}] or [--\textsc{mass}] feature.\footnote{ I use [--\textsc{mass}] as just a cover term for [+/--\textsc{sing}], for the sake of simplicity here.} Finally, in the structures below, I won't use X-bar or phrase markings as labels, as these are unnecessary given the system of selection from Merchant (2019) and Bruening (2013).
+
+\subsection{The Verbal Forms}\label{strucs1}
+
+Syntactically, the causative verbal form, at least for roots that can become deverbal nominals, looks basically like the now standard picture, except here little-v, not the root, selects the internal aargument. 
+
+\singlespacing
+
+\ex. \label{causeverb} the horde destroyed the city
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. (g)\space \textsc{voice}
+    [. D \edge[roof]; {the horde} ] [. (f)\space \textsc{voice}\scriptsize{$\langle\bullet\nospace D \rangle$}
+        [. \node(voice2){(e) \textsc{voice} \\ \scriptsize{$\langle\{\bullet\nospace \textsc{num}, \bullet\nospace v,\ldots\},\bullet\nospace D\rangle$}}; $\varnothing$ ] [. (d)\space v\textsub{\textsc{cause}} 
+            [. D \edge[roof]; {the city} ] [. (c)\space v\textsub{\textsc{cause}}\scriptsize{$\langle\bullet\nospace D\rangle$}
+                [. \node(v){(b)\space v\textsub{\textsc{cause}} \\ \scriptsize{$\langle\bullet\nospace \{\sqrt{destr-},\ldots\},\bullet\nospace D\rangle$}}; $\varnothing$ ] [. $\sqrt{}$ (a)\space $\sqrt{destr-}$ ]
+            ]
+        ]
+    ]
+]
+
+\end{tikzpicture}
+\par \hfill \par
+
+\doublespacing
+
+\noindent The root is selected by the verbalizer v\textsub{cause} which has both an (unordered) list of possible roots, including $\sqrt{destr-}$, and a determiner phrase D in its selectional list (position (b) in \ref{causeverb}). Selection of the root and of D are ordered relative to each other, though; v\textsub{cause} must merge with the root before D. Once v\textsub{cause} has merged with $\sqrt{destr-}$, that feature in its selectional list is removed, leaving only D in its selectional list (position (c)). The v\textsub{cause} selects for the D phrase (position (d)), which becomes the internal aargument; in other words the little-v introduces, via selection, the internal aargument. The same process occurs with \textsc{voice}, which selects for little-v. I left the little-v un-subscripted because, presumably, the \textsc{voice} can select some set of ``flavors'' of little-v. Also, the first item on \textsc{voice}'s selectional list is a list of options that includes at least little-v and \textsc{num}. This will allow \textsc{voice} to select \textsc{num} first in deverbals, shown in the followings sections. After selecting v\textsub{cause}, \textsc{voice} selects a D phrase. This D phrase is the external aargument. Per normal assumptions, the \textsc{voice} head can check accusative case on the internal object. The root would undergo head movement to little-v, and little-v to \textsc{voice}, and the external aargument would move up to the specifier of T, though I don't show those movements here.
+
+Semantically, \ref{causeverb} operates as in \ref{causesem}.
+
+\singlespacing
+
+\ex. \label{causesem} semantics for \ref{causeverb}
+
+\a. \begin{math}\llbracket\sqrt{destr-}\rrbracket = \lambda e' \lambda y \lambda x \lambda e . destr(e,x,e',y)\end{math}
+\b. \begin{math}\llbracket v\textsub{cause}\rrbracket = \lambda f_{\langle s\langle e \langle st \rangle \rangle \rangle} \lambda y \lambda x \lambda e . [\exists] e']f(e') \land \textsc{cause}(e,e') \land theme(e',y)\end{math}
+\b. \begin{math}\llbracket (a) \circ (b) \rrbracket = \lambda y \lambda x \lambda e . [\exists e'] destr(e,x,e',y) \land \textsc{cause}(e,e') \land theme(e',y) \end{math}
+\b. \begin{math}\llbracket (c) \circ city\rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \end{math}
+\b. \begin{math}\llbracket \textsc{voice}\rrbracket = \lambda f_{\langle e \langle st \rangle \rangle } \lambda x \lambda e . f(e,x) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (e) \circ (d) \rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (f) \circ horde \rrbracket = \lambda e . [\exists e'] destr(e,horde,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,horde) \end{math}
+\z. \z. \par
+
+\doublespacing
+
+\noindent Again, I assume that the root (a) has four aargument requirements: an event, two entities, and another event. This is to ensure that root can systematically require some set of aarguments, including the external. This is admittedly a bit odd, but it's important because many verbs that become deverbal nominals, like \textit{destroy} and \textit{construct}, do not participate in the causative-inchoative alternation.\footnote{ This might, admittedly, make it more difficult to include those that do participate in the causative-inchoative alternation. It could be that roots that do so participate require two event variables but only one entity variable. The difficulty there would still be introducing the agent when its present. This might be an aargument for the more standard event semantics discussed briefly below.} This means the root is a $\langle s\langle e \langle st \rangle \rangle \rangle$ function. The root itself, though, doesn't introduce the aargument functions or the aarguments themselves, neither the theme nor the agent. The v\textsub{cause} (b) composes with the function of type $\langle s\langle e \langle st \rangle \rangle \rangle$ (c), which matches the root, and introduces Pylkkänen's \textsc{cause} and the theme aargument.\footnote{ This might seem overloaded. The syntax could relatively easily be expanded to include two separate little-v's, one that introduces \textsc{cause} and one that introduces the theme. Selectional lists would have to be correspondingly spread out. The same basic picture remains, though: a little-v introduces the internal aargument and \textsc{cause} semantics before \textsc{voice} (and before little-n, below).} The v\textsub{cause} existentially binds the caused-event, as well. The \textsc{voice} (e) head accepts an $\langle e \langle st \rangle \rangle$ function at (f), which is the output of the v\textsub{cause} composed with the internal object from (d). The subsequent output can then compose with the external object introduced by \textsc{voice} (g).
+
+Instead of having the root contain four aargument requirements, a more standard account, following Pylkkänen, would be as in \ref{normsem}.
+
+\singlespacing
+
+\ex. \label{normsem} more standard event semantics for \ref{causeverb}
+
+\a. \begin{math}\llbracket\sqrt{destr-}\rrbracket = \lambda e . destr(e)\end{math}
+\b. \begin{math}\llbracket v\textsub{cause}\rrbracket = \lambda f_{\langle st \rangle}\lambda y \lambda g_{\langle st \rangle} \lambda e . [\exists e'] f(e') \land \textsc{cause}(e,e') \land theme(e',y) \land g(e,x) \end{math}
+\b. \begin{math}\llbracket (a) \circ (b) \rrbracket = \lambda y \lambda f_{\langle st \rangle} \lambda g_{\langle st \rangle} \lambda x \lambda e . [\exists e'] destr(e') \land \textsc{cause}(e,e') \land theme(e',y) \land g(e,x) \end{math}
+\b. \begin{math}\llbracket (c) \circ city\rrbracket = \lambda g_{\langle st \rangle} \lambda x \lambda e . [\exists e'] destr(e') \land \textsc{cause}(e,e') \land theme(e',city) \land g(e,x) \end{math}
+\b. \begin{math}\llbracket \textsc{voice}\rrbracket = \lambda x \lambda e . f(e) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (e) \circ (d) \rrbracket = \lambda x \lambda e . [\exists e'] destr(e') \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (f) \circ horde \rrbracket = \lambda e . [\exists e'] destr(e') \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,horde) \end{math}
+\z. \z. \par
+
+\doublespacing
+
+\noident The event semantics occurs as in Pylkkänen (2008). The idea here is that the v\textsub{cause} introduces the requirement of an agent function. To account for the obligatoriness of the external aargument, it would be necessary to say not only that roots like \textit{destroy} can only be selected by v\textsub{cause}, but that v\textsub{cause} must be selected by \textsc{voice} (in non-nominal contexts). Thus, this model assumes that \textsc{voice} and \textsc{cause} are inseparable in the verbal domain. Per Pylkkänen (2008), this is not the case cross-linguistically, nor, per Deal (2009), does it seem to be the case for English. It still makes more sense, then, to localize the external aargument idiosyncrasy to the root itself. In any case, all of the semantic derivations that follow could be updated relatively easily according to this more standard model.
+
+The verbal passive is similar syntactically and semantically to the causative as in \ref{passverb}.
+
+\singlespacing
+
+\ex. \label{passverb} the horde was destroyed by the city
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=35pt, sibling distance=-5pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+
+\Tree
+[. (i)\space \textsc{pass}
+    [. \node(pass){(h) \textsc{pass} \\ \scriptsize{$\langle\bullet\nospace \textsc{voice}\textsub{by} \rangle$}}; $\varnothing$ ] [. (g)\space \textsc{voice}\textsub{by} 
+        [. \node(voice2){(f)\textsc{voice}\textsub{by}\scriptsize{$\langle(\bullet\nospace by) \rangle$}};
+            [. \node(voice2){(e) \textsc{voice} \\ \scriptsize{$\langle\{\bullet\nospace \textsc{num}, \bullet\nospace v,\ldots\},(\bullet\nospace by)\rangle$}}; $\varnothing$ ] [. (d)\space v\textsub{\textsc{cause}} 
+                [. D \edge[roof]; {the city} ] [. (c)\space v\textsub{\textsc{cause}}\scriptsize{$\langle\bullet\nospace D\rangle$}
+                    [. \node(v){(b)\space v\textsub{\textsc{cause}} \\ \scriptsize{$\langle\bullet\nospace \{\sqrt{destr-},\ldots\},\bullet\nospace D\rangle$}}; $\varnothing$ ] [. $\sqrt{}$ (a)\space $\sqrt{destr-}$ ]
+                ]
+            ]
+        ]
+        [. (by) \edge[roof]; {(by the horde)} ] 
+    ]
+]
+\end{tikzpicture}
+\par \hfill \par
+
+\doublespacing
+
+\noindent The derivation up to \textsc{voice} is the same. I introduce here what is elsewhere called the passive \textsc{voice} head. However, I apply Merchant (2019)'s formulation to the \textsc{voice} head by saying there is definitionally a \textsc{voice}\textsub{by} that selects for \textit{by}. Hence \textit{by} shows up in the selection list of \textsc{voice}\textsub{by} instead of D.\textsc{ This is, as far as I know, a novel characterization. See, however, Collins (2005) for \textit{by} as the spell out of \textsc{voice}.} This means that \textsc{voice} is like other functional heads in having a preposition-selecting version (in the passive) and a non-preposition-selecting version (in the causative, above). Like the other preposition-selecting heads, the \textit{by}-phrase is selectionally optional.\footnote{ As in section \ref{priors3.3}, all the categorial heads that select prepositions do so optionally. This could be explained via vocabulary insertion. Namely, it could be the case that the categorial heads still selects the morpheme feature bundle for the preposition. In the context of no DP aargument, VI spells this morpheme out as null.} This choice makes the \textsc{voice} head consistent with other functional heads and suggests that functional heads generally may have two types of selectional sets. From Bruening (2013) I assume that the \textsc{pass} head selects for \textsc{voice}.\footnote{For the purposes of this paper, Bruening's model for optional selection could easily be swapped in this instance and those below. In Bruening (2013), a head, e.g. \textsc{pass}, can select a head even while the latter's selectional features remain unsatisfied, and this operation satisfies the selectional features of both heads. This amounts, as Bruening notes with significant justification, to selection at an X$'$ level. Second, adjunct selection is a distinct type of selection in which the adjunct, e.g. the \textit{by}-phrase, selects the head for which it is an adjunct, but the new merged object bears the selectional features of the selected head, not of the selecting adjunct.} The internal aargument would move up to the specifier of T to get Case, and, again, standard head movement would occur.
+
+The semantics with and without the \textit{by}-phrase are given in \ref{passverbsem1} and \ref{passverbsem2}.
+
+\singlespacing
+\ex. \label{passverbsem1} semantics for \ref{passverb} (with \textit{by}-phrase)
+
+\a. \begin{math}\llbracket\sqrt{destr-}\rrbracket = \lambda e' \lambda y \lambda x \lambda e . destr(e,x,e',y)\end{math}
+\b. \begin{math}\llbracket v\textsub{cause}\rrbracket = \lambda f_{\langle s\langle e \langle st \rangle \rangle \rangle} \lambda y \lambda x \lambda e . [\exists e']f(e') \land \textsc{cause}(e,e') \land theme(e',y)\end{math}
+\b. \begin{math}\llbracket (a) \circ (b) \rrbracket = \lambda y \lambda x \lambda e . [\exists e'] destr(e,x,e',y) \land \textsc{cause}(e,e') \land theme(e',y) \end{math}
+\b. \begin{math}\llbracket (c) \circ city\rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \end{math}
+\b. \begin{math}\llbracket \textsc{voice}\rrbracket = \lambda f_{\langle e \langle st \rangle \rangle } \lambda x \lambda e . f(e,x) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (e) \circ (d) \rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (f) \circ horde \rrbracket = \lambda e . [\exists e'] destr(e,horde,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,horde) \end{math}
+\b. \begin{math}\llbracket \textsc{pass}\rrbracket =\lambda f\nospace_{\langle (e) \langle st \rangle\rangle}\lambda e . ([\exists x]) f((x,)e) \end{math}
+\b. \begin{math}\llbracket (h) \circ (g) \rrbracket = (g) \end{math}
+\z. \z. \par
+
+\ex. \label{passverbsem2}semantics for \ref{passverb} (without \textit{by}-phrase)
+
+\a. \begin{math}\llbracket\sqrt{destr-}\rrbracket = \lambda e' \lambda y \lambda x \lambda e . destr(e,x,e',y)\end{math}
+\b. \begin{math}\llbracket v\textsub{cause}\rrbracket = \lambda f_{\langle s\langle e \langle st \rangle \rangle \rangle} \lambda y \lambda x \lambda e . [\exists e']f(e') \land \textsc{cause}(e,e') \land theme(e',y)\end{math}
+\b. \begin{math}\llbracket (a) \circ (b) \rrbracket = \lambda y \lambda x \lambda e . [\exists e'] destr(e,x,e',y) \land \textsc{cause}(e,e') \land theme(e',y) \end{math}
+\b. \begin{math}\llbracket (c) \circ city\rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \end{math}
+\b. \begin{math}\llbracket \textsc{voice}\rrbracket = \lambda f_{\langle e \langle st \rangle \rangle } \lambda x \lambda e . f(e,x) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (e) \circ (d) \rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x) \end{math}
+\b. = (f)
+\b. \begin{math}\llbracket \textsc{pass}\rrbracket = \lambda f\nospace_{\langle (e) \langle st \rangle\rangle}\lambda e . (\exists x) f((x,)e) \end{math}
+\b. \begin{math}\llbracket (h) \circ (g) \rrbracket =\lambda e . [\exists x][\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x) \end{math}
+\z. \z. \par
+
+\doublespacing
+
+The semantics through \textsc{voice} are the same as in the causative. Then, the \textsc{pass} head (h), as in Bruening (2013), can optionally existentially bind the semantic agent variable, allowing the root's external aargument to be fulfilled even when the external aargument doesn't appear in the syntax. The \textsc{voice} of the causative in \ref{causeverb} cannot be selected by \textsc{pass}, though, meaning an absent external aargument can't be externally bound in the causative. This forces an explicit external aargument to show up in the causative.
+
+\subsection{The [IA]-POSS Form}\label{strucs2}
+
+As discussed in section \ref{disc}, deverbal nominals require the following heads in the following order: little-v, little-n, \textsc{num}, \textsc{voice}. The [IA]-\textsc{poss} form is given in \ref{IAposs}.
+
+\singlespacing
+
+\ex. \label{IAposs} the city's destruction (``inchoative'')
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=35pt, sibling distance=0pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. D\textsub{\textsc{poss}}
+    [. D\textsub{\textsc{poss}} 's ] [. (h)\space \textsc{num\textsub{[+mass]}}
+        [.\node(num){(g) \textsc{num\textsub{[+mass]}} \\ \scriptsize{$\langle\{\bullet\nospace n_{of}, \bullet\nospace n,\ldots\} \rangle$}}; $\varnothing$ ] [. (f)\space n
+            [. (e)\space n\scriptsize{$\langle\bullet\nospace v\rangle$} -tion ] [. (d)\space v\textsub{\textsc{cause}} 
+                [. D \edge[roof]; {the city} ] [. (c)\space v\textsub{\textsc{cause}}\scriptsize{$\langle\bullet\nospace D\rangle$}
+                    [. \node(v){(b)\space v\textsub{\textsc{cause}} \\ \scriptsize{$\langle\bullet\nospace \{\sqrt{destr-},\ldots\},\bullet\nospace D\rangle$}}; $\varnothing$ ] [. $\sqrt{}$ (a)\space $\sqrt{destr-}$ ]
+                ]
+            ]
+        ]
+    ]
+]
+
+\end{tikzpicture}
+\par \hfill \par
+\doublespacing
+
+\noindent The [IA]-\textsc{poss} form starts off like the verbal forms, with a root and little-v. Instead of voice selecting the v\textsub{cause}, though, the little-n selects it. (This means that both \textsc{voice} and little-n have v\textsub{cause} in their selectional lists.) A \textsc{num} head, specified for [+\textsc{mass}] then selects the little-n. Like the list of roots for little-v, \textsc{num} can select different little-n's. As seen in the previous and the next section, \textsc{voice} could syntactically select for \textsc{num}\textsub{\textsc{+mass}}, but the semantics would crash in that case.
+
+The semantics are in \ref{IApossem}.
+
+\singlespacing
+
+\ex. \label{IApossem} semantics for \ref{IAposs}
+
+\a. \begin{math}\llbracket\sqrt{destr-}\rrbracket = \lambda e' \lambda y \lambda x \lambda e . destr(e,x,e',y)\end{math}
+\b. \begin{math}\llbracket v\textsub{cause}\rrbracket = \lambda f_{\langle s\langle e \langle st \rangle \rangle \rangle} \lambda y \lambda x \lambda e . [\exists e']f(e') \land \textsc{cause}(e,e') \land theme(e',y)\end{math}
+\b. \begin{math}\llbracket (a) \circ (b) \rrbracket = \lambda y \lambda x \lambda e . [\exists e'] destr(e,x,e',y) \land \textsc{cause}(e,e') \land theme(e',y) \end{math}
+\b. \begin{math}\llbracket (c) \circ city\rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \end{math}
+\b. \begin{math} \llbracket n \rrbracket\lambda f_{\langle e \langle st \rangle \rangle} . [\neg\exists x]f(x) \end{math}
+\b. \begin{math}\llbracket (e) \circ (d) \rrbracket\lambda e . [\neg\exists x][\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \end{math}
+\b. \begin{math} \llbracket \textsc{num}\textsub{\textsc{+mass}} \rrbracket \lambda = P.P \end{math}
+\b. \begin{math}\llbracket (g) \circ (f) \rrbracket = (f)\end{math}
+\z. \z. \par
+
+\doublespacing
+
+\noindent Again, the derivation is the same through v\textsub{cause}. However, little-n in (e) has the special property of needing to negatively existentially bind the root's external aargument variable, making the later addition of an agent entity by \textsc{voice} entail a contradiction in the root's semantics. Again, theoretically, as in the \textit{of}-[IA] form below, \textsc{voice} could select this \textsc{num} head in the syntax, but the semantics would still crash. This, however, makes it easy to account for idiolects that allow external aargument adjuncts in the [IA]-\textsc{poss} form and those that don't. Those that allow the external aarguments would still have this little-n in this position (e), but it wouldn't negatively existentially bind the variable. The \textsc{num} head is semantically vacuous here, but this will be revised in the next section for (one version of) the \textit{of}-[IA] form.
+
+The model here helps explain the interpretational differences between the pre-\textsc{poss} object in event deverbals and result nominals seen in section \ref{facts1}. This explanation can only be descriptive at this point, though. The difference results as some preference for one of two structures which are surface-level ambiguous. A result nominal would have a \textsc{num} head specified as [--\textsc{mass}], as described below in section \ref{strucs4}. With deverbal nouns, it seems that the ``default'' interpretation is to assume that a \textsc{num} head specified as [+\textsc{mass}] is present, though the [--\textsc{mass}] reading can be forced. However, the surface string of the two situations with different \textsc{num} heads look identical. For result nominals the agent-like reading seems to be ``default'' and a theme-like reading can be coerced. In both result cases, though, only the \textsc{num} [--\textsc{mass}] head is available.
+
+
+\subsection{The \textit{of}-[IA] Form}\label{strucs3}
+
+The basic structure of the \textit{of}-[IA] form remains the same, but the question is how to account for the prepositional phrase. Therein, there are three relatively plausible options for how the \textit{of}-[IA] form is constructed: i) the internal aargument merges with the little-v, as normal, and \textit{of}-insertion occurs; ii) the internal aargument merges directly with a little-n\textsub{of} as in Merchant (2019); iii) the internal aargument merges with the little-v, as normal, and interaboreal movement occurs up to a little-n\textsub{of}. The most common approach is to assume \textit{of}-insertion occurs,\footnote{ At least: Chomsky (1970), Giorgi and Longobardi (1991), Marantz (1997), Alexiadou (2001, 2007, 2009), Harley (2009).} but I will reject this option. How to choose between the latter two options is unclear at the moment and will require further inquiry.
+
+Generally speaking, \textit{of}-insertion poses some theoretical issues that need to be addressed. Under DM assumptions, \textit{of}-insertion cannot be a simple instance of vocabulary insertion, since there is, without further stipulation, no terminal node prior to VI into which \textit{of} could be inserted. Harley (2009: 328) recognizes this and claims that ``\textit{of}-insertion takes place into a `dissociated morpheme' -- a terminal node inserted post-syntactically to ensure morphological well-formedness in certain conditions''. This constitutes a rather serious attack on Minimalist and DM assumptions, since a Merge-like operation is attributed to some non-syntax part of the grammar. Moreover, the limits of this operation are difficult to define, and there seems to be no systematic way to prevent it from occurring in a number of instances. For a relevant example, take the assumed similarities between deverbal nominals and verbal passives. The assumption has been that neither deverbals nor verbal passives can assign accusative case.\footnote{ In Harley (2009), e.g., deverbal nominals cannot assign accusative case because the \textsc{voice} head is absent. Alexiadou (2007) claims that \textit{of}-insertion is a realization of structural Case.} Given \textit{of}-insertion and \textit{there}-insertion,\footnote{ \textit{There}-insertion is not a post-syntactic repair strategy like \textit{of}-insertion. See, e.g., Deal (2009).} there would be nothing to block \textit{of}-insertion in the verbal passive: \textit{there} could fulfill T's EPP feature and \textit{of} could be inserted for Case reasons. This is impossible, though.
+
+\singlespacing
+
+\ex. 
+\a. *there was destroyed of the city
+\z. \z. \par
+
+\doublespacing
+
+Barring \textit{of}-insertion allows the \textit{of}-[IA] form to partake in the system developed in Merchant (2019), such that deverbal nominals are a special case of categorizing heads that select idiosyncratic prepositions, i.e., a little-n\textsub{of}. The question remains where the aargument itself originates, with the little-v or directly with the little-n.
+
+Having the n\textsub{of} select directly would be the simplest solution, as in \ref{ofIA1}.
+
+\singlespacing 
+
+\ex. \label{ofIA1} the destruction of the city by the horde
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=30pt, sibling distance=-10pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree 
+[. \node(voice)[draw, dotted]{(j) \textsc{voice}\textsub{by}\scriptsize{$\langle(\bullet\nospace by) \rangle$}};
+    [. \node(voice2){(i) \textsc{voice}\textsub{by} \\ \scriptsize{$\langle\{\bullet\nospace \textsc{num}\textsub{+\textsc{MASS}}, \bullet\nospace v,\ldots\},(\bullet\nospace by) \rangle$}}; $\varnothing$ ] 
+    [. (h)\space \textsc{num\textsub{[+mass]}}
+        [. \node(num){(g) \textsc{num\textsub{[+mass]}} \\ \scriptsize{$\langle\{\bullet\nospace n_{of}, \bullet\nospace n,\ldots\} \rangle$}}; $\varnothing$ ] [. (f)\space n\textsub{of} 
+            [. (e)\space n\textsub{of}\scriptsize{($\langle\bullet\nospace of \rangle$)} 
+                [. (d)\space n\textsub{of}\scriptsize{$\langle\bullet\nospace v, (\bullet\nospace of) \rangle$} -tion ] [. (c)\space v\textsub{\textsc{cause}}
+                    [. \node(v){(b)\space v\textsub{\textsc{cause}} \\ \scriptsize{$\langle\bullet\nospace \{\sqrt{destr-},\ldots\},(\bullet\nospace D)\rangle$}}; $\varnothing$ ] [. $\sqrt{}$ (a)\space $\sqrt{destr-}$ ]
+                            ]
+                    ]
+                [. (of) \edge[roof]; {(of the city)} ]
+            ]
+        ]        
+    ]
+]
+
+\begin{scope}[shift={(1.5in,1.25in)}]
+\Tree
+[. D\textsub{\textsc{--poss}}
+    [. D\textsub{\textsc{--poss}} {the\space\space} ][. (m)\space \textsc{pass}
+        [. \node(pass){(l) \textsc{pass} \\ \scriptsize{$\langle\bullet\nospace \textsc{voice}\textsub{by} \rangle$}}; ] [. (k)\space \textsc{voice}\textsub{by} 
+            [. \node(voice2)[draw, dotted]{(j) \textsc{voice}\textsub{by}\scriptsize{$\langle(\bullet\nospace by) \rangle$}}; ][. (by) \edge[roof]; {(by the horde)} ] 
+        ]
+    ]
+]
+
+\end{scope}
+
+\end{tikzpicture}
+\par \hfill \par
+
+\doublespacing
+
+\noindent This model necessitates that the little-v can optionally select its aargument, hence why the D in its selection list is put in parentheses. The nominalizer n\textsub{of} selects for little-v and optionally \textit{of}, like \textsc{voice} optionally selects for \textit{by}. The \textit{of}-phrase is merged directly with n\textsub{of}. The \textit{of}-phrase provides the internal aargument requirement, like the \textit{by}-phrase does the external. It's important that the n\textsub{of} nominalizer optionally selects its prepositional phrase. This makes n\textsub{of} consistent with other preposition-selecting data from Merchant (2019). Furthermore, the optionality allows cases of unambiguous mass deverbals that occur without their aarguments, e.g., \textit{frequent incineration is good for prairies} from section \ref{facts3.1}. The ``passive'' version of the \textit{of}-[IA], with the \textit{by}-[EA] is given here. The [EA]-\textsc{poss} form would be exactly the same except the active \textsc{voice} head would replace the \textsc{voice}\textsub{by} head, the external aargument would be in the \textsc{voice} head's ``specifier'', and there would be no \textsc{pass} head.\footnote{ I.e. \textsc{voice} would look just like that of the causative verb. Presumably \textsc{voice} still has an accusative case feature, which doesn't get discharged in this case.}
+
+The semantics in this model works out as in \ref{ofIAsem1}.
+
+\singlespacing
+
+\ex. \label{ofIAsem1} semantics for \ref{ofIA1} (with both aarguments) (\textit{destruction of the city by the horde})
+\a. \begin{math}\llbracket\sqrt{destr-}\rrbracket = \lambda e' \lambda y \lambda x \lambda e . destr(e,x,e',y)\end{math}
+\b. \begin{math}\llbracket v\textsub{cause}\rrbracket = \lambda f_{\langle s\langle e \langle st \rangle \rangle \rangle} \lambda y \lambda x \lambda e . [\exists e']f(e') \land \textsc{cause}(e,e') \land theme(e',y)\end{math}
+\b. \begin{math}\llbracket (a) \circ (b) \rrbracket = \lambda y \lambda x \lambda e . [\exists e'] destr(e,x,e',y) \land \textsc{cause}(e,e') \land theme(e',y) \end{math}
+\b. \begin{math} \llbracket n\textsub{of} \rrbracket = \lambda P.P \end{math}
+\b. \begin{math}\llbracket (d) \circ (c) \rrbracket = (c)\end{math}
+\b. \begin{math}\llbracket (e) \circ city \rrbracket =\lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \end{math}
+\b. \begin{math}\llbracket \textsc{num}\textsub{\textsc{+mass}} \rrbracket =\lambda f\nospace_{\langle (e) \langle st \rangle \rangle}\lambda e . ([\exists y]) f((y,)e) \end{math}
+\b. \begin{math}\llbracket (g) \circ (f) \rrbracket = (f)\end{math}
+\b. \begin{math} \llbracket \textsc{voice} \rrbracket = \lambda f \nospace_{\langle e \langle st \rangle \rangle } \lambda x \lambda e . f(e,x) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (i) \circ (h) \rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (j) \circ horde \rrbracket = \lambda e . [\exists e'] destr(e,horde,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,horde) \end{math}
+\b. \begin{math}\llbracket \textsc{pass} \rrbracket = \lambda f\nospace_{\langle (e) \langle st \rangle \rangle}\lambda e . ([\exists x]) f((x,)e) \end{math}
+\b. \begin{math}\llbracket (l) \circ (k) \rrbracket = (k)\end{math}
+\z. \z. \par
+
+\ex. \label{ofIAsem2} semantics for \ref{ofIA1} (with neither aargument) (\textit{destruction} [eventive])
+\a. \begin{math}\llbracket\sqrt{destr-}\rrbracket = \lambda e' \lambda y \lambda x \lambda e . destr(e,x,e',y)\end{math}
+\b. \begin{math}\llbracket v\textsub{cause}\rrbracket = \lambda f_{\langle s\langle e \langle st \rangle \rangle \rangle} \lambda y \lambda x \lambda e . [\exists e']f(e') \land \textsc{cause}(e,e') \land theme(e',y)\end{math}
+\b. \begin{math}\llbracket (a) \circ (b) \rrbracket = \lambda y \lambda x \lambda e . [\exists e'] destr(e,x,e',y) \land \textsc{cause}(e,e') \land theme(e',y) \end{math}
+\b. \begin{math} \llbracket n\textsub{of} \rrbracket = \lambda P.P \end{math}
+\b. \begin{math}\llbracket (d) \circ (c) \rrbracket = (c)\end{math}
+\b. = (c)
+\b. \begin{math}\llbracket \textsc{num}\textsub{\textsc{+mass}} \rrbracket =\lambda f\nospace_{\langle (e) \langle st \rangle \rangle}\lambda e . ([\exists y]) f((y,)e) \end{math}
+\b. \begin{math}\llbracket (g) \circ (f) \rrbracket = \lambda x \lambda e . [\exists y][\exists e'] destr(e,x,e',y) \land \textsc{cause}(e,e') \land theme(e',y) \end{math}
+\b. \begin{math} \llbracket \textsc{voice} \rrbracket = \lambda f \nospace_{\langle e \langle st \rangle \rangle } \lambda x \lambda e . f(e,x) \land agent(e,x) \end{math}
+\b. \begin{math}\llbracket (i) \circ (h) \rrbracket = \lambda x \lambda e . [\exists y][\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x) \end{math}
+\b. = (j)
+\b. \begin{math}\llbracket \textsc{pass} \rrbracket = \lambda f\nospace_{\langle (e) \langle st \rangle \rangle}\lambda e . ([\exists x]) f((x,)e) \end{math}
+\b. \begin{math}\llbracket (l) \circ (k) \rrbracket = \lambda e . [\exists x][\exists y][\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x) \end{math}
+\z. \z. \par
+
+\doublespacing
+
+Unlike the other little-n, n\textsub{of} is semantically vacuous. The \textsc{num} head in (g) is similar to the \textsc{pass} head in that it can existentially bind the internal aargument if an explicit internal aargument doesn't get merged with the \textit{of}-phrase, as in \ref{ofIAsem2}. After that, everything is the same as in the passive verbal form. That the little-v can optionally select its aargument wouldn't affect that aargument's necessity in the verbal situations, since there is no way in those situations to existentially bind the internal aargument. Why the external aargument cannot occur (mostly; see below) without the internal aargument is not clear in this model, since the model would predict that the internal and external aarguments could be existentially bound separately. Some stipulative hierarchy could be devised that dictates that higher aarguments can't be more ``definite'', in some sense, than lower aarguments.
+
+Alternatively, for consistency's sake, it's potentially desirable for the little-v to introduce the aargument even in the \textit{of}-[IA] form.\footnote{ It would also be hard to constrain when heads can optionally select aarguments, leading to stipulations.} This requires interarboreal movement, as in \ref{ofIA2}.
+
+\singlespacing
+
+\ex. \label{ofIA2} the destruction of the city by the horde (interarboreal movement)
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=30pt, sibling distance=-5pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree 
+[. \node(voice)[draw, dotted]{(k) \textsc{voice}\textsub{by}\scriptsize{$\langle(\bullet\nospace by) \rangle$}};
+    [. \node(voice2){(j) \textsc{voice}\textsub{by} \\ \scriptsize{$\langle\{\bullet\nospace \textsc{num}\textsub{+\textsc{MASS}}, \bullet\nospace v,\ldots\},(\bullet\nospace by) \rangle$}}; $\varnothing$ ] 
+    [. (i)\space \textsc{num\textsub{[+mass]}}
+        [. \node(num){(h) \textsc{num\textsub{[+mass]}} \\ \scriptsize{$\langle\{\bullet\nospace n_{of}, \bullet\nospace n,\ldots\} \rangle$}}; $\varnothing$ ] [. (g)\space n\textsub{of} 
+            [. (f)\space n\textsub{of}\scriptsize{($\langle\bullet\nospace of \rangle$)} 
+                [. (e)\space n\textsub{of}\scriptsize{$\langle\bullet\nospace v, (\bullet\nospace of) \rangle$} -tion ] [. (d)\space v\textsub{\textsc{cause}}
+                    [. \node(D){$<$D$>$}; ] [. (c)\space v\textsub{\textsc{cause}}\scriptsize{$\langle\bullet\nospace D\rangle$}
+                    [. \node(v){(b)\space v\textsub{\textsc{cause}} \\ \scriptsize{$\langle\bullet\nospace \{\sqrt{destr-},\ldots\},\bullet\nospace D\rangle$}}; $\varnothing$ ] [. $\sqrt{}$ (a)\space $\sqrt{destr-}$ ]
+                            ]
+                        ]
+                    ]
+                [. \node(of1){of}; ]
+            ]
+        ]        
+    ]
+]
+
+\begin{scope}[shift={(1.5in,1.25in)}]
+\Tree
+[. D
+    [. D the ][. (n)\space \textsc{pass}
+        [. \node(pass){(m) \textsc{pass} \\ \scriptsize{$\langle\bullet\nospace \textsc{voice}\textsub{by} \rangle$}}; ] [. (l)\space \textsc{voice}\textsub{by} 
+            [. \node(voice2)[draw, dotted]{(k) \textsc{voice}\textsub{by}\scriptsize{$\langle(\bullet\nospace by) \rangle$}}; ][. (by) \edge[roof]; {(by the horde)} ] 
+        ]
+    ]
+]
+
+\end{scope}
+
+\begin{scope}[shift={(0.5in,-3in)}]
+\Tree
+[. \node(of2){of};
+    [. \node(of3){of}; ] [. DP \edge[roof]; \node(city){the city}; ] 
+]
+\node[draw,circle,fit=(of2)(of3)(city)]{};
+
+\end{scope}
+
+\draw[->] (D) |- +(-1,-5) -| (city);
+%\draw[->] (of2) |- +(-1,-5) -| (of1);
+\draw[semithick,->] ([xshift=25em,yshift=0em]of2)..controls +(south:7) and +(southeast:2)..(of1);
+
+%\draw [brown] (current bounding box.south west) rectangle (current bounding box.north east);
+%\draw[gray,step=0.25] (-4.5,-11.5) grid (11.5,-14);
+%\clip (-4.5,-11.5) rectangle (11.5,-14)
+
+\end{tikzpicture}
+\par 
+
+\vspace*{-85pt}
+
+\doublespacing
+
+\noindent Little-v selects the internal aargument D phrase just like in the previous forms. Following Bobaljik and Brown (1997), the internal aargument is copied, and the copy gets separately merged with the \textit{of}-phrase. The little-n\textsub{of} merges with the little-v and subsequently with the separately made \textit{of}-phrase. Of course, the theoretical status of interarboreal movement is disputed. Bobaljik and Brown (1997) advance interaboreal operations specifically for head movement. According to that account, however, XP movement of just the sort that is postulated here is impossible. The reason for this impossibility is due to the the Chain Rule formulated by Rizzi (1986). Accordingly, the copied/moved internal aargument phrase doesn't C-command the lower original. There is potentially a way out of this, however. Bobaljik and Brown make the Chain Rule a syntactic property of Merge, unlike Rizzi who makes it an LF property. If the Chain Rule does indeed occur at LF, and it's assumed that the prepositional phrase itself is what's semantically relevant there, then the Chain Rule would be satisfied. This type of prepositional C-command does often seem to be impossible, however, as Bruening (2015) notes, following others, e.g., the following sentences.
+
+\singlespacing
+
+\ex. \textit{Bruening (2014: 348 (23), following Pesetsky (1995))}
+\a. * Sue spoke to him$_1$ about Mary$_1$'s mother.
+\b. * Mary danced in it$_1$ with the owner of the hall$_1$.
+\z. \z. \par
+
+\doublespacing
+
+However, under certain semantic contexts, C-command seems possible for these types of prepositional adjuncts and (originally) lower deverbal aarguments. The judgements are a bit murky, and the sentences are hard to come by, because the context requires that the deverbal is, in some sense, reflexive. Deverbals with \textit{self-} prefixed to it sometimes make the situation clearer. The sentences below, in which the prepositional adjuncts C-command the lower pronouns are mostly fine to me, especially compared to the sentences above from Bruening.\footnote{ The examples here use the [IA]-\textsc{poss} from because prepositions are separately, unilaterally marked in genitive constructions: \textit{??the destruction of it}. The facts in questions are the same, though.}
+
+\singlespacing
+
+\ex. 
+\a. they wanted its$_1$ self-activation because of the computer$_1$'s processing speed
+\b. they wanted its$_1$ levitation far from the ball$_1$'s original spot.
+\z. \z.
+
+\ex.
+\a. \textit{context:} Our enemies were extremely technologically advanced, and they set up a detonator in their camp far away from our city.
+\b. \textit{sentence:} ?they wanted its destruction distant from the city
+\z. \z. \par
+
+\doublespacing
+
+Without mentioning it, Bruening (2018) actually uses interarboreal movement to remerge the internal object from its original position, at least under DM assumptions.\footnote{ Though Bruening himself does not assume DM.} Therein, Bruening (2018: 17) claims that ``NPs can have a K(ase) head merged with them''. The details aren't important except to know that in that model the NP itself starts low and is then re-merged elsewhere higher up the tree after being separately merging with K. This is essentially interarboreal movement. Still, in that system, the NP itself C-commands the lower original, since K(ase) is dominated by the NP level. Interaboreal movement for the internal aargument, then, doesn't seem particularly farfetched.
+
+In order to accommodate the cases in which the internal aargument doesn't show up, the interarboreal case is somewhat more complex. First, it could be the case that the little-v could still optionally select its aargument, but this would offer no reason not to just default to the non-interarboreal option, above. Second, it could be the case that the little-v selects its internal aargument and the aargument is copied as usual. Then, because n\textsub{of}'s selection of \textit{of} is optional, the \textit{of}-phrase doesn't merge with the n\textsub{of}. This latter option seems fairly farfetched, and it would be tantamount to deletion, difficult to constrain, and a violation of the extension condition.
+
+There is a third possibility. It could be the case that little-v obligatorily selects its aargument but that its aargument can be an empty DP that gets spelled out as a null pronoun, \textsc{pro}. This could merge with \textit{of} and \textit{of} with n\textsub{of} via interaboreal movement. In this case, \textit{of} would get spelled out as phonologically null, as well.\footnote{ Bruening (2014) claims something similar for the external aargument that gets selected, in his system, by the nominal.} There seems to be some independent evidence for this. Namely, in embedded cases, deverbal nominals without explicit aarguments seem much better when there is an implied internal aargument that C-commands the deverbal and the putative \textsc{pro}. Note that the aspectual phrases mark these cases as eventive.
+
+\singlespacing
+
+\ex.
+\a. ??the horde caused frequent destruction
+\b. the city underwent frequent destruction
+\z. \z.
+
+\ex. 
+\a. *the builder prefers construction in only three weeks
+\b. the house survived construction in only three weeks
+\z. \z.
+
+\ex. 
+\a. *the movie director requires frequent expression for the movie
+\b. human emotion requires frequent expression to be valid
+
+\doublespacing
+
+The same phenomena occurs with \textit{by}-phrases. Recall from section \ref{factss} that external aarguments can't be present when internal aarguments are not. This turns out to be true only most of the time. The above grammatical sentences without internal objects also allow \textit{by}-phrases.
+
+\singlespacing
+
+\ex.
+\a. ??he learned about frequent destruction by the horde \hfill [internal aargument unclear]
+\b. the city underwent frequent destruction by the horde \hfill [internal aargument is \textit{city}]
+\z. \z.
+
+\ex. 
+\a. *the advertisement offered construction by the builder in only three weeks
+\b. the house groaned from construction by the builder in only three weeks
+\z. \z.
+
+\ex. 
+\a. *the movie director requires frequent expression by the cast for the movie
+\b. human emotion demands frequent expression by the actor for him to be convincing
+
+\doublespacing
+
+This \textsc{pro} might have less strict requirements than C-command. It might instead only require that the implied internal object be obvious enough from context, as in the examples below. This would also explain more generally when the deverbal nominal can show up without its aargument, as in several examples above. When the referent of the internal aargument is obvious, deverbals without internal aarguments become much more grammatical.\footnote{ Grimshaw (1990) seems to think the \textit{by}-phase can generally occur without internal aargument, though little time is spent on them. The examples she brings up are ungrammatical to my ear.}
+
+\singlespacing
+
+\ex. *the destruction by the horde lasted five hours
+\z.
+\ex.
+\a. \textit{context:} the horde destroyed the city, and the mob destroyed the town
+\b. \textit{sentence:} the destruction by the horde lasted five hours\footnotemark
+\z. \z.
+\ex. *the construction by the builder
+\z.
+\ex. 
+\a. \textit{context:} do you know who built that house?
+\b.\textit{sentence:} the construction by the builder took three weeks
+\z. \z. \par
+
+\footnotetext{ The verb destroy can, under certain circumstances drop its internal aargument, too, though this is not generalizable to other verbs that become deverbal nominals.
+\ex. wow, the Rangers really destroyed last night \hfill [implied internal aargument: the other sports team]
+\z.
+\ex. *wow, the contractor really constructed last week \hfill [no implied internal aargument]
+\z.
+This phenomena, as well as the internal aargument dropping with deverbals, bears at least superficial resemblance to antipassive phenomena. See, e.g., Polinsky (2017).
+}
+
+\doublespacing
+
+This ends up solving the usual ungrammaticality of external aarguments without internal aarguments. In fact, in this model, the external aargument plays no role. It's simply a question as to whether or not the null pronoun is a licit aargument. The semantics for the interarboreal model are given below, with steps corresponding to \ref{ofIA2}. Everything after (g) would be the same as the non-interarboreal model. There is no need in this model for \textsc{num}\textsub{\textsc{+mass}} to existentially bind the aarguments.
+
+\singlespacing
+
+\ex. semantics for \ref{ofIA2} (through n\textsub{of})
+\a. \begin{math}\llbracket\sqrt{destr-}\rrbracket = \lambda e' \lambda y \lambda x \lambda e . destr(e,x,e',y)\end{math}
+\b. \begin{math}\llbracket v\textsub{cause}\rrbracket = \lambda f_{\langle s\langle e \langle st \rangle \rangle \rangle} \lambda y \lambda x \lambda e . [\exists e']f(e') \land \textsc{cause}(e,e') \land theme(e',y)\end{math}
+\b. \begin{math}\llbracket (a) \circ (b) \rrbracket = \lambda y \lambda x \lambda e . [\exists e'] destr(e,x,e',y) \land \textsc{cause}(e,e') \land theme(e',y) \end{math}
+\b. \begin{math}\llbracket (c) \circ city/\textsc{pro}\rrbracket = \lambda x \lambda e . [\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city\textsc{pro}) \end{math}
+\b. \begin{math} \llbracket n\textsub{of} \rrbracket = \lambda P.P \end{math}
+\b. \begin{math} \llbracket (e) \circ (e) \rrbracket == (d) \end{math}
+\b. = (d)
+\z. \z. \par
+
+\doublespacing
+
+\subsection{Result Deverbals}\label{strucs4}
+
+The result form, i.e., that in which the event interpretation is barred is modeled after the \textit{of}-[IA] form. 
+
+\singlespacing
+
+\ex. \label{resultIA} the destruction (result, starting with n\textsub{of})
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=35pt, sibling distance=0pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. D 
+    [. D 's ] [. (c)\space \textsc{num\textsub{[--mass]}}
+        [.\node(num){(b) \textsc{num\textsub{[--mass]}} \\ \scriptsize{$\langle\bullet\nospace n_{of} \rangle$}}; $\varnothing$ ] [. (a)\space n\textsub{of}
+            [. n\textsub{of}\scriptsize{$\langle\bullet\nospace v\rangle$} -tion ] [. v\textsub{\textsc{cause}} ]
+            ]
+        ]
+    ]
+]
+
+\end{tikzpicture}
+\par \hfill \par
+
+\doublespacing
+
+This means the result form is dependent on the choice between the interarboreal system and the non-interaboreal system. Result forms, for what it's worth, imply the possibility of \textsc{pro} in a way similar to the eventive \textit{of}-[IA]. Once again, when embedded, deverbal result nominals without explicit aarguments seem much better when there is an implied internal aargument that C-commands the deverbal (and the putative \textsc{pro}. (Since the deverbals here are plural they must be result nominals.)
+
+\singlespacing
+
+\ex. 
+\a. ??the horde caused many destructions
+\b. the city underwent many destructions
+\z. \z.
+
+\ex.
+\a. ??the builder ordered many reconstructions
+\b. the house survived many reconstructions
+\z. \z. \par
+
+\doublespacing
+
+
+However the optionality of the internal aargument is decided, the crucial point for the result nominals is that it includes the \textsc{num}\textsub{[--\textsc{mass}]} head. This head can both existentially bind the external aargument and can perform a type switching operator notated by $^{\cap}$. This operator converts properties to individuals, in this case from event kinds to event tokens. Grimm and McNally (2015) use this same operator for nominal gerunds.\footnote{ They get it from Chierchia (1998).} The operator therefore requires no change in structure below it, because it simply turns that structure into an event token. This token will entail the interpretive phenomena of result nominals and can account for the generalizations in Alexiadou (2009) and Harley (2009). Why result nominals can't occur with explicit aarguments remains unclear, especially since the type-shifting operator allows explicit aarguments in the system of Grimm and McNally (2015). On the other hand, Alexiadou (2001, 2009) suggests that some result nouns can have explicit internal aarguments. I leave a more fine-tuned investigation for another study.
+
+\singlespacing
+
+\ex. semantics for \ref{result}
+
+\a. \begin{math}\lambda x \lambda e . [\exists e'] destr(e,x,e',city/\textsc{pro}) \land \textsc{cause}(e,e') \land theme(e',city/\textsc{pro}) \end{math}
+\b. \begin{math} \lambda f_{\langle e \langle st \rangle \rangle } . [\exists x] ^{\cap}f(x) \end{math}
+\b. \begin{math}^{\cap}[\lambda e . [\exists x][\exists e'] destr(e,x,e',city) \land \textsc{cause}(e,e') \land theme(e',city) \land agent(e,x)] \end{math}
+\z. \z. \par
+
+\doublespacing
+
+\subsection{The [IA]-[nominal] Form}\label{strucs5}
+
+The final deverbal nominal form is the [IA]-[nominal] form. This form is usually neglected and will only receive cursory explanation here, because it seems to be a simple compound word, without remarkable deverbal properties. I'd like to note, however, that the analysis of the [IA]-\textsc{poss} lends itself to thinking of the [IA]-[nominal] as a repair strategy derivation of that [IA]-\textsc{poss}. The structure could look like \ref{compound}.
+
+\singlespacing 
+
+\ex. \label{compound} the city-destruction
+
+\vspace*{-10pt}\begin{tikzpicture}[baseline=0pt, remember picture] 
+\tikzset{level distance=35pt, sibling distance=0pt, every tree node/.style={anchor=north}, every node/.append style={align=center}}
+
+\Tree
+[. D 
+    [. D $\varnothing$ ] [. \textsc{num\textsub{[+mass]}}
+        [.\textsc{num\textsub{[+mass]}}
+            [. n 
+                [. v 
+                    [. $\sqrt{}$ 
+                        [. D \edge[roof]; {(?the) city} ] [. $\sqrt{}$ $\sqrt{destr-}$ ]
+                    ] 
+                    [. v $\varnothing$ ]
+                ] 
+                [. n -tion ]
+            ] 
+            [. \textsc{num} $\varnothing$ ]
+        ] 
+        [. n
+            [. $<$n$>$ ] [. \space v\textsub{\textsc{cause}} 
+                [. $<$D$>$ ] [. v\textsub{\textsc{cause}}\scriptsize{$\langle\bullet\nospace D\rangle$}
+                    [. $<$v$>$ ] [. $<\sqrt{}>$ ]
+                ]
+            ]
+        ]
+    ]
+]
+
+\end{tikzpicture}
+\par \hfill \par
+
+\doublespacing
+
+Specifically, if the \textsc{num} head merges with a non-possessive determiner phrase, the internal object would have no way to get Case. If that happens, the internal aargument could attach itself to the deverbal itself, effectively getting rid of its need to check case. This process would look somewhat similar to antipassive phenomena, even though the internal aargument is still present.\footnote{ Again, see Polinsky (2017).} How the determiners work out would need some fine-tuning (i.e., so that two ``the''s don't occur). (Of course, the movement of \textit{the city} as presented here isn't normal head movement, so how the determiner phrase is merged would need to be worked out.)
+
+\section{Two Considerations}\label{cons}
+
+Two other questions are worth considering for the system developed here. 
+
+\subsection{Other Verb Types}\label{cons1}
+
+The first question is whether or not this system works for deverbals related to non-causative verbs and for non\textit{-tion} suffixes, since the data looked at here comprises only causative verbs with the \textit{-tion} suffix. In fact, the system does seem to work well in both cases.
+
+Both inchoative-/unaccusative-based deverbals and unergative-based deverbals are easily integrated.\footnote{ See Harley (2009) for a list of such verbs.} To start, take the inchoative/unaccusative examples below.\footnote{ Per Deal (2009), I assume the difference between inchoative and unaccusative is the presence of \textsc{cause} semantics such that only the latter allows \textit{there} insertion.}
+
+\singlespacing
+
+\ex. inchoative
+\a. *the rapids disintegrated/deteriorated the riverbank 
+\b. the riverbank disintegrated/deteriorated
+\b. the (*rapid's) disintegration/deterioration of the riverbank
+\b. the riverbank's disintegration/deterioration
+\b. the disintegration/deterioration of the riverbank
+\z. \z. 
+
+\ex. unaccusative
+\a. *the conductor arrived the train
+\b. the train arrived
+\b. the (*conductor's) arrival of the train
+\b. the train's arrival
+\b. the arrival of the train
+\z. \z. \par
+
+\doublespacing
+
+These would be built up in exactly same way as \textit{destruction} above, in either deverbal form. This includes the non-\textit{tion} suffix \textit{-al}, mediated by, I assume, vocabulary insertion.\footnote{ This would also work for \textit{-ment}, e.g., the causative \textit{the board's assessment of the unruly CEO}.} The only difference would be that the roots have no external aargument slot in its semantic representation.\footnote{ Again, those verbs that alternate would be slightly more complicated.} This means that the \textsc{voice} head could still be merged but the semantics would crash. These deverbals do display some curious behavior, though. The \textit{by}-[EA] is markedly better in the \textit{of}-[IA] deverbal than in the verb (and, of course, than in the [IA]-\textsc{poss} form).
+
+\singlespacing
+
+\ex. inchoative
+\a. the riverbank disintegrated/deteriorated (*by the rapids)
+\b. *the riverbank was disintegrated/deteriorated (*by the rapids)
+\b. the disintegration/deterioration of the riverbank (?by rapids)
+\b. the riverbank's disintegration/deterioration (*by the rapids)
+\z. \z.
+
+\ex. unaccusative
+\a. the train arrived (*by the conductor)
+\b. *the train was arrived (by the conductor)
+\b. the arrival of the train (?by the conductor)
+\b. *the train's arrival (*by he conductor)
+\z. \z. \par
+
+\doublespacing
+
+It could be that the \textit{by}-phrase here is a normal adjunct or that it's being conflated with the licit locative \textit{by}. Alternatively, the n\textsub{of} could somehow be making the agent more licit. I leave this question for further investigation.
+
+The system here works for unergative-based deverbals, as well.
+
+\singlespacing
+
+\ex. unergative
+\a. the duckling hesitated (*the duck)
+\b. *the duck was hesitated (by the duckling)
+\b. the (*duck's) hesitation of the duckling
+\b. the duckling's hesitation (*by the duck)
+\z. \z. \par
+
+\doublespacing
+
+Note here that it is the external aargument, the agent/experiencer, that appears in the same slot as the internal aarguments in the causative/inchoative/unaccusative-based deverbals. This follows naturally, though, from semantic composition. These roots have only one variable, which corresponds to its agentive interpretation. The little-v selects its aargument, it ends up where it normally does, and the root interprets it accordingly. The addition of a separate \textsc{voice} head would still cause the semantics to crash, since there would be no second variable. Alternatively, to keep things consistent, it could be the case that \textsc{voice} selects the root directly in these cases, with no little-v.
+
+\subsection{Roots and Vocabulary Insertion}\label{cons2}
+
+The second question is how to account for the fact that most deverbals, including those seen here, are Romance-derived.\footnote{ See Hamamatsu (2013) on this point.} This fact, I think can be handled with run-of-the-mill vocabulary insertion under DM assumptions. The varying suffixes would, by assumption, have no phonological content until after the syntax. Depending on what root is present, VI will insert the appropriate suffix. The list of roots associated with certain suffixes would happen to be all Romance-derived. The possible suffixes would include a null suffix, as well, perhaps as the default case. This allows for null-derived deverbals, as below from Harley (2009):
+
+\singlespacing
+
+\ex. \textit{Harley (2009: 340 (23-27))}
+\a. the frequent rape of women in Darfur
+\b. the frequent collapse of the king
+\b. the frequent repair of the motorcycle
+\b. the frequent censure of journalists
+\b. the frequent murder of journalists
+\z. \z. \par
+
+\doublespacing
+
+These null-derived deverbals include both Romance and Germanic roots, but they could be derived in exactly the same way as the other deverbals,\footnote{ I depart in this regard from Harley (2009), who assumes that there is no null suffix in these cases. I see no need to assume this though, since they can be well-integrated without it.} and VI would determine that they get null suffixes. Again, I leave the precise details of these mechanisms to future work.
+
+\section{Conclusion}\label{conc}
+
+This paper has tried to explain in explicit terms a number of facts about English deverbal nominals. In doing so, the paper has tried to dispense with some common assumptions often made about deverbal nominals. It's seen here, contrary to prior accounts, that : i) verbal aargument structure doesn't directly map onto deverbal aargument structure (the little-v is separated from \textsc{voice}), ii) little-v and/or little-n selects internal aarguments, not roots, and iii) there are two separate nominalizing heads, instead of just one. A number of functional heads, \textsc{voice}, little-v, and little-n are hypothesized to have two distinct forms: a preposition-selecting form and a non-preposition-selecting form. How general this property is amongst functional heads would be worth investigating, especially cross-linguistically.
+
+The model developed here to explain deverbals posits that selection, and therefore the optionality of aarguments, works in two different ways: syntactically and semantically. Syntax governs categorial/featural selection via Merge, and semantics governs function application. The range of deverbal phenomena can only be satisfactorily explained by reference to both selectional types. The definition of ``aargument'', though, becomes essentially semantic in character; that is, aarguments are a root's semantic requirements at LF. The semantic model presented here is a departure from more standard event semantics, though the model could be relatively easily integrated therein. The more standard semantics less naturally accounts for deverbal phenomena, hence its rejection here. However, the precise relationship between \textsc{cause} semantics and aargument variables needs to be further explored.
+
+The paper then takes a particular stance in the DM framework. Namely, roots have semantic properties but, because they don't select aarguments, have no uninterpretable features. Neither of these claims are uncontroversial in DM models. Roots are usually assumed to have selectional (i.e., uninterpretable) features. The model here shows this is unnecessary at least for the phenomena in question, and stripping roots of uninterpretable features provides for a simpler theory. The general ability or inability of roots to have uninterpretable features remains a question for future research.
+
+The paper also takes a stance on \textit{of}-insertion, which is commonly invoked as a possible repair strategy. The theoretical grounds for \textit{of}-insertion are unstable, and I've suggested here that interarboreal movement might better account for phenomena that otherwise look like \textit{of}-insertion. The theoretical grounds for interarboreal movement are also unstable, especially of XPs, so the larger implications of such a reframing needs to be worked out.
+
+Finally, though it's discussed here in brief, the precise morphological constraints on deverbal nominals could be more explicitly worked out. This is true both in terms of a wider range of deverbals (including, even, adjectival forms) and how vocabulary insertion works with different suffixes. Furthermore, since \textsc{voice} is separated from the verbalizer, the general constraints on which functional heads can be merged needs to be made explicit.
+
+In sum, the explicit model here explains much of the deverbal data that has been controversial in the literature, and several productive avenues for further inquiry have thereby been opened.
+
+\singlespacing
+\nocite{*}
+\printbibliography[heading=bibintoc]
+
+
+\end{document}

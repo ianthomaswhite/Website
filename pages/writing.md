@@ -11,10 +11,19 @@ isWriting: true
 - [Head Movement: PF?](/pdfs/academic/linguistics/ling_200b_paper.pdf)
 - [Review: Tree Adjoining Grammars](/pdfs/academic/linguistics/ling_209_paper.pdf)
 - [Barker 2002: Continuations and the Nature of Quantification](/pdfs/academic/linguistics/ling_200c_paper.pdf)
+- [Barker, Bernardi, Shan (2010): Principles of Interdimensional Meaning Interaction](/pdfs/academic/linguistics/ling_201c_final_paper.pdf)
+- [Attic Greek Aorist/Future Passives](/pdfs/academic/linguistics/ling_205_final_paper.pdf)
+- [The Argument Structure of Deverbal Nouns](/pdfs/academic/linguistics/deverbals3.pdf)
 
 ### Literature
 
-<!-- Add papers here -->
+- [Discrete Infinity and Ring Structure in Penelope's Weaving Trick](/pdfs/academic/literature/weaving.pdf)
+
+### Teaching
+
+- [CSCL 1301W: Syllabus and Assignment Materials](/pdfs/academic/teaching/1301w_syllabus_materials.pdf)
+- [CSCL 1301W: Teaching Materials and Text Notes](/pdfs/academic/teaching/1301w_teaching_materials.pdf)
+- [Reading/Writing Review Materials](/pdfs/academic/teaching/gram2.pdf)
 
 ## Creative
 

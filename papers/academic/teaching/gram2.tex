@@ -1,0 +1,870 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[letterpaper, margin = 1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{lipsum}
+
+\usepackage[nocenter]{qtree}
+\usepackage{tree-dvips}
+\usepackage{linguex}
+
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{deverbals.bib}
+\usepackage{csquotes}
+\DeclareLanguageMapping{english}{english-apa}
+
+\usepackage{hanging}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\usepackage{rotating}
+
+\usepackage{gb4e}
+
+\title{Reading/Writing Review Materials}
+\author{}
+\date{}
+
+\makeatletter
+\renewcommand{\maketitle}
+{
+\begin{flushleft}
+\textbf{{\large\@title}}
+\newline
+\@author
+\end{flushleft}
+}
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ian Thomas White}
+%\chead{\small{CSCL1301W, Spring 2020}}
+\rhead{\thepage \ of \pageref{LastPage}}
+
+\widowpenalty=100000
+\clubpenalty=100000
+
+\titleformat*{\section}{\medium\bfseries}
+\titleformat*{\subsection}{\small\bfseries}
+\titleformat*{\subsubsection}{\small\bfseries}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\maketitle
+
+\tableofcontents 
+\newpage
+
+\renewcommand{\labelenumi}{(\Roman{enumi})}
+\renewcommand{\labelenumii}{(\Alph{enumii})}
+\renewcommand{\labelenumiii}{(\roman{enumiii})}
+\renewcommand{\labelenumiV}{(\alph{enumiV})}
+\renewcommand{\labelenumV}{(\alph{enumV})}
+
+%\section{Purpose of These Materials}
+
+% We’re going to be reading and writing about some difficult texts. Both these tasks require the ability to adequately and precisely describe textual features and characteristics. To that end, I’ve prepared review materials that summarize the requisite vocabulary for precise textual description. Your goal with these is not necessarily to be able to recall everything here but more to use them as reference tools for making arguments.
+
+\section{Grammar and Syntax}
+
+\subsection{Words}
+
+Words are, at least in an intuitive way, the building blocks of textual analysis.
+
+\subsubsection{Verbs}
+
+Verbs, sometimes called predicates, are ``actions, events, states'', etc.; their basic function is to apply qualities to other words. Subcategories are:
+
+\begin{enumerate}
+\item finite: inflected (conjugated), i.e., modified with endings, according to number, person, tense, aspect, voice, and mood
+    \begin{enumerate}
+        \item number (quantity of actor): singular, plural
+        \item person (POV of actor): 1st, 2nd, 3rd
+        \item voice (POV of action): active, middle (rare), passive
+        \item tense (time of action): past, present, future
+        \item aspect (type of action): simple, progressive, perfect(ive), perfect progressive
+        \item mood (reality of action): indicative, imperative, subjunctive (rare)
+    \end{enumerate}
+\item nonfinite: inflected only for voice, tense, and aspect
+    \begin{enumerate}
+        \item infinitive (verbal noun): bare verb or following \textit{to}, usually  a complement to a finite verb
+        \item participle (verbal adjective): present (\textit{-ing}), past (\textit{-ed}), usually in a periphrastic form (below), as a complement to a finite verb, or as a subordination marker (below)
+    \end{enumerate}
+\item linking/copula: a form of \textit{be} that describes one thing as another, usually two substantives
+\item periphrastic: one finite verb (the auxiliary/helping verb) plus one or more nonfinite verbs (usually a participle)
+    \begin{enumerate}
+    \item using forms of \textit{be} for passive voice
+    \item using forms of \textit{have} for perfective aspect
+    \item using \textit{will} or \textit{going to} for future tense
+    \item using modals for subjunctive moods: \textit{can, could, may, might, must, shall, should, would}
+    \end{enumerate}
+\item paradigms
+  
+\end{enumerate}
+
+\begin{exe}
+    \ex indicative forms of \textit{be} and \textit{have} used to form periphrastic forms 
+\end{exe}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+| >{\centering\arraybackslash}X
+|| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X 
+|| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+|}
+ \hline
+ \multirow{2}{*}{} & \multicolumn{2}{c||}{\textit{be}} & \multicolumn{2}{c|}{\textit{have}} \\
+ \cline{2-5}
+ & present & past & present & past \\
+ \hline \hline
+ 1s (\textit{I}) & am & was & have & had \\
+ \hline
+ 2s (\textit{you}) & are & were & have & had \\
+ \hline
+ 3s (\textit{he/she/it}) & is & was & has & had \\
+ \hline
+ 1p (\textit{we}) & are & were & have & had \\
+ \hline
+ 2p (\textit{you (all)}) & are & were & have & had \\
+ \hline 
+ 3p (\textit{they}) & are & were & have & had \\
+ \hline
+ participles & being & been & having & had \\
+ \hline
+ infinitive & \multicolumn{2}{c||}{(to) be} & \multicolumn{2}{c|}{(to) have} \\
+ \hline
+ 
+ \end{tabularx}
+ \end{center}
+
+\begin{exe}
+    \ex full indicative paradigm of \textit{break} (note: not all verbs will fill the entire paradigm)
+\end{exe}
+
+\begin{center}
+\begin{scriptsize}
+\begin{tabularx}{\textwidth}{
+| >{\centering\arraybackslash}X
+|| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X 
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X 
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X 
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+|}
+ \hline
+ mood & \multicolumn{12}{c|}{indicative} \\
+ \hline
+ voice & \multicolumn{12}{c|}{active} \\
+ \hline
+ tense & \multicolumn{4}{c|}{present} & \multicolumn{4}{c|}{past} & \multicolumn{4}{c|}{future} \\
+ \hline
+ aspect & simp & perf & prog & perf-prog & simp & perf & prog & perf-prog & simp & perf & prog & perf-prog \\
+ \hline \hline
+ 1s & break & \multicolumn{3}{c|}{present indicative of} & \multirow{6}{*}{broke} & \multicolumn{3}{c|}{past indicative of} & \multicolumn{4}{c|}{\textit{will} or pres. ind. of \textit{be} + \textit{going to}} \\
+ \cline{1-2}
+ 2s & break & \textit{have} & \textit{be} & \textit{have} & & \textit{have} & \textit{be} & \textit{have} & & + & + & + \\
+ \cline{1-2}
+ 3s & breaks & & & & & & & + & & have & be & have \\
+ \cline{1-2}
+ 1p & break & & & been & & & & been & & & & been \\
+ \cline{1-2}
+ 2p & break & + & + & + & & + & + & + & + & + & + & +\\
+ \cline{1-2}
+ 3p & break & broken & \multicolumn{2}{c|}{breaking} & & broken & \multicolumn{2}{c|}{breaking} & break & broken & \multicolumn{2}{c|}{breaking} \\
+ \hline
+ part & \multicolumn{4}{c}{breaking} & \multicolumn{4}{|c|}{---} & \multicolumn{4}{c|}{---} \\
+ \hline
+ inf &\multicolumn{12}{c|}{(to) break} \\
+ \hline
+\end{tabularx}
+\end{scriptsize}
+\end{center}
+
+\begin{center}
+\begin{scriptsize}
+
+\begin{tabularx}{\textwidth}{
+| >{\centering\arraybackslash}X
+|| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X 
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X 
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X 
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+|}
+ \hline
+ mood & \multicolumn{12}{c|}{indicative} \\
+ \hline
+ voice & \multicolumn{12}{c|}{passive} \\
+ \hline
+ tense & \multicolumn{4}{c|}{present} & \multicolumn{4}{c|}{past} & \multicolumn{4}{c|}{future} \\
+ \hline
+ aspect & simp & perf & prog & perf-prog & simp & perf & prog & perf-prog & simp & perf & prog & perf-prog \\
+ \hline \hline
+ 1s & \multicolumn{4}{c|}{present indicative of} & \multicolumn{4}{c|}{past indicative of} & \multicolumn{4}{c|}{\textit{will} or pres. ind. of \textit{be} + \textit{going to}} \\
+ \cline{1-1}
+ 2s & \textit{be} & \textit{have} & \textit{be} & \textit{have} & \textit{be} & \textit{have} & \textit{be} & \textit{have} & + & + & + & + \\
+ \cline{1-1}
+ 3s & & + & + & + & & + & + & + & be & have & be & have \\
+ \cline{1-1}
+ 1p & & been & being & been being & & been & being & been being & & been & being & been being \\
+ \cline{1-1}
+ 2p & + & + & + & + & + & + & + & + & + & + & + & +\\
+ \cline{1-1}
+ 3p & \multicolumn{4}{c|}{broken} & \multicolumn{4}{c|}{broken} & \multicolumn{4}{c|}{broken} \\
+ \hline
+ part & \multicolumn{4}{c}{---} & \multicolumn{4}{|c|}{(being/having) broken} & \multicolumn{4}{c|}{---} \\
+ \hline
+ inf &\multicolumn{12}{c|}{(to) be broken} \\
+ \hline
+\end{tabularx}
+\end{scriptsize}
+\end{center}
+ 
+\noindent Note that different forms can be difficult to distinguish. See the following examples:
+\begin{exe}
+\ex examples with \textit{be}
+    \begin{xlist}
+    \ex I think that I \textbf{am} a dinosaur \hfill \textbf{finite, indicative}
+    \ex I think that I \textbf{be} a dinosaur \hfill \textbf{finite, subjunctive (archaic)}
+    \ex I think to myself, \textbf{be} a dinosaur \hfill \textbf{finite, imperative}
+    \ex I think myself \textbf{to be} a dinosaur \hfill \textbf{nonfinite, infinitival}
+    \ex I think of myself as one \textbf{being} a dinosaur \hfill \textbf{nonfinite, participial}
+    \end{xlist}
+\end{exe}
+
+\noindent Note that periphrastic passive forms are best avoided in formal academic writing. See the differences between the following forms:
+\begin{exe}
+\ex periphrastic passive, periphrastic progressive, non-periphrastic copula
+    \begin{xlist}
+    \ex he \textbf{was walloped} (by the walloper) \hfill \textbf{simple past passive (avoid)}
+    \ex he \textbf{was walloping} (against the clobberer) \hfill \textbf{progressive past active}
+    \ex he \textbf{was} a wallop machine \hfill \textbf{simple past copula}
+    \end{xlist}
+\end{exe}
+
+\subsubsection{Nouns}
+
+Nouns, sometimes called substantives, are ``persons, places, things', etc.; their basic function is to refer to the objects in the world. Among other functions, nouns act as the subjects and direct/indirect objects of verbs, as well as agents for things being acted upon. A noun can, often must, be preceded by indefinite articles (\textit{a}/\textit{an}), definite articles (\textit{the}), or demonstrative adjectives (below). Subcategories are:
+
+\begin{enumerate}
+\item lexical: basic referent, inflected (declined) for number only (singular, plural)
+\item pronouns: nouns that (usually) have an antecedent (a referent in the local context)
+    \begin{enumerate} 
+    \item personal: inflected (declined) for number, gender, case
+        \begin{enumerate}
+        \item number: singular, plural
+        \item gender: masculine, feminine, neuter
+        \item case: subjective (nominative), objective/oblique (accusative/dative), possessive (genitive)
+        \end{enumerate}
+    \item reflexive: forms with \textit{-self / -selves}
+        \begin{enumerate}
+        \item \textit{myself, yourself, him-/her-/itself, ourselves, yourselves, themselves} 
+        \end{enumerate}
+    \item pleonastic/dummy: \textit{it} or \textit{there}  in subject position but that don't refer to anything
+    \item relative: governs its own clause in the same sentence as its antecedent
+        \begin{enumerate}
+        \item basic: \textit{who, whom, whose, that, which}
+        \item indefinite: \textit{whoever, whomever, whosoever, whatever, whatsoever, whichever}
+        \end{enumerate}
+    \item interrogative: similar to relatives but used to form questions (no antecedent), direct or indirect
+        \begin{enumerate}
+        \item \textit{who, whom, whose, what, which}
+        \end{enumerate}
+    \item demonstrative: marks a particular antecedent based on context, identical to demonstrative adjectives
+        \begin{enumerate}
+        \item \textit{this/these/that/those}
+        \end{enumerate}
+    \end{enumerate}
+\item verbal nouns
+    \begin{enumerate}
+    \item gerunds: \textit{-ing}, these look like present participles but act as nouns
+    \item infinitives: rare but possible in English
+    \end{enumerate}
+\item paradigm
+\end{enumerate}
+
+\begin{exe}
+\item paradigm of English inflected nouns
+\end{exe}
+
+\begin{center}
+\begin{footnotesize}
+\begin{tabularx}{\textwidth}{
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+|| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X 
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+|}
+\hline
+\multicolumn{2}{|c||}{} & 1st & 2nd & \multicolumn{4}{c|}{3rd} \\
+\cline{5-8}
+\multicolumn{2}{|c||}{} & & & personal & relative & interrog. & lexical \\
+\hline \hline
+\multirow{3}{*}{singular} & subjective & I & you & he/she/it & who/that & who/what & human\\
+\cline{2-8}
+& possessive & mine & yours & his/hers/its & whose & whose & human's \\
+\cline{2-8}
+& objective & me & you & him/her/it & whom/that & whom/what & human \\
+\hline
+\multirow{3}{*}{plural} & subjective & we & you (all) & they & who/that & who/what & humans \\
+\cline{2-8}
+& possessive & ours & yours / you all's & theirs & whose & whose & humans'(s) \\
+\cline{2-8}
+& objective & us & you (all) & them & whom/that & whom/what & humans\\
+\hline
+\end{tabularx}
+\end{footnotesize}
+\end{center}
+
+\noindent Note that it can be difficult to determine when: i) verbal nouns and adjectives are acting as verbs or as nouns and ii) \textit{wh-} words are acting as relative pronouns, interrogative pronouns, or adjectives. See the differences between the following forms:
+\begin{exe}
+\ex verbal nouns and adjectives
+    \begin{xlist}
+    \ex \textbf{swimming} is good \hfill \textbf{noun}
+    \ex \textbf{to swim} is good \hfill \textbf{noun}
+    \ex he left (by) \textbf{swimming} \hfill \textbf{verb}
+    \ex he left (in order) \textbf{to swim} \hfill \textbf{verb}
+    \end{xlist}
+\end{exe}
+\begin{exe}
+\ex \textit{wh-} words; \textit{I knew ...}
+    \begin{xlist}
+    \ex ... the person/thing \textbf{who/that} became the ghoul's treat \hfill \textbf{relative pronoun}
+    \ex ... the person/thing \textbf{whom/that} the ghoul made a treat \hfill \textbf{relative pronoun}
+    \ex ... \textbf{who/what} became the ghoul's treat \hfill \textbf{interrogative pronoun}
+    \ex ... \textbf{whom/what} the ghoul made a treat \hfill \textbf{interrogative pronoun}
+    \ex ... \textbf{what/which} person/thing became the ghoul's treat \hfill \textbf{relative adjective}
+    \end{xlist}
+\end{exe}
+
+\subsubsection{Adjectives/Adverbs}
+An adjective or adverb describes or refines some other entity.
+\begin{enumerate}
+\item adjectives: often called determiners, modify nouns
+    \begin{enumerate}
+    \item three functions: substantival, attributive, predicative
+    \end{enumerate}
+\end{enumerate}
+\begin{exe}
+\ex three types of adjectives
+    \begin{xlist}
+    \ex \textbf{green} made the big fish mad as hell \hfill \textbf{substantival}
+    \ex green made the \textbf{big} fish mad as hell \hfill 
+    \textbf{attributive}
+    \ex green made the big fish \textbf{mad} as hell \hfill \textbf{predicative}
+    \end{xlist}
+\end{exe}
+\begin{enumerate}
+    \begin{enumerate}
+    \setcounter{enumii}{1}
+    \item lexical: defines a particular property, has three degrees;
+        \begin{enumerate}
+        \item positive: \textit{cool/good/puke-like}
+        \item comparative: \textit{cooler/better/more puke-like}
+        \item superlative: \textit{coolest/best/most puke-like}
+        \end{enumerate}
+    \item possessive: indicates possession (distinct from the possessive personal pronouns (above))
+        \begin{enumerate}
+        \item \textit{my, your, his/her/its, our, your, their}
+        \end{enumerate}
+    \item relative: refers to a prior antecedent and modifies a noun in its own clause;
+        \begin{enumerate}
+        \item \textit{what, which}
+        \end{enumerate}
+    \item interrogative: used to form a question and modifies a noun
+        \begin{enumerate}
+        \item \textit{what, which}
+        \end{enumerate}
+    \item demonstrative: marks out a particular noun, identical to the demonstrative pronouns (above)
+    \end{enumerate}
+\setcounter{enumi}{1}
+\item adverbs: a kind of catchall category, can modify everything except (directly) nouns
+    \begin{enumerate}
+    \item lexical: usually formed by adding \textit{-ly} to adjectives
+        \begin{enumerate}
+        \item positive: \textit{quickly}
+        \item comparative: \textit{more quickly}
+        \item superlative: \textit{most quickly}
+        \end{enumerate}
+    \item negations: \textit{not, never}, etc.
+    \item temporal: \textit{when, after, before}, etc.
+    \item a large set of otherwise unclassifiable words
+    \end{enumerate}
+\end{enumerate}
+
+\subsubsection{Prepositions}
+A preposition locates or relates nouns to something; i.e., it requires a noun to follow it. English also has some postpositions, which follow the nouns they modify. Attributes:
+\begin{enumerate}
+    \item particularly productive in English and make up a large set of words
+    \item multiple words can make up one preposition (e.g., \textit{on top of})
+    \item often semantically attached to verbs (e.g., \textit{up} in \textit{wash up})
+\end{enumerate}
+
+\subsubsection{Conjunctions}
+A conjunction combines entities (words, phrases, clauses). Subcategories:
+\begin{enumerate}
+\item coordinating (equal status): \textit{and, but, for, nor, or, so, yet}
+\item subordinating (unequal status): \textit{after, although, as, as if, because, before, even if, even though, if, if only, rather than, since, that, though, unless, until, when, where, whereas, wherever, whether, which, while}
+\item correlative: \textit{both/and, whether/or, either/or, neither/nor, not/but, not only/but also, as/as, such/that, scarcely/when, as many/as, no sooner/than, rather/than}
+\end{enumerate}
+
+\noindent Note that it can be difficult to distinguish when a word is acting as an adverb, a preposition, or a conjunction. In fact, most prepositions in English can act as adverbs and can only be distinguished based on whether or not the word takes a nominal object.
+
+\begin{exe}
+\item adverb, preposition, conjunction
+    \begin{xlist}
+    \item the monster never cried \textbf{before} \hfill \textbf{adverb}
+    \item the monster never cried \textbf{before} bedtime \hfill \textbf{preposition}
+    \item the monster never cried \textbf{before} it went to bed \hfill \textbf{conjunction}
+    \end{xlist}
+\end{exe}
+
+\subsection{Phrases}
+
+Phrases are single words or groups of words with some kind of recognizable semantic content (``meaning''). They are labeled based on the main word, the ``head'', of the phrase, e.g.:
+\begin{exe}
+\ex I didn't know what to do [\textsubscript{CnP} while [\textsubscript{VP} sitting [\textsubscript{PP} next to [\textsubscript{NP}the [\textsubscript{AP} [\textsubscript{AdvP} very] unhappy] gorilla]]]
+    \begin{xlist}
+    \ex  CnP, conjunction phrase (subordinate clause (see below)): \textbf{while} ... gorilla 
+    \ex VP, verb (participial) phrase: \textbf{sitting} ... gorilla
+    \ex PP, prepositional phrase: \textbf{next to} ... gorilla
+    \ex NP, noun phrase: \textbf{the} ... \textbf{gorilla}
+    \ex AP, adjectival phrase: very \textbf{unhappy}
+    \ex AdvP, adverbial phrase: \textbf{very}
+    \end{xlist}
+\end{exe}
+
+\subsection{Clauses}
+Clauses are the smallest sets of words that have propositional content. Attributes:
+\begin{enumerate}
+\item required constituents
+    \begin{enumerate}
+    \item a subject, usually a noun, which can be implied
+    \item a predicate, usually a verb
+    \end{enumerate}
+\item types
+    \begin{enumerate}
+    \item finite: headed by a finite verb (above)
+    \item nonfinite: headed by a nonfinite verb (above)
+    \end{enumerate}
+\item functions
+    \begin{enumerate}
+    \item main/independent/matrix: ``complete'' by itself
+    \item subordinate/dependent/embedded: ``incomplete'' by itself, usually headed by a subordinating conjunction, a participle, or a \textit{wh-} word
+    \item a finite clause can be either independent or dependent, but a nonfinite clause (in normal grammatical circumstances) can only be dependent; i.e., independent clauses are always finite.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Sentences}
+Sentences are the smallest set of words that are grammatically valid on their own.
+
+\begin{enumerate}
+\item types
+    \begin{enumerate}
+    \item simple: one independent clause
+    \item compound: two or more independent clauses
+    \item complex: one independent clause and one or more dependent clauses
+    \item complex-compound: at least two independent clauses and at least one dependent clause
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Important Structural Types}
+\begin{enumerate}
+\item parataxis: a combination of entities with equal status
+    \begin{enumerate}
+    \item compound sentences are one example
+    \item possible kinds, entities that are ...
+        \begin{enumerate}
+        \item simply set side-by-side
+        \item combined with coordinating conjunctions and commas
+        \item combined with coordinating grammatical marks (clause final marks, i.e. semicolons, periods, question marks, exclamation marks)
+        \end{enumerate}
+    \item can be temporal, concessive, causal, resultative, purposive, or conditional
+    \end{enumerate}
+\end{enumerate}
+\begin{exe}
+\ex paratactic constructions
+    \begin{xlist}
+    \ex I climbed a big tree, and (=and then) I saw a great foe \hfill \textbf{temporal}
+    \ex I climbed a big tree, and (=even though) I rarely climb trees \hfill \textbf{concessive}
+    \ex I climbed a big tree, and (=because) before I saw a great foe \hfill \textbf{causal}
+    \ex I climbed a big tree, and (=and thereby) I scratched my pinky toe \hfill \textbf{resultative}
+    \ex I needed to escape my enemy, and (therefore) I climbed a big tree \hfill \textbf{purposive}
+    \ex I can't climb trees by myself, and you (if you do) can help me \hfill \textbf{conditional}
+    \end{xlist}
+\end{exe}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item hypotaxis: a combination of entities with unequal status
+    \begin{enumerate}
+    \item complex sentences are one example
+    \item possible kinds, entities that are:
+        \begin{enumerate}
+        \item simply set side-by-side, the second item subordinate
+        \item combined with subordinating conjunctions or commas
+        \item combined with other subordinating words, usually participles of adverbs
+        \item combined with subordinating grammatical marks (commas, colons, em-dashes)
+        \end{enumerate}
+    \item can be temporal, concessive, causal, purposive, or conditional
+    \end{enumerate}
+\end{enumerate}
+\begin{exe}
+\ex hypotactic constructions
+    \begin{xlist}
+    \ex after climbing the big tree, I saw a great foe \hfill \textbf{temporal}
+    \ex despite rarely climbing trees, I climbed a big tree \hfill \textbf{concessive}
+    \ex by climbing a big tree, I scratched my pinky toe \hfill \textbf{causal}
+    \ex by climbing a big tree, I tried to escape my enemy \hfill \textbf{purpose}
+    \ex by climbing a big tree, I might escape my enemy \hfill \textbf{conditional}
+    \end{xlist}
+\end{exe}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item conditionals: sentences that set up a real or imagined cause (the condition, called the protasis or antecedent) and a possible effect (called the apodosis or consequent). The protasis usually begins with \textit{if} and sometimes with just the subjunctive \textit{were}, and the apodosis starts with nothing or, optionally, with \textit{then}.
+    \begin{enumerate}
+    \item paradigm
+    \end{enumerate}
+\end{enumerate}
+
+\begin{exe}
+\ex conditional sentence types
+\end{exe}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+| >{\centering\arraybackslash}X
+|
+}
+\hline
+type & usage & protasis & apodosis & example \\
+\hline \hline
+zero & general truths & simple present & simple present & if this happens, that happens \\
+\hline
+one & possibility (real) $\rightarrow$ probability & simple present & simple future & if this happens, that will happen\\
+\hline
+two & present hypothetical (unreal) $\rightarrow$ present probability & simple past & present conditional or present progressive conditional & if this happened, that would happen / would be happening \\
+\hline
+three & past hypothetical (unreal) $\rightarrow$ past probability & past perfect & perfect conditional & if this had happened, that would have happened / would have been happening \\
+\hline
+mixed & past hypothetical (unreal) $\rightarrow$ present probability & past perfect & present conditional & if that had happened, this would happen \\
+\hline
+\end{tabularx}
+\end{center}
+
+Note that in academic writing it is best to avoid dangling modifiers, i.e., agent mismatches between a subordinate and main clause
+\begin{exe}
+\ex dangling modifiers
+    \begin{xlist}
+    \ex after \textbf{eating} ten pies, \textbf{my stomach} exploded \hfill \textbf{ungrammatical}
+    \ex after \textbf{I ate} ten pies, \textbf{my stomach} exploded \hfill \textbf{grammatical}
+    \ex after \textbf{trying to digest} ten pies, \textbf{my stomach} exploded \hfill \textbf{grammatical}
+    \end{xlist}
+\end{exe}
+
+\section{Prosody}
+
+Understanding and describing a text's sound patterns is almost always important and illuminating.
+
+\begin{enumerate}
+\item rhythm: the most general/high-order category of prosody---what a poem, sentence, or line `sounds like'; describable in terms like `flowing', `choppy', etc.
+\item meter: a formal/analyzable rhythmic structure, comprising numbered amounts of a specific foot type
+    \begin{enumerate}
+    \item monometer = 1 foot; dimeter = 2 feet; trimeter = 3 feet; tetra- = 4; penta- = 5; hexa- = 6; hepta- = 7; octa- = 8
+    \item foot: a pattern comprising a set amount of marked (stressed or long) and unmarked (unstressed or short) quantities (syllables or sets of syllables)
+    \item English uses a stress-based meter using discrete syllables, where number of syllables usually equals number of vowels; \'{x} = stressed, \u{x} = unstressed
+        \begin{enumerate}
+        \item pyrrhus/dibrach: \u{x} \u{x} (\textit{\underline{and the} feast}) [rare]
+        \item iamb: \u{x} \'{x} (\textit{\underline{divide}}) [very common]
+        \item trochee: \'{x} \u{x} (\textit{\underline{dimly}}) [very common]
+        \item spondee: \'{x} \'{x} (\textit{\underline{eat now}}) [common]
+        \item tribrach: \u{x} \u{x} \u{x} (\textit{cu\underline{ratedly}}) [rare]
+        \item  anapest: \u{x} \u{x} \'{x} (\textit{it went \underline{underneath}}) [moderately common]
+        \item amphibrach: \u{x} \'{x} \u{x} (\textit{\underline{divinely}}) [uncommon]
+        \item dactyl: \'{x} \u{x} \u{x} (\textit{\underline{finally}}) [moderately common]
+        \item bacchius: \u{x} \'{x} \'{x} (\textit{\underline{the big bugs}}) [rare]
+        \item cretic: \'{x} \u{x} \'{x} (\textit{\underline{incorrect}}) [rare]
+        \item antibacchius: \'{x} \'{x} \u{x} (\textit{\underline{small bit}ing}) [rare]
+        \item molossus: \'{x} \'{x} \'{x} (\textit{\underline{big time fun}}) [rare]
+        \end{enumerate}
+    \item a word's stress pattern can be different in a metered line than by itself
+    \item other terms
+        \begin{enumerate}
+        \item line: the basic unit that defines the text's meter (e.g., a line of tetrameter)
+        \item caesura: traditionally, a pause within a line that separates two logical parts, without a meter break; also can refer to a break in the meter within a line
+        \item enjambment: continuation of a phrase across a line break, such that the meter of each respective line remains unchanged
+        \end{enumerate}
+    \item in metered works, a break/change/deviation in the meter often suggests something textually significant
+    \item iambic pentameter is historically the default meter of English verse
+    \end{enumerate}
+\item sound patterns
+    \begin{enumerate}
+    \item rhyme: repetition of a word's ending sound
+        \begin{enumerate}
+        \item off/slant rhyme: near, not exact, repetition of an ending sound
+        \item masculine rhyme: a rhyme with one, stressed syllable
+        \item feminine rhyme: rhyme with one stressed and one unstressed syllable
+        \item apocopated rhyme: a mixed masculine/feminine rhyme
+        \end{enumerate}
+    \item assonance: repetition of a vowel sound
+    \item consonance: repetition of a consonant sound
+    \item alliteration: repetition of initial sounds, whether vowel or consonant
+    \item sound patterns often suggest words/ideas are being paired for some purpose/meaning
+    \end{enumerate}
+\end{enumerate}
+
+
+\section{Reading and Writing}
+
+\subsection{Tips for Analyzing Sentences}
+Many sentences are difficult to parse and understand, especially in literary and theoretical texts. These steps can be used to decode tough sentences.
+
+\begin{enumerate}
+\item Locate the verbs. Most of the time, sentences have one verb per clause, so, for particularly labyrinthine sentences, the verbs will acts as the backbone. This won’t always be the case, and some verb-like instances can be misleading, e.g., gerunds, which look like verbs. Starting with finite verbs is usually easiest.
+\item Note the difference between grammatical roles and syntactic roles. The most important distinction is between the subject of a sentence, the thing that governs verb agreement (grammatical), and the agent of a sentence, the thing doing the action of the verb (syntactic). The most common example of this is the standard passive construction, in which the grammatical subject is the syntactic object: e.g., \textit{the store} [subject] \textit{was robbed by the local fascists} [agent].
+\item Account for the necessary roles of each verb. E.g., a verb like \textit{destroy} almost always requires a direct object. If a verb seems to be missing one or some of its roles, find or account for it (perhaps in unintuitive ways). If a verb has one of its roles already accounted for, likely some other entity in the sentence won’t also be used for that role, and that second entity will be used for a different role.
+\item Be precise about the exact relationships between clauses. If a sentence doesn’t make sense when its clauses are viewed as being temporally related, try thinking about them as, e.g., causally related. A good way to start is by locating what the main ``idea'' or ``point'' of the sentence might be, and then to figure out what subsidiary points are. Look especially for parentheticals or appositive phrases (often surrounded by commas), to rule them out as being not main clauses.
+\item Similarly, find the ``break'' points: where logic changes or is missing/confused, where prosody/sound changes, where there are harsh grammatical moves or changes of speaker/ tone/etc.
+\item Look for missing anaphora, using context. Often times words/phrases are left out if the author thinks they will be implied. This is a very frequent phenomenon; e.g., \textit{I went to the demon store, but I didn’t want to} is ``short for'' \textit{I went to the demon store, but I didn’t want to go to the demon store}. In complicated sentences these abbreviations can get lost unless they’re being explicitly tracked.
+\item Look up any and all words you don’t know, and even words you do know. (The OED through the library website and wiktionary.org are reliable and relatively comprehensive.)
+\end{enumerate}
+
+\subsection{Tips for Close Reading}
+
+Once analyzed grammatically/syntactically, sentences, and larger texts, can be understood and analyzed in broader terms—their effects, devices, and purposes. Close reading is the analytical practice of trying to explicate literally all of a text’s features, in a (relatively) objective way, in order to understand and describe the text’s ``meaning''. The initial assumption of close reading is that any noticed textual element is fair game for analysis—everything can be taken as ``intentional'' and important (though there are still varying levels of priority in texts). All statements made in this mode should be based on and supported by the text itself and not by anything outside the text (i.e., not personal beliefs/reactions or general/philosophical statements). This is a very difficult and often unintuitive skill to learn, so it requires practice. Here are crucial aspects to look for when close reading.
+
+\begin{enumerate}
+\item `literal' content
+    \begin{enumerate}
+    \item What are the basic `facts' of the text? Who/what is speaking and/or being described? What is the setting? What is the basic purpose/form/genre of the text? How/where is punctuation/formatting used?
+    \end{enumerate}
+\item diction
+    \begin{enumerate}
+    \item How are the parts of speech used? Make note of verbs, nouns, and other parts of speech and how they are used and organized. Are there any patterns?
+    \item What level of word choice is used? Is the text composed of `simple'/`everyday' or `elevated'/`poetic' words? Are there a lot of scientific words or jargon? Are the words more abstract (denoting concepts) or concrete (denoting materials)?
+    \item Are there any words which imply similar or opposing meanings? Do meanings overlap? Are there semantic patterns? What are the words’ etymologies and (how) are they being invoked?
+    \end{enumerate}
+\end{enumerate}
+\begin{exe}
+\ex examples of word levels
+    \begin{xlist}
+    \ex the lord ate like a pig \hfill `everyday'
+    \ex the potentate engorged his maw \hfill `poetic'
+    \ex the feudal administrator overexpanded his transversus abdominis \hfill `scientific'
+    \end{xlist}
+\ex examples of semantic patterns
+    \begin{xlist}
+    \ex the sewer \textbf{gushed}, and the pedestrians \textbf{rushed} off \par \hfill two quick, watery motion verbs
+    \ex the sewer \textbf{gushed}, and the pedestrians \textbf{stagnated} \par \hfill watery motion versus watery rest
+    \end{xlist}
+\end{exe}
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item figurative language
+    \begin{enumerate}
+    \item metaphor: What things and types of things are being compared? Are the parts equal? Are the metaphors stand-alone or extended throughout the text?
+    \item metonymy: What phenomena are part of other phenomena? What are the containment relationships? Are these relationships consistent or changed throughout the text?
+    \item imagery: Is some kind of scene or picture being offered? Of what? What’s its scope/import?
+    \item symbolism: Do some things represent other, abstract ideas?
+    \item Similar to diction, look for overlapping meanings, repetition, oppositions.
+    \end{enumerate}
+\item attitude tone
+    \begin{enumerate}
+    \item attitude: Is the subject matter being described positively, neutrally, or negatively?
+    \item tone: How is the attitude expressed? What are the speaker’s feelings on the matter? Angry, `objective', personal, hopeful, ironic, etc.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{exe}
+\ex examples of attitude
+    \begin{xlist}
+    \ex the sad dog made it home \hfill `positive'
+    \ex the sad dog went to the house \hfill `neutral'
+    \ex the sad dog retreated into its owner’s home \hfill `negative'
+    \end{xlist}
+\ex examples of tone
+    \begin{xlist}
+    \ex well I'll be, if those ferrets didn’t make that insane machine \hfill incredulous
+    \ex the ferrets that made the insane machine must pay \hfill condemnatory
+    \ex an investigation of the machine-making ferrets has commenced \hfill `objective'
+    \end{xlist}
+\end{exe}
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item prosody/visuality
+    \begin{enumerate}
+    \item What are the sonic features of the text, formal and informal? Are there rhymes, puns, etc. Does the text sound “like” anything? How are sounds organized?
+    \item What are the visual features of the text, formal and informal? Are there words that look / are spelled the same? Does the text look “like” anything?
+    \end{enumerate}
+\item style/structure
+    \begin{enumerate}
+    \item How is the text organized? Where are the main and subordinate ideas? Where are the breaks? Is there some global, underlying structure? Does it seem disorganized? Are there competing explicit and implicit structures/logics?
+    \end{enumerate}
+\item themes
+    \begin{enumerate}
+    \item What is the text concerned with, broadly speaking? What is it `talking about'. A theme is not a statement or argument and thereby can’t be `wrong', but it is often expressible as a word or small set of words, e.g., `love` or `emotions versus thoughts'. 
+    \end{enumerate}
+\item claims
+    \begin{enumerate}
+    \item What is the text trying to get across, both explicitly and implicitly? A text’s claims can often be thought of as a combination of its themes and its formal properties, especially its structures.  How are the themes and the subsets of the themes being related to each other? The most interesting claims are often times implicit, arising from implicit relationships between words and sentences. 
+    \end{enumerate}
+\end{enumerate}
+
+\begin{exe}
+\ex example from Katy Perry's ``Teenage Dream''
+    \begin{xlist}
+    \ex \textbf{explicit claim}: let's be carefree `like' teenagers $\rightarrow$ an optimal relationship is intuitive and innocent
+    \ex \textbf{implicit claim}: I'm lonely, and I want you to be emotionally available $\rightarrow$ regression to childish ideals might be a valid way for undoing more complicated emotional problems
+    \end{xlist}
+\end{exe}
+
+\begin{enumerate}
+\setcounter{enumi}{8}
+\item some common effects/structures to look for
+\end{enumerate}
+
+\begin{exe}
+\ex redundant or extra information
+    \begin{xlist}
+    \ex appositives (appended or offset information)
+        \begin{xlist}
+        \ex he went to the red store
+        \ex he went to the store, \textbf{the red one}
+        \end{xlist}
+    \ex pleonasm (redundant info)
+        \begin{xlist}
+        \ex some geese just hate \textbf{all people, everyone, even tout le monde}
+        \end{xlist}
+    \ex periphrasis (a long form when a shorter one is possible)
+        \begin{xlist}
+        \ex in March
+        \ex in \textbf{the month of} March
+        \end{xlist}
+    \end{xlist}
+\ex chiasmus: a cross-like structure (A:B::B:A)
+    \begin{xlist}
+    \ex been living with \textbf{devils and angels} ... been living like \textbf{angels and devils} \par \hfill - Ariana Grande, ``Why Try''
+    \ex the \textbf{children}_A have \textbf{eaten}_B, yet still \textbf{famished}_B are the \textbf{parents}_A
+    \end{xlist}
+\ex prolepsis: use of a word, phrase, etc. sooner than (grammatically) expected
+    \begin{xlist}
+    \ex it's the way I'm feeling I just can't deny / but I've gotta let it go \par \hfill -Rihanna, ``We Found Love'' \par [``it’s the way I’m feeling'' might be the proleptic object of ``deny'']
+    \end{xlist}
+\ex anacoluthon: an abrupt or unexpected change in grammatical structure
+    \begin{xlist}
+    \ex a little less conversation / a little more \textbf{touch my body} \par \hfill - Ariana Grande, ``Into You'' \par [either ``touch my body'' is an imperative verb phrase which cannot be nested under ``more'', incorrectly leaving ``more'' without an object, or it is a verb phrase being coerced into use as a noun phrase]
+    \ex it's the way I'm feeling / I just can't deny / but I've gotta let it go \par \hfill - Rihanna, ``We Found Love'' \par [if not proleptic, ``deny'' expects an object, but the sentence instead switches to a new independent clause]
+    \end{xlist}
+\ex ambiguous syntax
+    \begin{xlist}
+    \ex yellow diamonds in the light / and we're standing side by side / as your shadow crosses mine / what it takes to come alive \par \hfill - Rihanna, ``We Found Love'' \par [it's not clear how these clauses should be combined]
+    \ex he goosed the gooser \textbf{with a giant duck} \par [it's unclear whether ``a giant duck'' is the means by which the agent (i.e., ``he'') ``goosed'', is an active helper of the agent, or is a particular property of the object (i.e., ``the gooser'')]
+    \end{xlist}
+\end{exe}
+\subsection{Basics of Making Claims and Writing Papers}
+
+After doing a close reading / explication, you can start making larger claims based on your findings. A claim is a proposition, i.e., a statement with (supposed) truth-content, that must be argued for and based on the texts at hand. Claims often extend the structures/logics of the texts in order to derive their and the texts’ implications and to thereby evaluate (not judge) or contextually situate the texts. In other words, claims are not merely descriptive but argue for explicit propositions that, strictly speaking, exist outside of but are fully subservient to the texts. A claim-based paper has at least three parts: introduction, body, conclusion. The “five-paragraph essay” form, however, is not an ideal structure for a rigorous academic paper; nor are arguments based on dictionary definitions, general maxims, or personal beliefs productive bases. Remember, also: writing is a difficult skill to learn and takes practice, effort, and time.
+
+\begin{enumerate}
+\item introduction
+    \begin{enumerate}
+    \item sets the scene/terms for the paper
+    \item most importantly, it has a thesis, the paper’s main claim, which has three basic parts:
+        \begin{enumerate}
+        \item the domain of the claim: aspects/parts/sections of the texts/subjects to be discussed
+        \item the claim itself: the succinct proposition that’s going to be argued for, that’s either true or false, including the claim’s import w/r/t the texts’ concerns and contexts
+        \item the means of the claim: the specific types/forms of evidence that will support the claim, e.g., textual structures/logics, motif patterns, textual aporia/solutions, etc.
+        \end{enumerate}
+    \end{enumerate}
+\item body
+    \begin{enumerate}
+    \item a set of paragraphs, each of which is like a mini paper, containing:
+        \begin{enumerate}
+        \item an initial claim, i.e., a sub-claim with significance for the thesis
+        \item evidence and explication of the sub-claim via the text
+        \item the purpose, i.e., the direction/scope of the paragraph within the paper’s structure
+        \end{enumerate}
+    \item paragraphs should be tightly organized, with clear relationships/transitions between them, and every claim should be related to the thesis
+    \item arguments, generally speaking, should be inductive, rather than deductive; that is, they should work up from textual data rather than apply non-textual ideas to the text
+    \end{enumerate}
+\item conclusion
+    \begin{enumerate}
+    \item reprises the thesis, showing how the claim has been argued
+    \item doesn’t merely summarize the preceding: shows what the paper/results imply and the import therein and details what further research is required
+    \end{enumerate}
+\item see separate sheet for tips avoiding plagiarism
+\item see \href{http://depts.washington.edu/owrc/handouts}{\underline{this link}} for many helpful guides on reading and writing
+\item pet peeves: features that frequently appear in student writing but that, under essentially all circumstances, should never appear
+    \begin{enumerate}
+    \item irrelevant non-textual claims
+        \begin{enumerate}
+        \item general/generalizing statements about literature, history, or the world
+        \item arguments from personal belief (including moral judgements)
+        \item arguments from experience (including reading experiences of the current text)
+        \end{enumerate}
+    \item unnecessary methodological signalling (methods that can be assumed)
+        \begin{enumerate}
+        \item references to the assignment
+        \item close-reading signaling (because close-reading can be assumed)
+        \end{enumerate}
+    \item vacuous textual signalling w/o further analysis
+        \begin{enumerate}
+        \item signalling of textual difficulty or ambiguity without analyzing it
+        \item references to textual features without describing or analyzing those features
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\begin{exe}
+\ex pet peeve examples
+    \begin{xlist}
+    \ex literature has always focused on love \hfill (Ai)
+    \ex people throughout time have used texts to understand their surroundings \hfill (Ai)
+    \ex I think animals are sentient \hfill (Aii)
+    \ex this book presents a bad view of [some religion] \hfill (Aii)
+    \ex the first time I read an entire book ... \hfill (Aiii)
+    \ex when I first read this text ... \hfill (Aiii)
+    \ex for paper two I chose to look at ... \hfill (Bi)
+    \ex I’m responding to prompt X \hfill (Bi)
+    \ex by looking closely at the text, we can ... \hfill (Bii)
+    \ex the text is ambiguous here [w/o detailing the meanings of the passages] \hfill (Ci)
+    \ex this text has complicated sound patterns [w/o describing those patterns] \hfill (Cii)
+    \end{xlist}
+\end{exe}
+
+\end{document}
