@@ -37,9 +37,9 @@ I am an academically trained linguist with substantial tech-industry experience.
 ### Literature Instructor @ University of Minnesota
 <div class="entry-date">09.2016 – 05.2020</div>
 
-- Designed and implemented syllabi for key departmental courses on literary theory.
+- Designed and implemented syllabi for key departmental courses on literary theory and practice.
 - Wrote from scratch unique teaching materials on grammar and rhetoric.
-- Served as Teaching Assistant for introductory literary theory and cultural studies courses.
+- Evaluated student performance and conducted regular one-on-one meetings with students.
 
 ### Library Associate @ Burke Library, Columbia University
 <div class="entry-date">09.2014 – 05.2016</div>
